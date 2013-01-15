@@ -16,6 +16,7 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
+#include "opt-A0.h"
 
 /*
  * These two pieces of data are maintained by the makefiles and build system.
@@ -28,6 +29,7 @@
  */
 extern const int buildversion;
 extern const char buildconfig[];
+extern void hello();
 
 /*
  * Copyright message for the OS/161 base code.
@@ -87,6 +89,10 @@ boot(void)
 	 */
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
+
+    #if OPT_A0
+        hello();
+    #endif /* OPT_A0 */
 }
 
 /*
