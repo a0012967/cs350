@@ -12,5 +12,6 @@ files2.o: \
  $(OSTREE)/include/kern/ioctl.h \
  $(OSTREE)/include/errno.h \
  $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/fcntl.h \
  ../lib/testutils.h
 

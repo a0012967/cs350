@@ -1,39 +1,9 @@
-rtclock.o: ../../dev/generic/rtclock.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
-  ../../include/clock.h opt-synchprobs.h ../../dev/generic/rtclock.h \
-  autoconf.h
-lrandom.o: ../../dev/lamebus/lrandom.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../include/uio.h machine/bus.h \
-  machine/vm.h ../../dev/lamebus/lamebus.h ../../dev/lamebus/lrandom.h \
-  autoconf.h
-pseudorand.o: ../../dev/generic/pseudorand.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../include/uio.h \
-  ../../dev/generic/pseudorand.h autoconf.h
-lamebus.o: ../../dev/lamebus/lamebus.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h machine/spl.h \
-  ../../dev/lamebus/lamebus.h
-lser.o: ../../dev/lamebus/lser.c ../../include/types.h machine/types.h \
+lhd.o: ../../dev/lamebus/lhd.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
-  machine/setjmp.h machine/spl.h machine/bus.h machine/vm.h \
-  ../../dev/lamebus/lamebus.h ../../dev/lamebus/lser.h autoconf.h
-beep.o: ../../dev/generic/beep.c ../../include/types.h machine/types.h \
-  ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
-  ../../include/lib.h machine/setjmp.h ../../dev/generic/beep.h \
-  autoconf.h
-ltimer.o: ../../dev/lamebus/ltimer.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../include/clock.h \
-  opt-synchprobs.h machine/bus.h machine/vm.h ../../dev/lamebus/lamebus.h \
-  ../../dev/lamebus/ltimer.h autoconf.h
-console.o: ../../dev/generic/console.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
-  machine/spl.h ../../include/synch.h ../../dev/generic/console.h \
-  ../../include/dev.h ../../include/vfs.h ../../include/uio.h autoconf.h
+  machine/setjmp.h ../../include/synch.h ../../include/kern/errno.h \
+  machine/bus.h machine/vm.h ../../dev/lamebus/lamebus.h \
+  ../../include/uio.h ../../include/vfs.h ../../dev/lamebus/lhd.h \
+  ../../include/dev.h autoconf.h
 emu.o: ../../dev/lamebus/emu.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/kern/unistd.h ../../include/kern/stat.h \
@@ -48,68 +18,97 @@ random.o: ../../dev/generic/random.c ../../include/types.h \
   ../../include/lib.h machine/setjmp.h ../../include/uio.h \
   ../../include/vfs.h ../../dev/generic/random.h ../../include/dev.h \
   autoconf.h
-lhd.o: ../../dev/lamebus/lhd.c ../../include/types.h machine/types.h \
-  ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
-  machine/setjmp.h ../../include/synch.h ../../include/kern/errno.h \
-  machine/bus.h machine/vm.h ../../dev/lamebus/lamebus.h \
-  ../../include/uio.h ../../include/vfs.h ../../dev/lamebus/lhd.h \
-  ../../include/dev.h autoconf.h
+rtclock.o: ../../dev/generic/rtclock.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
+  ../../include/clock.h opt-synchprobs.h ../../dev/generic/rtclock.h \
+  autoconf.h
+pseudorand.o: ../../dev/generic/pseudorand.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../include/uio.h \
+  ../../dev/generic/pseudorand.h autoconf.h
 ltrace.o: ../../dev/lamebus/ltrace.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h machine/bus.h machine/vm.h \
   ../../dev/lamebus/lamebus.h ../../dev/lamebus/ltrace.h autoconf.h
-beep_ltimer.o: ../../dev/lamebus/beep_ltimer.c ../../include/types.h \
+lamebus.o: ../../dev/lamebus/lamebus.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h machine/spl.h \
+  ../../dev/lamebus/lamebus.h
+console.o: ../../dev/generic/console.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
+  machine/spl.h ../../include/synch.h ../../dev/generic/console.h \
+  ../../include/dev.h ../../include/vfs.h ../../include/uio.h autoconf.h
+lser.o: ../../dev/lamebus/lser.c ../../include/types.h machine/types.h \
+  ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
+  machine/setjmp.h machine/spl.h machine/bus.h machine/vm.h \
+  ../../dev/lamebus/lamebus.h ../../dev/lamebus/lser.h autoconf.h
+beep.o: ../../dev/generic/beep.c ../../include/types.h machine/types.h \
+  ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/lib.h machine/setjmp.h ../../dev/generic/beep.h \
+  autoconf.h
+lrandom.o: ../../dev/lamebus/lrandom.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../include/uio.h machine/bus.h \
+  machine/vm.h ../../dev/lamebus/lamebus.h ../../dev/lamebus/lrandom.h \
+  autoconf.h
+ltimer.o: ../../dev/lamebus/ltimer.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../include/clock.h \
+  opt-synchprobs.h machine/bus.h machine/vm.h ../../dev/lamebus/lamebus.h \
   ../../dev/lamebus/ltimer.h autoconf.h
-lrandom_att.o: ../../dev/lamebus/lrandom_att.c ../../include/types.h \
+rtclock_ltimer.o: ../../dev/lamebus/rtclock_ltimer.c \
+  ../../include/types.h machine/types.h ../../include/kern/types.h \
+  machine/ktypes.h ../../include/lib.h machine/setjmp.h \
+  ../../dev/generic/rtclock.h ../../dev/lamebus/ltimer.h autoconf.h
+emu_att.o: ../../dev/lamebus/emu_att.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
-  ../../dev/lamebus/lrandom.h autoconf.h
-ltimer_att.o: ../../dev/lamebus/ltimer_att.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
-  ../../dev/lamebus/ltimer.h autoconf.h
+  ../../dev/lamebus/emu.h autoconf.h
 random_lrandom.o: ../../dev/lamebus/random_lrandom.c \
   ../../include/types.h machine/types.h ../../include/kern/types.h \
   machine/ktypes.h ../../include/lib.h machine/setjmp.h \
   ../../dev/generic/random.h ../../include/dev.h \
   ../../dev/lamebus/lrandom.h autoconf.h
+beep_ltimer.o: ../../dev/lamebus/beep_ltimer.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../dev/generic/beep.h \
+  ../../dev/lamebus/ltimer.h autoconf.h
 ltrace_att.o: ../../dev/lamebus/ltrace_att.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
   ../../dev/lamebus/ltrace.h autoconf.h
-emu_att.o: ../../dev/lamebus/emu_att.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
-  ../../dev/lamebus/emu.h autoconf.h
-rtclock_ltimer.o: ../../dev/lamebus/rtclock_ltimer.c \
-  ../../include/types.h machine/types.h ../../include/kern/types.h \
-  machine/ktypes.h ../../include/lib.h machine/setjmp.h \
-  ../../dev/generic/rtclock.h ../../dev/lamebus/ltimer.h autoconf.h
 pseudorand_att.o: ../../dev/generic/pseudorand_att.c \
   ../../include/types.h machine/types.h ../../include/kern/types.h \
   machine/ktypes.h ../../include/lib.h machine/setjmp.h \
   ../../dev/generic/random.h ../../include/dev.h \
   ../../dev/generic/pseudorand.h autoconf.h
-lhd_att.o: ../../dev/lamebus/lhd_att.c ../../include/types.h \
-  machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
-  ../../dev/lamebus/lhd.h ../../include/dev.h autoconf.h
 con_lser.o: ../../dev/lamebus/con_lser.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h ../../dev/generic/console.h \
   ../../dev/lamebus/lser.h autoconf.h
+lrandom_att.o: ../../dev/lamebus/lrandom_att.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
+  ../../dev/lamebus/lrandom.h autoconf.h
 lser_att.o: ../../dev/lamebus/lser_att.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
   ../../dev/lamebus/lser.h autoconf.h
-dumbvm.o: ../../arch/mips/mips/dumbvm.c ../../include/types.h \
+lhd_att.o: ../../dev/lamebus/lhd_att.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
-  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
-  ../../include/thread.h machine/pcb.h ../../include/curthread.h \
-  ../../include/addrspace.h ../../include/vm.h machine/vm.h opt-dumbvm.h \
-  machine/spl.h machine/tlb.h
+  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
+  ../../dev/lamebus/lhd.h ../../include/dev.h autoconf.h
+ltimer_att.o: ../../dev/lamebus/ltimer_att.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/lib.h machine/setjmp.h ../../dev/lamebus/lamebus.h \
+  ../../dev/lamebus/ltimer.h autoconf.h
+sfs_io.o: ../../fs/sfs/sfs_io.c ../../include/types.h machine/types.h \
+  ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
+  ../../include/lib.h machine/setjmp.h ../../include/uio.h \
+  ../../include/sfs.h ../../include/vnode.h ../../include/fs.h \
+  ../../include/kern/sfs.h ../../include/dev.h
 sfs_fs.o: ../../fs/sfs/sfs_fs.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
   machine/setjmp.h ../../include/kern/errno.h ../../include/array.h \
@@ -123,11 +122,12 @@ sfs_vnode.o: ../../fs/sfs/sfs_vnode.c ../../include/types.h \
   ../../include/kern/errno.h ../../include/kern/unistd.h \
   ../../include/uio.h ../../include/dev.h ../../include/sfs.h \
   ../../include/vnode.h ../../include/fs.h ../../include/kern/sfs.h
-sfs_io.o: ../../fs/sfs/sfs_io.c ../../include/types.h machine/types.h \
-  ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
-  ../../include/lib.h machine/setjmp.h ../../include/uio.h \
-  ../../include/sfs.h ../../include/vnode.h ../../include/fs.h \
-  ../../include/kern/sfs.h ../../include/dev.h
+dumbvm.o: ../../arch/mips/mips/dumbvm.c ../../include/types.h \
+  machine/types.h ../../include/kern/types.h machine/ktypes.h \
+  ../../include/kern/errno.h ../../include/lib.h machine/setjmp.h \
+  ../../include/thread.h machine/pcb.h ../../include/curthread.h \
+  ../../include/addrspace.h ../../include/vm.h machine/vm.h opt-dumbvm.h \
+  machine/spl.h machine/tlb.h
 cache_mips1.o: ../../arch/mips/mips/cache_mips1.S machine/asmdefs.h
 exception.o: ../../arch/mips/mips/exception.S machine/asmdefs.h \
   machine/specialreg.h
