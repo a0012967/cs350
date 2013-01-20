@@ -20,5 +20,5 @@
 *.mk
 
 # Compile Folder files
-kern/compile/*
+kern/compile/
 
