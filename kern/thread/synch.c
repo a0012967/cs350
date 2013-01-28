@@ -163,6 +163,7 @@ lock_acquire(struct lock *lock)
 
         // would be supprised if this becomes false
         assert(lock->count==0);
+        lock->t_holder = curthread;
         splx(spl);
     #else
         (void)lock;  // suppress warning until code gets written
@@ -174,6 +175,7 @@ lock_release(struct lock *lock)
 {
     #if OPT_A1
         // Write this
+        assert(lock_do_i_hold(lock));
         int spl;
         assert(lock != NULL);
         spl = splhigh();
