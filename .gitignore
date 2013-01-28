@@ -22,3 +22,5 @@
 # Compile Folder files
 kern/compile/
 
+# .swp files
+*.swp
