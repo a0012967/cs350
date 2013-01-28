@@ -114,7 +114,12 @@ lock_create(const char *name)
 		return NULL;
 	}
 	
-	// add stuff here as needed
+    #if OPT_A1
+	    // add stuff here as needed
+        lock->count = 1;
+        lock->t_holder = NULL;
+    #else
+    #endif /* OPT_A1 */
 	
 	return lock;
 }
@@ -124,7 +129,17 @@ lock_destroy(struct lock *lock)
 {
 	assert(lock != NULL);
 
-	// add stuff here as needed
+    #if OPT_A1
+	    // add stuff here as needed
+        // since we're putting threads to sleep on the lock's address
+        int spl = splhigh();
+        assert(thread_hassleepers(lock)==0);
+        splx(spl);
+
+        // something wrong with code if destroy is called before lock_release
+        assert(lock->t_holder == NULL);
+    #else
+    #endif /* OPT_A1 */
 	
 	kfree(lock->name);
 	kfree(lock);
@@ -133,27 +148,55 @@ lock_destroy(struct lock *lock)
 void
 lock_acquire(struct lock *lock)
 {
-	// Write this
+    #if OPT_A1
+        // Write this
+        int spl;
+        assert(lock != NULL);
+        assert(in_interrupt==0);
 
-	(void)lock;  // suppress warning until code gets written
+        spl = splhigh();
+        while (lock->count==0) {
+            thread_sleep(lock);
+        }
+        assert(lock->count==1);
+        lock->count--;
+
+        // would be supprised if this becomes false
+        assert(lock->count==0);
+        splx(spl);
+    #else
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 lock_release(struct lock *lock)
 {
-	// Write this
-
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        // Write this
+        int spl;
+        assert(lock != NULL);
+        spl = splhigh();
+        lock->count++;
+        assert(lock->count==1);
+        thread_wakeup(lock);
+        splx(spl);
+    #else
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 int
 lock_do_i_hold(struct lock *lock)
 {
-	// Write this
+    #if OPT_A1
+        // Write this
+        return lock->t_holder == curthread;
+    #else
+        (void)lock;  // suppress warning until code gets written
 
-	(void)lock;  // suppress warning until code gets written
-
-	return 1;    // dummy until code gets written
+        return 1;    // dummy until code gets written
+    #endif /* OPT_A1 */
 }
 
 ////////////////////////////////////////////////////////////
