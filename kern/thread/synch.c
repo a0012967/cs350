@@ -246,6 +246,7 @@ cv_wait(struct cv *cv, struct lock *lock)
 {
     #if OPT_A1
         int spl;
+        assert(cv != NULL && lock != NULL);
 
         if (lock_do_i_hold(lock)) {
             lock_release(lock);
@@ -268,7 +269,7 @@ cv_signal(struct cv *cv, struct lock *lock)
 {
     #if OPT_A1
         int spl;
-
+        assert(cv != NULL && lock != NULL);
         assert(lock_do_i_hold(lock));
 
         spl = splhigh();
@@ -286,7 +287,7 @@ cv_broadcast(struct cv *cv, struct lock *lock)
 {
     #if OPT_A1
         int spl;
-
+        assert(cv != NULL && lock != NULL);
         assert(lock_do_i_hold(lock));
         
         // we're supposed to disable interrupts when calling thread functions
