@@ -130,7 +130,6 @@ lock_destroy(struct lock *lock)
 	assert(lock != NULL);
 
     #if OPT_A1
-	    // add stuff here as needed
         // since we're putting threads to sleep on the lock's address
         int spl = splhigh();
         assert(thread_hassleepers(lock)==0);
@@ -196,7 +195,6 @@ lock_do_i_hold(struct lock *lock)
         return lock->t_holder == curthread;
     #else
         (void)lock;  // suppress warning until code gets written
-
         return 1;    // dummy until code gets written
     #endif /* OPT_A1 */
 }
@@ -222,8 +220,10 @@ cv_create(const char *name)
 		return NULL;
 	}
 	
-	// add stuff here as needed
-	
+    #if OPT_A1
+        // add stuff here as needed
+    #else
+    #endif /* OPT_A1 */
 	return cv;
 }
 
@@ -232,7 +232,10 @@ cv_destroy(struct cv *cv)
 {
 	assert(cv != NULL);
 
-	// add stuff here as needed
+    #if OPT_A1
+        // add stuff here as needed
+    #else
+    #endif /* OPT_A1 */
 	
 	kfree(cv->name);
 	kfree(cv);
@@ -241,23 +244,57 @@ cv_destroy(struct cv *cv)
 void
 cv_wait(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+
+        if (lock_do_i_hold(lock)) {
+            lock_release(lock);
+        }
+        
+        spl = splhigh();
+        thread_sleep(lock);
+        splx(spl);
+
+        // all threads will wait here once awaken and only one shall pass
+        lock_acquire(lock);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 cv_signal(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+
+        assert(lock_do_i_hold(lock));
+
+        spl = splhigh();
+        // we wake one thread up
+        thread_wake_one_up(lock);
+        splx(spl);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 cv_broadcast(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+
+        assert(lock_do_i_hold(lock));
+        
+        // we're supposed to disable interrupts when calling thread functions
+        spl = splhigh();
+        thread_wakeup(lock);
+        splx(spl);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }

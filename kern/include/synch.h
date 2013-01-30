@@ -58,6 +58,7 @@ struct lock {
         // add what you need here
         // (don't forget to mark things volatile as needed)
         volatile int count;
+        // reference to thread that holds the lock
         struct thread *t_holder;
     #else
     #endif /* OPT_A1 */
@@ -99,8 +100,11 @@ void         lock_destroy(struct lock *);
 
 struct cv {
 	char *name;
-	// add what you need here
-	// (don't forget to mark things volatile as needed)
+    #if OPT_A1
+        // add what you need here
+        // (don't forget to mark things volatile as needed)
+    #else
+    #endif /* OPT_A1 */
 };
 
 struct cv *cv_create(const char *name);
