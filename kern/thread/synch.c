@@ -253,7 +253,7 @@ cv_wait(struct cv *cv, struct lock *lock)
         }
         
         spl = splhigh();
-        thread_sleep(lock);
+        thread_sleep(cv);
         splx(spl);
 
         // all threads will wait here once awaken and only one shall pass
@@ -272,9 +272,9 @@ cv_signal(struct cv *cv, struct lock *lock)
         assert(cv != NULL && lock != NULL);
         assert(lock_do_i_hold(lock));
 
+        // we're supposed to disable interrupts when calling thread functions
         spl = splhigh();
-        // we wake one thread up
-        thread_wake_one_up(lock);
+        thread_wake_one_up(cv);
         splx(spl);
     #else
         (void)cv;    // suppress warning until code gets written
@@ -292,7 +292,7 @@ cv_broadcast(struct cv *cv, struct lock *lock)
         
         // we're supposed to disable interrupts when calling thread functions
         spl = splhigh();
-        thread_wakeup(lock);
+        thread_wakeup(cv);
         splx(spl);
     #else
         (void)cv;    // suppress warning until code gets written

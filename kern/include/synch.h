@@ -101,8 +101,6 @@ void         lock_destroy(struct lock *);
 struct cv {
 	char *name;
     #if OPT_A1
-        // add what you need here
-        // (don't forget to mark things volatile as needed)
     #else
     #endif /* OPT_A1 */
 };
