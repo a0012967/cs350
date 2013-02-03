@@ -552,7 +552,7 @@ thread_sleep(const void *addr)
         // meant to be called with interrupts off
         assert(curspl>0);
 
-        if (array_getnum(sleepers) >= 1) {
+        if (array_getnum(sleepers) > 0) {
             // get first thread in sleepers array
             struct thread *t = array_getguy(sleepers,0);
 

@@ -21,6 +21,8 @@
 #include <test.h>
 #include <thread.h>
 #include <synch.h>
+#include "opt-A1.h"
+#include "queue.h"
 
 /*
  * 
@@ -74,6 +76,86 @@ int NumLoops;  // number of times each cat and mouse should eat
  */
 struct semaphore *CatMouseWait;
 
+#if OPT_A1
+    enum Animal {
+        CAT = 0,
+        MOUSE
+    };
+
+    struct lock *mutex;
+    struct cv *full;
+    struct cv *mouse_turn;
+    struct cv *cat_turn;
+
+    volatile int mouse_present = 0; // boolean
+    volatile int cat_present = 0; // boolean
+
+    volatile int num_eating = 0;
+
+    // only call this from eat()
+    unsigned int get_bowl(enum Animal animal) {
+        assert(animal == CAT || animal == MOUSE);
+        
+        // cat wants to have a bowl
+        if (animal == CAT) {
+            while (mouse_present) {
+                cv_wait(mouse_turn, mutex);
+            }
+            cat_present = 1;
+        }
+        // mouse
+        else {
+            while (cat_present) {
+                cv_wait(cat_turn, mutex);
+            }
+            mouse_present = 1;
+        }
+
+        return num_eating+1;
+    }
+
+
+    void eat(enum Animal animal) {
+        assert(animal == CAT || animal == MOUSE);
+        volatile unsigned int bowl;
+
+        lock_acquire(mutex);
+            while (num_eating == NumBowls) {
+                cv_wait(full, mutex);
+            }
+
+            // only one thread is in get_bowl at a time
+            bowl = get_bowl(animal);
+            assert(bowl > 0 && bowl <= (unsigned int)NumBowls);
+
+            num_eating++;
+        lock_release(mutex);
+
+        if (animal == CAT)
+            cat_eat(bowl);
+        else
+            mouse_eat(bowl);
+        
+        lock_acquire(mutex);
+            num_eating--;
+            if (num_eating == 0) {
+                if (animal == CAT) {
+                    cat_present = 0;
+                    cv_broadcast(cat_turn, mutex);
+                }
+                else {
+                    mouse_present = 0;
+                    cv_broadcast(mouse_turn, mutex);
+                }
+            }
+            cv_broadcast(full, mutex);
+        lock_release(mutex);
+    }
+
+    
+#else
+#endif /* OPT_A1 */
+
 /*
  * 
  * Function Definitions
@@ -105,7 +187,12 @@ cat_simulation(void * unusedpointer,
                unsigned long catnumber)
 {
   int i;
-  unsigned int bowl;
+    
+  #if OPT_A1
+  #else
+      // ignore bowl
+      unsigned int bowl;
+  #endif /* OPT_A1 */
 
   /* avoid unused variable warnings. */
   (void) unusedpointer;
@@ -131,9 +218,13 @@ cat_simulation(void * unusedpointer,
      * synchronization so that the cat does not violate
      * the rules when it eats */
 
-    /* legal bowl numbers range from 1 to NumBowls */
-    bowl = ((unsigned int)random() % NumBowls) + 1;
-    cat_eat(bowl);
+    #if OPT_A1
+        eat(CAT);
+    #else
+        /* legal bowl numbers range from 1 to NumBowls */
+        bowl = ((unsigned int)random() % NumBowls) + 1;
+        cat_eat(bowl);
+    #endif
 
   }
 
@@ -166,7 +257,11 @@ mouse_simulation(void * unusedpointer,
           unsigned long mousenumber)
 {
   int i;
-  unsigned int bowl;
+  #if OPT_A1
+  #else
+      // ignore bowl
+      unsigned int bowl;
+  #endif /* OPT_A1 */
 
   /* Avoid unused variable warnings. */
   (void) unusedpointer;
@@ -192,10 +287,13 @@ mouse_simulation(void * unusedpointer,
      * synchronization so that the mouse does not violate
      * the rules when it eats */
 
-    /* legal bowl numbers range from 1 to NumBowls */
-    bowl = ((unsigned int)random() % NumBowls) + 1;
-    mouse_eat(bowl);
-
+    #if OPT_A1
+        eat(MOUSE);
+    #else
+        /* legal bowl numbers range from 1 to NumBowls */
+        bowl = ((unsigned int)random() % NumBowls) + 1;
+        mouse_eat(bowl);
+    #endif
   }
 
   /* indicate that this mouse is finished */
@@ -266,6 +364,16 @@ catmouse(int nargs,
   kprintf("Using %d bowls, %d cats, and %d mice. Looping %d times.\n",
           NumBowls,NumCats,NumMice,NumLoops);
 
+
+  #if OPT_A1
+    // Initialize synchronization primitives
+    mutex = lock_create("mutex");
+    full = cv_create("full");
+    mouse_turn = cv_create("mouse_turn");
+    cat_turn = cv_create("cat_turn");
+  #else
+  #endif /* OPT_A1 */
+
   /* create the semaphore that is used to make the main thread
      wait for all of the cats and mice to finish */
   CatMouseWait = sem_create("CatMouseWait",0);
@@ -311,6 +419,15 @@ catmouse(int nargs,
 
   /* clean up resources used for tracking bowl use */
   cleanup_bowls();
+
+  #if OPT_A1
+    // clean up the synchronization primitives we used
+    lock_destroy(mutex);
+    cv_destroy(full);
+    cv_destroy(mouse_turn);
+    cv_destroy(cat_turn);
+  #else
+  #endif /* OPT_A1 */
 
   return 0;
 }
