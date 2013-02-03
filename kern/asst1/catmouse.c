@@ -131,6 +131,7 @@ struct semaphore *CatMouseWait;
             num_eating++;
         lock_release(mutex);
 
+        // exclusion from lock allows multiple animals to eat at the smae time
         if (animal == CAT)
             cat_eat(bowl);
         else
@@ -148,7 +149,7 @@ struct semaphore *CatMouseWait;
                     cv_broadcast(mouse_turn, mutex);
                 }
             }
-            cv_broadcast(full, mutex);
+            cv_signal(full, mutex);
         lock_release(mutex);
     }
 
@@ -422,10 +423,6 @@ catmouse(int nargs,
 
   #if OPT_A1
     // clean up the synchronization primitives we used
-    lock_destroy(mutex);
-    cv_destroy(full);
-    cv_destroy(mouse_turn);
-    cv_destroy(cat_turn);
   #else
   #endif /* OPT_A1 */
 
