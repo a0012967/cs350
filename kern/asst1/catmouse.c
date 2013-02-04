@@ -77,79 +77,49 @@ int NumLoops;  // number of times each cat and mouse should eat
 struct semaphore *CatMouseWait;
 
 #if OPT_A1
-    enum Animal {
-        CAT = 0,
-        MOUSE
-    };
-
     struct lock *mutex;
-    struct cv *full;
-    struct cv *mouse_turn;
-    struct cv *cat_turn;
+    struct cv *cv_mouse_turn;
+    struct cv *cv_cat_turn;
 
-    volatile int mouse_present = 0; // boolean
-    volatile int cat_present = 0; // boolean
+    volatile int b_mouse_turn = 1; // boolean
+    volatile int b_cat_turn = 0; // boolean
 
     volatile int num_eating = 0;
 
-    // only call this from eat()
-    unsigned int get_bowl(enum Animal animal) {
-        assert(animal == CAT || animal == MOUSE);
-        
-        // cat wants to have a bowl
-        if (animal == CAT) {
-            while (mouse_present) {
-                cv_wait(mouse_turn, mutex);
+    void mouse() {
+        volatile unsigned int bowl;
+        lock_acquire(mutex);
+            while (!b_mouse_turn)
+                cv_wait(cv_mouse_turn, mutex);
+            bowl = ++num_eating;
+            if (num_eating == NumBowls)
+                b_mouse_turn = 0; 
+        lock_release(mutex);
+        mouse_eat(bowl);
+        lock_acquire(mutex);
+            --num_eating;
+            if (--num_eating == 0) {
+                b_cat_turn = 1;
+                cv_broadcast(cv_cat_turn, mutex);
             }
-            cat_present = 1;
-        }
-        // mouse
-        else {
-            while (cat_present) {
-                cv_wait(cat_turn, mutex);
-            }
-            mouse_present = 1;
-        }
-
-        return num_eating+1;
+        lock_release(mutex);
     }
 
-
-    void eat(enum Animal animal) {
-        assert(animal == CAT || animal == MOUSE);
+    void cat() {
         volatile unsigned int bowl;
-
         lock_acquire(mutex);
-            while (num_eating == NumBowls) {
-                cv_wait(full, mutex);
-            }
-
-            // only one thread is in get_bowl at a time
-            bowl = get_bowl(animal);
-            assert(bowl > 0 && bowl <= (unsigned int)NumBowls);
-
-            num_eating++;
+            while (!b_cat_turn)
+                cv_wait(cv_cat_turn, mutex);
+            bowl = ++num_eating;
+            if (num_eating == NumBowls)
+                b_cat_turn = 0;
         lock_release(mutex);
-
-        // exclusion from lock allows multiple animals to eat at the smae time
-        if (animal == CAT)
-            cat_eat(bowl);
-        else
-            mouse_eat(bowl);
-        
+        cat_eat(bowl);
         lock_acquire(mutex);
-            num_eating--;
-            if (num_eating == 0) {
-                if (animal == CAT) {
-                    cat_present = 0;
-                    cv_broadcast(cat_turn, mutex);
-                }
-                else {
-                    mouse_present = 0;
-                    cv_broadcast(mouse_turn, mutex);
-                }
+            if (--num_eating == 0) {
+                b_mouse_turn = 1;
+                cv_broadcast(cv_mouse_turn, mutex);
             }
-            cv_signal(full, mutex);
         lock_release(mutex);
     }
 
@@ -220,7 +190,7 @@ cat_simulation(void * unusedpointer,
      * the rules when it eats */
 
     #if OPT_A1
-        eat(CAT);
+        cat();
     #else
         /* legal bowl numbers range from 1 to NumBowls */
         bowl = ((unsigned int)random() % NumBowls) + 1;
@@ -289,7 +259,7 @@ mouse_simulation(void * unusedpointer,
      * the rules when it eats */
 
     #if OPT_A1
-        eat(MOUSE);
+        mouse();
     #else
         /* legal bowl numbers range from 1 to NumBowls */
         bowl = ((unsigned int)random() % NumBowls) + 1;
@@ -369,9 +339,8 @@ catmouse(int nargs,
   #if OPT_A1
     // Initialize synchronization primitives
     mutex = lock_create("mutex");
-    full = cv_create("full");
-    mouse_turn = cv_create("mouse_turn");
-    cat_turn = cv_create("cat_turn");
+    cv_mouse_turn = cv_create("cv_mouse_turn");
+    cv_cat_turn = cv_create("cv_cat_turn");
   #else
   #endif /* OPT_A1 */
 
