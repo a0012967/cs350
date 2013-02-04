@@ -19,11 +19,11 @@
 #include <synch.h>
 
 /* number of seconds of delay used to simulate eating */
-#define CATEATINGTIME 1
-#define MOUSEEATINGTIME 1
+#define CATEATINGTIME 0
+#define MOUSEEATINGTIME 0
 /* number of seconds of delay used to simulate sleeping */
-#define CATSLEEPINGTIME 1
-#define MOUSESLEEPINGTIME 1
+#define CATSLEEPINGTIME 0
+#define MOUSESLEEPINGTIME 0
 
 /* number of seconds of delay used to simulate eating */
 //#define CATEATINGTIME 1
