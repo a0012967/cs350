@@ -77,14 +77,18 @@ int NumLoops;  // number of times each cat and mouse should eat
 struct semaphore *CatMouseWait;
 
 #if OPT_A1
+    // synchronization primitives
     struct lock *mutex;
     struct cv *cv_mouse_turn;
     struct cv *cv_cat_turn;
-    struct cv *cv_full;
 
-    volatile unsigned int bowl;
-    volatile int b_mouse_turn = 0; // boolean
-    volatile int b_cat_turn = 0; // boolean
+    // booleans
+    volatile int b_mouse_turn = 0;
+    volatile int b_cat_turn = 0;
+    volatile int b_mouse_waiting = 0;
+    volatile int b_cat_waiting = 0;
+
+    // counters
     volatile int num_eating = 0;
     volatile int counter = 0;
 #else
@@ -123,8 +127,8 @@ cat_simulation(void * unusedpointer,
   int i;
 
   #if OPT_A1
+      volatile unsigned int bowl;
   #else
-      // ignore bowl
       unsigned int bowl;
   #endif /* OPT_A1 */
 
@@ -144,31 +148,36 @@ cat_simulation(void * unusedpointer,
     cat_sleep();
 
     #if OPT_A1
-    lock_acquire(mutex);
-    cat_idle:
-        while (num_eating == NumBowls)
-            cv_wait(cv_full, mutex);
-        while (b_mouse_turn)
-            cv_wait(cv_cat_turn, mutex);
-        if (num_eating == NumBowls)
-            goto cat_idle;
-        b_cat_turn = 1;
-        bowl = ++num_eating;
-        ++counter;
-        assert(num_eating <= NumBowls);
-    lock_release(mutex);
-    cat_eat(bowl);
-    lock_acquire(mutex);
-        --counter;
-        assert(counter >= 0);
-        if (counter == 0) {
-            num_eating = 0;
-            b_cat_turn = 0;
-            cv_broadcast(cv_mouse_turn, mutex);
-            cv_broadcast(cv_full, mutex);
-        }
-    lock_release(mutex);
+        lock_acquire(mutex);
+            while (num_eating == NumBowls || b_mouse_turn) {
+                b_cat_waiting = 1;
+                cv_wait(cv_cat_turn, mutex);
+            }
+            b_cat_turn = 1;
+            bowl = ++num_eating;
+            assert(num_eating <= NumBowls);
+            ++counter;
+            assert(counter <= NumBowls);
+        lock_release(mutex);
 
+        // let cat eat
+        cat_eat(bowl);
+
+        lock_acquire(mutex);
+            --counter;
+            assert(counter >= 0);
+            if (counter == 0) {
+                num_eating = 0;
+                b_cat_turn = 0;
+                // if there're mice waiting, let it be mice's turn
+                if (b_mouse_waiting) {
+                    cv_broadcast(cv_mouse_turn, mutex);
+                    b_mouse_waiting = 0;
+                } 
+                // else it's cats' turn again
+                else cv_broadcast(cv_cat_turn, mutex);
+            }
+        lock_release(mutex);
     #else
         /* legal bowl numbers range from 1 to NumBowls */
         bowl = ((unsigned int)random() % NumBowls) + 1;
@@ -207,8 +216,8 @@ mouse_simulation(void * unusedpointer,
 {
   int i;
   #if OPT_A1
+      volatile unsigned int bowl;
   #else
-      // ignore bowl
       unsigned int bowl;
   #endif /* OPT_A1 */
 
@@ -238,19 +247,18 @@ mouse_simulation(void * unusedpointer,
 
     #if OPT_A1
         lock_acquire(mutex);
-        mouse_idle:
-            while (num_eating == NumBowls)
-                cv_wait(cv_full, mutex);
-            while (b_cat_turn) 
+            while (num_eating == NumBowls || b_cat_turn) {
+                b_mouse_waiting = 1;
                 cv_wait(cv_mouse_turn, mutex);
-            if (num_eating == NumBowls)
-                goto mouse_idle;
+            }
             b_mouse_turn = 1;
             bowl = ++num_eating;
-            ++counter;
             assert(num_eating <= NumBowls);
+            ++counter;
+            assert(counter <= NumBowls);
         lock_release(mutex);
 
+        // let mouse eat
         mouse_eat(bowl);
 
         lock_acquire(mutex);
@@ -259,8 +267,13 @@ mouse_simulation(void * unusedpointer,
             if (counter == 0) {
                 num_eating = 0;
                 b_mouse_turn = 0;
-                cv_broadcast(cv_cat_turn, mutex);
-                cv_broadcast(cv_full, mutex);
+                // if there're cats waiting, let it be cats' turn
+                if (b_cat_waiting) {
+                    cv_broadcast(cv_cat_turn, mutex);
+                    b_cat_waiting = 0;
+                } 
+                // else it's mice's turn again
+                else cv_broadcast(cv_mouse_turn, mutex);
             }
         lock_release(mutex);
     #else
@@ -344,7 +357,6 @@ catmouse(int nargs,
     mutex = lock_create("mutex");
     cv_mouse_turn = cv_create("cv_mouse_turn");
     cv_cat_turn = cv_create("cv_cat_turn");
-    cv_full = cv_create("cv_full");
   #else
   #endif /* OPT_A1 */
 

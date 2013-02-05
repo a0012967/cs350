@@ -89,23 +89,23 @@ KCFLAGS+=-mno-abicalls -fno-pic
 
 
 # CC: compiler, when compiling to object files
-CC=350-gcc 
+CC=cs350-gcc 
 # LDCC: compiler, when linking
-LDCC=350-gcc
+LDCC=cs350-gcc
 # AS: assembler.
-AS=350-as
+AS=cs350-as
 # LD: linker
-LD=350-ld
+LD=cs350-ld
 # AR: archiver (librarian)
-AR=350-ar
+AR=cs350-ar
 # RANLIB: library postprocessor
-RANLIB=350-ranlib
+RANLIB=cs350-ranlib
 # NM: prints symbol tables
-NM=350-nm
+NM=cs350-nm
 # SIZE: prints size of binaries
-SIZE=350-size
+SIZE=cs350-size
 # STRIP: strips debug info
-STRIP=350-strip
+STRIP=cs350-strip
 
 
 # compiler for host system
