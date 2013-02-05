@@ -121,7 +121,7 @@ cat_simulation(void * unusedpointer,
                unsigned long catnumber)
 {
   int i;
-    
+
   #if OPT_A1
   #else
       // ignore bowl

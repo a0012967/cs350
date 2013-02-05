@@ -32,7 +32,7 @@ HOST_LIBS=
 # This must be an absolute path, because it is used from different
 # levels of the source tree.
 #
-OSTREE=/home/potatoqueue/Developer/cs350-os161/root
+OSTREE=/Users/potatoqueue/Developer/cs350-os161/root
 
 #
 # Name of the platform we're building OS/161 to run on.
@@ -89,23 +89,23 @@ KCFLAGS+=-mno-abicalls -fno-pic
 
 
 # CC: compiler, when compiling to object files
-CC=cs350-gcc 
+CC=350-gcc 
 # LDCC: compiler, when linking
-LDCC=cs350-gcc
+LDCC=350-gcc
 # AS: assembler.
-AS=cs350-as
+AS=350-as
 # LD: linker
-LD=cs350-ld
+LD=350-ld
 # AR: archiver (librarian)
-AR=cs350-ar
+AR=350-ar
 # RANLIB: library postprocessor
-RANLIB=cs350-ranlib
+RANLIB=350-ranlib
 # NM: prints symbol tables
-NM=cs350-nm
+NM=350-nm
 # SIZE: prints size of binaries
-SIZE=cs350-size
+SIZE=350-size
 # STRIP: strips debug info
-STRIP=cs350-strip
+STRIP=350-strip
 
 
 # compiler for host system
