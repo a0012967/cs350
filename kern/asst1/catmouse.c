@@ -22,7 +22,6 @@
 #include <thread.h>
 #include <synch.h>
 #include "opt-A1.h"
-#include "queue.h"
 
 /*
  * 
