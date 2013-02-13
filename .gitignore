@@ -18,9 +18,10 @@
 
 # Dependencies
 *.mk
+mk/*
 
 # Compile Folder files
-kern/compile/
+kern/compile/*
 
 # .swp files
 *.swp
