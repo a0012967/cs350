@@ -539,39 +539,6 @@ thread_sleep(const void *addr)
 	curthread->t_sleepaddr = NULL;
 }
 
-#if OPT_A1
-    /*
-     * Based on thread_wakeup() function
-     * Wakes up the first thread in the sleepers array on the given addr
-     */
-    void
-    thread_wake_one_up(const void *addr)
-    {
-        int result;
-        
-        // meant to be called with interrupts off
-        assert(curspl>0);
-
-        if (array_getnum(sleepers) > 0) {
-            // get first thread in sleepers array
-            struct thread *t = array_getguy(sleepers,0);
-
-            if (t->t_sleepaddr == addr) {
-                // Remove from list
-                array_remove(sleepers, 0);
-
-                /*
-                 * Because we preallocate during thread_fork,
-                 * this should never fail.
-                 */
-                result = make_runnable(t);
-                assert(result==0);
-            }
-        }
-    }
-#else
-#endif /* OPT_A1 */
-
 /*
  * Wake up one or more threads who are sleeping on "sleep address"
  * ADDR.

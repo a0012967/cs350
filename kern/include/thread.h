@@ -7,7 +7,6 @@
 
 /* Get machine-dependent stuff */
 #include <machine/pcb.h>
-#include "opt-A1.h"
 
 
 struct addrspace;
@@ -84,16 +83,6 @@ void thread_yield(void);
  * Interrupts must be disabled.
  */
 void thread_sleep(const void *addr);
-
-#if OPT_A1
-    /*
-     * Cause one thread sleeping on the specified address to wake up
-     * Interrupts must be disabled.
-     */
-    void thread_wake_one_up(const void *addr);
-#else
-#endif /* OPT_A1 */
-
 
 /*
  * Cause all threads sleeping on the specified address to wake up.

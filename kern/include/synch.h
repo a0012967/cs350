@@ -9,6 +9,8 @@
 #include <queue.h>
 #include "opt-A1.h"
 
+#define MAXTHREADS 10
+
 /*
  * Dijkstra-style semaphore.
  * Operations:
@@ -54,15 +56,13 @@ void              sem_destroy(struct semaphore *);
 
 struct lock {
 	char *name;
-    
     #if OPT_A1
         // reference to thread that holds the lock
         struct thread *held;
         // queue of waiting threads
-        volatile struct queue *thread_wait_queue;
+        volatile struct queue *wait_queue;
     #else
     #endif /* OPT_A1 */
-    
 };
 
 struct lock *lock_create(const char *name);
@@ -101,6 +101,7 @@ void         lock_destroy(struct lock *);
 struct cv {
 	char *name;
     #if OPT_A1
+        volatile struct queue *wait_queue;
     #else
     #endif /* OPT_A1 */
 };
