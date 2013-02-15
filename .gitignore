@@ -24,6 +24,3 @@ kern/compile/
 
 # .swp files
 *.swp
-
-# Ignore configure scripts
-quick_configure.sh

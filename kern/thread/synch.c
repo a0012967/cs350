@@ -239,7 +239,9 @@ cv_destroy(struct cv *cv)
 	assert(cv != NULL);
 
     #if OPT_A1
-        // add stuff here as needed
+        int spl = splhigh();
+        assert(thread_hassleepers(cv)==0);
+        splx(spl);
     #else
     #endif /* OPT_A1 */
 	

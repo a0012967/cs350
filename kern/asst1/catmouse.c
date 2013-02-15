@@ -22,7 +22,6 @@
 #include <thread.h>
 #include <synch.h>
 #include "opt-A1.h"
-#include "queue.h"
 
 /*
  * 
@@ -408,6 +407,9 @@ catmouse(int nargs,
 
   #if OPT_A1
     // clean up the synchronization primitives we used
+    cv_destroy(cv_mouse_turn);
+    cv_destroy(cv_cat_turn);
+    lock_destroy(mutex);
   #else
   #endif /* OPT_A1 */
 
