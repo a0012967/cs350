@@ -175,19 +175,19 @@ lock_release(struct lock *lock)
         assert(lock_do_i_hold(lock));
 
         int spl;
-        struct thread *t = NULL;
+        struct thread *t;
 
         spl = splhigh();
 
         if (!q_empty(lock->thread_wait_queue)) {
             t = (struct thread *)q_remhead(lock->thread_wait_queue);
+            lock->held = t;
+            thread_wakeup(t);
+        }
+        else {
+            lock->held = NULL;
         }
 
-        lock->held = t;
-
-        // just to check if some dork put threads to sleep on NULL
-        assert(thread_hassleepers(NULL)==0);
-        thread_wakeup(t);
         splx(spl);
     #else
         (void)lock;  // suppress warning until code gets written
