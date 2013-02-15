@@ -1,1 +1,1 @@
-./configure --ostree=$CS350/root --toolprefix=cs350-
+./configure --ostree=$cs350/root --toolprefix=cs350-

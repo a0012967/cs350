@@ -115,9 +115,8 @@ lock_create(const char *name)
 	}
 	
     #if OPT_A1
-	    // add stuff here as needed
-        lock->count = 1;
-        lock->t_holder = NULL;
+        lock->held = NULL;
+        lock->thread_wait_queue = q_create(10);
     #else
     #endif /* OPT_A1 */
 	
@@ -136,7 +135,8 @@ lock_destroy(struct lock *lock)
         splx(spl);
 
         // something wrong with code if destroy is called before lock_release
-        assert(lock->t_holder == NULL);
+        assert(lock->held == NULL);
+        q_destroy(lock->thread_wait_queue);
     #else
     #endif /* OPT_A1 */
 	
@@ -154,15 +154,12 @@ lock_acquire(struct lock *lock)
         assert(in_interrupt==0);
 
         spl = splhigh();
-        while (lock->count==0) {
-            thread_sleep(lock);
+        if (lock->held != NULL) {
+            int err = q_addtail(lock->thread_wait_queue, curthread);
+            assert(err == 0);
+            thread_sleep(curthread);
         }
-        assert(lock->count==1);
-        lock->count--;
-
-        // would be supprised if this becomes false
-        assert(lock->count==0);
-        lock->t_holder = curthread;
+        lock->held = curthread;
         splx(spl);
     #else
         (void)lock;  // suppress warning until code gets written
@@ -174,13 +171,23 @@ lock_release(struct lock *lock)
 {
     #if OPT_A1
         // Write this
-        assert(lock_do_i_hold(lock));
-        int spl;
         assert(lock != NULL);
+        assert(lock_do_i_hold(lock));
+
+        int spl;
+        struct thread *t = NULL;
+
         spl = splhigh();
-        lock->count++;
-        assert(lock->count==1);
-        thread_wakeup(lock);
+
+        if (!q_empty(lock->thread_wait_queue)) {
+            t = (struct thread *)q_remhead(lock->thread_wait_queue);
+        }
+
+        lock->held = t;
+
+        // just to check if some dork put threads to sleep on NULL
+        assert(thread_hassleepers(NULL)==0);
+        thread_wakeup(t);
         splx(spl);
     #else
         (void)lock;  // suppress warning until code gets written
@@ -191,8 +198,7 @@ int
 lock_do_i_hold(struct lock *lock)
 {
     #if OPT_A1
-        // Write this
-        return lock->t_holder == curthread;
+        return lock->held == curthread;
     #else
         (void)lock;  // suppress warning until code gets written
         return 1;    // dummy until code gets written

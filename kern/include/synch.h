@@ -6,6 +6,7 @@
 #define _SYNCH_H_
 
 #include <thread.h>
+#include <queue.h>
 #include "opt-A1.h"
 
 /*
@@ -55,11 +56,10 @@ struct lock {
 	char *name;
     
     #if OPT_A1
-        // add what you need here
-        // (don't forget to mark things volatile as needed)
-        volatile int count;
         // reference to thread that holds the lock
-        struct thread *t_holder;
+        struct thread *held;
+        // queue of waiting threads
+        volatile struct queue *thread_wait_queue;
     #else
     #endif /* OPT_A1 */
     
