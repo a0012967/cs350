@@ -98,6 +98,7 @@ V(struct semaphore *sem)
 //
 // Lock.
 
+// TODO: fix warnings due to discarding volatile qualifier
 struct lock *
 lock_create(const char *name)
 {
@@ -114,7 +115,11 @@ lock_create(const char *name)
 		return NULL;
 	}
 	
-	// add stuff here as needed
+    #if OPT_A1
+        lock->held = NULL;
+        lock->wait_queue = q_create(MAXTHREADS);
+    #else
+    #endif /* OPT_A1 */
 	
 	return lock;
 }
@@ -124,7 +129,17 @@ lock_destroy(struct lock *lock)
 {
 	assert(lock != NULL);
 
-	// add stuff here as needed
+    #if OPT_A1
+        // since we're putting threads to sleep on the lock's address
+        int spl = splhigh();
+        assert(thread_hassleepers(lock)==0);
+        splx(spl);
+
+        // something wrong with code if destroy is called before lock_release
+        assert(lock->held == NULL);
+        q_destroy(lock->wait_queue);
+    #else
+    #endif /* OPT_A1 */
 	
 	kfree(lock->name);
 	kfree(lock);
@@ -133,34 +148,72 @@ lock_destroy(struct lock *lock)
 void
 lock_acquire(struct lock *lock)
 {
-	// Write this
+    #if OPT_A1
+        // Write this
+        int spl;
+        assert(lock != NULL);
+        assert(in_interrupt==0);
 
-	(void)lock;  // suppress warning until code gets written
+        spl = splhigh();
+        if (lock->held != NULL) {
+            int err = q_addtail(lock->wait_queue, curthread);
+            assert(err == 0);
+            thread_sleep(curthread);
+        }
+        lock->held = curthread;
+        splx(spl);
+    #else
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 lock_release(struct lock *lock)
 {
-	// Write this
+    #if OPT_A1
+        // Write this
+        assert(lock != NULL);
+        assert(lock_do_i_hold(lock));
 
-	(void)lock;  // suppress warning until code gets written
+        int spl;
+        struct thread *t;
+
+        spl = splhigh();
+
+        // if there are threads waiting, wake it up
+        // this thread will be the first to access the critical section
+        if (!q_empty(lock->wait_queue)) {
+            t = (struct thread *)q_remhead(lock->wait_queue);
+            lock->held = t;
+            thread_wakeup(t);
+        }
+        else {
+            lock->held = NULL;
+        }
+
+        splx(spl);
+    #else
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 int
 lock_do_i_hold(struct lock *lock)
 {
-	// Write this
-
-	(void)lock;  // suppress warning until code gets written
-
-	return 1;    // dummy until code gets written
+    #if OPT_A1
+        return lock->held == curthread;
+    #else
+        (void)lock;  // suppress warning until code gets written
+        return 1;    // dummy until code gets written
+    #endif /* OPT_A1 */
 }
 
-////////////////////////////////////////////////////////////
+////////////////////////////////e///////////////////////////
 //
 // CV
 
 
+// TODO: fix warnings due to discarding volatile qualifier
 struct cv *
 cv_create(const char *name)
 {
@@ -177,8 +230,10 @@ cv_create(const char *name)
 		return NULL;
 	}
 	
-	// add stuff here as needed
-	
+    #if OPT_A1
+        cv->wait_queue = q_create(MAXTHREADS);
+    #else
+    #endif /* OPT_A1 */
 	return cv;
 }
 
@@ -187,7 +242,13 @@ cv_destroy(struct cv *cv)
 {
 	assert(cv != NULL);
 
-	// add stuff here as needed
+    #if OPT_A1
+        int spl = splhigh();
+        assert(thread_hassleepers(cv)==0);
+        splx(spl);
+        q_destroy(cv->wait_queue);
+    #else
+    #endif /* OPT_A1 */
 	
 	kfree(cv->name);
 	kfree(cv);
@@ -196,23 +257,57 @@ cv_destroy(struct cv *cv)
 void
 cv_wait(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+        assert(cv != NULL && lock != NULL);
+        assert(lock_do_i_hold(lock));
+        lock_release(lock);
+        spl = splhigh(); // disable interrupts on thread functions
+        int err = q_addtail(cv->wait_queue, curthread);
+        assert(err == 0);
+        thread_sleep(curthread);
+        splx(spl);
+        lock_acquire(lock);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 cv_signal(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+        assert(cv != NULL && lock != NULL);
+        assert(lock_do_i_hold(lock));
+        spl = splhigh();  // disable interrupts
+        if (!q_empty(cv->wait_queue)) {
+            struct thread *t = (struct thread *)q_remhead(cv->wait_queue);
+            thread_wakeup(t);
+        }
+        splx(spl);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
 
 void
 cv_broadcast(struct cv *cv, struct lock *lock)
 {
-	// Write this
-	(void)cv;    // suppress warning until code gets written
-	(void)lock;  // suppress warning until code gets written
+    #if OPT_A1
+        int spl;
+        assert(cv != NULL && lock != NULL);
+        assert(lock_do_i_hold(lock));
+        spl = splhigh(); // disable interrupts
+        while (!q_empty(cv->wait_queue)) {
+            struct thread *t = (struct thread *)q_remhead(cv->wait_queue);
+            thread_wakeup(t);
+        }
+        splx(spl);
+    #else
+        (void)cv;    // suppress warning until code gets written
+        (void)lock;  // suppress warning until code gets written
+    #endif /* OPT_A1 */
 }
