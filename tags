@@ -10,9 +10,13 @@ A	testbin/sort/sort.c	/^static int A[SIZE];$/;"	v	file:
 ABSURD_OVERHEAD	testbin/malloctest/malloctest.c	29;"	d	file:
 AR	defs.mk	/^AR=cs350-ar$/;"	m
 ARCH	kern/compile/ASST0/defs.mk	/^ARCH=mips$/;"	m
+ARCH	kern/compile/ASST1/defs.mk	/^ARCH=mips$/;"	m
+ARCH	kern/compile/ASST2/defs.mk	/^ARCH=mips$/;"	m
 AS	defs.mk	/^AS=cs350-as$/;"	m
 AT	kern/arch/mips/include/asmdefs.h	11;"	d
 AT	kern/compile/ASST0/machine/asmdefs.h	11;"	d
+AT	kern/compile/ASST1/machine/asmdefs.h	11;"	d
+AT	kern/compile/ASST2/machine/asmdefs.h	11;"	d
 ArraySize	testbin/sparse/sparse.c	24;"	d	file:
 ArraySize	testbin/tlbfaulter/tlbfaulter.c	28;"	d	file:
 B	testbin/matmult/matmult-orig.c	/^int B[Dim][Dim];$/;"	v
@@ -98,64 +102,116 @@ C	testbin/matmult/matmult-orig.c	/^int C[Dim][Dim];$/;"	v
 C	testbin/matmult/matmult.c	/^int C[Dim][Dim];$/;"	v
 CALLFUNC	uw-testbin/common/funcs.c	149;"	d	file:
 CALLNO_H	lib/libc/Makefile	/^CALLNO_H=..\/..\/kern\/include\/kern\/callno.h$/;"	m
-CATEATINGTIME	kern/asst1/bowls.c	22;"	d	file:
-CATSLEEPINGTIME	kern/asst1/bowls.c	25;"	d	file:
+CATEATINGTIME	kern/asst1/bowls.c	23;"	d	file:
+CATSLEEPINGTIME	kern/asst1/bowls.c	26;"	d	file:
 CC	defs.mk	/^CC=cs350-gcc $/;"	m
 CCA_CODE	kern/arch/mips/include/specialreg.h	21;"	d
 CCA_CODE	kern/compile/ASST0/machine/specialreg.h	21;"	d
+CCA_CODE	kern/compile/ASST1/machine/specialreg.h	21;"	d
+CCA_CODE	kern/compile/ASST2/machine/specialreg.h	21;"	d
 CCA_CODESHIFT	kern/arch/mips/include/specialreg.h	26;"	d
 CCA_CODESHIFT	kern/compile/ASST0/machine/specialreg.h	26;"	d
+CCA_CODESHIFT	kern/compile/ASST1/machine/specialreg.h	26;"	d
+CCA_CODESHIFT	kern/compile/ASST2/machine/specialreg.h	26;"	d
 CCA_COPN	kern/arch/mips/include/specialreg.h	23;"	d
 CCA_COPN	kern/compile/ASST0/machine/specialreg.h	23;"	d
+CCA_COPN	kern/compile/ASST1/machine/specialreg.h	23;"	d
+CCA_COPN	kern/compile/ASST2/machine/specialreg.h	23;"	d
 CCA_IRQS	kern/arch/mips/include/specialreg.h	22;"	d
 CCA_IRQS	kern/compile/ASST0/machine/specialreg.h	22;"	d
+CCA_IRQS	kern/compile/ASST1/machine/specialreg.h	22;"	d
+CCA_IRQS	kern/compile/ASST2/machine/specialreg.h	22;"	d
 CCA_JD	kern/arch/mips/include/specialreg.h	24;"	d
 CCA_JD	kern/compile/ASST0/machine/specialreg.h	24;"	d
+CCA_JD	kern/compile/ASST1/machine/specialreg.h	24;"	d
+CCA_JD	kern/compile/ASST2/machine/specialreg.h	24;"	d
 CCA_UTLB	kern/arch/mips/include/specialreg.h	20;"	d
 CCA_UTLB	kern/compile/ASST0/machine/specialreg.h	20;"	d
+CCA_UTLB	kern/compile/ASST1/machine/specialreg.h	20;"	d
+CCA_UTLB	kern/compile/ASST2/machine/specialreg.h	20;"	d
 CFGREG_DID	kern/dev/lamebus/lamebus.c	12;"	d	file:
 CFGREG_DRL	kern/dev/lamebus/lamebus.c	13;"	d	file:
 CFGREG_VID	kern/dev/lamebus/lamebus.c	11;"	d	file:
 CFLAGS	defs.mk	/^CFLAGS=$/;"	m
 CFLAGS	kern/compile/ASST0/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
+CFLAGS	kern/compile/ASST1/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
+CFLAGS	kern/compile/ASST2/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
 CHAR_BIT	kern/arch/mips/include/types.h	51;"	d
 CHAR_BIT	kern/compile/ASST0/machine/types.h	51;"	d
+CHAR_BIT	kern/compile/ASST1/machine/types.h	51;"	d
+CHAR_BIT	kern/compile/ASST2/machine/types.h	51;"	d
 CIN_INDEX	kern/arch/mips/include/specialreg.h	32;"	d
 CIN_INDEX	kern/compile/ASST0/machine/specialreg.h	32;"	d
+CIN_INDEX	kern/compile/ASST1/machine/specialreg.h	32;"	d
+CIN_INDEX	kern/compile/ASST2/machine/specialreg.h	32;"	d
 CIN_INDEXSHIFT	kern/arch/mips/include/specialreg.h	34;"	d
 CIN_INDEXSHIFT	kern/compile/ASST0/machine/specialreg.h	34;"	d
+CIN_INDEXSHIFT	kern/compile/ASST1/machine/specialreg.h	34;"	d
+CIN_INDEXSHIFT	kern/compile/ASST2/machine/specialreg.h	34;"	d
 CIN_P	kern/arch/mips/include/specialreg.h	31;"	d
 CIN_P	kern/compile/ASST0/machine/specialreg.h	31;"	d
+CIN_P	kern/compile/ASST1/machine/specialreg.h	31;"	d
+CIN_P	kern/compile/ASST2/machine/specialreg.h	31;"	d
 CLOSED_FD	testbin/badcall/config.h	19;"	d
 CMPDIRS	my-testbin/Makefile	/^CMPDIRS := $(shell find .\/ -maxdepth 1 -type d -a -iregex '.\/.+')$/;"	m
 COMPAT_CFLAGS	defs.mk	/^COMPAT_CFLAGS=$/;"	m
 COMPAT_TARGETS	defs.mk	/^COMPAT_TARGETS=$/;"	m
 COMPILE.S	kern/compile/ASST0/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.S	kern/compile/ASST1/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.S	kern/compile/ASST2/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.c	kern/compile/ASST0/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.c	kern/compile/ASST1/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.c	kern/compile/ASST2/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.cc	kern/compile/ASST0/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
+COMPILE.cc	kern/compile/ASST1/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
+COMPILE.cc	kern/compile/ASST2/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
 COMPILE.l	kern/compile/ASST0/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
+COMPILE.l	kern/compile/ASST1/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
+COMPILE.l	kern/compile/ASST2/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
 COMPILE.y	kern/compile/ASST0/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
+COMPILE.y	kern/compile/ASST1/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
+COMPILE.y	kern/compile/ASST2/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
 COMPUTE_ITERS	kern/test/tt3.c	27;"	d	file:
 CONFNAME	kern/compile/ASST0/defs.mk	/^CONFNAME=ASST0$/;"	m
+CONFNAME	kern/compile/ASST1/defs.mk	/^CONFNAME=ASST1$/;"	m
+CONFNAME	kern/compile/ASST2/defs.mk	/^CONFNAME=ASST2$/;"	m
 COUNT_LIMIT	uw-testbin/files2/files2.c	33;"	d	file:
 CST_BEV	kern/arch/mips/include/specialreg.h	15;"	d
 CST_BEV	kern/compile/ASST0/machine/specialreg.h	15;"	d
+CST_BEV	kern/compile/ASST1/machine/specialreg.h	15;"	d
+CST_BEV	kern/compile/ASST2/machine/specialreg.h	15;"	d
 CST_IEc	kern/arch/mips/include/specialreg.h	7;"	d
 CST_IEc	kern/compile/ASST0/machine/specialreg.h	7;"	d
+CST_IEc	kern/compile/ASST1/machine/specialreg.h	7;"	d
+CST_IEc	kern/compile/ASST2/machine/specialreg.h	7;"	d
 CST_IEo	kern/arch/mips/include/specialreg.h	11;"	d
 CST_IEo	kern/compile/ASST0/machine/specialreg.h	11;"	d
+CST_IEo	kern/compile/ASST1/machine/specialreg.h	11;"	d
+CST_IEo	kern/compile/ASST2/machine/specialreg.h	11;"	d
 CST_IEp	kern/arch/mips/include/specialreg.h	9;"	d
 CST_IEp	kern/compile/ASST0/machine/specialreg.h	9;"	d
+CST_IEp	kern/compile/ASST1/machine/specialreg.h	9;"	d
+CST_IEp	kern/compile/ASST2/machine/specialreg.h	9;"	d
 CST_IRQMASK	kern/arch/mips/include/specialreg.h	14;"	d
 CST_IRQMASK	kern/compile/ASST0/machine/specialreg.h	14;"	d
+CST_IRQMASK	kern/compile/ASST1/machine/specialreg.h	14;"	d
+CST_IRQMASK	kern/compile/ASST2/machine/specialreg.h	14;"	d
 CST_KUc	kern/arch/mips/include/specialreg.h	8;"	d
 CST_KUc	kern/compile/ASST0/machine/specialreg.h	8;"	d
+CST_KUc	kern/compile/ASST1/machine/specialreg.h	8;"	d
+CST_KUc	kern/compile/ASST2/machine/specialreg.h	8;"	d
 CST_KUo	kern/arch/mips/include/specialreg.h	12;"	d
 CST_KUo	kern/compile/ASST0/machine/specialreg.h	12;"	d
+CST_KUo	kern/compile/ASST1/machine/specialreg.h	12;"	d
+CST_KUo	kern/compile/ASST2/machine/specialreg.h	12;"	d
 CST_KUp	kern/arch/mips/include/specialreg.h	10;"	d
 CST_KUp	kern/compile/ASST0/machine/specialreg.h	10;"	d
+CST_KUp	kern/compile/ASST1/machine/specialreg.h	10;"	d
+CST_KUp	kern/compile/ASST2/machine/specialreg.h	10;"	d
 CST_MODEMASK	kern/arch/mips/include/specialreg.h	13;"	d
 CST_MODEMASK	kern/compile/ASST0/machine/specialreg.h	13;"	d
+CST_MODEMASK	kern/compile/ASST1/machine/specialreg.h	13;"	d
+CST_MODEMASK	kern/compile/ASST2/machine/specialreg.h	13;"	d
 CTLREG_IRQS	kern/dev/lamebus/lamebus.c	17;"	d	file:
 CTLREG_PWR	kern/dev/lamebus/lamebus.c	18;"	d	file:
 CTLREG_RAMSZ	kern/dev/lamebus/lamebus.c	16;"	d	file:
@@ -177,6 +233,8 @@ DB_VFS	kern/include/lib.h	47;"	d
 DB_VM	kern/include/lib.h	45;"	d
 DEBUG	kern/include/lib.h	76;"	d
 DEBUGFLAGS	kern/compile/ASST0/defs.mk	/^DEBUGFLAGS=-g$/;"	m
+DEBUGFLAGS	kern/compile/ASST1/defs.mk	/^DEBUGFLAGS=-g$/;"	m
+DEBUGFLAGS	kern/compile/ASST2/defs.mk	/^DEBUGFLAGS=-g$/;"	m
 DEFAULT	testbin/ctest/ctest.c	19;"	d	file:
 DEFAULT_FILESIZE	testbin/bigfile/bigfile.c	20;"	d	file:
 DEFAULT_LOCATION	testbin/tail/tail.c	25;"	d	file:
@@ -292,6 +350,8 @@ EM_IA_64	kern/include/elf.h	121;"	d
 EM_M32	kern/include/elf.h	90;"	d
 EM_MACHINE	kern/arch/mips/include/vm.h	76;"	d
 EM_MACHINE	kern/compile/ASST0/machine/vm.h	76;"	d
+EM_MACHINE	kern/compile/ASST1/machine/vm.h	76;"	d
+EM_MACHINE	kern/compile/ASST2/machine/vm.h	76;"	d
 EM_MIPS	kern/include/elf.h	97;"	d
 EM_MIPS_RS3_LE	kern/include/elf.h	99;"	d
 EM_MIPS_X	kern/include/elf.h	122;"	d
@@ -340,30 +400,56 @@ EXTRAS	my-testbin/my-prog.mk	/^EXTRAS = readelf.out nm.out objdump.out $(PROG).S
 EXTRAS	uw-testbin/uw-prog.mk	/^EXTRAS = readelf.out nm.out objdump.out $(PROG).S nm.out$/;"	m
 EX_ADEL	kern/arch/mips/include/trapframe.h	58;"	d
 EX_ADEL	kern/compile/ASST0/machine/trapframe.h	58;"	d
+EX_ADEL	kern/compile/ASST1/machine/trapframe.h	58;"	d
+EX_ADEL	kern/compile/ASST2/machine/trapframe.h	58;"	d
 EX_ADES	kern/arch/mips/include/trapframe.h	59;"	d
 EX_ADES	kern/compile/ASST0/machine/trapframe.h	59;"	d
+EX_ADES	kern/compile/ASST1/machine/trapframe.h	59;"	d
+EX_ADES	kern/compile/ASST2/machine/trapframe.h	59;"	d
 EX_BP	kern/arch/mips/include/trapframe.h	63;"	d
 EX_BP	kern/compile/ASST0/machine/trapframe.h	63;"	d
+EX_BP	kern/compile/ASST1/machine/trapframe.h	63;"	d
+EX_BP	kern/compile/ASST2/machine/trapframe.h	63;"	d
 EX_CPU	kern/arch/mips/include/trapframe.h	65;"	d
 EX_CPU	kern/compile/ASST0/machine/trapframe.h	65;"	d
+EX_CPU	kern/compile/ASST1/machine/trapframe.h	65;"	d
+EX_CPU	kern/compile/ASST2/machine/trapframe.h	65;"	d
 EX_DBE	kern/arch/mips/include/trapframe.h	61;"	d
 EX_DBE	kern/compile/ASST0/machine/trapframe.h	61;"	d
+EX_DBE	kern/compile/ASST1/machine/trapframe.h	61;"	d
+EX_DBE	kern/compile/ASST2/machine/trapframe.h	61;"	d
 EX_IBE	kern/arch/mips/include/trapframe.h	60;"	d
 EX_IBE	kern/compile/ASST0/machine/trapframe.h	60;"	d
+EX_IBE	kern/compile/ASST1/machine/trapframe.h	60;"	d
+EX_IBE	kern/compile/ASST2/machine/trapframe.h	60;"	d
 EX_IRQ	kern/arch/mips/include/trapframe.h	54;"	d
 EX_IRQ	kern/compile/ASST0/machine/trapframe.h	54;"	d
+EX_IRQ	kern/compile/ASST1/machine/trapframe.h	54;"	d
+EX_IRQ	kern/compile/ASST2/machine/trapframe.h	54;"	d
 EX_MOD	kern/arch/mips/include/trapframe.h	55;"	d
 EX_MOD	kern/compile/ASST0/machine/trapframe.h	55;"	d
+EX_MOD	kern/compile/ASST1/machine/trapframe.h	55;"	d
+EX_MOD	kern/compile/ASST2/machine/trapframe.h	55;"	d
 EX_OVF	kern/arch/mips/include/trapframe.h	66;"	d
 EX_OVF	kern/compile/ASST0/machine/trapframe.h	66;"	d
+EX_OVF	kern/compile/ASST1/machine/trapframe.h	66;"	d
+EX_OVF	kern/compile/ASST2/machine/trapframe.h	66;"	d
 EX_RI	kern/arch/mips/include/trapframe.h	64;"	d
 EX_RI	kern/compile/ASST0/machine/trapframe.h	64;"	d
+EX_RI	kern/compile/ASST1/machine/trapframe.h	64;"	d
+EX_RI	kern/compile/ASST2/machine/trapframe.h	64;"	d
 EX_SYS	kern/arch/mips/include/trapframe.h	62;"	d
 EX_SYS	kern/compile/ASST0/machine/trapframe.h	62;"	d
+EX_SYS	kern/compile/ASST1/machine/trapframe.h	62;"	d
+EX_SYS	kern/compile/ASST2/machine/trapframe.h	62;"	d
 EX_TLBL	kern/arch/mips/include/trapframe.h	56;"	d
 EX_TLBL	kern/compile/ASST0/machine/trapframe.h	56;"	d
+EX_TLBL	kern/compile/ASST1/machine/trapframe.h	56;"	d
+EX_TLBL	kern/compile/ASST2/machine/trapframe.h	56;"	d
 EX_TLBS	kern/arch/mips/include/trapframe.h	57;"	d
 EX_TLBS	kern/compile/ASST0/machine/trapframe.h	57;"	d
+EX_TLBS	kern/compile/ASST1/machine/trapframe.h	57;"	d
+EX_TLBS	kern/compile/ASST2/machine/trapframe.h	57;"	d
 Elf32_Ehdr	kern/include/elf.h	/^} Elf32_Ehdr;$/;"	t	typeref:struct:__anon10
 Elf32_Phdr	kern/include/elf.h	/^} Elf32_Phdr;$/;"	t	typeref:struct:__anon11
 Elf_Ehdr	kern/include/elf.h	/^typedef Elf32_Ehdr Elf_Ehdr;$/;"	t
@@ -421,6 +507,8 @@ IMPOSSIBLE_FD	testbin/badcall/config.h	22;"	d
 INCDIR	include/Makefile	/^INCDIR=$(OSTREE)\/include$/;"	m
 INCDIR	kern/Makefile	/^INCDIR=$(OSTREE)\/include$/;"	m
 INCLUDES	kern/compile/ASST0/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
+INCLUDES	kern/compile/ASST1/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
+INCLUDES	kern/compile/ASST2/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	37;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix1/vm-mix1.c	35;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix2/vm-mix2.c	39;"	d	file:
@@ -449,6 +537,8 @@ K1	kern/dev/generic/pseudorand.c	17;"	d	file:
 K2	kern/dev/generic/pseudorand.c	18;"	d	file:
 KCFLAGS	defs.mk	/^KCFLAGS=$/;"	m
 KERNEL	kern/compile/ASST0/Makefile	/^KERNEL=kernel$/;"	m
+KERNEL	kern/compile/ASST1/Makefile	/^KERNEL=kernel$/;"	m
+KERNEL	kern/compile/ASST2/Makefile	/^KERNEL=kernel$/;"	m
 KERNEL_ADDR	testbin/crash/crash.c	20;"	d	file:
 KERN_PTR	testbin/badcall/config.h	9;"	d
 KINCDIR	kern/Makefile	/^KINCDIR=$(OSTREE)\/include\/kern$/;"	m
@@ -467,6 +557,8 @@ LBCS161_TIMER	kern/dev/lamebus/lamebus.h	14;"	d
 LBCS161_TRACE	kern/dev/lamebus/lamebus.h	20;"	d
 LB_BASEADDR	kern/arch/mips/include/bus.h	28;"	d
 LB_BASEADDR	kern/compile/ASST0/machine/bus.h	28;"	d
+LB_BASEADDR	kern/compile/ASST1/machine/bus.h	28;"	d
+LB_BASEADDR	kern/compile/ASST2/machine/bus.h	28;"	d
 LB_CONFIG_SIZE	kern/dev/lamebus/lamebus.h	30;"	d
 LB_CONTROLLER_SLOT	kern/dev/lamebus/lamebus.h	24;"	d
 LB_NSLOTS	kern/dev/lamebus/lamebus.h	27;"	d
@@ -476,6 +568,8 @@ LD	defs.mk	/^LD=cs350-ld$/;"	m
 LDCC	defs.mk	/^LDCC=cs350-gcc$/;"	m
 LDFLAGS	defs.mk	/^LDFLAGS=$/;"	m
 LDFLAGS	kern/compile/ASST0/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
+LDFLAGS	kern/compile/ASST1/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
+LDFLAGS	kern/compile/ASST2/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
 LDSCRIPT	mk/prog.mk	/^LDSCRIPT = -T ..\/..\/mk\/uw-prog-ldscript$/;"	m
 LETTER	testbin/f_test/f_test.c	29;"	d	file:
 LHD_BUFFER	kern/dev/lamebus/lhd.c	31;"	d	file:
@@ -498,6 +592,8 @@ LIB	uw-testbin/lib/Makefile	/^LIB=testutils$/;"	m
 LIBS	defs.mk	/^LIBS=$/;"	m
 LLONGSZ	lib/libc/__printf.c	/^		LLONGSZ,$/;"	e	enum:__anon6::__anon7	file:
 LOAD_ADDRESS	kern/compile/ASST0/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
+LOAD_ADDRESS	kern/compile/ASST1/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
+LOAD_ADDRESS	kern/compile/ASST2/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
 LOCAL_REFS	uw-testbin/vm-mix2/vm-mix2.c	23;"	d	file:
 LOCKME	lib/libc/random.c	49;"	d	file:
 LONGSZ	lib/libc/__printf.c	/^		LONGSZ, $/;"	e	enum:__anon6::__anon7	file:
@@ -555,6 +651,7 @@ MAXPROCS	testbin/farm/farm.c	17;"	d	file:
 MAXPROCS	testbin/kitchen/kitchen.c	14;"	d	file:
 MAXPROCS	testbin/sty/sty.c	15;"	d	file:
 MAXSTRING	testbin/tictac/tictac.c	23;"	d	file:
+MAXTHREADS	kern/include/synch.h	12;"	d
 MAX_TYPES	lib/libc/random.c	151;"	d	file:
 MDHEADERS	kern/Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	kern/Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
@@ -562,16 +659,24 @@ MEDIUMSIZE	testbin/malloctest/malloctest.c	21;"	d	file:
 MIN	uw-testbin/vm-mix2/vm-mix2.c	28;"	d	file:
 MIPS_KSEG0	kern/arch/mips/include/vm.h	20;"	d
 MIPS_KSEG0	kern/compile/ASST0/machine/vm.h	20;"	d
+MIPS_KSEG0	kern/compile/ASST1/machine/vm.h	20;"	d
+MIPS_KSEG0	kern/compile/ASST2/machine/vm.h	20;"	d
 MIPS_KSEG1	kern/arch/mips/include/vm.h	21;"	d
 MIPS_KSEG1	kern/compile/ASST0/machine/vm.h	21;"	d
+MIPS_KSEG1	kern/compile/ASST1/machine/vm.h	21;"	d
+MIPS_KSEG1	kern/compile/ASST2/machine/vm.h	21;"	d
 MIPS_KSEG2	kern/arch/mips/include/vm.h	22;"	d
 MIPS_KSEG2	kern/compile/ASST0/machine/vm.h	22;"	d
+MIPS_KSEG2	kern/compile/ASST1/machine/vm.h	22;"	d
+MIPS_KSEG2	kern/compile/ASST2/machine/vm.h	22;"	d
 MIPS_KUSEG	kern/arch/mips/include/vm.h	19;"	d
 MIPS_KUSEG	kern/compile/ASST0/machine/vm.h	19;"	d
+MIPS_KUSEG	kern/compile/ASST1/machine/vm.h	19;"	d
+MIPS_KUSEG	kern/compile/ASST2/machine/vm.h	19;"	d
 MKPAB	kern/lib/kheap.c	82;"	d	file:
 MODULUS	kern/dev/generic/pseudorand.c	16;"	d	file:
-MOUSEEATINGTIME	kern/asst1/bowls.c	23;"	d	file:
-MOUSESLEEPINGTIME	kern/asst1/bowls.c	26;"	d	file:
+MOUSEEATINGTIME	kern/asst1/bowls.c	24;"	d	file:
+MOUSESLEEPINGTIME	kern/asst1/bowls.c	27;"	d	file:
 MULTIPLIER	kern/dev/generic/pseudorand.c	15;"	d	file:
 N	uw-testbin/segments/segments.c	6;"	d	file:
 NAMESIZE	testbin/dirconc/dirconc.c	23;"	d	file:
@@ -608,6 +713,10 @@ NULL	kern/arch/mips/include/types.h	57;"	d
 NULL	kern/arch/mips/include/types.h	58;"	d
 NULL	kern/compile/ASST0/machine/types.h	57;"	d
 NULL	kern/compile/ASST0/machine/types.h	58;"	d
+NULL	kern/compile/ASST1/machine/types.h	57;"	d
+NULL	kern/compile/ASST1/machine/types.h	58;"	d
+NULL	kern/compile/ASST2/machine/types.h	57;"	d
+NULL	kern/compile/ASST2/machine/types.h	58;"	d
 NUMBER_BUF_SIZE	lib/libc/__printf.c	54;"	d	file:
 NUM_INTS	uw-testbin/writeread/writeread.c	14;"	d	file:
 NUM_REFS	uw-testbin/vm-crash3/vm-crash3.c	29;"	d	file:
@@ -619,6 +728,8 @@ NUM_REFS	uw-testbin/vm-mix1/vm-mix1.c	21;"	d	file:
 NUM_TIMES	uw-testbin/writeread/writeread.c	13;"	d	file:
 NUM_TLB	kern/arch/mips/include/tlb.h	73;"	d
 NUM_TLB	kern/compile/ASST0/machine/tlb.h	73;"	d
+NUM_TLB	kern/compile/ASST1/machine/tlb.h	73;"	d
+NUM_TLB	kern/compile/ASST2/machine/tlb.h	73;"	d
 NUM_WRITES	uw-testbin/conc-io/conc-io.c	16;"	d	file:
 NWAITADDRS	kern/test/tt3.c	29;"	d	file:
 NumBowls	kern/asst1/catmouse.c	/^int NumBowls;  \/\/ number of food bowls$/;"	v
@@ -634,16 +745,38 @@ OBJS1	lib/hostcompat/Makefile	/^OBJS1=$(SRCS:.c=.ho)$/;"	m
 OBJS1	mk/lib.mk	/^OBJS1=$(SRCS:.c=.o)$/;"	m
 OBJS1	mk/prog.mk	/^OBJS1=$(SRCS:.c=.o)$/;"	m
 OPT_A0	kern/compile/ASST0/opt-A0.h	4;"	d
+OPT_A0	kern/compile/ASST1/opt-A0.h	4;"	d
+OPT_A0	kern/compile/ASST2/opt-A0.h	4;"	d
 OPT_A1	kern/compile/ASST0/opt-A1.h	4;"	d
+OPT_A1	kern/compile/ASST1/opt-A1.h	4;"	d
+OPT_A1	kern/compile/ASST2/opt-A1.h	4;"	d
 OPT_A2	kern/compile/ASST0/opt-A2.h	4;"	d
+OPT_A2	kern/compile/ASST1/opt-A2.h	4;"	d
+OPT_A2	kern/compile/ASST2/opt-A2.h	4;"	d
 OPT_A3	kern/compile/ASST0/opt-A3.h	4;"	d
+OPT_A3	kern/compile/ASST1/opt-A3.h	4;"	d
+OPT_A3	kern/compile/ASST2/opt-A3.h	4;"	d
 OPT_A4	kern/compile/ASST0/opt-A4.h	4;"	d
+OPT_A4	kern/compile/ASST1/opt-A4.h	4;"	d
+OPT_A4	kern/compile/ASST2/opt-A4.h	4;"	d
 OPT_A5	kern/compile/ASST0/opt-A5.h	4;"	d
+OPT_A5	kern/compile/ASST1/opt-A5.h	4;"	d
+OPT_A5	kern/compile/ASST2/opt-A5.h	4;"	d
 OPT_DUMBVM	kern/compile/ASST0/opt-dumbvm.h	4;"	d
+OPT_DUMBVM	kern/compile/ASST1/opt-dumbvm.h	4;"	d
+OPT_DUMBVM	kern/compile/ASST2/opt-dumbvm.h	4;"	d
 OPT_NET	kern/compile/ASST0/opt-net.h	4;"	d
+OPT_NET	kern/compile/ASST1/opt-net.h	4;"	d
+OPT_NET	kern/compile/ASST2/opt-net.h	4;"	d
 OPT_NETFS	kern/compile/ASST0/opt-netfs.h	4;"	d
+OPT_NETFS	kern/compile/ASST1/opt-netfs.h	4;"	d
+OPT_NETFS	kern/compile/ASST2/opt-netfs.h	4;"	d
 OPT_SFS	kern/compile/ASST0/opt-sfs.h	4;"	d
+OPT_SFS	kern/compile/ASST1/opt-sfs.h	4;"	d
+OPT_SFS	kern/compile/ASST2/opt-sfs.h	4;"	d
 OPT_SYNCHPROBS	kern/compile/ASST0/opt-synchprobs.h	4;"	d
+OPT_SYNCHPROBS	kern/compile/ASST1/opt-synchprobs.h	4;"	d
+OPT_SYNCHPROBS	kern/compile/ASST2/opt-synchprobs.h	4;"	d
 OS161DIR	my-testbin/my-prog.mk	/^OS161DIR = ..\/..$/;"	m
 OS161DIR	uw-testbin/uw-prog.mk	/^OS161DIR = ..\/..$/;"	m
 OSTREE	defs.mk	/^OSTREE=\/home\/potatoqueue\/Developer\/cs350-os161\/root$/;"	m
@@ -661,6 +794,8 @@ O_WRONLY	kern/include/kern/unistd.h	10;"	d
 P	kern/thread/synch.c	/^P(struct semaphore *sem)$/;"	f
 PADDR_TO_KVADDR	kern/arch/mips/include/vm.h	36;"	d
 PADDR_TO_KVADDR	kern/compile/ASST0/machine/vm.h	36;"	d
+PADDR_TO_KVADDR	kern/compile/ASST1/machine/vm.h	36;"	d
+PADDR_TO_KVADDR	kern/compile/ASST2/machine/vm.h	36;"	d
 PAGES	uw-testbin/vm-crash3/vm-crash3.c	27;"	d	file:
 PAGES	uw-testbin/vm-data1/vm-data1.c	5;"	d	file:
 PAGES	uw-testbin/vm-data2/vm-data2.c	5;"	d	file:
@@ -672,8 +807,12 @@ PAGES	uw-testbin/vm-stack1/vm-stack1.c	5;"	d	file:
 PAGES_TO_TOUCH	uw-testbin/vm-data2/vm-data2.c	8;"	d	file:
 PAGE_FRAME	kern/arch/mips/include/vm.h	9;"	d
 PAGE_FRAME	kern/compile/ASST0/machine/vm.h	9;"	d
+PAGE_FRAME	kern/compile/ASST1/machine/vm.h	9;"	d
+PAGE_FRAME	kern/compile/ASST2/machine/vm.h	9;"	d
 PAGE_SIZE	kern/arch/mips/include/vm.h	8;"	d
 PAGE_SIZE	kern/compile/ASST0/machine/vm.h	8;"	d
+PAGE_SIZE	kern/compile/ASST1/machine/vm.h	8;"	d
+PAGE_SIZE	kern/compile/ASST2/machine/vm.h	8;"	d
 PAGE_SIZE	uw-testbin/vm-crash3/vm-crash3.c	26;"	d	file:
 PAGE_SIZE	uw-testbin/vm-data1/vm-data1.c	4;"	d	file:
 PAGE_SIZE	uw-testbin/vm-data2/vm-data2.c	4;"	d	file:
@@ -806,8 +945,12 @@ RUNDIRTEST	testbin/f_test/f_test.c	268;"	d	file:
 RUNTHEMALL	testbin/f_test/f_test.c	270;"	d	file:
 Ropt	bin/ls/ls.c	/^static int Ropt=0;$/;"	v	file:
 S	kern/compile/ASST0/defs.mk	/^S=..\/..$/;"	m
+S	kern/compile/ASST1/defs.mk	/^S=..\/..$/;"	m
+S	kern/compile/ASST2/defs.mk	/^S=..\/..$/;"	m
 SAME_STACK	kern/arch/mips/include/pcb.h	17;"	d
 SAME_STACK	kern/compile/ASST0/machine/pcb.h	17;"	d
+SAME_STACK	kern/compile/ASST1/machine/pcb.h	17;"	d
+SAME_STACK	kern/compile/ASST2/machine/pcb.h	17;"	d
 SECTOR_SIZE	testbin/f_test/f_test.c	22;"	d	file:
 SEEK_CUR	kern/include/kern/unistd.h	34;"	d
 SEEK_END	kern/include/kern/unistd.h	35;"	d
@@ -857,6 +1000,8 @@ SMALLSIZE	testbin/malloctest/malloctest.c	20;"	d	file:
 SNP	lib/libc/snprintf.c	/^} SNP;$/;"	t	typeref:struct:__anon8	file:
 SPL_HIGH	kern/arch/mips/include/spl.h	64;"	d
 SPL_HIGH	kern/compile/ASST0/machine/spl.h	64;"	d
+SPL_HIGH	kern/compile/ASST1/machine/spl.h	64;"	d
+SPL_HIGH	kern/compile/ASST2/machine/spl.h	64;"	d
 SRCS	bin/cat/Makefile	/^SRCS=cat.c$/;"	m
 SRCS	bin/cp/Makefile	/^SRCS=cp.c$/;"	m
 SRCS	bin/false/Makefile	/^SRCS=false.c$/;"	m
@@ -942,12 +1087,16 @@ STACK_ARRAY_ELEMS	uw-testbin/vm-mix2/vm-mix2.c	26;"	d	file:
 STACK_ARRAY_ELEMS	uw-testbin/vm-stack2/vm-stack2.c	6;"	d	file:
 STACK_MASK	kern/arch/mips/include/pcb.h	14;"	d
 STACK_MASK	kern/compile/ASST0/machine/pcb.h	14;"	d
+STACK_MASK	kern/compile/ASST1/machine/pcb.h	14;"	d
+STACK_MASK	kern/compile/ASST2/machine/pcb.h	14;"	d
 STACK_PAGES_USED	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	25;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-mix1/vm-mix1.c	23;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-mix2/vm-mix2.c	25;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-stack2/vm-stack2.c	5;"	d	file:
 STACK_SIZE	kern/arch/mips/include/pcb.h	11;"	d
 STACK_SIZE	kern/compile/ASST0/machine/pcb.h	11;"	d
+STACK_SIZE	kern/compile/ASST1/machine/pcb.h	11;"	d
+STACK_SIZE	kern/compile/ASST2/machine/pcb.h	11;"	d
 STDERR_FILENO	kern/include/kern/unistd.h	25;"	d
 STDIN_FILENO	kern/include/kern/unistd.h	23;"	d
 STDOUT_FILENO	kern/include/kern/unistd.h	24;"	d
@@ -1021,6 +1170,8 @@ T	testbin/badcall/common_path.c	156;"	d	file:
 T	testbin/matmult/matmult.c	/^int T[Dim][Dim][Dim];$/;"	v
 T2	testbin/badcall/common_path.c	173;"	d	file:
 TAGS_HEADERS	kern/compile/ASST0/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
+TAGS_HEADERS	kern/compile/ASST1/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
+TAGS_HEADERS	kern/compile/ASST2/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
 TC	testbin/badcall/common_fds.c	158;"	d	file:
 TEST	testbin/rmtest/rmtest.c	17;"	d	file:
 TESTDATA	testbin/rmtest/rmtest.c	18;"	d	file:
@@ -1042,18 +1193,32 @@ TEST_VERBOSE_OFF	uw-testbin/lib/testutils.h	24;"	d
 TEST_VERBOSE_ON	uw-testbin/lib/testutils.h	21;"	d
 TLBHI_INVALID	kern/arch/mips/include/tlb.h	66;"	d
 TLBHI_INVALID	kern/compile/ASST0/machine/tlb.h	66;"	d
+TLBHI_INVALID	kern/compile/ASST1/machine/tlb.h	66;"	d
+TLBHI_INVALID	kern/compile/ASST2/machine/tlb.h	66;"	d
 TLBHI_VPAGE	kern/arch/mips/include/tlb.h	51;"	d
 TLBHI_VPAGE	kern/compile/ASST0/machine/tlb.h	51;"	d
+TLBHI_VPAGE	kern/compile/ASST1/machine/tlb.h	51;"	d
+TLBHI_VPAGE	kern/compile/ASST2/machine/tlb.h	51;"	d
 TLBLO_DIRTY	kern/arch/mips/include/tlb.h	57;"	d
 TLBLO_DIRTY	kern/compile/ASST0/machine/tlb.h	57;"	d
+TLBLO_DIRTY	kern/compile/ASST1/machine/tlb.h	57;"	d
+TLBLO_DIRTY	kern/compile/ASST2/machine/tlb.h	57;"	d
 TLBLO_INVALID	kern/arch/mips/include/tlb.h	67;"	d
 TLBLO_INVALID	kern/compile/ASST0/machine/tlb.h	67;"	d
+TLBLO_INVALID	kern/compile/ASST1/machine/tlb.h	67;"	d
+TLBLO_INVALID	kern/compile/ASST2/machine/tlb.h	67;"	d
 TLBLO_NOCACHE	kern/arch/mips/include/tlb.h	56;"	d
 TLBLO_NOCACHE	kern/compile/ASST0/machine/tlb.h	56;"	d
+TLBLO_NOCACHE	kern/compile/ASST1/machine/tlb.h	56;"	d
+TLBLO_NOCACHE	kern/compile/ASST2/machine/tlb.h	56;"	d
 TLBLO_PPAGE	kern/arch/mips/include/tlb.h	55;"	d
 TLBLO_PPAGE	kern/compile/ASST0/machine/tlb.h	55;"	d
+TLBLO_PPAGE	kern/compile/ASST1/machine/tlb.h	55;"	d
+TLBLO_PPAGE	kern/compile/ASST2/machine/tlb.h	55;"	d
 TLBLO_VALID	kern/arch/mips/include/tlb.h	58;"	d
 TLBLO_VALID	kern/compile/ASST0/machine/tlb.h	58;"	d
+TLBLO_VALID	kern/compile/ASST1/machine/tlb.h	58;"	d
+TLBLO_VALID	kern/compile/ASST2/machine/tlb.h	58;"	d
 TLBSize	testbin/tlbfaulter/tlbfaulter.c	25;"	d	file:
 TLB_Probe	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Probe:$/;"	l
 TLB_Random	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Random:$/;"	l
@@ -1088,8 +1253,12 @@ UNINIT_PAGES	uw-testbin/vm-stack2/vm-stack2.c	7;"	d	file:
 UNLOCKME	lib/libc/random.c	50;"	d	file:
 USERSTACK	kern/arch/mips/include/vm.h	52;"	d
 USERSTACK	kern/compile/ASST0/machine/vm.h	52;"	d
+USERSTACK	kern/compile/ASST1/machine/vm.h	52;"	d
+USERSTACK	kern/compile/ASST2/machine/vm.h	52;"	d
 USERTOP	kern/arch/mips/include/vm.h	42;"	d
 USERTOP	kern/compile/ASST0/machine/vm.h	42;"	d
+USERTOP	kern/compile/ASST1/machine/vm.h	42;"	d
+USERTOP	kern/compile/ASST2/machine/vm.h	42;"	d
 USE_LONGLONG	lib/libc/__printf.c	34;"	d	file:
 USING_ERR_CODES	uw-testbin/files2/files2.c	25;"	d	file:
 V	kern/thread/synch.c	/^V(struct semaphore *sem)$/;"	f
@@ -1155,8 +1324,12 @@ _ADDRSPACE_H_	kern/include/addrspace.h	2;"	d
 _ARRAY_H_	kern/include/array.h	2;"	d
 _ASSERT_H_	include/assert.h	2;"	d
 _AUTOCONF_H_	kern/compile/ASST0/autoconf.h	3;"	d
+_AUTOCONF_H_	kern/compile/ASST1/autoconf.h	3;"	d
+_AUTOCONF_H_	kern/compile/ASST2/autoconf.h	3;"	d
 _BIG_ENDIAN	kern/arch/mips/include/types.h	66;"	d
 _BIG_ENDIAN	kern/compile/ASST0/machine/types.h	66;"	d
+_BIG_ENDIAN	kern/compile/ASST1/machine/types.h	66;"	d
+_BIG_ENDIAN	kern/compile/ASST2/machine/types.h	66;"	d
 _BITMAP_H_	kern/include/bitmap.h	2;"	d
 _CLOCK_H_	kern/include/clock.h	2;"	d
 _CURTHREAD_H_	kern/include/curthread.h	2;"	d
@@ -1191,41 +1364,89 @@ _LAMEBUS_LTRACE_H_	kern/dev/lamebus/ltrace.h	2;"	d
 _LIB_H_	kern/include/lib.h	2;"	d
 _LITTLE_ENDIAN	kern/arch/mips/include/types.h	65;"	d
 _LITTLE_ENDIAN	kern/compile/ASST0/machine/types.h	65;"	d
+_LITTLE_ENDIAN	kern/compile/ASST1/machine/types.h	65;"	d
+_LITTLE_ENDIAN	kern/compile/ASST2/machine/types.h	65;"	d
 _MACHINE_PCB_H_	kern/arch/mips/include/pcb.h	6;"	d
 _MACHINE_PCB_H_	kern/compile/ASST0/machine/pcb.h	6;"	d
+_MACHINE_PCB_H_	kern/compile/ASST1/machine/pcb.h	6;"	d
+_MACHINE_PCB_H_	kern/compile/ASST2/machine/pcb.h	6;"	d
 _MACHINE_SPL_H_	kern/arch/mips/include/spl.h	2;"	d
 _MACHINE_SPL_H_	kern/compile/ASST0/machine/spl.h	2;"	d
+_MACHINE_SPL_H_	kern/compile/ASST1/machine/spl.h	2;"	d
+_MACHINE_SPL_H_	kern/compile/ASST2/machine/spl.h	2;"	d
 _MACHINE_TLB_H_	kern/arch/mips/include/tlb.h	2;"	d
 _MACHINE_TLB_H_	kern/compile/ASST0/machine/tlb.h	2;"	d
+_MACHINE_TLB_H_	kern/compile/ASST1/machine/tlb.h	2;"	d
+_MACHINE_TLB_H_	kern/compile/ASST2/machine/tlb.h	2;"	d
 _MIPS_ASMDEFS_H_	kern/arch/mips/include/asmdefs.h	5;"	d
 _MIPS_ASMDEFS_H_	kern/compile/ASST0/machine/asmdefs.h	5;"	d
+_MIPS_ASMDEFS_H_	kern/compile/ASST1/machine/asmdefs.h	5;"	d
+_MIPS_ASMDEFS_H_	kern/compile/ASST2/machine/asmdefs.h	5;"	d
 _MIPS_BUS_H_	kern/arch/mips/include/bus.h	2;"	d
 _MIPS_BUS_H_	kern/compile/ASST0/machine/bus.h	2;"	d
+_MIPS_BUS_H_	kern/compile/ASST1/machine/bus.h	2;"	d
+_MIPS_BUS_H_	kern/compile/ASST2/machine/bus.h	2;"	d
 _MIPS_KTYPES_H_	kern/arch/mips/include/ktypes.h	2;"	d
 _MIPS_KTYPES_H_	kern/compile/ASST0/machine/ktypes.h	2;"	d
+_MIPS_KTYPES_H_	kern/compile/ASST1/machine/ktypes.h	2;"	d
+_MIPS_KTYPES_H_	kern/compile/ASST2/machine/ktypes.h	2;"	d
 _MIPS_SETJMP_H_	kern/arch/mips/include/setjmp.h	2;"	d
 _MIPS_SETJMP_H_	kern/compile/ASST0/machine/setjmp.h	2;"	d
+_MIPS_SETJMP_H_	kern/compile/ASST1/machine/setjmp.h	2;"	d
+_MIPS_SETJMP_H_	kern/compile/ASST2/machine/setjmp.h	2;"	d
 _MIPS_SPECIALREG_H_	kern/arch/mips/include/specialreg.h	2;"	d
 _MIPS_SPECIALREG_H_	kern/compile/ASST0/machine/specialreg.h	2;"	d
+_MIPS_SPECIALREG_H_	kern/compile/ASST1/machine/specialreg.h	2;"	d
+_MIPS_SPECIALREG_H_	kern/compile/ASST2/machine/specialreg.h	2;"	d
 _MIPS_SWITCHFRAME_H_	kern/arch/mips/include/switchframe.h	2;"	d
 _MIPS_SWITCHFRAME_H_	kern/compile/ASST0/machine/switchframe.h	2;"	d
+_MIPS_SWITCHFRAME_H_	kern/compile/ASST1/machine/switchframe.h	2;"	d
+_MIPS_SWITCHFRAME_H_	kern/compile/ASST2/machine/switchframe.h	2;"	d
 _MIPS_TRAPFRAME_H_	kern/arch/mips/include/trapframe.h	2;"	d
 _MIPS_TRAPFRAME_H_	kern/compile/ASST0/machine/trapframe.h	2;"	d
+_MIPS_TRAPFRAME_H_	kern/compile/ASST1/machine/trapframe.h	2;"	d
+_MIPS_TRAPFRAME_H_	kern/compile/ASST2/machine/trapframe.h	2;"	d
 _MIPS_TYPES_H_	kern/arch/mips/include/types.h	2;"	d
 _MIPS_TYPES_H_	kern/compile/ASST0/machine/types.h	2;"	d
+_MIPS_TYPES_H_	kern/compile/ASST1/machine/types.h	2;"	d
+_MIPS_TYPES_H_	kern/compile/ASST2/machine/types.h	2;"	d
 _MIPS_VM_H_	kern/arch/mips/include/vm.h	2;"	d
 _MIPS_VM_H_	kern/compile/ASST0/machine/vm.h	2;"	d
+_MIPS_VM_H_	kern/compile/ASST1/machine/vm.h	2;"	d
+_MIPS_VM_H_	kern/compile/ASST2/machine/vm.h	2;"	d
 _OPT_A0_H_	kern/compile/ASST0/opt-A0.h	3;"	d
+_OPT_A0_H_	kern/compile/ASST1/opt-A0.h	3;"	d
+_OPT_A0_H_	kern/compile/ASST2/opt-A0.h	3;"	d
 _OPT_A1_H_	kern/compile/ASST0/opt-A1.h	3;"	d
+_OPT_A1_H_	kern/compile/ASST1/opt-A1.h	3;"	d
+_OPT_A1_H_	kern/compile/ASST2/opt-A1.h	3;"	d
 _OPT_A2_H_	kern/compile/ASST0/opt-A2.h	3;"	d
+_OPT_A2_H_	kern/compile/ASST1/opt-A2.h	3;"	d
+_OPT_A2_H_	kern/compile/ASST2/opt-A2.h	3;"	d
 _OPT_A3_H_	kern/compile/ASST0/opt-A3.h	3;"	d
+_OPT_A3_H_	kern/compile/ASST1/opt-A3.h	3;"	d
+_OPT_A3_H_	kern/compile/ASST2/opt-A3.h	3;"	d
 _OPT_A4_H_	kern/compile/ASST0/opt-A4.h	3;"	d
+_OPT_A4_H_	kern/compile/ASST1/opt-A4.h	3;"	d
+_OPT_A4_H_	kern/compile/ASST2/opt-A4.h	3;"	d
 _OPT_A5_H_	kern/compile/ASST0/opt-A5.h	3;"	d
+_OPT_A5_H_	kern/compile/ASST1/opt-A5.h	3;"	d
+_OPT_A5_H_	kern/compile/ASST2/opt-A5.h	3;"	d
 _OPT_DUMBVM_H_	kern/compile/ASST0/opt-dumbvm.h	3;"	d
+_OPT_DUMBVM_H_	kern/compile/ASST1/opt-dumbvm.h	3;"	d
+_OPT_DUMBVM_H_	kern/compile/ASST2/opt-dumbvm.h	3;"	d
 _OPT_NETFS_H_	kern/compile/ASST0/opt-netfs.h	3;"	d
+_OPT_NETFS_H_	kern/compile/ASST1/opt-netfs.h	3;"	d
+_OPT_NETFS_H_	kern/compile/ASST2/opt-netfs.h	3;"	d
 _OPT_NET_H_	kern/compile/ASST0/opt-net.h	3;"	d
+_OPT_NET_H_	kern/compile/ASST1/opt-net.h	3;"	d
+_OPT_NET_H_	kern/compile/ASST2/opt-net.h	3;"	d
 _OPT_SFS_H_	kern/compile/ASST0/opt-sfs.h	3;"	d
+_OPT_SFS_H_	kern/compile/ASST1/opt-sfs.h	3;"	d
+_OPT_SFS_H_	kern/compile/ASST2/opt-sfs.h	3;"	d
 _OPT_SYNCHPROBS_H_	kern/compile/ASST0/opt-synchprobs.h	3;"	d
+_OPT_SYNCHPROBS_H_	kern/compile/ASST1/opt-synchprobs.h	3;"	d
+_OPT_SYNCHPROBS_H_	kern/compile/ASST2/opt-synchprobs.h	3;"	d
 _PATH_RANDOM	testbin/malloctest/malloctest.c	18;"	d	file:
 _PATH_SHELL	kern/main/menu.c	21;"	d	file:
 _QUEUE_H_	kern/include/queue.h	2;"	d
@@ -1254,6 +1475,8 @@ __DEAD	include/unistd.h	78;"	d
 __DEAD	include/unistd.h	80;"	d
 __JB_REGS	kern/arch/mips/include/setjmp.h	8;"	d
 __JB_REGS	kern/compile/ASST0/machine/setjmp.h	8;"	d
+__JB_REGS	kern/compile/ASST1/machine/setjmp.h	8;"	d
+__JB_REGS	kern/compile/ASST2/machine/setjmp.h	8;"	d
 __PF	kern/include/lib.h	15;"	d
 __PF	kern/include/lib.h	17;"	d
 __PRETTY_FUNCTION__	kern/include/lib.h	24;"	d
@@ -1292,12 +1515,20 @@ _vmstats_init	kern/vm/uw-vmstats.c	/^_vmstats_init()$/;"	f
 _vmstats_print	kern/vm/uw-vmstats.c	/^_vmstats_print()$/;"	f
 a0	kern/arch/mips/include/asmdefs.h	14;"	d
 a0	kern/compile/ASST0/machine/asmdefs.h	14;"	d
+a0	kern/compile/ASST1/machine/asmdefs.h	14;"	d
+a0	kern/compile/ASST2/machine/asmdefs.h	14;"	d
 a1	kern/arch/mips/include/asmdefs.h	15;"	d
 a1	kern/compile/ASST0/machine/asmdefs.h	15;"	d
+a1	kern/compile/ASST1/machine/asmdefs.h	15;"	d
+a1	kern/compile/ASST2/machine/asmdefs.h	15;"	d
 a2	kern/arch/mips/include/asmdefs.h	16;"	d
 a2	kern/compile/ASST0/machine/asmdefs.h	16;"	d
+a2	kern/compile/ASST1/machine/asmdefs.h	16;"	d
+a2	kern/compile/ASST2/machine/asmdefs.h	16;"	d
 a3	kern/arch/mips/include/asmdefs.h	17;"	d
 a3	kern/compile/ASST0/machine/asmdefs.h	17;"	d
+a3	kern/compile/ASST1/machine/asmdefs.h	17;"	d
+a3	kern/compile/ASST2/machine/asmdefs.h	17;"	d
 abort	lib/libc/abort.c	/^abort(void)$/;"	f
 addeq	testbin/parallelvm/parallelvm.c	/^addeq(struct matrix *m1, const struct matrix *m2)$/;"	f	file:
 addrspace	kern/include/addrspace.h	/^struct addrspace {$/;"	s
@@ -1387,17 +1618,45 @@ attach_random_to_lrandom	kern/dev/lamebus/random_lrandom.c	/^attach_random_to_lr
 attach_random_to_pseudorand	kern/dev/generic/pseudorand_att.c	/^attach_random_to_pseudorand(int randomno, struct pseudorand_softc *ls)$/;"	f
 attach_rtclock_to_ltimer	kern/dev/lamebus/rtclock_ltimer.c	/^attach_rtclock_to_ltimer(int rtclockno, struct ltimer_softc *ls)$/;"	f
 autoconf_beep	kern/compile/ASST0/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
+autoconf_beep	kern/compile/ASST1/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
+autoconf_beep	kern/compile/ASST2/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
 autoconf_con	kern/compile/ASST0/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
+autoconf_con	kern/compile/ASST1/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
+autoconf_con	kern/compile/ASST2/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
 autoconf_emu	kern/compile/ASST0/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
+autoconf_emu	kern/compile/ASST1/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
+autoconf_emu	kern/compile/ASST2/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
 autoconf_lamebus	kern/compile/ASST0/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
+autoconf_lamebus	kern/compile/ASST1/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
+autoconf_lamebus	kern/compile/ASST2/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
 autoconf_lhd	kern/compile/ASST0/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
+autoconf_lhd	kern/compile/ASST1/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
+autoconf_lhd	kern/compile/ASST2/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
 autoconf_lrandom	kern/compile/ASST0/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
+autoconf_lrandom	kern/compile/ASST1/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
+autoconf_lrandom	kern/compile/ASST2/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
 autoconf_lser	kern/compile/ASST0/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
+autoconf_lser	kern/compile/ASST1/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
+autoconf_lser	kern/compile/ASST2/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltimer	kern/compile/ASST0/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltimer	kern/compile/ASST1/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltimer	kern/compile/ASST2/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltrace	kern/compile/ASST0/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltrace	kern/compile/ASST1/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltrace	kern/compile/ASST2/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
 autoconf_pseudorand	kern/compile/ASST0/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
+autoconf_pseudorand	kern/compile/ASST1/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
+autoconf_pseudorand	kern/compile/ASST2/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
 autoconf_random	kern/compile/ASST0/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
+autoconf_random	kern/compile/ASST1/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
+autoconf_random	kern/compile/ASST2/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
 autoconf_rtclock	kern/compile/ASST0/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
+autoconf_rtclock	kern/compile/ASST1/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
+autoconf_rtclock	kern/compile/ASST2/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
+b_cat_turn	kern/asst1/catmouse.c	/^    volatile int b_cat_turn = 0;$/;"	v
+b_cat_waiting	kern/asst1/catmouse.c	/^    volatile int b_cat_waiting = 0;$/;"	v
+b_mouse_turn	kern/asst1/catmouse.c	/^    volatile int b_mouse_turn = 0;$/;"	v
+b_mouse_waiting	kern/asst1/catmouse.c	/^    volatile int b_mouse_waiting = 0;$/;"	v
 backsp	kern/lib/kgets.c	/^backsp(void)$/;"	f	file:
 badbuf_fstat	testbin/badcall/bad_stat.c	/^badbuf_fstat(struct stat *sb)$/;"	f	file:
 badbuf_lstat	testbin/badcall/bad_stat.c	/^badbuf_lstat(struct stat *sb)$/;"	f	file:
@@ -1439,34 +1698,64 @@ buflen	lib/libc/snprintf.c	/^	size_t buflen;$/;"	m	struct:__anon8	file:
 bufpos	lib/libc/snprintf.c	/^	size_t bufpos;$/;"	m	struct:__anon8	file:
 buftest	testbin/badcall/common_buf.c	/^struct buftest {$/;"	s	file:
 buildconfig	kern/compile/ASST0/vers.c	/^const char buildconfig[] = "ASST0";$/;"	v
-buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 6;$/;"	v
+buildconfig	kern/compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
+buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
+buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
+buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 131;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 8;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	20;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	20;"	d
+bus_map_area	kern/compile/ASST1/machine/bus.h	20;"	d
+bus_map_area	kern/compile/ASST2/machine/bus.h	20;"	d
 bus_read_register	kern/arch/mips/include/bus.h	17;"	d
 bus_read_register	kern/compile/ASST0/machine/bus.h	17;"	d
+bus_read_register	kern/compile/ASST1/machine/bus.h	17;"	d
+bus_read_register	kern/compile/ASST2/machine/bus.h	17;"	d
 bus_write_register	kern/arch/mips/include/bus.h	14;"	d
 bus_write_register	kern/compile/ASST0/machine/bus.h	14;"	d
+bus_write_register	kern/compile/ASST1/machine/bus.h	14;"	d
+bus_write_register	kern/compile/ASST2/machine/bus.h	14;"	d
 bzero	lib/libc/bzero.c	/^bzero(void *vblock, size_t len)$/;"	f
 c0_cause	kern/arch/mips/include/asmdefs.h	57;"	d
 c0_cause	kern/compile/ASST0/machine/asmdefs.h	57;"	d
+c0_cause	kern/compile/ASST1/machine/asmdefs.h	57;"	d
+c0_cause	kern/compile/ASST2/machine/asmdefs.h	57;"	d
 c0_context	kern/arch/mips/include/asmdefs.h	49;"	d
 c0_context	kern/compile/ASST0/machine/asmdefs.h	49;"	d
+c0_context	kern/compile/ASST1/machine/asmdefs.h	49;"	d
+c0_context	kern/compile/ASST2/machine/asmdefs.h	49;"	d
 c0_entryhi	kern/arch/mips/include/asmdefs.h	54;"	d
 c0_entryhi	kern/compile/ASST0/machine/asmdefs.h	54;"	d
+c0_entryhi	kern/compile/ASST1/machine/asmdefs.h	54;"	d
+c0_entryhi	kern/compile/ASST2/machine/asmdefs.h	54;"	d
 c0_entrylo	kern/arch/mips/include/asmdefs.h	46;"	d
 c0_entrylo	kern/compile/ASST0/machine/asmdefs.h	46;"	d
+c0_entrylo	kern/compile/ASST1/machine/asmdefs.h	46;"	d
+c0_entrylo	kern/compile/ASST2/machine/asmdefs.h	46;"	d
 c0_epc	kern/arch/mips/include/asmdefs.h	58;"	d
 c0_epc	kern/compile/ASST0/machine/asmdefs.h	58;"	d
+c0_epc	kern/compile/ASST1/machine/asmdefs.h	58;"	d
+c0_epc	kern/compile/ASST2/machine/asmdefs.h	58;"	d
 c0_index	kern/arch/mips/include/asmdefs.h	44;"	d
 c0_index	kern/compile/ASST0/machine/asmdefs.h	44;"	d
+c0_index	kern/compile/ASST1/machine/asmdefs.h	44;"	d
+c0_index	kern/compile/ASST2/machine/asmdefs.h	44;"	d
 c0_prid	kern/arch/mips/include/asmdefs.h	59;"	d
 c0_prid	kern/compile/ASST0/machine/asmdefs.h	59;"	d
+c0_prid	kern/compile/ASST1/machine/asmdefs.h	59;"	d
+c0_prid	kern/compile/ASST2/machine/asmdefs.h	59;"	d
 c0_random	kern/arch/mips/include/asmdefs.h	45;"	d
 c0_random	kern/compile/ASST0/machine/asmdefs.h	45;"	d
+c0_random	kern/compile/ASST1/machine/asmdefs.h	45;"	d
+c0_random	kern/compile/ASST2/machine/asmdefs.h	45;"	d
 c0_status	kern/arch/mips/include/asmdefs.h	56;"	d
 c0_status	kern/compile/ASST0/machine/asmdefs.h	56;"	d
+c0_status	kern/compile/ASST1/machine/asmdefs.h	56;"	d
+c0_status	kern/compile/ASST2/machine/asmdefs.h	56;"	d
 c0_vaddr	kern/arch/mips/include/asmdefs.h	52;"	d
 c0_vaddr	kern/compile/ASST0/machine/asmdefs.h	52;"	d
+c0_vaddr	kern/compile/ASST1/machine/asmdefs.h	52;"	d
+c0_vaddr	kern/compile/ASST2/machine/asmdefs.h	52;"	d
 call_all	uw-testbin/common/funcs.c	/^call_all()$/;"	f
 call_all_loop	uw-testbin/common/funcs.c	/^call_all_loop(int count)$/;"	f
 cargv	testbin/farm/farm.c	/^static char *cargv[3] = { (char *)"cat", (char *)"catfile", NULL };$/;"	v	file:
@@ -1567,6 +1856,7 @@ copyoutstr	kern/lib/copyinout.c	/^copyoutstr(const char *src, userptr_t userdest
 copystr	kern/lib/copyinout.c	/^copystr(char *dest, const char *src, size_t maxlen, size_t stoplen,$/;"	f	file:
 count	kern/include/synch.h	/^	volatile int count;$/;"	m	struct:semaphore
 count	testbin/userthreads/userthreads.c	/^volatile int count = 0;$/;"	v
+counter	kern/asst1/catmouse.c	/^    volatile int counter = 0;$/;"	v
 cpu_halt	kern/arch/mips/mips/spl.c	/^cpu_halt(void)$/;"	f
 cpu_idle	kern/arch/mips/mips/spl.c	/^cpu_idle(void)$/;"	f
 create_testdir	testbin/badcall/driver.c	/^create_testdir(void)$/;"	f
@@ -1586,8 +1876,10 @@ curspl	kern/arch/mips/mips/spl.c	/^int curspl = SPL_HIGH;$/;"	v
 curthread	kern/thread/thread.c	/^struct thread *curthread;$/;"	v	typeref:struct:thread
 cv	kern/include/synch.h	/^struct cv {$/;"	s
 cv_broadcast	kern/thread/synch.c	/^cv_broadcast(struct cv *cv, struct lock *lock)$/;"	f
+cv_cat_turn	kern/asst1/catmouse.c	/^    struct cv *cv_cat_turn;$/;"	v	typeref:struct:cv
 cv_create	kern/thread/synch.c	/^cv_create(const char *name)$/;"	f
 cv_destroy	kern/thread/synch.c	/^cv_destroy(struct cv *cv)$/;"	f
+cv_mouse_turn	kern/asst1/catmouse.c	/^    struct cv *cv_mouse_turn;$/;"	v	typeref:struct:cv
 cv_signal	kern/thread/synch.c	/^cv_signal(struct cv *cv, struct lock *lock)$/;"	f
 cv_wait	kern/thread/synch.c	/^cv_wait(struct cv *cv, struct lock *lock)$/;"	f
 cvtest	kern/test/synchtest.c	/^cvtest(int nargs, char **args)$/;"	f
@@ -1858,11 +2150,14 @@ go	testbin/parallelvm/parallelvm.c	/^go(int mynum)$/;"	f	file:
 gostraight	kern/asst1/stoplight.c	/^gostraight(unsigned long cardirection,$/;"	f	file:
 gp	kern/arch/mips/include/asmdefs.h	38;"	d
 gp	kern/compile/ASST0/machine/asmdefs.h	38;"	d
+gp	kern/compile/ASST1/machine/asmdefs.h	38;"	d
+gp	kern/compile/ASST2/machine/asmdefs.h	38;"	d
 hardclock	kern/thread/hardclock.c	/^hardclock(void)$/;"	f
 hargv	testbin/farm/farm.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v	file:
 hargv	testbin/sty/sty.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v	file:
 harvard_copyright	kern/main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
 haveclock	kern/dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
+held	kern/include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	kern/main/hello.c	/^void hello() {$/;"	f
 hog	testbin/farm/farm.c	/^hog(void)$/;"	f	file:
 hog	testbin/sty/sty.c	/^hog(void)$/;"	f	file:
@@ -1894,17 +2189,27 @@ inititems	kern/test/synchtest.c	/^inititems(void)$/;"	f	file:
 initstate	lib/libc/random.c	/^initstate($/;"	f
 int16_t	kern/arch/mips/include/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	kern/compile/ASST0/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
+int16_t	kern/compile/ASST1/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
+int16_t	kern/compile/ASST2/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int32_t	kern/arch/mips/include/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
 int32_t	kern/compile/ASST0/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
+int32_t	kern/compile/ASST1/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
+int32_t	kern/compile/ASST2/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
 int64_t	kern/arch/mips/include/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
 int64_t	kern/compile/ASST0/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
+int64_t	kern/compile/ASST1/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
+int64_t	kern/compile/ASST2/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
 int8_t	kern/arch/mips/include/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
 int8_t	kern/compile/ASST0/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
+int8_t	kern/compile/ASST1/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
+int8_t	kern/compile/ASST2/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
 interrupts_off	kern/arch/mips/mips/spl.c	/^interrupts_off(void)$/;"	f	file:
 interrupts_on	kern/arch/mips/mips/spl.c	/^interrupts_on(void)$/;"	f	file:
 interrupts_onoff	kern/arch/mips/mips/spl.c	/^interrupts_onoff(void)$/;"	f	file:
 intptr_t	kern/arch/mips/include/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
 intptr_t	kern/compile/ASST0/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
+intptr_t	kern/compile/ASST1/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
+intptr_t	kern/compile/ASST2/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
 inval_read	testbin/dirseek/dirseek.c	/^inval_read(void)$/;"	f	file:
 ioctl	testbin/badcall/common_fds.c	/^T(ioctl);$/;"	v
 ioctl_badbuf	testbin/badcall/bad_ioctl.c	/^ioctl_badbuf(void)$/;"	f	file:
@@ -1919,14 +2224,20 @@ is_win	testbin/tictac/tictac.c	/^is_win(int x, int y)$/;"	f
 isdir	bin/ls/ls.c	/^isdir(const char *path)$/;"	f	file:
 jmp_buf	kern/arch/mips/include/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jmp_buf	kern/compile/ASST0/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
+jmp_buf	kern/compile/ASST1/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
+jmp_buf	kern/compile/ASST2/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jump_to_inval	testbin/crash/crash.c	/^jump_to_inval(void)$/;"	f	file:
 jump_to_kernel	testbin/crash/crash.c	/^jump_to_kernel(void)$/;"	f	file:
 jump_to_null	testbin/crash/crash.c	/^jump_to_null(void)$/;"	f	file:
 junk	testbin/malloctest/malloctest.c	/^	char junk[(SMALLSIZE - sizeof(struct test3 *))];$/;"	m	struct:test3	file:
 k0	kern/arch/mips/include/asmdefs.h	36;"	d
 k0	kern/compile/ASST0/machine/asmdefs.h	36;"	d
+k0	kern/compile/ASST1/machine/asmdefs.h	36;"	d
+k0	kern/compile/ASST2/machine/asmdefs.h	36;"	d
 k1	kern/arch/mips/include/asmdefs.h	37;"	d
 k1	kern/compile/ASST0/machine/asmdefs.h	37;"	d
+k1	kern/compile/ASST1/machine/asmdefs.h	37;"	d
+k1	kern/compile/ASST2/machine/asmdefs.h	37;"	d
 kd_device	kern/fs/vfs/vfslist.c	/^	struct device *kd_device;$/;"	m	struct:knowndev	typeref:struct:knowndev::device	file:
 kd_fs	kern/fs/vfs/vfslist.c	/^	struct fs *kd_fs;$/;"	m	struct:knowndev	typeref:struct:knowndev::fs	file:
 kd_name	kern/fs/vfs/vfslist.c	/^	char *kd_name;$/;"	m	struct:knowndev	file:
@@ -2199,6 +2510,7 @@ mouse_simulation	kern/asst1/catmouse.c	/^mouse_simulation(void * unusedpointer,$
 mouse_sleep	kern/asst1/bowls.c	/^mouse_sleep() {$/;"	f
 multiply	testbin/parallelvm/parallelvm.c	/^multiply(struct matrix *res, const struct matrix *m1, const struct matrix *m2)$/;"	f	file:
 mutex	kern/asst1/bowls.c	/^static struct semaphore *mutex;$/;"	v	typeref:struct:semaphore	file:
+mutex	kern/asst1/catmouse.c	/^    struct lock *mutex;$/;"	v	typeref:struct:lock
 mypid	testbin/forktest/forktest.c	/^static volatile int mypid;$/;"	v	file:
 name	kern/include/synch.h	/^	char *name;$/;"	m	struct:cv
 name	kern/include/synch.h	/^	char *name;$/;"	m	struct:lock
@@ -2220,15 +2532,35 @@ next_all	kern/lib/kheap.c	/^	struct pageref *next_all;$/;"	m	struct:pageref	type
 next_samesize	kern/lib/kheap.c	/^	struct pageref *next_samesize;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
 nextread	kern/lib/queue.c	/^	int nextread;	\/\/ next element to read from (was tail)$/;"	m	struct:queue	file:
 nextunit_beep	kern/compile/ASST0/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
+nextunit_beep	kern/compile/ASST1/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
+nextunit_beep	kern/compile/ASST2/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
 nextunit_con	kern/compile/ASST0/autoconf.c	/^static int nextunit_con;$/;"	v	file:
+nextunit_con	kern/compile/ASST1/autoconf.c	/^static int nextunit_con;$/;"	v	file:
+nextunit_con	kern/compile/ASST2/autoconf.c	/^static int nextunit_con;$/;"	v	file:
 nextunit_emu	kern/compile/ASST0/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
+nextunit_emu	kern/compile/ASST1/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
+nextunit_emu	kern/compile/ASST2/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
 nextunit_lhd	kern/compile/ASST0/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
+nextunit_lhd	kern/compile/ASST1/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
+nextunit_lhd	kern/compile/ASST2/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
 nextunit_lrandom	kern/compile/ASST0/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
+nextunit_lrandom	kern/compile/ASST1/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
+nextunit_lrandom	kern/compile/ASST2/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
 nextunit_lser	kern/compile/ASST0/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
+nextunit_lser	kern/compile/ASST1/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
+nextunit_lser	kern/compile/ASST2/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
 nextunit_ltimer	kern/compile/ASST0/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
+nextunit_ltimer	kern/compile/ASST1/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
+nextunit_ltimer	kern/compile/ASST2/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
 nextunit_ltrace	kern/compile/ASST0/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
+nextunit_ltrace	kern/compile/ASST1/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
+nextunit_ltrace	kern/compile/ASST2/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
 nextunit_random	kern/compile/ASST0/autoconf.c	/^static int nextunit_random;$/;"	v	file:
+nextunit_random	kern/compile/ASST1/autoconf.c	/^static int nextunit_random;$/;"	v	file:
+nextunit_random	kern/compile/ASST2/autoconf.c	/^static int nextunit_random;$/;"	v	file:
 nextunit_rtclock	kern/compile/ASST0/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
+nextunit_rtclock	kern/compile/ASST1/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
+nextunit_rtclock	kern/compile/ASST2/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
 nextwrite	kern/lib/queue.c	/^	int nextwrite;	\/\/ next element to write to (was head)$/;"	m	struct:queue	file:
 nfree	kern/lib/kheap.c	/^	u_int16_t nfree;$/;"	m	struct:pageref	file:
 npids	testbin/farm/farm.c	/^static int pids[MAXPROCS], npids;$/;"	v	file:
@@ -2249,6 +2581,7 @@ num	kern/lib/array.c	/^	int num;$/;"	m	struct:array	file:
 num	lib/libc/__printf.c	/^	unsigned INTTYPE num;$/;"	m	struct:__anon6	file:
 num	testbin/malloctest/malloctest.c	/^	int num;$/;"	m	struct:__anon1	file:
 num_bowls	kern/asst1/bowls.c	/^static int num_bowls;$/;"	v	file:
+num_eating	kern/asst1/catmouse.c	/^    volatile int num_eating = 0;$/;"	v
 num_failures	uw-testbin/lib/testutils.c	/^static int num_failures = 0;$/;"	v	file:
 numthreads	kern/thread/thread.c	/^static int numthreads;$/;"	v	file:
 off_t	kern/include/kern/types.h	/^typedef int32_t off_t;   \/* Offset within file *\/$/;"	t
@@ -2277,6 +2610,8 @@ p_type	kern/include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	
 p_vaddr	kern/include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon11
 paddr_t	kern/arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	kern/compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+paddr_t	kern/compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+paddr_t	kern/compile/ASST2/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 pageaddr_and_blocktype	kern/lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
 pageref	kern/lib/kheap.c	/^struct pageref {$/;"	s	file:
 pagerefs	kern/lib/kheap.c	/^static struct pageref pagerefs[NPAGEREFS];$/;"	v	typeref:struct:pageref	file:
@@ -2286,18 +2621,32 @@ panic	kern/lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	kern/arch/mips/mips/start.S	/^panicstr:$/;"	l
 pcb	kern/arch/mips/include/pcb.h	/^struct pcb {$/;"	s
 pcb	kern/compile/ASST0/machine/pcb.h	/^struct pcb {$/;"	s
+pcb	kern/compile/ASST1/machine/pcb.h	/^struct pcb {$/;"	s
+pcb	kern/compile/ASST2/machine/pcb.h	/^struct pcb {$/;"	s
 pcb_badfaultfunc	kern/arch/mips/include/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
 pcb_badfaultfunc	kern/compile/ASST0/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
+pcb_badfaultfunc	kern/compile/ASST1/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
+pcb_badfaultfunc	kern/compile/ASST2/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
 pcb_copyjmp	kern/arch/mips/include/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
 pcb_copyjmp	kern/compile/ASST0/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
+pcb_copyjmp	kern/compile/ASST1/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
+pcb_copyjmp	kern/compile/ASST2/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
 pcb_faultfunc	kern/arch/mips/include/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
 pcb_faultfunc	kern/compile/ASST0/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
+pcb_faultfunc	kern/compile/ASST1/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
+pcb_faultfunc	kern/compile/ASST2/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
 pcb_ininterrupt	kern/arch/mips/include/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
 pcb_ininterrupt	kern/compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
+pcb_ininterrupt	kern/compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
+pcb_ininterrupt	kern/compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
 pcb_kstack	kern/arch/mips/include/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
 pcb_kstack	kern/compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
+pcb_kstack	kern/compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
+pcb_kstack	kern/compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
 pcb_switchstack	kern/arch/mips/include/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	kern/compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
+pcb_switchstack	kern/compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
+pcb_switchstack	kern/compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pid	testbin/forkbomb/forkbomb.c	/^static volatile int pid;$/;"	v	file:
 pid_t	kern/include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
 pids	testbin/farm/farm.c	/^static int pids[MAXPROCS], npids;$/;"	v	file:
@@ -2323,6 +2672,8 @@ processline	kern/conf/config	/^    function processline(filename, lineno) {$/;"	
 ps_seed	kern/dev/generic/pseudorand.h	/^	u_int32_t ps_seed;$/;"	m	struct:pseudorand_softc
 pseudoattach_pseudorand	kern/dev/generic/pseudorand.c	/^pseudoattach_pseudorand(int unit)$/;"	f
 pseudoconfig	kern/compile/ASST0/autoconf.c	/^pseudoconfig(void)$/;"	f
+pseudoconfig	kern/compile/ASST1/autoconf.c	/^pseudoconfig(void)$/;"	f
+pseudoconfig	kern/compile/ASST2/autoconf.c	/^pseudoconfig(void)$/;"	f
 pseudorand_randmax	kern/dev/generic/pseudorand.c	/^pseudorand_randmax(void *devdata)$/;"	f
 pseudorand_random	kern/dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/;"	f
 pseudorand_read	kern/dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/;"	f
@@ -2349,6 +2700,8 @@ queuetest	kern/test/queuetest.c	/^queuetest(int nargs, char **args)$/;"	f
 quietthread	kern/test/threadtest.c	/^quietthread(void *junk, unsigned long num)$/;"	f	file:
 ra	kern/arch/mips/include/asmdefs.h	41;"	d
 ra	kern/compile/ASST0/machine/asmdefs.h	41;"	d
+ra	kern/compile/ASST1/machine/asmdefs.h	41;"	d
+ra	kern/compile/ASST2/machine/asmdefs.h	41;"	d
 ram_bootstrap	kern/arch/mips/mips/ram.c	/^ram_bootstrap(void)$/;"	f
 ram_getsize	kern/arch/mips/mips/ram.c	/^ram_getsize(u_int32_t *lo, u_int32_t *hi)$/;"	f
 ram_stealmem	kern/arch/mips/mips/ram.c	/^ram_stealmem(unsigned long npages)$/;"	f
@@ -2454,22 +2807,40 @@ runtest3	kern/test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
 runthreads	kern/test/threadtest.c	/^runthreads(int doloud)$/;"	f	file:
 s0	kern/arch/mips/include/asmdefs.h	26;"	d
 s0	kern/compile/ASST0/machine/asmdefs.h	26;"	d
+s0	kern/compile/ASST1/machine/asmdefs.h	26;"	d
+s0	kern/compile/ASST2/machine/asmdefs.h	26;"	d
 s1	kern/arch/mips/include/asmdefs.h	27;"	d
 s1	kern/compile/ASST0/machine/asmdefs.h	27;"	d
+s1	kern/compile/ASST1/machine/asmdefs.h	27;"	d
+s1	kern/compile/ASST2/machine/asmdefs.h	27;"	d
 s2	kern/arch/mips/include/asmdefs.h	28;"	d
 s2	kern/compile/ASST0/machine/asmdefs.h	28;"	d
+s2	kern/compile/ASST1/machine/asmdefs.h	28;"	d
+s2	kern/compile/ASST2/machine/asmdefs.h	28;"	d
 s3	kern/arch/mips/include/asmdefs.h	29;"	d
 s3	kern/compile/ASST0/machine/asmdefs.h	29;"	d
+s3	kern/compile/ASST1/machine/asmdefs.h	29;"	d
+s3	kern/compile/ASST2/machine/asmdefs.h	29;"	d
 s4	kern/arch/mips/include/asmdefs.h	30;"	d
 s4	kern/compile/ASST0/machine/asmdefs.h	30;"	d
+s4	kern/compile/ASST1/machine/asmdefs.h	30;"	d
+s4	kern/compile/ASST2/machine/asmdefs.h	30;"	d
 s5	kern/arch/mips/include/asmdefs.h	31;"	d
 s5	kern/compile/ASST0/machine/asmdefs.h	31;"	d
+s5	kern/compile/ASST1/machine/asmdefs.h	31;"	d
+s5	kern/compile/ASST2/machine/asmdefs.h	31;"	d
 s6	kern/arch/mips/include/asmdefs.h	32;"	d
 s6	kern/compile/ASST0/machine/asmdefs.h	32;"	d
+s6	kern/compile/ASST1/machine/asmdefs.h	32;"	d
+s6	kern/compile/ASST2/machine/asmdefs.h	32;"	d
 s7	kern/arch/mips/include/asmdefs.h	33;"	d
 s7	kern/compile/ASST0/machine/asmdefs.h	33;"	d
+s7	kern/compile/ASST1/machine/asmdefs.h	33;"	d
+s7	kern/compile/ASST2/machine/asmdefs.h	33;"	d
 s8	kern/arch/mips/include/asmdefs.h	40;"	d
 s8	kern/compile/ASST0/machine/asmdefs.h	40;"	d
+s8	kern/compile/ASST1/machine/asmdefs.h	40;"	d
+s8	kern/compile/ASST2/machine/asmdefs.h	40;"	d
 same	testbin/rmtest/rmtest.c	/^same(const char *a, const char *b, int len)$/;"	f
 samestring	kern/fs/vfs/vfslist.c	/^samestring(const char *a, const char *b)$/;"	f	file:
 samestring3	kern/fs/vfs/vfslist.c	/^samestring3(const char *a, const char *b, const char *c, const char *d)$/;"	f	file:
@@ -2503,26 +2874,48 @@ setup	testbin/dirconc/dirconc.c	/^setup(const char *fs)$/;"	f	file:
 setup	testbin/dirseek/dirseek.c	/^setup(void)$/;"	f	file:
 sf_gp	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
 sf_gp	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
+sf_gp	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
+sf_gp	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
 sf_ra	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
 sf_ra	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
+sf_ra	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
+sf_ra	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
 sf_s0	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
 sf_s0	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
+sf_s0	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
+sf_s0	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
 sf_s1	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
 sf_s1	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
+sf_s1	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
+sf_s1	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
 sf_s2	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
 sf_s2	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
+sf_s2	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
+sf_s2	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
 sf_s3	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
 sf_s3	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
+sf_s3	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
+sf_s3	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
 sf_s4	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
 sf_s4	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
+sf_s4	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
+sf_s4	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
 sf_s5	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
 sf_s5	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
+sf_s5	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
+sf_s5	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
 sf_s6	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
 sf_s6	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
+sf_s6	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
+sf_s6	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
 sf_s7	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
 sf_s7	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
+sf_s7	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
+sf_s7	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
 sf_s8	kern/arch/mips/include/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
 sf_s8	kern/compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
+sf_s8	kern/compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
+sf_s8	kern/compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
 sfd_ino	kern/include/kern/sfs.h	/^	u_int32_t sfd_ino;              \/* Inode number *\/$/;"	m	struct:sfs_dir
 sfd_name	kern/include/kern/sfs.h	/^	char sfd_name[SFS_NAMELEN];  \/* Filename *\/$/;"	m	struct:sfs_dir
 sfi_direct	kern/include/kern/sfs.h	/^	u_int32_t sfi_direct[SFS_NDIRECT];	\/* Direct blocks *\/$/;"	m	struct:sfs_inode
@@ -2606,6 +2999,10 @@ size_t	kern/arch/mips/include/types.h	/^typedef unsigned long size_t;		\/* Size 
 size_t	kern/arch/mips/include/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
 size_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
 size_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
 sizebases	kern/lib/kheap.c	/^static struct pageref *sizebases[NSIZES];$/;"	v	typeref:struct:pageref	file:
 sizes	kern/lib/kheap.c	/^static const size_t sizes[NSIZES] = { 16, 32, 64, 128, 256, 512, 1024, 2048 };$/;"	v	file:
 sleepalot_thread	kern/test/tt3.c	/^sleepalot_thread(void *junk, unsigned long num)$/;"	f	file:
@@ -2615,6 +3012,8 @@ sopt	bin/ls/ls.c	/^static int sopt=0;$/;"	v	file:
 sort	testbin/sort/sort.c	/^sort(int *arr, int size)$/;"	f	file:
 sp	kern/arch/mips/include/asmdefs.h	39;"	d
 sp	kern/compile/ASST0/machine/asmdefs.h	39;"	d
+sp	kern/compile/ASST1/machine/asmdefs.h	39;"	d
+sp	kern/compile/ASST2/machine/asmdefs.h	39;"	d
 sp_magic	kern/include/kern/sfs.h	/^	u_int32_t sp_magic;       \/* Magic number, should be SFS_MAGIC *\/$/;"	m	struct:sfs_super
 sp_nblocks	kern/include/kern/sfs.h	/^	u_int32_t sp_nblocks;     \/* Number of blocks in fs *\/$/;"	m	struct:sfs_super
 sp_volname	kern/include/kern/sfs.h	/^	char sp_volname[SFS_VOLNAME_SIZE];  \/* Name of this volume *\/$/;"	m	struct:sfs_super
@@ -2667,6 +3066,8 @@ sv_ino	kern/include/sfs.h	/^	u_int32_t sv_ino;               \/* inode number *\
 sv_v	kern/include/sfs.h	/^	struct vnode sv_v;              \/* abstract vnode structure *\/$/;"	m	struct:sfs_vnode	typeref:struct:sfs_vnode::vnode
 switchframe	kern/arch/mips/include/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	kern/compile/ASST0/machine/switchframe.h	/^struct switchframe {$/;"	s
+switchframe	kern/compile/ASST1/machine/switchframe.h	/^struct switchframe {$/;"	s
+switchframe	kern/compile/ASST2/machine/switchframe.h	/^struct switchframe {$/;"	s
 sym	lib/libc/syscalls-mips.S	/^sym:				; \\$/;"	l
 sym	lib/libc/syscalls.S	/^sym:				; \\$/;"	l
 symlink	testbin/badcall/common_path.c	/^T2(symlink);$/;"	v
@@ -2674,33 +3075,56 @@ symlink_badpath1	testbin/badcall/common_path.c	/^symlink_badpath1(const char *pa
 symlink_badpath2	testbin/badcall/common_path.c	/^symlink_badpath2(const char *path)$/;"	f	file:
 symlink_empty1	testbin/badcall/bad_symlink.c	/^symlink_empty1(void)$/;"	f	file:
 symlink_empty2	testbin/badcall/bad_symlink.c	/^symlink_empty2(void)$/;"	f	file:
+sys__exit	kern/userprog/sysexit.c	/^    void sys__exit(int exitcode) {$/;"	f
 sys_errlist	kern/include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
+sys_fork	kern/userprog/sysfork.c	/^    pid_t sys_fork(void) {$/;"	f
 sys_nerr	kern/include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
+sys_read	kern/userprog/sysread.c	/^    int sys_read(int fd, void *buf, size_t buflen) {$/;"	f
 sys_reboot	kern/main/main.c	/^sys_reboot(int code)$/;"	f
 system	lib/libc/system.c	/^system(const char *cmd)$/;"	f
 t0	kern/arch/mips/include/asmdefs.h	18;"	d
 t0	kern/compile/ASST0/machine/asmdefs.h	18;"	d
+t0	kern/compile/ASST1/machine/asmdefs.h	18;"	d
+t0	kern/compile/ASST2/machine/asmdefs.h	18;"	d
 t1	kern/arch/mips/include/asmdefs.h	19;"	d
 t1	kern/compile/ASST0/machine/asmdefs.h	19;"	d
+t1	kern/compile/ASST1/machine/asmdefs.h	19;"	d
+t1	kern/compile/ASST2/machine/asmdefs.h	19;"	d
 t1	uw-testbin/segments/segments.c	/^int t1;$/;"	v
 t2	kern/arch/mips/include/asmdefs.h	20;"	d
 t2	kern/compile/ASST0/machine/asmdefs.h	20;"	d
+t2	kern/compile/ASST1/machine/asmdefs.h	20;"	d
+t2	kern/compile/ASST2/machine/asmdefs.h	20;"	d
 t2	uw-testbin/segments/segments.c	/^int t2;$/;"	v
 t3	kern/arch/mips/include/asmdefs.h	21;"	d
 t3	kern/compile/ASST0/machine/asmdefs.h	21;"	d
+t3	kern/compile/ASST1/machine/asmdefs.h	21;"	d
+t3	kern/compile/ASST2/machine/asmdefs.h	21;"	d
 t3	uw-testbin/segments/segments.c	/^int t3;$/;"	v
 t4	kern/arch/mips/include/asmdefs.h	22;"	d
 t4	kern/compile/ASST0/machine/asmdefs.h	22;"	d
+t4	kern/compile/ASST1/machine/asmdefs.h	22;"	d
+t4	kern/compile/ASST2/machine/asmdefs.h	22;"	d
 t5	kern/arch/mips/include/asmdefs.h	23;"	d
 t5	kern/compile/ASST0/machine/asmdefs.h	23;"	d
+t5	kern/compile/ASST1/machine/asmdefs.h	23;"	d
+t5	kern/compile/ASST2/machine/asmdefs.h	23;"	d
 t6	kern/arch/mips/include/asmdefs.h	24;"	d
 t6	kern/compile/ASST0/machine/asmdefs.h	24;"	d
+t6	kern/compile/ASST1/machine/asmdefs.h	24;"	d
+t6	kern/compile/ASST2/machine/asmdefs.h	24;"	d
 t7	kern/arch/mips/include/asmdefs.h	25;"	d
 t7	kern/compile/ASST0/machine/asmdefs.h	25;"	d
+t7	kern/compile/ASST1/machine/asmdefs.h	25;"	d
+t7	kern/compile/ASST2/machine/asmdefs.h	25;"	d
 t8	kern/arch/mips/include/asmdefs.h	34;"	d
 t8	kern/compile/ASST0/machine/asmdefs.h	34;"	d
+t8	kern/compile/ASST1/machine/asmdefs.h	34;"	d
+t8	kern/compile/ASST2/machine/asmdefs.h	34;"	d
 t9	kern/arch/mips/include/asmdefs.h	35;"	d
 t9	kern/compile/ASST0/machine/asmdefs.h	35;"	d
+t9	kern/compile/ASST1/machine/asmdefs.h	35;"	d
+t9	kern/compile/ASST2/machine/asmdefs.h	35;"	d
 t_cwd	kern/include/thread.h	/^	struct vnode *t_cwd;$/;"	m	struct:thread	typeref:struct:thread::vnode
 t_name	kern/include/thread.h	/^	char *t_name;$/;"	m	struct:thread
 t_pcb	kern/include/thread.h	/^	struct pcb t_pcb;$/;"	m	struct:thread	typeref:struct:thread::pcb
@@ -2777,78 +3201,152 @@ testval2	kern/test/synchtest.c	/^static volatile unsigned long testval2;$/;"	v	f
 testval3	kern/test/synchtest.c	/^static volatile unsigned long testval3;$/;"	v	file:
 tf_a0	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
 tf_a0	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
+tf_a0	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
+tf_a0	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
 tf_a1	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
 tf_a1	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
+tf_a1	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
+tf_a1	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
 tf_a2	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
 tf_a2	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
+tf_a2	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
+tf_a2	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
 tf_a3	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
 tf_a3	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
+tf_a3	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
+tf_a3	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
 tf_at	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
 tf_at	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
+tf_at	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
+tf_at	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
 tf_cause	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
 tf_cause	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
+tf_cause	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
+tf_cause	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
 tf_epc	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
 tf_epc	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
+tf_epc	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
+tf_epc	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
 tf_gp	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
 tf_gp	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
+tf_gp	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
+tf_gp	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
 tf_hi	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
 tf_hi	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
+tf_hi	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
+tf_hi	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
 tf_k0	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
 tf_k0	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
+tf_k0	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
+tf_k0	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
 tf_k1	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
 tf_k1	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
+tf_k1	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
+tf_k1	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
 tf_lo	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
 tf_lo	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
+tf_lo	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
+tf_lo	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
 tf_ra	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
 tf_ra	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
+tf_ra	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
+tf_ra	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
 tf_s0	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
 tf_s0	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
+tf_s0	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
+tf_s0	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
 tf_s1	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
 tf_s1	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
+tf_s1	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
+tf_s1	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
 tf_s2	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
 tf_s2	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
+tf_s2	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
+tf_s2	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
 tf_s3	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
 tf_s3	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
+tf_s3	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
+tf_s3	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
 tf_s4	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
 tf_s4	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
+tf_s4	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
+tf_s4	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
 tf_s5	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
 tf_s5	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
+tf_s5	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
+tf_s5	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
 tf_s6	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
 tf_s6	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
+tf_s6	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
+tf_s6	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
 tf_s7	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
 tf_s7	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
+tf_s7	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
+tf_s7	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
 tf_s8	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
 tf_s8	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
+tf_s8	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
+tf_s8	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
 tf_sp	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
 tf_sp	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
+tf_sp	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
+tf_sp	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
 tf_status	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
 tf_status	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
+tf_status	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
+tf_status	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
 tf_t0	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
 tf_t0	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
+tf_t0	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
+tf_t0	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
 tf_t1	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
 tf_t1	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
+tf_t1	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
+tf_t1	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
 tf_t2	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
 tf_t2	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
+tf_t2	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
+tf_t2	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
 tf_t3	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
 tf_t3	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
+tf_t3	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
+tf_t3	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
 tf_t4	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
 tf_t4	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
+tf_t4	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
+tf_t4	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
 tf_t5	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
 tf_t5	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
+tf_t5	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
+tf_t5	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
 tf_t6	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
 tf_t6	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
+tf_t6	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
+tf_t6	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
 tf_t7	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
 tf_t7	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
+tf_t7	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
+tf_t7	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
 tf_t8	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
 tf_t8	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
+tf_t8	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
+tf_t8	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
 tf_t9	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
 tf_t9	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
+tf_t9	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
+tf_t9	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
 tf_v0	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
 tf_v0	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
+tf_v0	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
+tf_v0	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
 tf_v1	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
 tf_v1	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
+tf_v1	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
+tf_v1	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
 tf_vaddr	kern/arch/mips/include/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
 tf_vaddr	kern/compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
+tf_vaddr	kern/compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
+tf_vaddr	kern/compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
 the_beep	kern/dev/generic/beep.c	/^static struct beep_softc *the_beep = NULL;$/;"	v	typeref:struct:beep_softc	file:
 the_clock	kern/dev/generic/rtclock.c	/^static struct rtclock_softc *the_clock = NULL;$/;"	v	typeref:struct:rtclock_softc	file:
 the_console	kern/dev/generic/console.c	/^static struct con_softc *the_console = NULL;$/;"	v	typeref:struct:con_softc	file:
@@ -2883,6 +3381,8 @@ translate_err	kern/dev/lamebus/emu.c	/^translate_err(struct emu_softc *sc, u_int
 trapcodenames	kern/arch/mips/mips/trap.c	/^static const char *const trapcodenames[NTRAPCODES] = {$/;"	v	file:
 trapframe	kern/arch/mips/include/trapframe.h	/^struct trapframe {$/;"	s
 trapframe	kern/compile/ASST0/machine/trapframe.h	/^struct trapframe {$/;"	s
+trapframe	kern/compile/ASST1/machine/trapframe.h	/^struct trapframe {$/;"	s
+trapframe	kern/compile/ASST2/machine/trapframe.h	/^struct trapframe {$/;"	s
 triple	testbin/triplehuge/triple.c	/^triple(const char *prog)$/;"	f
 triple	testbin/triplemat/triple.c	/^triple(const char *prog)$/;"	f
 triple	testbin/triplesort/triple.c	/^triple(const char *prog)$/;"	f
@@ -2915,16 +3415,38 @@ try_waitpid	testbin/randcall/calls.c	/^try_waitpid(int dofork)$/;"	f	file:
 try_write	testbin/randcall/calls.c	/^try_write(int dofork)$/;"	f	file:
 tryattach	kern/conf/config	/^    function tryattach(combo) {$/;"	f
 tryattach_beep_to_ltimer	kern/compile/ASST0/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_beep_to_ltimer	kern/compile/ASST1/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_beep_to_ltimer	kern/compile/ASST2/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 tryattach_con_to_lser	kern/compile/ASST0/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
+tryattach_con_to_lser	kern/compile/ASST1/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
+tryattach_con_to_lser	kern/compile/ASST2/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
 tryattach_emu_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_emu_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_emu_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lhd_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lhd_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lhd_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lrandom_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lrandom_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lrandom_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lser_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lser_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lser_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltimer_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltimer_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltimer_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltrace_to_lamebus	kern/compile/ASST0/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltrace_to_lamebus	kern/compile/ASST1/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltrace_to_lamebus	kern/compile/ASST2/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_lrandom	kern/compile/ASST0/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_lrandom	kern/compile/ASST1/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_lrandom	kern/compile/ASST2/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_pseudorand	kern/compile/ASST0/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_pseudorand	kern/compile/ASST1/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_pseudorand	kern/compile/ASST2/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
 tryattach_rtclock_to_ltimer	kern/compile/ASST0/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_rtclock_to_ltimer	kern/compile/ASST1/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_rtclock_to_ltimer	kern/compile/ASST2/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 trycalls	testbin/randcall/calls.c	/^trycalls(int asst, int dofork, int count)$/;"	f
 tryfunc	testbin/randcall/calls.c	/^typedef void (*tryfunc)(int dofork);$/;"	t	file:
 tsem	kern/test/threadtest.c	/^static struct semaphore *tsem = NULL;$/;"	v	typeref:struct:semaphore	file:
@@ -2932,20 +3454,30 @@ turnleft	kern/asst1/stoplight.c	/^turnleft(unsigned long cardirection,$/;"	f	fil
 turnright	kern/asst1/stoplight.c	/^turnright(unsigned long cardirection,$/;"	f	file:
 u_int16_t	kern/arch/mips/include/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
+u_int16_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
+u_int16_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	sbin/dumpsfs/support.h	/^typedef unsigned short u_int16_t;$/;"	t
 u_int16_t	sbin/mksfs/support.h	/^typedef unsigned short u_int16_t;$/;"	t
 u_int32_t	kern/arch/mips/include/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
 u_int32_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
+u_int32_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
+u_int32_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
 u_int32_t	sbin/dumpsfs/support.h	/^typedef unsigned int u_int32_t;$/;"	t
 u_int32_t	sbin/mksfs/support.h	/^typedef unsigned int u_int32_t;$/;"	t
 u_int64_t	kern/arch/mips/include/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
 u_int64_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
+u_int64_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
+u_int64_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
 u_int8_t	kern/arch/mips/include/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
 u_int8_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
+u_int8_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
+u_int8_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
 u_int8_t	sbin/dumpsfs/support.h	/^typedef unsigned char u_int8_t;$/;"	t
 u_int8_t	sbin/mksfs/support.h	/^typedef unsigned char u_int8_t;$/;"	t
 uintptr_t	kern/arch/mips/include/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uintptr_t	kern/compile/ASST0/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
+uintptr_t	kern/compile/ASST1/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
+uintptr_t	kern/compile/ASST2/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uio	kern/include/uio.h	/^struct uio {$/;"	s
 uio_iovec	kern/include/uio.h	/^	struct iovec      uio_iovec;       \/* Data block *\/$/;"	m	struct:uio	typeref:struct:uio::iovec
 uio_offset	kern/include/uio.h	/^	off_t             uio_offset;      \/* desired offset into object *\/$/;"	m	struct:uio
@@ -2968,8 +3500,12 @@ v	kern/lib/array.c	/^	void **v;$/;"	m	struct:array	file:
 v	kern/lib/bitmap.c	/^	WORD_TYPE *v;$/;"	m	struct:bitmap	file:
 v0	kern/arch/mips/include/asmdefs.h	12;"	d
 v0	kern/compile/ASST0/machine/asmdefs.h	12;"	d
+v0	kern/compile/ASST1/machine/asmdefs.h	12;"	d
+v0	kern/compile/ASST2/machine/asmdefs.h	12;"	d
 v1	kern/arch/mips/include/asmdefs.h	13;"	d
 v1	kern/compile/ASST0/machine/asmdefs.h	13;"	d
+v1	kern/compile/ASST1/machine/asmdefs.h	13;"	d
+v1	kern/compile/ASST2/machine/asmdefs.h	13;"	d
 va_arg	include/stdarg.h	14;"	d
 va_arg	kern/include/stdarg.h	17;"	d
 va_copy	include/stdarg.h	15;"	d
@@ -2982,6 +3518,8 @@ va_start	include/stdarg.h	13;"	d
 va_start	kern/include/stdarg.h	16;"	d
 vaddr_t	kern/arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	kern/compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
+vaddr_t	kern/compile/ASST1/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
+vaddr_t	kern/compile/ASST2/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 verbose	uw-testbin/lib/testutils.c	/^static int verbose = 0;$/;"	v	file:
 verr	lib/hostcompat/err.c	/^verr(int exitcode, const char *fmt, va_list ap)$/;"	f
 verr	lib/libc/err.c	/^verr(int exitcode, const char *fmt, va_list ap)$/;"	f
@@ -3071,6 +3609,8 @@ wait_badflags	testbin/badcall/bad_waitpid.c	/^wait_badflags(void)$/;"	f	file:
 wait_badpid	testbin/badcall/bad_waitpid.c	/^wait_badpid(int pid, const char *desc)$/;"	f	file:
 wait_badstatus	testbin/badcall/bad_waitpid.c	/^wait_badstatus(void *ptr, const char *desc)$/;"	f	file:
 wait_parent	testbin/badcall/bad_waitpid.c	/^wait_parent(void)$/;"	f	file:
+wait_queue	kern/include/synch.h	/^        volatile struct queue *wait_queue;$/;"	m	struct:cv	typeref:struct:cv::queue
+wait_queue	kern/include/synch.h	/^        volatile struct queue *wait_queue;$/;"	m	struct:lock	typeref:struct:lock::queue
 wait_self	testbin/badcall/bad_waitpid.c	/^wait_self(void)$/;"	f	file:
 wait_siblings	testbin/badcall/bad_waitpid.c	/^wait_siblings(void)$/;"	f	file:
 wait_siblings_child	testbin/badcall/bad_waitpid.c	/^wait_siblings_child(void)$/;"	f	file:
@@ -3121,4 +3661,6 @@ ypos	uw-testbin/segments/segments.c	/^  int ypos;$/;"	m	struct:example	file:
 z	uw-testbin/segments/segments.c	/^const int z = 0xabcddcba;$/;"	v
 z0	kern/arch/mips/include/asmdefs.h	10;"	d
 z0	kern/compile/ASST0/machine/asmdefs.h	10;"	d
+z0	kern/compile/ASST1/machine/asmdefs.h	10;"	d
+z0	kern/compile/ASST2/machine/asmdefs.h	10;"	d
 zombies	kern/thread/thread.c	/^static struct array *zombies;$/;"	v	typeref:struct:array	file:

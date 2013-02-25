@@ -98,6 +98,7 @@ V(struct semaphore *sem)
 //
 // Lock.
 
+// TODO: fix warnings due to discarding volatile qualifier
 struct lock *
 lock_create(const char *name)
 {
@@ -212,6 +213,7 @@ lock_do_i_hold(struct lock *lock)
 // CV
 
 
+// TODO: fix warnings due to discarding volatile qualifier
 struct cv *
 cv_create(const char *name)
 {
