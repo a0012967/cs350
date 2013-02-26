@@ -461,6 +461,7 @@ file    userprog/sysexit.c
 file    userprog/sysread.c
 file    userprog/sysfork.c
 file    lib/linkedlist.c
+file		process/process.c
 # UW For A3 use the stats tracking code provided
 defoption A3
    file    vm/uw-vmstats.c

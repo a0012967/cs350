@@ -10,6 +10,7 @@
 #include <test.h>
 #include <synch.h>
 #include <thread.h>
+#include <process.h>
 #include <scheduler.h>
 #include <dev.h>
 #include <vfs.h>
@@ -74,7 +75,11 @@ boot(void)
 
 	ram_bootstrap();
 	scheduler_bootstrap();
-	thread_bootstrap();
+	#if OPT_A2
+		process_bootstrap();
+	#else
+		thread_bootstrap();
+	#endif // OPT_A2
 	vfs_bootstrap();
 	dev_bootstrap();
 	vm_bootstrap();
@@ -93,6 +98,39 @@ boot(void)
     #if OPT_A0
         hello();
     #endif /* OPT_A0 */
+    
+    // SIMPLE TEST
+    /*
+    struct process * proc = process_create();
+    struct process * proc2 = process_create();
+    struct process * proc3 = process_create();
+    
+    process_assign_thread(proc, thread_create("lu"));
+    process_assign_thread(proc2, thread_create("bu"));
+    process_assign_thread(proc3, thread_create("ru"));
+    assign_pid(proc);
+    print_proc_table ();
+    kprintf("a1\n\n");
+    
+    remove_pid(1);
+    print_proc_table ();
+    kprintf("r1\n\n");
+    
+    assign_pid(proc2);
+    print_proc_table ();
+    kprintf("a2\n\n");
+        
+    remove_pid(2);
+    print_proc_table ();
+    kprintf("r2\n\n");
+    
+    assign_pid(proc3);
+    print_proc_table ();
+    kprintf("a3\n\n");
+    
+    assign_pid(proc2);
+    assign_pid(proc);
+    print_proc_table();*/
 }
 
 /*

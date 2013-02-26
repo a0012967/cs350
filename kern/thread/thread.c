@@ -39,7 +39,7 @@ static int numthreads;
  * thread structure and to create subsequent threads.
  */
 
-static
+//XXX static
 struct thread *
 thread_create(const char *name)
 {
