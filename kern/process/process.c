@@ -1,3 +1,7 @@
+// TODO do something with the errs
+// TODO change thread_create() in thread.c back to static after
+//      there is no use for the test in main.c
+
 #include <process.h>
 #include <array.h>
 #include <linkedlist.h>

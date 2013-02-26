@@ -17,7 +17,7 @@
 struct process;
 
 struct process * process_create();
-void process_assign_thread(struct process * proc, struct thread * thread)
+//void process_assign_thread(struct process * proc, struct thread * thread);
 
 
 /*
