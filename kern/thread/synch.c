@@ -137,7 +137,7 @@ lock_destroy(struct lock *lock)
 
         // something wrong with code if destroy is called before lock_release
         assert(lock->held == NULL);
-        q_destroy(lock->wait_queue);
+        q_destroy((struct queue *)lock->wait_queue);
     #else
     #endif /* OPT_A1 */
 	
@@ -156,7 +156,7 @@ lock_acquire(struct lock *lock)
 
         spl = splhigh();
         if (lock->held != NULL) {
-            int err = q_addtail(lock->wait_queue, curthread);
+            int err = q_addtail((struct queue *)lock->wait_queue, curthread);
             assert(err == 0);
             thread_sleep(curthread);
         }
@@ -182,8 +182,8 @@ lock_release(struct lock *lock)
 
         // if there are threads waiting, wake it up
         // this thread will be the first to access the critical section
-        if (!q_empty(lock->wait_queue)) {
-            t = (struct thread *)q_remhead(lock->wait_queue);
+        if (!q_empty((struct queue *)lock->wait_queue)) {
+            t = (struct thread *)q_remhead((struct queue *)lock->wait_queue);
             lock->held = t;
             thread_wakeup(t);
         }
@@ -246,7 +246,7 @@ cv_destroy(struct cv *cv)
         int spl = splhigh();
         assert(thread_hassleepers(cv)==0);
         splx(spl);
-        q_destroy(cv->wait_queue);
+        q_destroy((struct queue *)cv->wait_queue);
     #else
     #endif /* OPT_A1 */
 	
@@ -263,7 +263,7 @@ cv_wait(struct cv *cv, struct lock *lock)
         assert(lock_do_i_hold(lock));
         lock_release(lock);
         spl = splhigh(); // disable interrupts on thread functions
-        int err = q_addtail(cv->wait_queue, curthread);
+        int err = q_addtail((struct queue *)cv->wait_queue, curthread);
         assert(err == 0);
         thread_sleep(curthread);
         splx(spl);
@@ -282,8 +282,8 @@ cv_signal(struct cv *cv, struct lock *lock)
         assert(cv != NULL && lock != NULL);
         assert(lock_do_i_hold(lock));
         spl = splhigh();  // disable interrupts
-        if (!q_empty(cv->wait_queue)) {
-            struct thread *t = (struct thread *)q_remhead(cv->wait_queue);
+        if (!q_empty((struct queue *)cv->wait_queue)) {
+            struct thread *t = (struct thread *)q_remhead((struct queue *)cv->wait_queue);
             thread_wakeup(t);
         }
         splx(spl);
@@ -301,8 +301,8 @@ cv_broadcast(struct cv *cv, struct lock *lock)
         assert(cv != NULL && lock != NULL);
         assert(lock_do_i_hold(lock));
         spl = splhigh(); // disable interrupts
-        while (!q_empty(cv->wait_queue)) {
-            struct thread *t = (struct thread *)q_remhead(cv->wait_queue);
+        while (!q_empty((struct queue *)cv->wait_queue)) {
+            struct thread *t = (struct thread *)q_remhead((struct queue *)cv->wait_queue);
             thread_wakeup(t);
         }
         splx(spl);
