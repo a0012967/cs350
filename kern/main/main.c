@@ -101,13 +101,13 @@ boot(void)
     
     // SIMPLE TEST
     /*
-    struct process * proc = process_create();
-    struct process * proc2 = process_create();
-    struct process * proc3 = process_create();
+    struct process * proc = proc_create();
+    struct process * proc2 = proc_create();
+    struct process * proc3 = proc_create();
     
-    process_assign_thread(proc, thread_create("lu"));
-    process_assign_thread(proc2, thread_create("bu"));
-    process_assign_thread(proc3, thread_create("ru"));
+    proc_assign_thread(proc, thread_create("lu"));
+    proc_assign_thread(proc2, thread_create("bu"));
+    proc_assign_thread(proc3, thread_create("ru"));
     assign_pid(proc);
     print_proc_table ();
     kprintf("a1\n\n");

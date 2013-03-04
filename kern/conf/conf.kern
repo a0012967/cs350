@@ -457,7 +457,7 @@ defoption A0
 file    main/hello.c
 defoption A1
 defoption A2
-file    lib/openfiletable.c
+file    filedesc/openfiletable.c
 file    userprog/sysopen.c
 file    userprog/sysclose.c
 file    userprog/sysexit.c

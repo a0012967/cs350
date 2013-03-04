@@ -1,47 +1,28 @@
 #ifndef _PROCESS_H_
 #define _PROCESS_H_
 
-/*
- * Process used storing pid and thread
- *
- * Contains: 
- *     - pid_t for the process id.
- *     - a thread pointer to the process's thread
- * Functions
- *     process_create        - allocates a new process.
- *                             Returns NULL on error
- *     process_assign_thread - assigns the supplied thread
- *								             to the supplied process
- */
+#include <types.h>
 
-struct process;
-
-struct process * process_create();
-//void process_assign_thread(struct process * proc, struct thread * thread);
+#define MAX_PROCESSES 4
 
 
-/*
- * Process table used for pid management
- *
- * Contains: 
- *     - an array of processes where a process with pid i
- *       is at index i of the array.
- *     - pid_t to represent next available pid, in the array
- *       (does not account for holes in the array - that is managed by
- *        the freed_pids linked list)
- *     - a linked list to keep track of freed pids that can be used again
- * Functions
- *     process_table_create  - allocates a new process table.
- *                             Returns NULL on error
- *     process_assign_thread - assigns the supplied thread
- *								             to the supplied process
- */
+struct process {
+	pid_t pid;
+	struct thread* p_thread;
+
+    // holds index of open files in OpenFileTable
+    struct array* fd_table; //file descriptor table
+};
+
+// bootstraps initial process and process table
+void process_bootstrap();
+struct process * p_create();
+void p_destroy(struct process *p);
+void p_assign_thread(struct process * proc, struct thread * thread);
+
 
 struct process_table;
-
-struct process_table * process_table_create();
+struct process_table * pt_create();
 
 #endif // _PROCESS_H_
-
-
 

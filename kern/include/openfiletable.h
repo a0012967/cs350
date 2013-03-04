@@ -1,6 +1,7 @@
 #ifndef _OPENFILETABLE_H_
 #define _OPENFILETABLE_H_
 
+// TODO: rethink number of max files open
 #define MAXFILES 1024
 
 
@@ -16,19 +17,25 @@ struct openfile {
     struct vnode *v;
 };
 
+/* OPEN FILE STUFF */
 // creates an open file. returns NULL on fail
 struct openfile* of_create(int status, struct uio *u, struct vnode *v);
 // free memory used by openfile
 void of_destroy(struct openfile *of);
 
+
+
+
+/* OPEN FILE TABLE STUFF */
+
 // initialize openfiletable
 // should be called on boot
-void ft_bootstrap();
+void oft_bootstrap();
 
 // returns index of openfile in table on success
 // returns -1 if there was an error. changes value of error
-int storefile(struct openfile* file, int *error);
-int removefile(int fd);
-struct openfile* getfile(int fd);
+int oft_storefile(struct openfile* file, int *error);
+int oft_removefile(int fd);
+struct openfile* oft_getfile(int fd);
 
 #endif /* _OPENFILETABLE_H_ */
