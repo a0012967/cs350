@@ -3,13 +3,17 @@
 //      there is no use for the test in main.c
 
 #include <process.h>
+#include <curprocess.h>
+#include <thread.h>
+#include <curthread.h>
 #include <array.h>
 #include <linkedlist.h>
 #include <lib.h>
-#include <thread.h>
-#include <curprocess.h>
 #include <array.h>
 #include <openfiletable.h>
+
+// Global variable for the process currently executing at any given time 
+struct process *curprocess;
 
 /*****************************
  * Forward Declarations
@@ -42,6 +46,7 @@ void process_bootstrap() {
     // TODO: make use of err
     (void)err;
 
+    // set current process
     curprocess = p;
 }
 
@@ -62,7 +67,8 @@ struct process * p_create() {
 }
 
 void p_destroy(struct process *p) {
-    // TODO: check the case when we destroy the current process
+    // TODO: we currently think that the current process should destroy itself
+    assert(curprocess == p);
 
     int i;
 
@@ -76,9 +82,9 @@ void p_destroy(struct process *p) {
     }
     kfree(p->fd_table);
 
-    // TODO: destroy thread
-    // thread_destroy(p->p_thread);
+    assert(curthread == p->p_thread);
     kfree(p);
+    thread_exit();
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {

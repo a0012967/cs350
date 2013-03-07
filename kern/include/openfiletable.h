@@ -24,17 +24,16 @@ struct openfile* of_create(int status, struct uio *u, struct vnode *v);
 void of_destroy(struct openfile *of);
 
 
-
-
 /* OPEN FILE TABLE STUFF */
 
 // initialize openfiletable
 // should be called on boot
-void oft_bootstrap();
+void openfile_table_bootstrap();
 
 // returns index of openfile in table on success
 // returns -1 if there was an error. changes value of error
 int oft_storefile(struct openfile* file, int *error);
+// removes open file from open file table and destroys it
 int oft_removefile(int fd);
 struct openfile* oft_getfile(int fd);
 

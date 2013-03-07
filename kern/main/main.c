@@ -17,6 +17,7 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
+#include <openfiletable.h>
 #include "opt-A0.h"
 
 /*
@@ -77,6 +78,7 @@ boot(void)
 	scheduler_bootstrap();
 	#if OPT_A2
 		process_bootstrap();
+        openfile_table_bootstrap();
 	#else
 		thread_bootstrap();
 	#endif // OPT_A2

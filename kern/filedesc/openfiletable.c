@@ -40,7 +40,7 @@ void of_destroy(struct openfile *of) {
  *************************/
 
 // bootstrap filetable
-void oft_bootstrap() {
+void openfile_table_bootstrap() {
     // instantiate array of oft
     oft = array_create();
     if (oft == NULL) {
@@ -66,6 +66,10 @@ int oft_storefile(struct openfile* of, int *error) {
             result = -1; // signal for error
         } else {
             result = array_add(oft, of);
+            // update result as index where of was inserted
+            if (result == 0) {
+                result = array_getnum(oft)-1;
+            }
         }
     lock_release(oft_lock);
 
