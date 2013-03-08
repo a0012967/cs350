@@ -57,7 +57,7 @@ struct table* tab_create() {
 
 void tab_destroy(struct table *t) {
     assert(t != NULL);
-    
+
     // free allocated data stored in linked list
     while(!ll_empty(t->slots)) {
         void *ptr = ll_pop_back(t->slots);
@@ -69,13 +69,19 @@ void tab_destroy(struct table *t) {
     kfree(t);
 }
 
-int tab_add(struct table *t, void *ptr) {
+int tab_add(struct table *t, void *ptr, int *err) {
     assert(t != NULL);
+    int result;
     int slot = get_first_slot(t);
 
     // if there is NO free slot, append
     if (slot == -1) {
-        array_add(t->array, ptr); 
+        result = array_add(t->array, ptr); 
+        // signal failure
+        if (result) {
+            *err = result;
+            return -1;
+        }
         return array_getnum(t->array) - 1;
     }
 
@@ -91,9 +97,9 @@ int tab_remove(struct table *t, int index) {
     int result;
     int size = array_getnum(t->array);
     assert(index >= 0 && index < size);
-    
+
     // TODO: worry about shrinking the array and freeing up memory used
-    
+
     // remove data stored
     array_setguy(t->array, index, NULL);
 
@@ -104,6 +110,11 @@ int tab_remove(struct table *t, int index) {
     result = ll_push_back(t->slots, i_ptr);
 
     return result;
+}
+
+void* tab_getguy(struct table *t, int index) {
+    assert(t != NULL);
+    return array_getguy(t->array, index);
 }
 
 int tab_getnum(struct table *t) {

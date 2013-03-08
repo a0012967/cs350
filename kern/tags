@@ -3,622 +3,702 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_VERSION	5.8	//
 ARCH	compile/ASST0/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST1/defs.mk	/^ARCH=mips$/;"	m
-AT	arch/mips/include/asmdefs.h	11;"	d
-AT	compile/ASST0/machine/asmdefs.h	11;"	d
-AT	compile/ASST1/machine/asmdefs.h	11;"	d
-BASE_VERSION	include/version.h	8;"	d
-BITS_PER_WORD	lib/bitmap.c	20;"	d	file:
-CATEATINGTIME	asst1/bowls.c	23;"	d	file:
-CATSLEEPINGTIME	asst1/bowls.c	26;"	d	file:
-CCA_CODE	arch/mips/include/specialreg.h	21;"	d
-CCA_CODE	compile/ASST0/machine/specialreg.h	21;"	d
-CCA_CODE	compile/ASST1/machine/specialreg.h	21;"	d
-CCA_CODESHIFT	arch/mips/include/specialreg.h	26;"	d
-CCA_CODESHIFT	compile/ASST0/machine/specialreg.h	26;"	d
-CCA_CODESHIFT	compile/ASST1/machine/specialreg.h	26;"	d
-CCA_COPN	arch/mips/include/specialreg.h	23;"	d
-CCA_COPN	compile/ASST0/machine/specialreg.h	23;"	d
-CCA_COPN	compile/ASST1/machine/specialreg.h	23;"	d
-CCA_IRQS	arch/mips/include/specialreg.h	22;"	d
-CCA_IRQS	compile/ASST0/machine/specialreg.h	22;"	d
-CCA_IRQS	compile/ASST1/machine/specialreg.h	22;"	d
-CCA_JD	arch/mips/include/specialreg.h	24;"	d
-CCA_JD	compile/ASST0/machine/specialreg.h	24;"	d
-CCA_JD	compile/ASST1/machine/specialreg.h	24;"	d
-CCA_UTLB	arch/mips/include/specialreg.h	20;"	d
-CCA_UTLB	compile/ASST0/machine/specialreg.h	20;"	d
-CCA_UTLB	compile/ASST1/machine/specialreg.h	20;"	d
-CFGREG_DID	dev/lamebus/lamebus.c	12;"	d	file:
-CFGREG_DRL	dev/lamebus/lamebus.c	13;"	d	file:
-CFGREG_VID	dev/lamebus/lamebus.c	11;"	d	file:
+ARCH	compile/ASST2/defs.mk	/^ARCH=mips$/;"	m
+AT	arch/mips/include/asmdefs.h	/^#define AT /;"	d
+AT	compile/ASST0/machine/asmdefs.h	/^#define AT /;"	d
+AT	compile/ASST1/machine/asmdefs.h	/^#define AT /;"	d
+AT	compile/ASST2/machine/asmdefs.h	/^#define AT /;"	d
+BASE_VERSION	include/version.h	/^#define BASE_VERSION /;"	d
+BITS_PER_WORD	lib/bitmap.c	/^#define BITS_PER_WORD /;"	d	file:
+CATEATINGTIME	asst1/bowls.c	/^#define CATEATINGTIME /;"	d	file:
+CATSLEEPINGTIME	asst1/bowls.c	/^#define CATSLEEPINGTIME /;"	d	file:
+CCA_CODE	arch/mips/include/specialreg.h	/^#define CCA_CODE /;"	d
+CCA_CODE	compile/ASST0/machine/specialreg.h	/^#define CCA_CODE /;"	d
+CCA_CODE	compile/ASST1/machine/specialreg.h	/^#define CCA_CODE /;"	d
+CCA_CODE	compile/ASST2/machine/specialreg.h	/^#define CCA_CODE /;"	d
+CCA_CODESHIFT	arch/mips/include/specialreg.h	/^#define CCA_CODESHIFT /;"	d
+CCA_CODESHIFT	compile/ASST0/machine/specialreg.h	/^#define CCA_CODESHIFT /;"	d
+CCA_CODESHIFT	compile/ASST1/machine/specialreg.h	/^#define CCA_CODESHIFT /;"	d
+CCA_CODESHIFT	compile/ASST2/machine/specialreg.h	/^#define CCA_CODESHIFT /;"	d
+CCA_COPN	arch/mips/include/specialreg.h	/^#define CCA_COPN /;"	d
+CCA_COPN	compile/ASST0/machine/specialreg.h	/^#define CCA_COPN /;"	d
+CCA_COPN	compile/ASST1/machine/specialreg.h	/^#define CCA_COPN /;"	d
+CCA_COPN	compile/ASST2/machine/specialreg.h	/^#define CCA_COPN /;"	d
+CCA_IRQS	arch/mips/include/specialreg.h	/^#define CCA_IRQS /;"	d
+CCA_IRQS	compile/ASST0/machine/specialreg.h	/^#define CCA_IRQS /;"	d
+CCA_IRQS	compile/ASST1/machine/specialreg.h	/^#define CCA_IRQS /;"	d
+CCA_IRQS	compile/ASST2/machine/specialreg.h	/^#define CCA_IRQS /;"	d
+CCA_JD	arch/mips/include/specialreg.h	/^#define CCA_JD /;"	d
+CCA_JD	compile/ASST0/machine/specialreg.h	/^#define CCA_JD /;"	d
+CCA_JD	compile/ASST1/machine/specialreg.h	/^#define CCA_JD /;"	d
+CCA_JD	compile/ASST2/machine/specialreg.h	/^#define CCA_JD /;"	d
+CCA_UTLB	arch/mips/include/specialreg.h	/^#define CCA_UTLB /;"	d
+CCA_UTLB	compile/ASST0/machine/specialreg.h	/^#define CCA_UTLB /;"	d
+CCA_UTLB	compile/ASST1/machine/specialreg.h	/^#define CCA_UTLB /;"	d
+CCA_UTLB	compile/ASST2/machine/specialreg.h	/^#define CCA_UTLB /;"	d
+CFGREG_DID	dev/lamebus/lamebus.c	/^#define CFGREG_DID /;"	d	file:
+CFGREG_DRL	dev/lamebus/lamebus.c	/^#define CFGREG_DRL /;"	d	file:
+CFGREG_VID	dev/lamebus/lamebus.c	/^#define CFGREG_VID /;"	d	file:
 CFLAGS	compile/ASST0/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
 CFLAGS	compile/ASST1/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
-CHAR_BIT	arch/mips/include/types.h	51;"	d
-CHAR_BIT	compile/ASST0/machine/types.h	51;"	d
-CHAR_BIT	compile/ASST1/machine/types.h	51;"	d
-CIN_INDEX	arch/mips/include/specialreg.h	32;"	d
-CIN_INDEX	compile/ASST0/machine/specialreg.h	32;"	d
-CIN_INDEX	compile/ASST1/machine/specialreg.h	32;"	d
-CIN_INDEXSHIFT	arch/mips/include/specialreg.h	34;"	d
-CIN_INDEXSHIFT	compile/ASST0/machine/specialreg.h	34;"	d
-CIN_INDEXSHIFT	compile/ASST1/machine/specialreg.h	34;"	d
-CIN_P	arch/mips/include/specialreg.h	31;"	d
-CIN_P	compile/ASST0/machine/specialreg.h	31;"	d
-CIN_P	compile/ASST1/machine/specialreg.h	31;"	d
+CFLAGS	compile/ASST2/Makefile	/^CFLAGS=$(KCFLAGS) $(DEBUGFLAGS) $(INCLUDES) -ffreestanding -D_KERNEL -G 0$/;"	m
+CHAR_BIT	arch/mips/include/types.h	/^#define CHAR_BIT /;"	d
+CHAR_BIT	compile/ASST0/machine/types.h	/^#define CHAR_BIT /;"	d
+CHAR_BIT	compile/ASST1/machine/types.h	/^#define CHAR_BIT /;"	d
+CHAR_BIT	compile/ASST2/machine/types.h	/^#define CHAR_BIT /;"	d
+CIN_INDEX	arch/mips/include/specialreg.h	/^#define CIN_INDEX /;"	d
+CIN_INDEX	compile/ASST0/machine/specialreg.h	/^#define CIN_INDEX /;"	d
+CIN_INDEX	compile/ASST1/machine/specialreg.h	/^#define CIN_INDEX /;"	d
+CIN_INDEX	compile/ASST2/machine/specialreg.h	/^#define CIN_INDEX /;"	d
+CIN_INDEXSHIFT	arch/mips/include/specialreg.h	/^#define CIN_INDEXSHIFT /;"	d
+CIN_INDEXSHIFT	compile/ASST0/machine/specialreg.h	/^#define CIN_INDEXSHIFT /;"	d
+CIN_INDEXSHIFT	compile/ASST1/machine/specialreg.h	/^#define CIN_INDEXSHIFT /;"	d
+CIN_INDEXSHIFT	compile/ASST2/machine/specialreg.h	/^#define CIN_INDEXSHIFT /;"	d
+CIN_P	arch/mips/include/specialreg.h	/^#define CIN_P /;"	d
+CIN_P	compile/ASST0/machine/specialreg.h	/^#define CIN_P /;"	d
+CIN_P	compile/ASST1/machine/specialreg.h	/^#define CIN_P /;"	d
+CIN_P	compile/ASST2/machine/specialreg.h	/^#define CIN_P /;"	d
 COMPILE.S	compile/ASST0/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.S	compile/ASST1/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.S	compile/ASST2/Makefile	/^COMPILE.S=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.c	compile/ASST0/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.c	compile/ASST1/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
+COMPILE.c	compile/ASST2/Makefile	/^COMPILE.c=$(CC) $(CFLAGS) -c$/;"	m
 COMPILE.cc	compile/ASST0/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
 COMPILE.cc	compile/ASST1/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
+COMPILE.cc	compile/ASST2/Makefile	/^COMPILE.cc=$(CC) $(CFLAGS) -fno-rtti -fno-exceptions -c$/;"	m
 COMPILE.l	compile/ASST0/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
 COMPILE.l	compile/ASST1/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
+COMPILE.l	compile/ASST2/Makefile	/^COMPILE.l=false   # redefine when needed $/;"	m
 COMPILE.y	compile/ASST0/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
 COMPILE.y	compile/ASST1/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
-COMPUTE_ITERS	test/tt3.c	27;"	d	file:
+COMPILE.y	compile/ASST2/Makefile	/^COMPILE.y=false   # redefine when needed $/;"	m
+COMPUTE_ITERS	test/tt3.c	/^#define COMPUTE_ITERS /;"	d	file:
 CONFNAME	compile/ASST0/defs.mk	/^CONFNAME=ASST0$/;"	m
 CONFNAME	compile/ASST1/defs.mk	/^CONFNAME=ASST1$/;"	m
-CST_BEV	arch/mips/include/specialreg.h	15;"	d
-CST_BEV	compile/ASST0/machine/specialreg.h	15;"	d
-CST_BEV	compile/ASST1/machine/specialreg.h	15;"	d
-CST_IEc	arch/mips/include/specialreg.h	7;"	d
-CST_IEc	compile/ASST0/machine/specialreg.h	7;"	d
-CST_IEc	compile/ASST1/machine/specialreg.h	7;"	d
-CST_IEo	arch/mips/include/specialreg.h	11;"	d
-CST_IEo	compile/ASST0/machine/specialreg.h	11;"	d
-CST_IEo	compile/ASST1/machine/specialreg.h	11;"	d
-CST_IEp	arch/mips/include/specialreg.h	9;"	d
-CST_IEp	compile/ASST0/machine/specialreg.h	9;"	d
-CST_IEp	compile/ASST1/machine/specialreg.h	9;"	d
-CST_IRQMASK	arch/mips/include/specialreg.h	14;"	d
-CST_IRQMASK	compile/ASST0/machine/specialreg.h	14;"	d
-CST_IRQMASK	compile/ASST1/machine/specialreg.h	14;"	d
-CST_KUc	arch/mips/include/specialreg.h	8;"	d
-CST_KUc	compile/ASST0/machine/specialreg.h	8;"	d
-CST_KUc	compile/ASST1/machine/specialreg.h	8;"	d
-CST_KUo	arch/mips/include/specialreg.h	12;"	d
-CST_KUo	compile/ASST0/machine/specialreg.h	12;"	d
-CST_KUo	compile/ASST1/machine/specialreg.h	12;"	d
-CST_KUp	arch/mips/include/specialreg.h	10;"	d
-CST_KUp	compile/ASST0/machine/specialreg.h	10;"	d
-CST_KUp	compile/ASST1/machine/specialreg.h	10;"	d
-CST_MODEMASK	arch/mips/include/specialreg.h	13;"	d
-CST_MODEMASK	compile/ASST0/machine/specialreg.h	13;"	d
-CST_MODEMASK	compile/ASST1/machine/specialreg.h	13;"	d
-CTLREG_IRQS	dev/lamebus/lamebus.c	17;"	d	file:
-CTLREG_PWR	dev/lamebus/lamebus.c	18;"	d	file:
-CTLREG_RAMSZ	dev/lamebus/lamebus.c	16;"	d	file:
+CONFNAME	compile/ASST2/defs.mk	/^CONFNAME=ASST2$/;"	m
+CST_BEV	arch/mips/include/specialreg.h	/^#define CST_BEV /;"	d
+CST_BEV	compile/ASST0/machine/specialreg.h	/^#define CST_BEV /;"	d
+CST_BEV	compile/ASST1/machine/specialreg.h	/^#define CST_BEV /;"	d
+CST_BEV	compile/ASST2/machine/specialreg.h	/^#define CST_BEV /;"	d
+CST_IEc	arch/mips/include/specialreg.h	/^#define CST_IEc /;"	d
+CST_IEc	compile/ASST0/machine/specialreg.h	/^#define CST_IEc /;"	d
+CST_IEc	compile/ASST1/machine/specialreg.h	/^#define CST_IEc /;"	d
+CST_IEc	compile/ASST2/machine/specialreg.h	/^#define CST_IEc /;"	d
+CST_IEo	arch/mips/include/specialreg.h	/^#define CST_IEo /;"	d
+CST_IEo	compile/ASST0/machine/specialreg.h	/^#define CST_IEo /;"	d
+CST_IEo	compile/ASST1/machine/specialreg.h	/^#define CST_IEo /;"	d
+CST_IEo	compile/ASST2/machine/specialreg.h	/^#define CST_IEo /;"	d
+CST_IEp	arch/mips/include/specialreg.h	/^#define CST_IEp /;"	d
+CST_IEp	compile/ASST0/machine/specialreg.h	/^#define CST_IEp /;"	d
+CST_IEp	compile/ASST1/machine/specialreg.h	/^#define CST_IEp /;"	d
+CST_IEp	compile/ASST2/machine/specialreg.h	/^#define CST_IEp /;"	d
+CST_IRQMASK	arch/mips/include/specialreg.h	/^#define CST_IRQMASK /;"	d
+CST_IRQMASK	compile/ASST0/machine/specialreg.h	/^#define CST_IRQMASK /;"	d
+CST_IRQMASK	compile/ASST1/machine/specialreg.h	/^#define CST_IRQMASK /;"	d
+CST_IRQMASK	compile/ASST2/machine/specialreg.h	/^#define CST_IRQMASK /;"	d
+CST_KUc	arch/mips/include/specialreg.h	/^#define CST_KUc /;"	d
+CST_KUc	compile/ASST0/machine/specialreg.h	/^#define CST_KUc /;"	d
+CST_KUc	compile/ASST1/machine/specialreg.h	/^#define CST_KUc /;"	d
+CST_KUc	compile/ASST2/machine/specialreg.h	/^#define CST_KUc /;"	d
+CST_KUo	arch/mips/include/specialreg.h	/^#define CST_KUo /;"	d
+CST_KUo	compile/ASST0/machine/specialreg.h	/^#define CST_KUo /;"	d
+CST_KUo	compile/ASST1/machine/specialreg.h	/^#define CST_KUo /;"	d
+CST_KUo	compile/ASST2/machine/specialreg.h	/^#define CST_KUo /;"	d
+CST_KUp	arch/mips/include/specialreg.h	/^#define CST_KUp /;"	d
+CST_KUp	compile/ASST0/machine/specialreg.h	/^#define CST_KUp /;"	d
+CST_KUp	compile/ASST1/machine/specialreg.h	/^#define CST_KUp /;"	d
+CST_KUp	compile/ASST2/machine/specialreg.h	/^#define CST_KUp /;"	d
+CST_MODEMASK	arch/mips/include/specialreg.h	/^#define CST_MODEMASK /;"	d
+CST_MODEMASK	compile/ASST0/machine/specialreg.h	/^#define CST_MODEMASK /;"	d
+CST_MODEMASK	compile/ASST1/machine/specialreg.h	/^#define CST_MODEMASK /;"	d
+CST_MODEMASK	compile/ASST2/machine/specialreg.h	/^#define CST_MODEMASK /;"	d
+CTLREG_IRQS	dev/lamebus/lamebus.c	/^#define CTLREG_IRQS /;"	d	file:
+CTLREG_PWR	dev/lamebus/lamebus.c	/^#define CTLREG_PWR /;"	d	file:
+CTLREG_RAMSZ	dev/lamebus/lamebus.c	/^#define CTLREG_RAMSZ /;"	d	file:
 CatMouseWait	asst1/catmouse.c	/^struct semaphore *CatMouseWait;$/;"	v	typeref:struct:semaphore
-DB_DEVICE	include/lib.h	43;"	d
-DB_EXEC	include/lib.h	46;"	d
-DB_INTERRUPT	include/lib.h	42;"	d
-DB_KMALLOC	include/lib.h	51;"	d
-DB_LOCORE	include/lib.h	40;"	d
-DB_NET	include/lib.h	49;"	d
-DB_NETFS	include/lib.h	50;"	d
-DB_SFS	include/lib.h	48;"	d
-DB_SYSCALL	include/lib.h	41;"	d
-DB_THREADS	include/lib.h	44;"	d
-DB_VFS	include/lib.h	47;"	d
-DB_VM	include/lib.h	45;"	d
-DEBUG	include/lib.h	76;"	d
+DB_DEVICE	include/lib.h	/^#define DB_DEVICE /;"	d
+DB_EXEC	include/lib.h	/^#define DB_EXEC /;"	d
+DB_INTERRUPT	include/lib.h	/^#define DB_INTERRUPT /;"	d
+DB_KMALLOC	include/lib.h	/^#define DB_KMALLOC /;"	d
+DB_LOCORE	include/lib.h	/^#define DB_LOCORE /;"	d
+DB_NET	include/lib.h	/^#define DB_NET /;"	d
+DB_NETFS	include/lib.h	/^#define DB_NETFS /;"	d
+DB_SFS	include/lib.h	/^#define DB_SFS /;"	d
+DB_SYSCALL	include/lib.h	/^#define DB_SYSCALL /;"	d
+DB_THREADS	include/lib.h	/^#define DB_THREADS /;"	d
+DB_VFS	include/lib.h	/^#define DB_VFS /;"	d
+DB_VM	include/lib.h	/^#define DB_VM /;"	d
+DEBUG	include/lib.h	/^#define DEBUG(/;"	d
 DEBUGFLAGS	compile/ASST0/defs.mk	/^DEBUGFLAGS=-g$/;"	m
 DEBUGFLAGS	compile/ASST1/defs.mk	/^DEBUGFLAGS=-g$/;"	m
-DEFTEST	test/fstest.c	524;"	d	file:
-DELAYBUFSIZE	dev/generic/console.c	54;"	d	file:
-DIM	test/tt3.c	16;"	d	file:
-DIM	test/tt3.c	18;"	d	file:
-DIVROUNDUP	include/lib.h	209;"	d
-DUMBVM_STACKPAGES	arch/mips/mips/dumbvm.c	19;"	d	file:
-E2BIG	include/kern/errno.h	37;"	d
-EAGAIN	include/kern/errno.h	23;"	d
-EBADF	include/kern/errno.h	38;"	d
-EBUSY	include/kern/errno.h	28;"	d
-EEXIST	include/kern/errno.h	21;"	d
-EFAULT	include/kern/errno.h	14;"	d
-EINVAL	include/kern/errno.h	13;"	d
-EIO	include/kern/errno.h	17;"	d
-EIOCTL	include/kern/errno.h	29;"	d
-EISDIR	include/kern/errno.h	20;"	d
-EI_ABIVERSION	include/elf.h	45;"	d
-EI_CLASS	include/elf.h	41;"	d
-EI_DATA	include/elf.h	42;"	d
-EI_MAG0	include/elf.h	37;"	d
-EI_MAG1	include/elf.h	38;"	d
-EI_MAG2	include/elf.h	39;"	d
-EI_MAG3	include/elf.h	40;"	d
-EI_OSABI	include/elf.h	44;"	d
-EI_PAD	include/elf.h	46;"	d
-EI_VERSION	include/elf.h	43;"	d
-ELFCLASS32	include/elf.h	58;"	d
-ELFCLASS64	include/elf.h	59;"	d
-ELFCLASSNONE	include/elf.h	57;"	d
-ELFDATA2LSB	include/elf.h	63;"	d
-ELFDATA2MSB	include/elf.h	64;"	d
-ELFDATANONE	include/elf.h	62;"	d
-ELFMAG0	include/elf.h	51;"	d
-ELFMAG1	include/elf.h	52;"	d
-ELFMAG2	include/elf.h	53;"	d
-ELFMAG3	include/elf.h	54;"	d
-ELFOSABI_HPUX	include/elf.h	72;"	d
-ELFOSABI_STANDALONE	include/elf.h	73;"	d
-ELFOSABI_SYSV	include/elf.h	71;"	d
-ELF_NIDENT	include/elf.h	18;"	d
-EMFILE	include/kern/errno.h	33;"	d
-EMU_BUFFER	dev/lamebus/emu.c	36;"	d	file:
-EMU_MAXIO	dev/lamebus/emu.h	4;"	d
-EMU_OP_CLOSE	dev/lamebus/emu.c	42;"	d	file:
-EMU_OP_CREATE	dev/lamebus/emu.c	40;"	d	file:
-EMU_OP_EXCLCREATE	dev/lamebus/emu.c	41;"	d	file:
-EMU_OP_GETSIZE	dev/lamebus/emu.c	46;"	d	file:
-EMU_OP_OPEN	dev/lamebus/emu.c	39;"	d	file:
-EMU_OP_READ	dev/lamebus/emu.c	43;"	d	file:
-EMU_OP_READDIR	dev/lamebus/emu.c	44;"	d	file:
-EMU_OP_TRUNC	dev/lamebus/emu.c	47;"	d	file:
-EMU_OP_WRITE	dev/lamebus/emu.c	45;"	d	file:
-EMU_RES_BADHANDLE	dev/lamebus/emu.c	51;"	d	file:
-EMU_RES_BADOP	dev/lamebus/emu.c	52;"	d	file:
-EMU_RES_BADPATH	dev/lamebus/emu.c	53;"	d	file:
-EMU_RES_BADSIZE	dev/lamebus/emu.c	54;"	d	file:
-EMU_RES_EXISTS	dev/lamebus/emu.c	55;"	d	file:
-EMU_RES_ISDIR	dev/lamebus/emu.c	56;"	d	file:
-EMU_RES_MEDIA	dev/lamebus/emu.c	57;"	d	file:
-EMU_RES_NOHANDLES	dev/lamebus/emu.c	58;"	d	file:
-EMU_RES_NOSPACE	dev/lamebus/emu.c	59;"	d	file:
-EMU_RES_NOTDIR	dev/lamebus/emu.c	60;"	d	file:
-EMU_RES_SUCCESS	dev/lamebus/emu.c	50;"	d	file:
-EMU_RES_UNKNOWN	dev/lamebus/emu.c	61;"	d	file:
-EMU_RES_UNSUPP	dev/lamebus/emu.c	62;"	d	file:
-EMU_ROOTHANDLE	dev/lamebus/emu.h	5;"	d
-EM_386	include/elf.h	92;"	d
-EM_486	include/elf.h	95;"	d
-EM_68HC12	include/elf.h	124;"	d
-EM_68K	include/elf.h	93;"	d
-EM_860	include/elf.h	96;"	d
-EM_88K	include/elf.h	94;"	d
-EM_960	include/elf.h	105;"	d
-EM_ALPHA	include/elf.h	112;"	d
-EM_ALPHA_EXP	include/elf.h	126;"	d
-EM_ARC	include/elf.h	116;"	d
-EM_ARM	include/elf.h	111;"	d
-EM_COLDFIRE	include/elf.h	123;"	d
-EM_FR20	include/elf.h	108;"	d
-EM_H8S	include/elf.h	119;"	d
-EM_H8_300	include/elf.h	117;"	d
-EM_H8_300H	include/elf.h	118;"	d
-EM_H8_500	include/elf.h	120;"	d
-EM_IA_64	include/elf.h	121;"	d
-EM_M32	include/elf.h	90;"	d
-EM_MACHINE	arch/mips/include/vm.h	76;"	d
-EM_MACHINE	compile/ASST0/machine/vm.h	76;"	d
-EM_MACHINE	compile/ASST1/machine/vm.h	76;"	d
-EM_MIPS	include/elf.h	97;"	d
-EM_MIPS_RS3_LE	include/elf.h	99;"	d
-EM_MIPS_X	include/elf.h	122;"	d
-EM_NCUBE	include/elf.h	102;"	d
-EM_NONE	include/elf.h	89;"	d
-EM_NUM	include/elf.h	127;"	d
-EM_PARISC	include/elf.h	101;"	d
-EM_PPC	include/elf.h	106;"	d
-EM_RCE	include/elf.h	110;"	d
-EM_RH32	include/elf.h	109;"	d
-EM_RS6000	include/elf.h	100;"	d
-EM_S370	include/elf.h	98;"	d
-EM_SH	include/elf.h	113;"	d
-EM_SPARC	include/elf.h	91;"	d
-EM_SPARC32PLUS	include/elf.h	104;"	d
-EM_SPARCV9	include/elf.h	114;"	d
-EM_TRICORE	include/elf.h	115;"	d
-EM_V800	include/elf.h	107;"	d
-EM_VAX	include/elf.h	125;"	d
-EM_VPP500	include/elf.h	103;"	d
-ENAMETOOLONG	include/kern/errno.h	15;"	d
-ENFILE	include/kern/errno.h	34;"	d
-ENODEV	include/kern/errno.h	27;"	d
-ENOENT	include/kern/errno.h	18;"	d
-ENOEXEC	include/kern/errno.h	36;"	d
-ENOMEM	include/kern/errno.h	16;"	d
-ENOSPC	include/kern/errno.h	32;"	d
-ENOSYS	include/kern/errno.h	35;"	d
-ENOTDIR	include/kern/errno.h	19;"	d
-ENOTEMPTY	include/kern/errno.h	30;"	d
-ENXIO	include/kern/errno.h	26;"	d
-ERANGE	include/kern/errno.h	31;"	d
-ESPIPE	include/kern/errno.h	24;"	d
-ET_CORE	include/elf.h	83;"	d
-ET_DYN	include/elf.h	82;"	d
-ET_EXEC	include/elf.h	81;"	d
-ET_NONE	include/elf.h	79;"	d
-ET_NUM	include/elf.h	84;"	d
-ET_REL	include/elf.h	80;"	d
-EUNIMP	include/kern/errno.h	25;"	d
-EV_CURRENT	include/elf.h	68;"	d
-EV_NONE	include/elf.h	67;"	d
-EXDEV	include/kern/errno.h	22;"	d
-EX_ADEL	arch/mips/include/trapframe.h	58;"	d
-EX_ADEL	compile/ASST0/machine/trapframe.h	58;"	d
-EX_ADEL	compile/ASST1/machine/trapframe.h	58;"	d
-EX_ADES	arch/mips/include/trapframe.h	59;"	d
-EX_ADES	compile/ASST0/machine/trapframe.h	59;"	d
-EX_ADES	compile/ASST1/machine/trapframe.h	59;"	d
-EX_BP	arch/mips/include/trapframe.h	63;"	d
-EX_BP	compile/ASST0/machine/trapframe.h	63;"	d
-EX_BP	compile/ASST1/machine/trapframe.h	63;"	d
-EX_CPU	arch/mips/include/trapframe.h	65;"	d
-EX_CPU	compile/ASST0/machine/trapframe.h	65;"	d
-EX_CPU	compile/ASST1/machine/trapframe.h	65;"	d
-EX_DBE	arch/mips/include/trapframe.h	61;"	d
-EX_DBE	compile/ASST0/machine/trapframe.h	61;"	d
-EX_DBE	compile/ASST1/machine/trapframe.h	61;"	d
-EX_IBE	arch/mips/include/trapframe.h	60;"	d
-EX_IBE	compile/ASST0/machine/trapframe.h	60;"	d
-EX_IBE	compile/ASST1/machine/trapframe.h	60;"	d
-EX_IRQ	arch/mips/include/trapframe.h	54;"	d
-EX_IRQ	compile/ASST0/machine/trapframe.h	54;"	d
-EX_IRQ	compile/ASST1/machine/trapframe.h	54;"	d
-EX_MOD	arch/mips/include/trapframe.h	55;"	d
-EX_MOD	compile/ASST0/machine/trapframe.h	55;"	d
-EX_MOD	compile/ASST1/machine/trapframe.h	55;"	d
-EX_OVF	arch/mips/include/trapframe.h	66;"	d
-EX_OVF	compile/ASST0/machine/trapframe.h	66;"	d
-EX_OVF	compile/ASST1/machine/trapframe.h	66;"	d
-EX_RI	arch/mips/include/trapframe.h	64;"	d
-EX_RI	compile/ASST0/machine/trapframe.h	64;"	d
-EX_RI	compile/ASST1/machine/trapframe.h	64;"	d
-EX_SYS	arch/mips/include/trapframe.h	62;"	d
-EX_SYS	compile/ASST0/machine/trapframe.h	62;"	d
-EX_SYS	compile/ASST1/machine/trapframe.h	62;"	d
-EX_TLBL	arch/mips/include/trapframe.h	56;"	d
-EX_TLBL	compile/ASST0/machine/trapframe.h	56;"	d
-EX_TLBL	compile/ASST1/machine/trapframe.h	56;"	d
-EX_TLBS	arch/mips/include/trapframe.h	57;"	d
-EX_TLBS	compile/ASST0/machine/trapframe.h	57;"	d
-EX_TLBS	compile/ASST1/machine/trapframe.h	57;"	d
-Elf32_Ehdr	include/elf.h	/^} Elf32_Ehdr;$/;"	t	typeref:struct:__anon2
-Elf32_Phdr	include/elf.h	/^} Elf32_Phdr;$/;"	t	typeref:struct:__anon3
+DEBUGFLAGS	compile/ASST2/defs.mk	/^DEBUGFLAGS=-g$/;"	m
+DEFTEST	test/fstest.c	/^#define DEFTEST(/;"	d	file:
+DELAYBUFSIZE	dev/generic/console.c	/^#define DELAYBUFSIZE /;"	d	file:
+DIM	test/tt3.c	/^#define DIM /;"	d	file:
+DIVROUNDUP	include/lib.h	/^#define DIVROUNDUP(/;"	d
+DUMBVM_STACKPAGES	arch/mips/mips/dumbvm.c	/^#define DUMBVM_STACKPAGES /;"	d	file:
+E2BIG	include/kern/errno.h	/^#define E2BIG /;"	d
+EAGAIN	include/kern/errno.h	/^#define EAGAIN /;"	d
+EBADF	include/kern/errno.h	/^#define EBADF /;"	d
+EBUSY	include/kern/errno.h	/^#define EBUSY /;"	d
+EEXIST	include/kern/errno.h	/^#define EEXIST /;"	d
+EFAULT	include/kern/errno.h	/^#define EFAULT /;"	d
+EINVAL	include/kern/errno.h	/^#define EINVAL /;"	d
+EIO	include/kern/errno.h	/^#define EIO /;"	d
+EIOCTL	include/kern/errno.h	/^#define EIOCTL /;"	d
+EISDIR	include/kern/errno.h	/^#define EISDIR /;"	d
+EI_ABIVERSION	include/elf.h	/^#define	EI_ABIVERSION	/;"	d
+EI_CLASS	include/elf.h	/^#define	EI_CLASS	/;"	d
+EI_DATA	include/elf.h	/^#define	EI_DATA	/;"	d
+EI_MAG0	include/elf.h	/^#define	EI_MAG0	/;"	d
+EI_MAG1	include/elf.h	/^#define	EI_MAG1	/;"	d
+EI_MAG2	include/elf.h	/^#define	EI_MAG2	/;"	d
+EI_MAG3	include/elf.h	/^#define	EI_MAG3	/;"	d
+EI_OSABI	include/elf.h	/^#define	EI_OSABI	/;"	d
+EI_PAD	include/elf.h	/^#define	EI_PAD	/;"	d
+EI_VERSION	include/elf.h	/^#define	EI_VERSION	/;"	d
+ELFCLASS32	include/elf.h	/^#define	ELFCLASS32	/;"	d
+ELFCLASS64	include/elf.h	/^#define	ELFCLASS64	/;"	d
+ELFCLASSNONE	include/elf.h	/^#define	ELFCLASSNONE	/;"	d
+ELFDATA2LSB	include/elf.h	/^#define	ELFDATA2LSB	/;"	d
+ELFDATA2MSB	include/elf.h	/^#define	ELFDATA2MSB	/;"	d
+ELFDATANONE	include/elf.h	/^#define	ELFDATANONE	/;"	d
+ELFMAG0	include/elf.h	/^#define	ELFMAG0	/;"	d
+ELFMAG1	include/elf.h	/^#define	ELFMAG1	/;"	d
+ELFMAG2	include/elf.h	/^#define	ELFMAG2	/;"	d
+ELFMAG3	include/elf.h	/^#define	ELFMAG3	/;"	d
+ELFOSABI_HPUX	include/elf.h	/^#define	ELFOSABI_HPUX	/;"	d
+ELFOSABI_STANDALONE	include/elf.h	/^#define	ELFOSABI_STANDALONE	/;"	d
+ELFOSABI_SYSV	include/elf.h	/^#define	ELFOSABI_SYSV	/;"	d
+ELF_NIDENT	include/elf.h	/^#define	ELF_NIDENT	/;"	d
+EMFILE	include/kern/errno.h	/^#define EMFILE /;"	d
+EMU_BUFFER	dev/lamebus/emu.c	/^#define EMU_BUFFER /;"	d	file:
+EMU_MAXIO	dev/lamebus/emu.h	/^#define EMU_MAXIO /;"	d
+EMU_OP_CLOSE	dev/lamebus/emu.c	/^#define EMU_OP_CLOSE /;"	d	file:
+EMU_OP_CREATE	dev/lamebus/emu.c	/^#define EMU_OP_CREATE /;"	d	file:
+EMU_OP_EXCLCREATE	dev/lamebus/emu.c	/^#define EMU_OP_EXCLCREATE /;"	d	file:
+EMU_OP_GETSIZE	dev/lamebus/emu.c	/^#define EMU_OP_GETSIZE /;"	d	file:
+EMU_OP_OPEN	dev/lamebus/emu.c	/^#define EMU_OP_OPEN /;"	d	file:
+EMU_OP_READ	dev/lamebus/emu.c	/^#define EMU_OP_READ /;"	d	file:
+EMU_OP_READDIR	dev/lamebus/emu.c	/^#define EMU_OP_READDIR /;"	d	file:
+EMU_OP_TRUNC	dev/lamebus/emu.c	/^#define EMU_OP_TRUNC /;"	d	file:
+EMU_OP_WRITE	dev/lamebus/emu.c	/^#define EMU_OP_WRITE /;"	d	file:
+EMU_RES_BADHANDLE	dev/lamebus/emu.c	/^#define EMU_RES_BADHANDLE /;"	d	file:
+EMU_RES_BADOP	dev/lamebus/emu.c	/^#define EMU_RES_BADOP /;"	d	file:
+EMU_RES_BADPATH	dev/lamebus/emu.c	/^#define EMU_RES_BADPATH /;"	d	file:
+EMU_RES_BADSIZE	dev/lamebus/emu.c	/^#define EMU_RES_BADSIZE /;"	d	file:
+EMU_RES_EXISTS	dev/lamebus/emu.c	/^#define EMU_RES_EXISTS /;"	d	file:
+EMU_RES_ISDIR	dev/lamebus/emu.c	/^#define EMU_RES_ISDIR /;"	d	file:
+EMU_RES_MEDIA	dev/lamebus/emu.c	/^#define EMU_RES_MEDIA /;"	d	file:
+EMU_RES_NOHANDLES	dev/lamebus/emu.c	/^#define EMU_RES_NOHANDLES /;"	d	file:
+EMU_RES_NOSPACE	dev/lamebus/emu.c	/^#define EMU_RES_NOSPACE /;"	d	file:
+EMU_RES_NOTDIR	dev/lamebus/emu.c	/^#define EMU_RES_NOTDIR /;"	d	file:
+EMU_RES_SUCCESS	dev/lamebus/emu.c	/^#define EMU_RES_SUCCESS /;"	d	file:
+EMU_RES_UNKNOWN	dev/lamebus/emu.c	/^#define EMU_RES_UNKNOWN /;"	d	file:
+EMU_RES_UNSUPP	dev/lamebus/emu.c	/^#define EMU_RES_UNSUPP /;"	d	file:
+EMU_ROOTHANDLE	dev/lamebus/emu.h	/^#define EMU_ROOTHANDLE /;"	d
+EM_386	include/elf.h	/^#define	EM_386	/;"	d
+EM_486	include/elf.h	/^#define	EM_486	/;"	d
+EM_68HC12	include/elf.h	/^#define	EM_68HC12	/;"	d
+EM_68K	include/elf.h	/^#define	EM_68K	/;"	d
+EM_860	include/elf.h	/^#define	EM_860	/;"	d
+EM_88K	include/elf.h	/^#define	EM_88K	/;"	d
+EM_960	include/elf.h	/^#define	EM_960	/;"	d
+EM_ALPHA	include/elf.h	/^#define	EM_ALPHA	/;"	d
+EM_ALPHA_EXP	include/elf.h	/^#define	EM_ALPHA_EXP	/;"	d
+EM_ARC	include/elf.h	/^#define	EM_ARC	/;"	d
+EM_ARM	include/elf.h	/^#define	EM_ARM	/;"	d
+EM_COLDFIRE	include/elf.h	/^#define	EM_COLDFIRE	/;"	d
+EM_FR20	include/elf.h	/^#define	EM_FR20	/;"	d
+EM_H8S	include/elf.h	/^#define	EM_H8S	/;"	d
+EM_H8_300	include/elf.h	/^#define	EM_H8_300	/;"	d
+EM_H8_300H	include/elf.h	/^#define	EM_H8_300H	/;"	d
+EM_H8_500	include/elf.h	/^#define	EM_H8_500	/;"	d
+EM_IA_64	include/elf.h	/^#define	EM_IA_64	/;"	d
+EM_M32	include/elf.h	/^#define	EM_M32	/;"	d
+EM_MACHINE	arch/mips/include/vm.h	/^#define EM_MACHINE /;"	d
+EM_MACHINE	compile/ASST0/machine/vm.h	/^#define EM_MACHINE /;"	d
+EM_MACHINE	compile/ASST1/machine/vm.h	/^#define EM_MACHINE /;"	d
+EM_MACHINE	compile/ASST2/machine/vm.h	/^#define EM_MACHINE /;"	d
+EM_MIPS	include/elf.h	/^#define	EM_MIPS	/;"	d
+EM_MIPS_RS3_LE	include/elf.h	/^#define	EM_MIPS_RS3_LE	/;"	d
+EM_MIPS_X	include/elf.h	/^#define	EM_MIPS_X	/;"	d
+EM_NCUBE	include/elf.h	/^#define	EM_NCUBE	/;"	d
+EM_NONE	include/elf.h	/^#define	EM_NONE	/;"	d
+EM_NUM	include/elf.h	/^#define	EM_NUM	/;"	d
+EM_PARISC	include/elf.h	/^#define	EM_PARISC	/;"	d
+EM_PPC	include/elf.h	/^#define	EM_PPC	/;"	d
+EM_RCE	include/elf.h	/^#define	EM_RCE	/;"	d
+EM_RH32	include/elf.h	/^#define	EM_RH32	/;"	d
+EM_RS6000	include/elf.h	/^#define	EM_RS6000	/;"	d
+EM_S370	include/elf.h	/^#define	EM_S370	/;"	d
+EM_SH	include/elf.h	/^#define	EM_SH	/;"	d
+EM_SPARC	include/elf.h	/^#define	EM_SPARC	/;"	d
+EM_SPARC32PLUS	include/elf.h	/^#define	EM_SPARC32PLUS	/;"	d
+EM_SPARCV9	include/elf.h	/^#define	EM_SPARCV9	/;"	d
+EM_TRICORE	include/elf.h	/^#define	EM_TRICORE	/;"	d
+EM_V800	include/elf.h	/^#define	EM_V800	/;"	d
+EM_VAX	include/elf.h	/^#define	EM_VAX	/;"	d
+EM_VPP500	include/elf.h	/^#define	EM_VPP500	/;"	d
+ENAMETOOLONG	include/kern/errno.h	/^#define ENAMETOOLONG /;"	d
+ENFILE	include/kern/errno.h	/^#define ENFILE /;"	d
+ENODEV	include/kern/errno.h	/^#define ENODEV /;"	d
+ENOENT	include/kern/errno.h	/^#define ENOENT /;"	d
+ENOEXEC	include/kern/errno.h	/^#define ENOEXEC /;"	d
+ENOMEM	include/kern/errno.h	/^#define ENOMEM /;"	d
+ENOSPC	include/kern/errno.h	/^#define ENOSPC /;"	d
+ENOSYS	include/kern/errno.h	/^#define ENOSYS /;"	d
+ENOTDIR	include/kern/errno.h	/^#define ENOTDIR /;"	d
+ENOTEMPTY	include/kern/errno.h	/^#define ENOTEMPTY /;"	d
+ENXIO	include/kern/errno.h	/^#define ENXIO /;"	d
+ERANGE	include/kern/errno.h	/^#define ERANGE /;"	d
+ESPIPE	include/kern/errno.h	/^#define ESPIPE /;"	d
+ET_CORE	include/elf.h	/^#define	ET_CORE	/;"	d
+ET_DYN	include/elf.h	/^#define	ET_DYN	/;"	d
+ET_EXEC	include/elf.h	/^#define	ET_EXEC	/;"	d
+ET_NONE	include/elf.h	/^#define	ET_NONE	/;"	d
+ET_NUM	include/elf.h	/^#define	ET_NUM	/;"	d
+ET_REL	include/elf.h	/^#define	ET_REL	/;"	d
+EUNIMP	include/kern/errno.h	/^#define EUNIMP /;"	d
+EV_CURRENT	include/elf.h	/^#define	EV_CURRENT	/;"	d
+EV_NONE	include/elf.h	/^#define	EV_NONE	/;"	d
+EXDEV	include/kern/errno.h	/^#define EXDEV /;"	d
+EX_ADEL	arch/mips/include/trapframe.h	/^#define EX_ADEL /;"	d
+EX_ADEL	compile/ASST0/machine/trapframe.h	/^#define EX_ADEL /;"	d
+EX_ADEL	compile/ASST1/machine/trapframe.h	/^#define EX_ADEL /;"	d
+EX_ADEL	compile/ASST2/machine/trapframe.h	/^#define EX_ADEL /;"	d
+EX_ADES	arch/mips/include/trapframe.h	/^#define EX_ADES /;"	d
+EX_ADES	compile/ASST0/machine/trapframe.h	/^#define EX_ADES /;"	d
+EX_ADES	compile/ASST1/machine/trapframe.h	/^#define EX_ADES /;"	d
+EX_ADES	compile/ASST2/machine/trapframe.h	/^#define EX_ADES /;"	d
+EX_BP	arch/mips/include/trapframe.h	/^#define EX_BP /;"	d
+EX_BP	compile/ASST0/machine/trapframe.h	/^#define EX_BP /;"	d
+EX_BP	compile/ASST1/machine/trapframe.h	/^#define EX_BP /;"	d
+EX_BP	compile/ASST2/machine/trapframe.h	/^#define EX_BP /;"	d
+EX_CPU	arch/mips/include/trapframe.h	/^#define EX_CPU /;"	d
+EX_CPU	compile/ASST0/machine/trapframe.h	/^#define EX_CPU /;"	d
+EX_CPU	compile/ASST1/machine/trapframe.h	/^#define EX_CPU /;"	d
+EX_CPU	compile/ASST2/machine/trapframe.h	/^#define EX_CPU /;"	d
+EX_DBE	arch/mips/include/trapframe.h	/^#define EX_DBE /;"	d
+EX_DBE	compile/ASST0/machine/trapframe.h	/^#define EX_DBE /;"	d
+EX_DBE	compile/ASST1/machine/trapframe.h	/^#define EX_DBE /;"	d
+EX_DBE	compile/ASST2/machine/trapframe.h	/^#define EX_DBE /;"	d
+EX_IBE	arch/mips/include/trapframe.h	/^#define EX_IBE /;"	d
+EX_IBE	compile/ASST0/machine/trapframe.h	/^#define EX_IBE /;"	d
+EX_IBE	compile/ASST1/machine/trapframe.h	/^#define EX_IBE /;"	d
+EX_IBE	compile/ASST2/machine/trapframe.h	/^#define EX_IBE /;"	d
+EX_IRQ	arch/mips/include/trapframe.h	/^#define EX_IRQ /;"	d
+EX_IRQ	compile/ASST0/machine/trapframe.h	/^#define EX_IRQ /;"	d
+EX_IRQ	compile/ASST1/machine/trapframe.h	/^#define EX_IRQ /;"	d
+EX_IRQ	compile/ASST2/machine/trapframe.h	/^#define EX_IRQ /;"	d
+EX_MOD	arch/mips/include/trapframe.h	/^#define EX_MOD /;"	d
+EX_MOD	compile/ASST0/machine/trapframe.h	/^#define EX_MOD /;"	d
+EX_MOD	compile/ASST1/machine/trapframe.h	/^#define EX_MOD /;"	d
+EX_MOD	compile/ASST2/machine/trapframe.h	/^#define EX_MOD /;"	d
+EX_OVF	arch/mips/include/trapframe.h	/^#define EX_OVF /;"	d
+EX_OVF	compile/ASST0/machine/trapframe.h	/^#define EX_OVF /;"	d
+EX_OVF	compile/ASST1/machine/trapframe.h	/^#define EX_OVF /;"	d
+EX_OVF	compile/ASST2/machine/trapframe.h	/^#define EX_OVF /;"	d
+EX_RI	arch/mips/include/trapframe.h	/^#define EX_RI /;"	d
+EX_RI	compile/ASST0/machine/trapframe.h	/^#define EX_RI /;"	d
+EX_RI	compile/ASST1/machine/trapframe.h	/^#define EX_RI /;"	d
+EX_RI	compile/ASST2/machine/trapframe.h	/^#define EX_RI /;"	d
+EX_SYS	arch/mips/include/trapframe.h	/^#define EX_SYS /;"	d
+EX_SYS	compile/ASST0/machine/trapframe.h	/^#define EX_SYS /;"	d
+EX_SYS	compile/ASST1/machine/trapframe.h	/^#define EX_SYS /;"	d
+EX_SYS	compile/ASST2/machine/trapframe.h	/^#define EX_SYS /;"	d
+EX_TLBL	arch/mips/include/trapframe.h	/^#define EX_TLBL /;"	d
+EX_TLBL	compile/ASST0/machine/trapframe.h	/^#define EX_TLBL /;"	d
+EX_TLBL	compile/ASST1/machine/trapframe.h	/^#define EX_TLBL /;"	d
+EX_TLBL	compile/ASST2/machine/trapframe.h	/^#define EX_TLBL /;"	d
+EX_TLBS	arch/mips/include/trapframe.h	/^#define EX_TLBS /;"	d
+EX_TLBS	compile/ASST0/machine/trapframe.h	/^#define EX_TLBS /;"	d
+EX_TLBS	compile/ASST1/machine/trapframe.h	/^#define EX_TLBS /;"	d
+EX_TLBS	compile/ASST2/machine/trapframe.h	/^#define EX_TLBS /;"	d
+Elf32_Ehdr	include/elf.h	/^} Elf32_Ehdr;$/;"	t	typeref:struct:__anon1
+Elf32_Phdr	include/elf.h	/^} Elf32_Phdr;$/;"	t	typeref:struct:__anon2
 Elf_Ehdr	include/elf.h	/^typedef Elf32_Ehdr Elf_Ehdr;$/;"	t
 Elf_Phdr	include/elf.h	/^typedef Elf32_Phdr Elf_Phdr;$/;"	t
-FILENAME	test/fstest.c	25;"	d	file:
-FSOP_GETROOT	include/fs.h	47;"	d
-FSOP_GETVOLNAME	include/fs.h	46;"	d
-FSOP_SYNC	include/fs.h	45;"	d
-FSOP_UNMOUNT	include/fs.h	48;"	d
-GROUP_VERSION	include/version.h	13;"	d
-HIGH_VERSION	dev/lamebus/emu_att.c	14;"	d	file:
-HIGH_VERSION	dev/lamebus/lhd_att.c	13;"	d	file:
-HIGH_VERSION	dev/lamebus/lnet_att.c	9;"	d	file:
-HIGH_VERSION	dev/lamebus/lrandom_att.c	10;"	d	file:
-HIGH_VERSION	dev/lamebus/lscreen_att.c	13;"	d	file:
-HIGH_VERSION	dev/lamebus/lser_att.c	10;"	d	file:
-HIGH_VERSION	dev/lamebus/ltimer_att.c	13;"	d	file:
-HIGH_VERSION	dev/lamebus/ltrace_att.c	10;"	d	file:
-HZ	include/clock.h	24;"	d
-HZ	include/clock.h	27;"	d
+FILENAME	test/fstest.c	/^#define FILENAME /;"	d	file:
+FSOP_GETROOT	include/fs.h	/^#define FSOP_GETROOT(/;"	d
+FSOP_GETVOLNAME	include/fs.h	/^#define FSOP_GETVOLNAME(/;"	d
+FSOP_SYNC	include/fs.h	/^#define FSOP_SYNC(/;"	d
+FSOP_UNMOUNT	include/fs.h	/^#define FSOP_UNMOUNT(/;"	d
+GROUP_VERSION	include/version.h	/^#define GROUP_VERSION /;"	d
+HIGH_VERSION	dev/lamebus/emu_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/lhd_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/lnet_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/lrandom_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/lscreen_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/lser_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/ltimer_att.c	/^#define HIGH_VERSION /;"	d	file:
+HIGH_VERSION	dev/lamebus/ltrace_att.c	/^#define HIGH_VERSION /;"	d	file:
+HZ	include/clock.h	/^#define HZ /;"	d
 INCDIR	Makefile	/^INCDIR=$(OSTREE)\/include$/;"	m
 INCLUDES	compile/ASST0/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INCLUDES	compile/ASST1/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
-INUSE_WORDS	lib/kheap.c	107;"	d	file:
-INVALID_OFFSET	lib/kheap.c	78;"	d	file:
-ISDIR	dev/lamebus/emu.c	833;"	d	file:
-ISDIR	fs/sfs/sfs_vnode.c	1467;"	d	file:
-ITEMSIZE	test/malloctest.c	22;"	d	file:
-K1	dev/generic/pseudorand.c	17;"	d	file:
-K2	dev/generic/pseudorand.c	18;"	d	file:
+INCLUDES	compile/ASST2/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
+INUSE_WORDS	lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
+INVALID_OFFSET	lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
+ISDIR	dev/lamebus/emu.c	/^#define ISDIR /;"	d	file:
+ISDIR	fs/sfs/sfs_vnode.c	/^#define ISDIR /;"	d	file:
+ITEMSIZE	test/malloctest.c	/^#define ITEMSIZE /;"	d	file:
+K1	dev/generic/pseudorand.c	/^#define K1 /;"	d	file:
+K2	dev/generic/pseudorand.c	/^#define K2 /;"	d	file:
 KERNEL	compile/ASST0/Makefile	/^KERNEL=kernel$/;"	m
 KERNEL	compile/ASST1/Makefile	/^KERNEL=kernel$/;"	m
+KERNEL	compile/ASST2/Makefile	/^KERNEL=kernel$/;"	m
 KINCDIR	Makefile	/^KINCDIR=$(OSTREE)\/include\/kern$/;"	m
-LAMEBUS_IRQ_BIT	arch/mips/mips/interrupt.c	15;"	d	file:
-LAMEBUS_NMI_BIT	arch/mips/mips/interrupt.c	16;"	d	file:
-LARGEST_SUBPAGE_SIZE	lib/kheap.c	56;"	d	file:
-LBCS161_BUSCTL	dev/lamebus/lamebus.h	13;"	d
-LBCS161_DISK	dev/lamebus/lamebus.h	15;"	d
-LBCS161_EMUFS	dev/lamebus/lamebus.h	19;"	d
-LBCS161_NET	dev/lamebus/lamebus.h	18;"	d
-LBCS161_RANDOM	dev/lamebus/lamebus.h	21;"	d
-LBCS161_SCREEN	dev/lamebus/lamebus.h	17;"	d
-LBCS161_SERIAL	dev/lamebus/lamebus.h	16;"	d
-LBCS161_TIMER	dev/lamebus/lamebus.h	14;"	d
-LBCS161_TRACE	dev/lamebus/lamebus.h	20;"	d
-LB_BASEADDR	arch/mips/include/bus.h	28;"	d
-LB_BASEADDR	compile/ASST0/machine/bus.h	28;"	d
-LB_BASEADDR	compile/ASST1/machine/bus.h	28;"	d
-LB_CONFIG_SIZE	dev/lamebus/lamebus.h	30;"	d
-LB_CONTROLLER_SLOT	dev/lamebus/lamebus.h	24;"	d
-LB_NSLOTS	dev/lamebus/lamebus.h	27;"	d
-LB_SLOT_SIZE	dev/lamebus/lamebus.h	33;"	d
-LB_VENDOR_CS161	dev/lamebus/lamebus.h	10;"	d
+LAMEBUS_IRQ_BIT	arch/mips/mips/interrupt.c	/^#define LAMEBUS_IRQ_BIT /;"	d	file:
+LAMEBUS_NMI_BIT	arch/mips/mips/interrupt.c	/^#define LAMEBUS_NMI_BIT /;"	d	file:
+LARGEST_SUBPAGE_SIZE	lib/kheap.c	/^#define LARGEST_SUBPAGE_SIZE /;"	d	file:
+LBCS161_BUSCTL	dev/lamebus/lamebus.h	/^#define LBCS161_BUSCTL /;"	d
+LBCS161_DISK	dev/lamebus/lamebus.h	/^#define LBCS161_DISK /;"	d
+LBCS161_EMUFS	dev/lamebus/lamebus.h	/^#define LBCS161_EMUFS /;"	d
+LBCS161_NET	dev/lamebus/lamebus.h	/^#define LBCS161_NET /;"	d
+LBCS161_RANDOM	dev/lamebus/lamebus.h	/^#define LBCS161_RANDOM /;"	d
+LBCS161_SCREEN	dev/lamebus/lamebus.h	/^#define LBCS161_SCREEN /;"	d
+LBCS161_SERIAL	dev/lamebus/lamebus.h	/^#define LBCS161_SERIAL /;"	d
+LBCS161_TIMER	dev/lamebus/lamebus.h	/^#define LBCS161_TIMER /;"	d
+LBCS161_TRACE	dev/lamebus/lamebus.h	/^#define LBCS161_TRACE /;"	d
+LB_BASEADDR	arch/mips/include/bus.h	/^#define LB_BASEADDR /;"	d
+LB_BASEADDR	compile/ASST0/machine/bus.h	/^#define LB_BASEADDR /;"	d
+LB_BASEADDR	compile/ASST1/machine/bus.h	/^#define LB_BASEADDR /;"	d
+LB_BASEADDR	compile/ASST2/machine/bus.h	/^#define LB_BASEADDR /;"	d
+LB_CONFIG_SIZE	dev/lamebus/lamebus.h	/^#define LB_CONFIG_SIZE /;"	d
+LB_CONTROLLER_SLOT	dev/lamebus/lamebus.h	/^#define LB_CONTROLLER_SLOT /;"	d
+LB_NSLOTS	dev/lamebus/lamebus.h	/^#define LB_NSLOTS /;"	d
+LB_SLOT_SIZE	dev/lamebus/lamebus.h	/^#define LB_SLOT_SIZE /;"	d
+LB_VENDOR_CS161	dev/lamebus/lamebus.h	/^#define LB_VENDOR_CS161 /;"	d
 LDFLAGS	compile/ASST0/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
 LDFLAGS	compile/ASST1/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
-LHD_BUFFER	dev/lamebus/lhd.c	31;"	d	file:
-LHD_IDLE	dev/lamebus/lhd.c	22;"	d	file:
-LHD_INVSECT	dev/lamebus/lhd.c	25;"	d	file:
-LHD_ISWRITE	dev/lamebus/lhd.c	27;"	d	file:
-LHD_MEDIA	dev/lamebus/lhd.c	26;"	d	file:
-LHD_OK	dev/lamebus/lhd.c	24;"	d	file:
-LHD_REG_NSECT	dev/lamebus/lhd.c	16;"	d	file:
-LHD_REG_RPM	dev/lamebus/lhd.c	19;"	d	file:
-LHD_REG_SECT	dev/lamebus/lhd.c	18;"	d	file:
-LHD_REG_STAT	dev/lamebus/lhd.c	17;"	d	file:
-LHD_SECTSIZE	dev/lamebus/lhd.h	9;"	d
-LHD_STATEMASK	dev/lamebus/lhd.c	28;"	d	file:
-LHD_WORKING	dev/lamebus/lhd.c	23;"	d	file:
+LDFLAGS	compile/ASST2/Makefile	/^LDFLAGS=$(KLDFLAGS) -nostdlib \\$/;"	m
+LHD_BUFFER	dev/lamebus/lhd.c	/^#define LHD_BUFFER /;"	d	file:
+LHD_IDLE	dev/lamebus/lhd.c	/^#define LHD_IDLE /;"	d	file:
+LHD_INVSECT	dev/lamebus/lhd.c	/^#define LHD_INVSECT /;"	d	file:
+LHD_ISWRITE	dev/lamebus/lhd.c	/^#define LHD_ISWRITE /;"	d	file:
+LHD_MEDIA	dev/lamebus/lhd.c	/^#define LHD_MEDIA /;"	d	file:
+LHD_OK	dev/lamebus/lhd.c	/^#define LHD_OK /;"	d	file:
+LHD_REG_NSECT	dev/lamebus/lhd.c	/^#define LHD_REG_NSECT /;"	d	file:
+LHD_REG_RPM	dev/lamebus/lhd.c	/^#define LHD_REG_RPM /;"	d	file:
+LHD_REG_SECT	dev/lamebus/lhd.c	/^#define LHD_REG_SECT /;"	d	file:
+LHD_REG_STAT	dev/lamebus/lhd.c	/^#define LHD_REG_STAT /;"	d	file:
+LHD_SECTSIZE	dev/lamebus/lhd.h	/^#define LHD_SECTSIZE /;"	d
+LHD_STATEMASK	dev/lamebus/lhd.c	/^#define LHD_STATEMASK /;"	d	file:
+LHD_WORKING	dev/lamebus/lhd.c	/^#define LHD_WORKING /;"	d	file:
 LOAD_ADDRESS	compile/ASST0/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
 LOAD_ADDRESS	compile/ASST1/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
-LOW_VERSION	dev/lamebus/emu_att.c	12;"	d	file:
-LOW_VERSION	dev/lamebus/lhd_att.c	11;"	d	file:
-LOW_VERSION	dev/lamebus/lnet_att.c	7;"	d	file:
-LOW_VERSION	dev/lamebus/lrandom_att.c	8;"	d	file:
-LOW_VERSION	dev/lamebus/lscreen_att.c	11;"	d	file:
-LOW_VERSION	dev/lamebus/lser_att.c	8;"	d	file:
-LOW_VERSION	dev/lamebus/ltimer_att.c	11;"	d	file:
-LOW_VERSION	dev/lamebus/ltrace_att.c	8;"	d	file:
-LR_RANDMAX	dev/lamebus/lrandom.c	15;"	d	file:
-LR_REG_RAND	dev/lamebus/lrandom.c	12;"	d	file:
-LSCR_IRQ_ACTIVE	dev/lamebus/lscreen.c	22;"	d	file:
-LSCR_IRQ_ENABLE	dev/lamebus/lscreen.c	21;"	d	file:
-LSCR_REG_CHAR	dev/lamebus/lscreen.c	17;"	d	file:
-LSCR_REG_POSN	dev/lamebus/lscreen.c	15;"	d	file:
-LSCR_REG_RIRQ	dev/lamebus/lscreen.c	18;"	d	file:
-LSCR_REG_SIZE	dev/lamebus/lscreen.c	16;"	d	file:
-LSCR_SCREEN	dev/lamebus/lscreen.c	25;"	d	file:
-LSER_IRQ_ACTIVE	dev/lamebus/lser.c	15;"	d	file:
-LSER_IRQ_ENABLE	dev/lamebus/lser.c	14;"	d	file:
-LSER_REG_CHAR	dev/lamebus/lser.c	9;"	d	file:
-LSER_REG_RIRQ	dev/lamebus/lser.c	11;"	d	file:
-LSER_REG_WIRQ	dev/lamebus/lser.c	10;"	d	file:
-LTRACE_REG_DEBUG	dev/lamebus/ltrace.c	10;"	d	file:
-LTRACE_REG_DUMP	dev/lamebus/ltrace.c	11;"	d	file:
-LTRACE_REG_TROFF	dev/lamebus/ltrace.c	9;"	d	file:
-LTRACE_REG_TRON	dev/lamebus/ltrace.c	8;"	d	file:
-LT_GRANULARITY	dev/lamebus/ltimer.c	20;"	d	file:
-LT_REG_COUNT	dev/lamebus/ltimer.c	16;"	d	file:
-LT_REG_IRQ	dev/lamebus/ltimer.c	15;"	d	file:
-LT_REG_NSEC	dev/lamebus/ltimer.c	13;"	d	file:
-LT_REG_ROE	dev/lamebus/ltimer.c	14;"	d	file:
-LT_REG_SEC	dev/lamebus/ltimer.c	12;"	d	file:
-LT_REG_SPKR	dev/lamebus/ltimer.c	17;"	d	file:
-MAKENAME	test/fstest.c	81;"	d	file:
-MAXMENUARGS	main/menu.c	23;"	d	file:
-MAXTHREADS	include/synch.h	12;"	d
+LOAD_ADDRESS	compile/ASST2/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
+LOW_VERSION	dev/lamebus/emu_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/lhd_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/lnet_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/lrandom_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/lscreen_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/lser_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/ltimer_att.c	/^#define LOW_VERSION /;"	d	file:
+LOW_VERSION	dev/lamebus/ltrace_att.c	/^#define LOW_VERSION /;"	d	file:
+LR_RANDMAX	dev/lamebus/lrandom.c	/^#define LR_RANDMAX /;"	d	file:
+LR_REG_RAND	dev/lamebus/lrandom.c	/^#define LR_REG_RAND /;"	d	file:
+LSCR_IRQ_ACTIVE	dev/lamebus/lscreen.c	/^#define LSCR_IRQ_ACTIVE /;"	d	file:
+LSCR_IRQ_ENABLE	dev/lamebus/lscreen.c	/^#define LSCR_IRQ_ENABLE /;"	d	file:
+LSCR_REG_CHAR	dev/lamebus/lscreen.c	/^#define LSCR_REG_CHAR /;"	d	file:
+LSCR_REG_POSN	dev/lamebus/lscreen.c	/^#define LSCR_REG_POSN /;"	d	file:
+LSCR_REG_RIRQ	dev/lamebus/lscreen.c	/^#define LSCR_REG_RIRQ /;"	d	file:
+LSCR_REG_SIZE	dev/lamebus/lscreen.c	/^#define LSCR_REG_SIZE /;"	d	file:
+LSCR_SCREEN	dev/lamebus/lscreen.c	/^#define LSCR_SCREEN /;"	d	file:
+LSER_IRQ_ACTIVE	dev/lamebus/lser.c	/^#define LSER_IRQ_ACTIVE /;"	d	file:
+LSER_IRQ_ENABLE	dev/lamebus/lser.c	/^#define LSER_IRQ_ENABLE /;"	d	file:
+LSER_REG_CHAR	dev/lamebus/lser.c	/^#define LSER_REG_CHAR /;"	d	file:
+LSER_REG_RIRQ	dev/lamebus/lser.c	/^#define LSER_REG_RIRQ /;"	d	file:
+LSER_REG_WIRQ	dev/lamebus/lser.c	/^#define LSER_REG_WIRQ /;"	d	file:
+LTRACE_REG_DEBUG	dev/lamebus/ltrace.c	/^#define LTRACE_REG_DEBUG /;"	d	file:
+LTRACE_REG_DUMP	dev/lamebus/ltrace.c	/^#define LTRACE_REG_DUMP /;"	d	file:
+LTRACE_REG_TROFF	dev/lamebus/ltrace.c	/^#define LTRACE_REG_TROFF /;"	d	file:
+LTRACE_REG_TRON	dev/lamebus/ltrace.c	/^#define LTRACE_REG_TRON /;"	d	file:
+LT_GRANULARITY	dev/lamebus/ltimer.c	/^#define LT_GRANULARITY /;"	d	file:
+LT_REG_COUNT	dev/lamebus/ltimer.c	/^#define LT_REG_COUNT /;"	d	file:
+LT_REG_IRQ	dev/lamebus/ltimer.c	/^#define LT_REG_IRQ /;"	d	file:
+LT_REG_NSEC	dev/lamebus/ltimer.c	/^#define LT_REG_NSEC /;"	d	file:
+LT_REG_ROE	dev/lamebus/ltimer.c	/^#define LT_REG_ROE /;"	d	file:
+LT_REG_SEC	dev/lamebus/ltimer.c	/^#define LT_REG_SEC /;"	d	file:
+LT_REG_SPKR	dev/lamebus/ltimer.c	/^#define LT_REG_SPKR /;"	d	file:
+MAKENAME	test/fstest.c	/^#define MAKENAME(/;"	d	file:
+MAXMENUARGS	main/menu.c	/^#define MAXMENUARGS /;"	d	file:
+MAXTHREADS	include/synch.h	/^#define MAXTHREADS /;"	d
+MAX_PROCESSES	include/process.h	/^#define MAX_PROCESSES /;"	d
 MDHEADERS	Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
-MIPS_KSEG0	arch/mips/include/vm.h	20;"	d
-MIPS_KSEG0	compile/ASST0/machine/vm.h	20;"	d
-MIPS_KSEG0	compile/ASST1/machine/vm.h	20;"	d
-MIPS_KSEG1	arch/mips/include/vm.h	21;"	d
-MIPS_KSEG1	compile/ASST0/machine/vm.h	21;"	d
-MIPS_KSEG1	compile/ASST1/machine/vm.h	21;"	d
-MIPS_KSEG2	arch/mips/include/vm.h	22;"	d
-MIPS_KSEG2	compile/ASST0/machine/vm.h	22;"	d
-MIPS_KSEG2	compile/ASST1/machine/vm.h	22;"	d
-MIPS_KUSEG	arch/mips/include/vm.h	19;"	d
-MIPS_KUSEG	compile/ASST0/machine/vm.h	19;"	d
-MIPS_KUSEG	compile/ASST1/machine/vm.h	19;"	d
-MKPAB	lib/kheap.c	82;"	d	file:
-MODULUS	dev/generic/pseudorand.c	16;"	d	file:
-MOUSEEATINGTIME	asst1/bowls.c	24;"	d	file:
-MOUSESLEEPINGTIME	asst1/bowls.c	27;"	d	file:
-MULTIPLIER	dev/generic/pseudorand.c	15;"	d	file:
-NAME_MAX	include/kern/limits.h	5;"	d
-NCARS	asst1/stoplight.c	33;"	d	file:
-NCHUNKS	test/fstest.c	26;"	d	file:
-NCREATES	test/fstest.c	28;"	d	file:
-NCVLOOPS	test/synchtest.c	14;"	d	file:
-NLOCKLOOPS	test/synchtest.c	13;"	d	file:
-NOTDIR	dev/lamebus/emu.c	834;"	d	file:
-NOTDIR	fs/sfs/sfs_vnode.c	1468;"	d	file:
-NPAGEREFS	lib/kheap.c	104;"	d	file:
-NSEMLOOPS	test/synchtest.c	12;"	d	file:
-NSIZES	lib/kheap.c	52;"	d	file:
-NTHREADS	test/fstest.c	27;"	d	file:
-NTHREADS	test/malloctest.c	23;"	d	file:
-NTHREADS	test/synchtest.c	15;"	d	file:
-NTHREADS	test/threadtest.c	10;"	d	file:
-NTRAPCODES	arch/mips/mips/trap.c	17;"	d	file:
-NTRIES	test/malloctest.c	21;"	d	file:
-NULL	arch/mips/include/types.h	57;"	d
-NULL	arch/mips/include/types.h	58;"	d
-NULL	compile/ASST0/machine/types.h	57;"	d
-NULL	compile/ASST0/machine/types.h	58;"	d
-NULL	compile/ASST1/machine/types.h	57;"	d
-NULL	compile/ASST1/machine/types.h	58;"	d
-NUM_TLB	arch/mips/include/tlb.h	73;"	d
-NUM_TLB	compile/ASST0/machine/tlb.h	73;"	d
-NUM_TLB	compile/ASST1/machine/tlb.h	73;"	d
-NWAITADDRS	test/tt3.c	29;"	d	file:
+MIPS_KSEG0	arch/mips/include/vm.h	/^#define MIPS_KSEG0 /;"	d
+MIPS_KSEG0	compile/ASST0/machine/vm.h	/^#define MIPS_KSEG0 /;"	d
+MIPS_KSEG0	compile/ASST1/machine/vm.h	/^#define MIPS_KSEG0 /;"	d
+MIPS_KSEG0	compile/ASST2/machine/vm.h	/^#define MIPS_KSEG0 /;"	d
+MIPS_KSEG1	arch/mips/include/vm.h	/^#define MIPS_KSEG1 /;"	d
+MIPS_KSEG1	compile/ASST0/machine/vm.h	/^#define MIPS_KSEG1 /;"	d
+MIPS_KSEG1	compile/ASST1/machine/vm.h	/^#define MIPS_KSEG1 /;"	d
+MIPS_KSEG1	compile/ASST2/machine/vm.h	/^#define MIPS_KSEG1 /;"	d
+MIPS_KSEG2	arch/mips/include/vm.h	/^#define MIPS_KSEG2 /;"	d
+MIPS_KSEG2	compile/ASST0/machine/vm.h	/^#define MIPS_KSEG2 /;"	d
+MIPS_KSEG2	compile/ASST1/machine/vm.h	/^#define MIPS_KSEG2 /;"	d
+MIPS_KSEG2	compile/ASST2/machine/vm.h	/^#define MIPS_KSEG2 /;"	d
+MIPS_KUSEG	arch/mips/include/vm.h	/^#define MIPS_KUSEG /;"	d
+MIPS_KUSEG	compile/ASST0/machine/vm.h	/^#define MIPS_KUSEG /;"	d
+MIPS_KUSEG	compile/ASST1/machine/vm.h	/^#define MIPS_KUSEG /;"	d
+MIPS_KUSEG	compile/ASST2/machine/vm.h	/^#define MIPS_KUSEG /;"	d
+MKPAB	lib/kheap.c	/^#define MKPAB(/;"	d	file:
+MODULUS	dev/generic/pseudorand.c	/^#define MODULUS /;"	d	file:
+MOUSEEATINGTIME	asst1/bowls.c	/^#define MOUSEEATINGTIME /;"	d	file:
+MOUSESLEEPINGTIME	asst1/bowls.c	/^#define MOUSESLEEPINGTIME /;"	d	file:
+MULTIPLIER	dev/generic/pseudorand.c	/^#define MULTIPLIER /;"	d	file:
+NAME_MAX	include/kern/limits.h	/^#define NAME_MAX /;"	d
+NCARS	asst1/stoplight.c	/^#define NCARS /;"	d	file:
+NCHUNKS	test/fstest.c	/^#define NCHUNKS /;"	d	file:
+NCREATES	test/fstest.c	/^#define NCREATES /;"	d	file:
+NCVLOOPS	test/synchtest.c	/^#define NCVLOOPS /;"	d	file:
+NLOCKLOOPS	test/synchtest.c	/^#define NLOCKLOOPS /;"	d	file:
+NOTDIR	dev/lamebus/emu.c	/^#define NOTDIR /;"	d	file:
+NOTDIR	fs/sfs/sfs_vnode.c	/^#define NOTDIR /;"	d	file:
+NPAGEREFS	lib/kheap.c	/^#define NPAGEREFS /;"	d	file:
+NSEMLOOPS	test/synchtest.c	/^#define NSEMLOOPS /;"	d	file:
+NSIZES	lib/kheap.c	/^#define NSIZES /;"	d	file:
+NTHREADS	test/fstest.c	/^#define NTHREADS /;"	d	file:
+NTHREADS	test/malloctest.c	/^#define NTHREADS /;"	d	file:
+NTHREADS	test/synchtest.c	/^#define NTHREADS /;"	d	file:
+NTHREADS	test/threadtest.c	/^#define NTHREADS /;"	d	file:
+NTRAPCODES	arch/mips/mips/trap.c	/^#define NTRAPCODES /;"	d	file:
+NTRIES	test/malloctest.c	/^#define NTRIES /;"	d	file:
+NULL	arch/mips/include/types.h	/^#define NULL /;"	d
+NULL	arch/mips/include/types.h	/^#undef NULL$/;"	d
+NULL	compile/ASST0/machine/types.h	/^#define NULL /;"	d
+NULL	compile/ASST0/machine/types.h	/^#undef NULL$/;"	d
+NULL	compile/ASST1/machine/types.h	/^#define NULL /;"	d
+NULL	compile/ASST1/machine/types.h	/^#undef NULL$/;"	d
+NULL	compile/ASST2/machine/types.h	/^#define NULL /;"	d
+NULL	compile/ASST2/machine/types.h	/^#undef NULL$/;"	d
+NUM_TLB	arch/mips/include/tlb.h	/^#define NUM_TLB /;"	d
+NUM_TLB	compile/ASST0/machine/tlb.h	/^#define NUM_TLB /;"	d
+NUM_TLB	compile/ASST1/machine/tlb.h	/^#define NUM_TLB /;"	d
+NUM_TLB	compile/ASST2/machine/tlb.h	/^#define NUM_TLB /;"	d
+NWAITADDRS	test/tt3.c	/^#define NWAITADDRS /;"	d	file:
 NumBowls	asst1/catmouse.c	/^int NumBowls;  \/\/ number of food bowls$/;"	v
 NumCats	asst1/catmouse.c	/^int NumCats;   \/\/ number of cats$/;"	v
 NumLoops	asst1/catmouse.c	/^int NumLoops;  \/\/ number of times each cat and mouse should eat$/;"	v
 NumMice	asst1/catmouse.c	/^int NumMice;   \/\/ number of mice$/;"	v
-OPT_A0	compile/ASST0/opt-A0.h	4;"	d
-OPT_A0	compile/ASST1/opt-A0.h	4;"	d
-OPT_A1	compile/ASST0/opt-A1.h	4;"	d
-OPT_A1	compile/ASST1/opt-A1.h	4;"	d
-OPT_A2	compile/ASST0/opt-A2.h	4;"	d
-OPT_A2	compile/ASST1/opt-A2.h	4;"	d
-OPT_A3	compile/ASST0/opt-A3.h	4;"	d
-OPT_A3	compile/ASST1/opt-A3.h	4;"	d
-OPT_A4	compile/ASST0/opt-A4.h	4;"	d
-OPT_A4	compile/ASST1/opt-A4.h	4;"	d
-OPT_A5	compile/ASST0/opt-A5.h	4;"	d
-OPT_A5	compile/ASST1/opt-A5.h	4;"	d
-OPT_DUMBVM	compile/ASST0/opt-dumbvm.h	4;"	d
-OPT_DUMBVM	compile/ASST1/opt-dumbvm.h	4;"	d
-OPT_NET	compile/ASST0/opt-net.h	4;"	d
-OPT_NET	compile/ASST1/opt-net.h	4;"	d
-OPT_NETFS	compile/ASST0/opt-netfs.h	4;"	d
-OPT_NETFS	compile/ASST1/opt-netfs.h	4;"	d
-OPT_SFS	compile/ASST0/opt-sfs.h	4;"	d
-OPT_SFS	compile/ASST1/opt-sfs.h	4;"	d
-OPT_SYNCHPROBS	compile/ASST0/opt-synchprobs.h	4;"	d
-OPT_SYNCHPROBS	compile/ASST1/opt-synchprobs.h	4;"	d
-O_ACCMODE	include/kern/unistd.h	19;"	d
-O_APPEND	include/kern/unistd.h	16;"	d
-O_CREAT	include/kern/unistd.h	13;"	d
-O_EXCL	include/kern/unistd.h	14;"	d
-O_RDONLY	include/kern/unistd.h	9;"	d
-O_RDWR	include/kern/unistd.h	11;"	d
-O_TRUNC	include/kern/unistd.h	15;"	d
-O_WRONLY	include/kern/unistd.h	10;"	d
+OPT_A0	compile/ASST0/opt-A0.h	/^#define OPT_A0 /;"	d
+OPT_A0	compile/ASST1/opt-A0.h	/^#define OPT_A0 /;"	d
+OPT_A0	compile/ASST2/opt-A0.h	/^#define OPT_A0 /;"	d
+OPT_A1	compile/ASST0/opt-A1.h	/^#define OPT_A1 /;"	d
+OPT_A1	compile/ASST1/opt-A1.h	/^#define OPT_A1 /;"	d
+OPT_A1	compile/ASST2/opt-A1.h	/^#define OPT_A1 /;"	d
+OPT_A2	compile/ASST0/opt-A2.h	/^#define OPT_A2 /;"	d
+OPT_A2	compile/ASST1/opt-A2.h	/^#define OPT_A2 /;"	d
+OPT_A2	compile/ASST2/opt-A2.h	/^#define OPT_A2 /;"	d
+OPT_A3	compile/ASST0/opt-A3.h	/^#define OPT_A3 /;"	d
+OPT_A3	compile/ASST1/opt-A3.h	/^#define OPT_A3 /;"	d
+OPT_A3	compile/ASST2/opt-A3.h	/^#define OPT_A3 /;"	d
+OPT_A4	compile/ASST0/opt-A4.h	/^#define OPT_A4 /;"	d
+OPT_A4	compile/ASST1/opt-A4.h	/^#define OPT_A4 /;"	d
+OPT_A4	compile/ASST2/opt-A4.h	/^#define OPT_A4 /;"	d
+OPT_A5	compile/ASST0/opt-A5.h	/^#define OPT_A5 /;"	d
+OPT_A5	compile/ASST1/opt-A5.h	/^#define OPT_A5 /;"	d
+OPT_A5	compile/ASST2/opt-A5.h	/^#define OPT_A5 /;"	d
+OPT_DUMBVM	compile/ASST0/opt-dumbvm.h	/^#define OPT_DUMBVM /;"	d
+OPT_DUMBVM	compile/ASST1/opt-dumbvm.h	/^#define OPT_DUMBVM /;"	d
+OPT_DUMBVM	compile/ASST2/opt-dumbvm.h	/^#define OPT_DUMBVM /;"	d
+OPT_NET	compile/ASST0/opt-net.h	/^#define OPT_NET /;"	d
+OPT_NET	compile/ASST1/opt-net.h	/^#define OPT_NET /;"	d
+OPT_NET	compile/ASST2/opt-net.h	/^#define OPT_NET /;"	d
+OPT_NETFS	compile/ASST0/opt-netfs.h	/^#define OPT_NETFS /;"	d
+OPT_NETFS	compile/ASST1/opt-netfs.h	/^#define OPT_NETFS /;"	d
+OPT_NETFS	compile/ASST2/opt-netfs.h	/^#define OPT_NETFS /;"	d
+OPT_SFS	compile/ASST0/opt-sfs.h	/^#define OPT_SFS /;"	d
+OPT_SFS	compile/ASST1/opt-sfs.h	/^#define OPT_SFS /;"	d
+OPT_SFS	compile/ASST2/opt-sfs.h	/^#define OPT_SFS /;"	d
+OPT_SYNCHPROBS	compile/ASST0/opt-synchprobs.h	/^#define OPT_SYNCHPROBS /;"	d
+OPT_SYNCHPROBS	compile/ASST1/opt-synchprobs.h	/^#define OPT_SYNCHPROBS /;"	d
+OPT_SYNCHPROBS	compile/ASST2/opt-synchprobs.h	/^#define OPT_SYNCHPROBS /;"	d
+O_ACCMODE	include/kern/unistd.h	/^#define O_ACCMODE /;"	d
+O_APPEND	include/kern/unistd.h	/^#define O_APPEND /;"	d
+O_CREAT	include/kern/unistd.h	/^#define O_CREAT /;"	d
+O_EXCL	include/kern/unistd.h	/^#define O_EXCL /;"	d
+O_RDONLY	include/kern/unistd.h	/^#define O_RDONLY /;"	d
+O_RDWR	include/kern/unistd.h	/^#define O_RDWR /;"	d
+O_TRUNC	include/kern/unistd.h	/^#define O_TRUNC /;"	d
+O_WRONLY	include/kern/unistd.h	/^#define O_WRONLY /;"	d
 P	thread/synch.c	/^P(struct semaphore *sem)$/;"	f
-PADDR_TO_KVADDR	arch/mips/include/vm.h	36;"	d
-PADDR_TO_KVADDR	compile/ASST0/machine/vm.h	36;"	d
-PADDR_TO_KVADDR	compile/ASST1/machine/vm.h	36;"	d
-PAGE_FRAME	arch/mips/include/vm.h	9;"	d
-PAGE_FRAME	compile/ASST0/machine/vm.h	9;"	d
-PAGE_FRAME	compile/ASST1/machine/vm.h	9;"	d
-PAGE_SIZE	arch/mips/include/vm.h	8;"	d
-PAGE_SIZE	compile/ASST0/machine/vm.h	8;"	d
-PAGE_SIZE	compile/ASST1/machine/vm.h	8;"	d
-PATH_MAX	include/kern/limits.h	8;"	d
-PF_R	include/elf.h	159;"	d
-PF_W	include/elf.h	160;"	d
-PF_X	include/elf.h	161;"	d
-PR_BLOCKTYPE	lib/kheap.c	81;"	d	file:
-PR_PAGEADDR	lib/kheap.c	80;"	d	file:
-PT_DYNAMIC	include/elf.h	150;"	d
-PT_INTERP	include/elf.h	151;"	d
-PT_LOAD	include/elf.h	149;"	d
-PT_MIPS_REGINFO	include/elf.h	156;"	d
-PT_NOTE	include/elf.h	152;"	d
-PT_NULL	include/elf.h	148;"	d
-PT_NUM	include/elf.h	155;"	d
-PT_PHDR	include/elf.h	154;"	d
-PT_SHLIB	include/elf.h	153;"	d
-RAND_MAX	include/lib.h	82;"	d
-RB_HALT	include/kern/unistd.h	29;"	d
-RB_POWEROFF	include/kern/unistd.h	30;"	d
-RB_REBOOT	include/kern/unistd.h	28;"	d
-REG_HANDLE	dev/lamebus/emu.c	29;"	d	file:
-REG_IOLEN	dev/lamebus/emu.c	31;"	d	file:
-REG_OFFSET	dev/lamebus/emu.c	30;"	d	file:
-REG_OPER	dev/lamebus/emu.c	32;"	d	file:
-REG_RESULT	dev/lamebus/emu.c	33;"	d	file:
-ROUNDUP	include/lib.h	210;"	d
+PADDR_TO_KVADDR	arch/mips/include/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
+PADDR_TO_KVADDR	compile/ASST0/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
+PADDR_TO_KVADDR	compile/ASST1/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
+PADDR_TO_KVADDR	compile/ASST2/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
+PAGE_FRAME	arch/mips/include/vm.h	/^#define PAGE_FRAME /;"	d
+PAGE_FRAME	compile/ASST0/machine/vm.h	/^#define PAGE_FRAME /;"	d
+PAGE_FRAME	compile/ASST1/machine/vm.h	/^#define PAGE_FRAME /;"	d
+PAGE_FRAME	compile/ASST2/machine/vm.h	/^#define PAGE_FRAME /;"	d
+PAGE_SIZE	arch/mips/include/vm.h	/^#define PAGE_SIZE /;"	d
+PAGE_SIZE	compile/ASST0/machine/vm.h	/^#define PAGE_SIZE /;"	d
+PAGE_SIZE	compile/ASST1/machine/vm.h	/^#define PAGE_SIZE /;"	d
+PAGE_SIZE	compile/ASST2/machine/vm.h	/^#define PAGE_SIZE /;"	d
+PATH_MAX	include/kern/limits.h	/^#define PATH_MAX /;"	d
+PF_R	include/elf.h	/^#define	PF_R	/;"	d
+PF_W	include/elf.h	/^#define	PF_W	/;"	d
+PF_X	include/elf.h	/^#define	PF_X	/;"	d
+PR_BLOCKTYPE	lib/kheap.c	/^#define PR_BLOCKTYPE(/;"	d	file:
+PR_PAGEADDR	lib/kheap.c	/^#define PR_PAGEADDR(/;"	d	file:
+PT_DYNAMIC	include/elf.h	/^#define	PT_DYNAMIC	/;"	d
+PT_INTERP	include/elf.h	/^#define	PT_INTERP	/;"	d
+PT_LOAD	include/elf.h	/^#define	PT_LOAD	/;"	d
+PT_MIPS_REGINFO	include/elf.h	/^#define	PT_MIPS_REGINFO	/;"	d
+PT_NOTE	include/elf.h	/^#define	PT_NOTE	/;"	d
+PT_NULL	include/elf.h	/^#define	PT_NULL	/;"	d
+PT_NUM	include/elf.h	/^#define	PT_NUM	/;"	d
+PT_PHDR	include/elf.h	/^#define	PT_PHDR	/;"	d
+PT_SHLIB	include/elf.h	/^#define	PT_SHLIB	/;"	d
+RAND_MAX	include/lib.h	/^#define RAND_MAX /;"	d
+RB_HALT	include/kern/unistd.h	/^#define RB_HALT /;"	d
+RB_POWEROFF	include/kern/unistd.h	/^#define RB_POWEROFF /;"	d
+RB_REBOOT	include/kern/unistd.h	/^#define RB_REBOOT /;"	d
+REG_HANDLE	dev/lamebus/emu.c	/^#define REG_HANDLE /;"	d	file:
+REG_IOLEN	dev/lamebus/emu.c	/^#define REG_IOLEN /;"	d	file:
+REG_OFFSET	dev/lamebus/emu.c	/^#define REG_OFFSET /;"	d	file:
+REG_OPER	dev/lamebus/emu.c	/^#define REG_OPER /;"	d	file:
+REG_RESULT	dev/lamebus/emu.c	/^#define REG_RESULT /;"	d	file:
+ROUNDUP	include/lib.h	/^#define ROUNDUP(/;"	d
 S	compile/ASST0/defs.mk	/^S=..\/..$/;"	m
 S	compile/ASST1/defs.mk	/^S=..\/..$/;"	m
-SAME_STACK	arch/mips/include/pcb.h	17;"	d
-SAME_STACK	compile/ASST0/machine/pcb.h	17;"	d
-SAME_STACK	compile/ASST1/machine/pcb.h	17;"	d
-SEEK_CUR	include/kern/unistd.h	34;"	d
-SEEK_END	include/kern/unistd.h	35;"	d
-SEEK_SET	include/kern/unistd.h	33;"	d
-SFSUIO	include/sfs.h	44;"	d
-SFS_BITBLOCKS	include/kern/sfs.h	25;"	d
-SFS_BITMAPSIZE	include/kern/sfs.h	22;"	d
-SFS_BLOCKBITS	include/kern/sfs.h	16;"	d
-SFS_BLOCKSIZE	include/kern/sfs.h	5;"	d
-SFS_DBPERIDB	include/kern/sfs.h	8;"	d
-SFS_FS_BITBLOCKS	fs/sfs/sfs_fs.c	19;"	d	file:
-SFS_FS_BITMAPSIZE	fs/sfs/sfs_fs.c	18;"	d	file:
-SFS_MAGIC	include/kern/sfs.h	4;"	d
-SFS_MAP_LOCATION	include/kern/sfs.h	12;"	d
-SFS_NAMELEN	include/kern/sfs.h	9;"	d
-SFS_NDIRECT	include/kern/sfs.h	7;"	d
-SFS_NOINO	include/kern/sfs.h	13;"	d
-SFS_ROOT_LOCATION	include/kern/sfs.h	11;"	d
-SFS_ROUNDUP	include/kern/sfs.h	19;"	d
-SFS_SB_LOCATION	include/kern/sfs.h	10;"	d
-SFS_TYPE_DIR	include/kern/sfs.h	30;"	d
-SFS_TYPE_FILE	include/kern/sfs.h	29;"	d
-SFS_TYPE_INVAL	include/kern/sfs.h	28;"	d
-SFS_VOLNAME_SIZE	include/kern/sfs.h	6;"	d
-SLEEPALOT_ITERS	test/tt3.c	23;"	d	file:
-SLEEPALOT_PRINTS	test/tt3.c	22;"	d	file:
-SLOGAN	test/fstest.c	24;"	d	file:
-SLOW	lib/kheap.c	160;"	d	file:
-SLOW	lib/kheap.c	45;"	d	file:
-SLOWER	lib/kheap.c	46;"	d	file:
-SMALLEST_SUBPAGE_SIZE	lib/kheap.c	55;"	d	file:
-SPL_HIGH	arch/mips/include/spl.h	64;"	d
-SPL_HIGH	compile/ASST0/machine/spl.h	64;"	d
-SPL_HIGH	compile/ASST1/machine/spl.h	64;"	d
-STACK_MASK	arch/mips/include/pcb.h	14;"	d
-STACK_MASK	compile/ASST0/machine/pcb.h	14;"	d
-STACK_MASK	compile/ASST1/machine/pcb.h	14;"	d
-STACK_SIZE	arch/mips/include/pcb.h	11;"	d
-STACK_SIZE	compile/ASST0/machine/pcb.h	11;"	d
-STACK_SIZE	compile/ASST1/machine/pcb.h	11;"	d
-STDERR_FILENO	include/kern/unistd.h	25;"	d
-STDIN_FILENO	include/kern/unistd.h	23;"	d
-STDOUT_FILENO	include/kern/unistd.h	24;"	d
-SWAPFUNCS	lib/ntoh.c	22;"	d	file:
-SWAPFUNCS	lib/ntoh.c	52;"	d	file:
-SYS___getcwd	include/kern/callno.h	40;"	d
-SYS___time	include/kern/callno.h	39;"	d
-SYS__exit	include/kern/callno.h	11;"	d
-SYS_chdir	include/kern/callno.h	33;"	d
-SYS_close	include/kern/callno.h	18;"	d
-SYS_dup2	include/kern/callno.h	37;"	d
-SYS_execv	include/kern/callno.h	12;"	d
-SYS_fork	include/kern/callno.h	13;"	d
-SYS_fstat	include/kern/callno.h	27;"	d
-SYS_fsync	include/kern/callno.h	25;"	d
-SYS_ftruncate	include/kern/callno.h	26;"	d
-SYS_getdirentry	include/kern/callno.h	34;"	d
-SYS_getpid	include/kern/callno.h	22;"	d
-SYS_ioctl	include/kern/callno.h	23;"	d
-SYS_link	include/kern/callno.h	30;"	d
-SYS_lseek	include/kern/callno.h	24;"	d
-SYS_lstat	include/kern/callno.h	42;"	d
-SYS_mkdir	include/kern/callno.h	31;"	d
-SYS_open	include/kern/callno.h	15;"	d
-SYS_pipe	include/kern/callno.h	38;"	d
-SYS_read	include/kern/callno.h	16;"	d
-SYS_readlink	include/kern/callno.h	36;"	d
-SYS_reboot	include/kern/callno.h	19;"	d
-SYS_remove	include/kern/callno.h	28;"	d
-SYS_rename	include/kern/callno.h	29;"	d
-SYS_rmdir	include/kern/callno.h	32;"	d
-SYS_sbrk	include/kern/callno.h	21;"	d
-SYS_stat	include/kern/callno.h	41;"	d
-SYS_symlink	include/kern/callno.h	35;"	d
-SYS_sync	include/kern/callno.h	20;"	d
-SYS_waitpid	include/kern/callno.h	14;"	d
-SYS_write	include/kern/callno.h	17;"	d
-S_IFBLK	include/kern/stat.h	27;"	d
-S_IFCHR	include/kern/stat.h	26;"	d
-S_IFDIR	include/kern/stat.h	24;"	d
-S_IFLNK	include/kern/stat.h	25;"	d
-S_IFMT	include/kern/stat.h	22;"	d
-S_IFREG	include/kern/stat.h	23;"	d
-S_ISBLK	include/kern/stat.h	36;"	d
-S_ISCHR	include/kern/stat.h	35;"	d
-S_ISDIR	include/kern/stat.h	33;"	d
-S_ISLNK	include/kern/stat.h	34;"	d
-S_ISREG	include/kern/stat.h	32;"	d
-S_READY	thread/thread.c	/^	S_READY,$/;"	e	enum:__anon1	file:
-S_RUN	thread/thread.c	/^	S_RUN,$/;"	e	enum:__anon1	file:
-S_SLEEP	thread/thread.c	/^	S_SLEEP,$/;"	e	enum:__anon1	file:
-S_ZOMB	thread/thread.c	/^	S_ZOMB,$/;"	e	enum:__anon1	file:
+S	compile/ASST2/defs.mk	/^S=..\/..$/;"	m
+SAME_STACK	arch/mips/include/pcb.h	/^#define SAME_STACK(/;"	d
+SAME_STACK	compile/ASST0/machine/pcb.h	/^#define SAME_STACK(/;"	d
+SAME_STACK	compile/ASST1/machine/pcb.h	/^#define SAME_STACK(/;"	d
+SAME_STACK	compile/ASST2/machine/pcb.h	/^#define SAME_STACK(/;"	d
+SEEK_CUR	include/kern/unistd.h	/^#define SEEK_CUR /;"	d
+SEEK_END	include/kern/unistd.h	/^#define SEEK_END /;"	d
+SEEK_SET	include/kern/unistd.h	/^#define SEEK_SET /;"	d
+SFSUIO	include/sfs.h	/^#define SFSUIO(/;"	d
+SFS_BITBLOCKS	include/kern/sfs.h	/^#define SFS_BITBLOCKS(/;"	d
+SFS_BITMAPSIZE	include/kern/sfs.h	/^#define SFS_BITMAPSIZE(/;"	d
+SFS_BLOCKBITS	include/kern/sfs.h	/^#define SFS_BLOCKBITS /;"	d
+SFS_BLOCKSIZE	include/kern/sfs.h	/^#define SFS_BLOCKSIZE /;"	d
+SFS_DBPERIDB	include/kern/sfs.h	/^#define SFS_DBPERIDB /;"	d
+SFS_FS_BITBLOCKS	fs/sfs/sfs_fs.c	/^#define SFS_FS_BITBLOCKS(/;"	d	file:
+SFS_FS_BITMAPSIZE	fs/sfs/sfs_fs.c	/^#define SFS_FS_BITMAPSIZE(/;"	d	file:
+SFS_MAGIC	include/kern/sfs.h	/^#define SFS_MAGIC /;"	d
+SFS_MAP_LOCATION	include/kern/sfs.h	/^#define SFS_MAP_LOCATION /;"	d
+SFS_NAMELEN	include/kern/sfs.h	/^#define SFS_NAMELEN /;"	d
+SFS_NDIRECT	include/kern/sfs.h	/^#define SFS_NDIRECT /;"	d
+SFS_NOINO	include/kern/sfs.h	/^#define SFS_NOINO /;"	d
+SFS_ROOT_LOCATION	include/kern/sfs.h	/^#define SFS_ROOT_LOCATION /;"	d
+SFS_ROUNDUP	include/kern/sfs.h	/^#define SFS_ROUNDUP(/;"	d
+SFS_SB_LOCATION	include/kern/sfs.h	/^#define SFS_SB_LOCATION /;"	d
+SFS_TYPE_DIR	include/kern/sfs.h	/^#define SFS_TYPE_DIR /;"	d
+SFS_TYPE_FILE	include/kern/sfs.h	/^#define SFS_TYPE_FILE /;"	d
+SFS_TYPE_INVAL	include/kern/sfs.h	/^#define SFS_TYPE_INVAL /;"	d
+SFS_VOLNAME_SIZE	include/kern/sfs.h	/^#define SFS_VOLNAME_SIZE /;"	d
+SLEEPALOT_ITERS	test/tt3.c	/^#define SLEEPALOT_ITERS /;"	d	file:
+SLEEPALOT_PRINTS	test/tt3.c	/^#define SLEEPALOT_PRINTS /;"	d	file:
+SLOGAN	test/fstest.c	/^#define SLOGAN /;"	d	file:
+SLOW	lib/kheap.c	/^#define SLOW$/;"	d	file:
+SLOW	lib/kheap.c	/^#undef  SLOW	/;"	d	file:
+SLOWER	lib/kheap.c	/^#undef SLOWER	/;"	d	file:
+SMALLEST_SUBPAGE_SIZE	lib/kheap.c	/^#define SMALLEST_SUBPAGE_SIZE /;"	d	file:
+SPL_HIGH	arch/mips/include/spl.h	/^#define SPL_HIGH /;"	d
+SPL_HIGH	compile/ASST0/machine/spl.h	/^#define SPL_HIGH /;"	d
+SPL_HIGH	compile/ASST1/machine/spl.h	/^#define SPL_HIGH /;"	d
+SPL_HIGH	compile/ASST2/machine/spl.h	/^#define SPL_HIGH /;"	d
+STACK_MASK	arch/mips/include/pcb.h	/^#define STACK_MASK /;"	d
+STACK_MASK	compile/ASST0/machine/pcb.h	/^#define STACK_MASK /;"	d
+STACK_MASK	compile/ASST1/machine/pcb.h	/^#define STACK_MASK /;"	d
+STACK_MASK	compile/ASST2/machine/pcb.h	/^#define STACK_MASK /;"	d
+STACK_SIZE	arch/mips/include/pcb.h	/^#define STACK_SIZE /;"	d
+STACK_SIZE	compile/ASST0/machine/pcb.h	/^#define STACK_SIZE /;"	d
+STACK_SIZE	compile/ASST1/machine/pcb.h	/^#define STACK_SIZE /;"	d
+STACK_SIZE	compile/ASST2/machine/pcb.h	/^#define STACK_SIZE /;"	d
+STDERR_FILENO	include/kern/unistd.h	/^#define STDERR_FILENO /;"	d
+STDIN_FILENO	include/kern/unistd.h	/^#define STDIN_FILENO /;"	d
+STDOUT_FILENO	include/kern/unistd.h	/^#define STDOUT_FILENO /;"	d
+SWAPFUNCS	lib/ntoh.c	/^#define SWAPFUNCS(/;"	d	file:
+SYS___getcwd	include/kern/callno.h	/^#define SYS___getcwd /;"	d
+SYS___time	include/kern/callno.h	/^#define SYS___time /;"	d
+SYS__exit	include/kern/callno.h	/^#define SYS__exit /;"	d
+SYS_chdir	include/kern/callno.h	/^#define SYS_chdir /;"	d
+SYS_close	include/kern/callno.h	/^#define SYS_close /;"	d
+SYS_dup2	include/kern/callno.h	/^#define SYS_dup2 /;"	d
+SYS_execv	include/kern/callno.h	/^#define SYS_execv /;"	d
+SYS_fork	include/kern/callno.h	/^#define SYS_fork /;"	d
+SYS_fstat	include/kern/callno.h	/^#define SYS_fstat /;"	d
+SYS_fsync	include/kern/callno.h	/^#define SYS_fsync /;"	d
+SYS_ftruncate	include/kern/callno.h	/^#define SYS_ftruncate /;"	d
+SYS_getdirentry	include/kern/callno.h	/^#define SYS_getdirentry /;"	d
+SYS_getpid	include/kern/callno.h	/^#define SYS_getpid /;"	d
+SYS_ioctl	include/kern/callno.h	/^#define SYS_ioctl /;"	d
+SYS_link	include/kern/callno.h	/^#define SYS_link /;"	d
+SYS_lseek	include/kern/callno.h	/^#define SYS_lseek /;"	d
+SYS_lstat	include/kern/callno.h	/^#define SYS_lstat /;"	d
+SYS_mkdir	include/kern/callno.h	/^#define SYS_mkdir /;"	d
+SYS_open	include/kern/callno.h	/^#define SYS_open /;"	d
+SYS_pipe	include/kern/callno.h	/^#define SYS_pipe /;"	d
+SYS_read	include/kern/callno.h	/^#define SYS_read /;"	d
+SYS_readlink	include/kern/callno.h	/^#define SYS_readlink /;"	d
+SYS_reboot	include/kern/callno.h	/^#define SYS_reboot /;"	d
+SYS_remove	include/kern/callno.h	/^#define SYS_remove /;"	d
+SYS_rename	include/kern/callno.h	/^#define SYS_rename /;"	d
+SYS_rmdir	include/kern/callno.h	/^#define SYS_rmdir /;"	d
+SYS_sbrk	include/kern/callno.h	/^#define SYS_sbrk /;"	d
+SYS_stat	include/kern/callno.h	/^#define SYS_stat /;"	d
+SYS_symlink	include/kern/callno.h	/^#define SYS_symlink /;"	d
+SYS_sync	include/kern/callno.h	/^#define SYS_sync /;"	d
+SYS_waitpid	include/kern/callno.h	/^#define SYS_waitpid /;"	d
+SYS_write	include/kern/callno.h	/^#define SYS_write /;"	d
+S_IFBLK	include/kern/stat.h	/^#define S_IFBLK /;"	d
+S_IFCHR	include/kern/stat.h	/^#define S_IFCHR /;"	d
+S_IFDIR	include/kern/stat.h	/^#define S_IFDIR /;"	d
+S_IFLNK	include/kern/stat.h	/^#define S_IFLNK /;"	d
+S_IFMT	include/kern/stat.h	/^#define S_IFMT /;"	d
+S_IFREG	include/kern/stat.h	/^#define S_IFREG /;"	d
+S_ISBLK	include/kern/stat.h	/^#define S_ISBLK(/;"	d
+S_ISCHR	include/kern/stat.h	/^#define S_ISCHR(/;"	d
+S_ISDIR	include/kern/stat.h	/^#define S_ISDIR(/;"	d
+S_ISLNK	include/kern/stat.h	/^#define S_ISLNK(/;"	d
+S_ISREG	include/kern/stat.h	/^#define S_ISREG(/;"	d
+S_READY	thread/thread.c	/^	S_READY,$/;"	e	enum:__anon6	file:
+S_RUN	thread/thread.c	/^	S_RUN,$/;"	e	enum:__anon6	file:
+S_SLEEP	thread/thread.c	/^	S_SLEEP,$/;"	e	enum:__anon6	file:
+S_ZOMB	thread/thread.c	/^	S_ZOMB,$/;"	e	enum:__anon6	file:
 TAGS_HEADERS	compile/ASST0/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
 TAGS_HEADERS	compile/ASST1/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
-TESTSIZE	test/arraytest.c	6;"	d	file:
-TESTSIZE	test/bitmaptest.c	6;"	d	file:
-TLBHI_INVALID	arch/mips/include/tlb.h	66;"	d
-TLBHI_INVALID	compile/ASST0/machine/tlb.h	66;"	d
-TLBHI_INVALID	compile/ASST1/machine/tlb.h	66;"	d
-TLBHI_VPAGE	arch/mips/include/tlb.h	51;"	d
-TLBHI_VPAGE	compile/ASST0/machine/tlb.h	51;"	d
-TLBHI_VPAGE	compile/ASST1/machine/tlb.h	51;"	d
-TLBLO_DIRTY	arch/mips/include/tlb.h	57;"	d
-TLBLO_DIRTY	compile/ASST0/machine/tlb.h	57;"	d
-TLBLO_DIRTY	compile/ASST1/machine/tlb.h	57;"	d
-TLBLO_INVALID	arch/mips/include/tlb.h	67;"	d
-TLBLO_INVALID	compile/ASST0/machine/tlb.h	67;"	d
-TLBLO_INVALID	compile/ASST1/machine/tlb.h	67;"	d
-TLBLO_NOCACHE	arch/mips/include/tlb.h	56;"	d
-TLBLO_NOCACHE	compile/ASST0/machine/tlb.h	56;"	d
-TLBLO_NOCACHE	compile/ASST1/machine/tlb.h	56;"	d
-TLBLO_PPAGE	arch/mips/include/tlb.h	55;"	d
-TLBLO_PPAGE	compile/ASST0/machine/tlb.h	55;"	d
-TLBLO_PPAGE	compile/ASST1/machine/tlb.h	55;"	d
-TLBLO_VALID	arch/mips/include/tlb.h	58;"	d
-TLBLO_VALID	compile/ASST0/machine/tlb.h	58;"	d
-TLBLO_VALID	compile/ASST1/machine/tlb.h	58;"	d
+TAGS_HEADERS	compile/ASST2/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
+TESTSIZE	test/arraytest.c	/^#define TESTSIZE /;"	d	file:
+TESTSIZE	test/bitmaptest.c	/^#define TESTSIZE /;"	d	file:
+TLBHI_INVALID	arch/mips/include/tlb.h	/^#define TLBHI_INVALID(/;"	d
+TLBHI_INVALID	compile/ASST0/machine/tlb.h	/^#define TLBHI_INVALID(/;"	d
+TLBHI_INVALID	compile/ASST1/machine/tlb.h	/^#define TLBHI_INVALID(/;"	d
+TLBHI_INVALID	compile/ASST2/machine/tlb.h	/^#define TLBHI_INVALID(/;"	d
+TLBHI_VPAGE	arch/mips/include/tlb.h	/^#define TLBHI_VPAGE /;"	d
+TLBHI_VPAGE	compile/ASST0/machine/tlb.h	/^#define TLBHI_VPAGE /;"	d
+TLBHI_VPAGE	compile/ASST1/machine/tlb.h	/^#define TLBHI_VPAGE /;"	d
+TLBHI_VPAGE	compile/ASST2/machine/tlb.h	/^#define TLBHI_VPAGE /;"	d
+TLBLO_DIRTY	arch/mips/include/tlb.h	/^#define TLBLO_DIRTY /;"	d
+TLBLO_DIRTY	compile/ASST0/machine/tlb.h	/^#define TLBLO_DIRTY /;"	d
+TLBLO_DIRTY	compile/ASST1/machine/tlb.h	/^#define TLBLO_DIRTY /;"	d
+TLBLO_DIRTY	compile/ASST2/machine/tlb.h	/^#define TLBLO_DIRTY /;"	d
+TLBLO_INVALID	arch/mips/include/tlb.h	/^#define TLBLO_INVALID(/;"	d
+TLBLO_INVALID	compile/ASST0/machine/tlb.h	/^#define TLBLO_INVALID(/;"	d
+TLBLO_INVALID	compile/ASST1/machine/tlb.h	/^#define TLBLO_INVALID(/;"	d
+TLBLO_INVALID	compile/ASST2/machine/tlb.h	/^#define TLBLO_INVALID(/;"	d
+TLBLO_NOCACHE	arch/mips/include/tlb.h	/^#define TLBLO_NOCACHE /;"	d
+TLBLO_NOCACHE	compile/ASST0/machine/tlb.h	/^#define TLBLO_NOCACHE /;"	d
+TLBLO_NOCACHE	compile/ASST1/machine/tlb.h	/^#define TLBLO_NOCACHE /;"	d
+TLBLO_NOCACHE	compile/ASST2/machine/tlb.h	/^#define TLBLO_NOCACHE /;"	d
+TLBLO_PPAGE	arch/mips/include/tlb.h	/^#define TLBLO_PPAGE /;"	d
+TLBLO_PPAGE	compile/ASST0/machine/tlb.h	/^#define TLBLO_PPAGE /;"	d
+TLBLO_PPAGE	compile/ASST1/machine/tlb.h	/^#define TLBLO_PPAGE /;"	d
+TLBLO_PPAGE	compile/ASST2/machine/tlb.h	/^#define TLBLO_PPAGE /;"	d
+TLBLO_VALID	arch/mips/include/tlb.h	/^#define TLBLO_VALID /;"	d
+TLBLO_VALID	compile/ASST0/machine/tlb.h	/^#define TLBLO_VALID /;"	d
+TLBLO_VALID	compile/ASST1/machine/tlb.h	/^#define TLBLO_VALID /;"	d
+TLBLO_VALID	compile/ASST2/machine/tlb.h	/^#define TLBLO_VALID /;"	d
 TLB_Probe	arch/mips/mips/tlb_mips1.S	/^TLB_Probe:$/;"	l
 TLB_Random	arch/mips/mips/tlb_mips1.S	/^TLB_Random:$/;"	l
 TLB_Read	arch/mips/mips/tlb_mips1.S	/^TLB_Read:$/;"	l
@@ -629,184 +709,217 @@ UIO_SYSSPACE	include/uio.h	/^	UIO_SYSSPACE,$/;"	e	enum:uio_seg
 UIO_USERISPACE	include/uio.h	/^	UIO_USERISPACE,$/;"	e	enum:uio_seg
 UIO_USERSPACE	include/uio.h	/^	UIO_USERSPACE,$/;"	e	enum:uio_seg
 UIO_WRITE	include/uio.h	/^	UIO_WRITE,$/;"	e	enum:uio_rw
-UNIMP	dev/lamebus/emu.c	835;"	d	file:
-UNIMP	fs/sfs/sfs_vnode.c	1469;"	d	file:
-USERSTACK	arch/mips/include/vm.h	52;"	d
-USERSTACK	compile/ASST0/machine/vm.h	52;"	d
-USERSTACK	compile/ASST1/machine/vm.h	52;"	d
-USERTOP	arch/mips/include/vm.h	42;"	d
-USERTOP	compile/ASST0/machine/vm.h	42;"	d
-USERTOP	compile/ASST1/machine/vm.h	42;"	d
+UNIMP	dev/lamebus/emu.c	/^#define UNIMP /;"	d	file:
+UNIMP	fs/sfs/sfs_vnode.c	/^#define UNIMP /;"	d	file:
+USERSTACK	arch/mips/include/vm.h	/^#define USERSTACK /;"	d
+USERSTACK	compile/ASST0/machine/vm.h	/^#define USERSTACK /;"	d
+USERSTACK	compile/ASST1/machine/vm.h	/^#define USERSTACK /;"	d
+USERSTACK	compile/ASST2/machine/vm.h	/^#define USERSTACK /;"	d
+USERTOP	arch/mips/include/vm.h	/^#define USERTOP /;"	d
+USERTOP	compile/ASST0/machine/vm.h	/^#define USERTOP /;"	d
+USERTOP	compile/ASST1/machine/vm.h	/^#define USERTOP /;"	d
+USERTOP	compile/ASST2/machine/vm.h	/^#define USERTOP /;"	d
 V	thread/synch.c	/^V(struct semaphore *sem)$/;"	f
-VMSTAT_COUNT	include/uw-vmstats.h	48;"	d
-VMSTAT_ELF_FILE_READ	include/uw-vmstats.h	45;"	d
-VMSTAT_PAGE_FAULT_DISK	include/uw-vmstats.h	44;"	d
-VMSTAT_PAGE_FAULT_ZERO	include/uw-vmstats.h	43;"	d
-VMSTAT_SWAP_FILE_READ	include/uw-vmstats.h	46;"	d
-VMSTAT_SWAP_FILE_WRITE	include/uw-vmstats.h	47;"	d
-VMSTAT_TLB_FAULT	include/uw-vmstats.h	38;"	d
-VMSTAT_TLB_FAULT_FREE	include/uw-vmstats.h	39;"	d
-VMSTAT_TLB_FAULT_REPLACE	include/uw-vmstats.h	40;"	d
-VMSTAT_TLB_INVALIDATE	include/uw-vmstats.h	41;"	d
-VMSTAT_TLB_RELOAD	include/uw-vmstats.h	42;"	d
-VM_FAULT_READ	include/vm.h	14;"	d
-VM_FAULT_READONLY	include/vm.h	16;"	d
-VM_FAULT_WRITE	include/vm.h	15;"	d
-VM_STATS_H	include/uw-vmstats.h	2;"	d
-VOP_CLOSE	include/vnode.h	216;"	d
-VOP_CREAT	include/vnode.h	232;"	d
-VOP_DECOPEN	include/vnode.h	267;"	d
-VOP_DECREF	include/vnode.h	255;"	d
-VOP_FSYNC	include/vnode.h	227;"	d
-VOP_GETDIRENTRY	include/vnode.h	221;"	d
-VOP_GETTYPE	include/vnode.h	225;"	d
-VOP_INCOPEN	include/vnode.h	266;"	d
-VOP_INCREF	include/vnode.h	254;"	d
-VOP_INIT	include/vnode.h	276;"	d
-VOP_IOCTL	include/vnode.h	223;"	d
-VOP_KILL	include/vnode.h	284;"	d
-VOP_LINK	include/vnode.h	235;"	d
-VOP_LOOKPARENT	include/vnode.h	241;"	d
-VOP_LOOKUP	include/vnode.h	240;"	d
-VOP_MAGIC	include/vnode.h	164;"	d
-VOP_MKDIR	include/vnode.h	234;"	d
-VOP_MMAP	include/vnode.h	228;"	d
-VOP_NAMEFILE	include/vnode.h	230;"	d
-VOP_OPEN	include/vnode.h	215;"	d
-VOP_READ	include/vnode.h	219;"	d
-VOP_READLINK	include/vnode.h	220;"	d
-VOP_RECLAIM	include/vnode.h	217;"	d
-VOP_REMOVE	include/vnode.h	236;"	d
-VOP_RENAME	include/vnode.h	238;"	d
-VOP_RMDIR	include/vnode.h	237;"	d
-VOP_STAT	include/vnode.h	224;"	d
-VOP_SYMLINK	include/vnode.h	233;"	d
-VOP_TRUNCATE	include/vnode.h	229;"	d
-VOP_TRYSEEK	include/vnode.h	226;"	d
-VOP_WRITE	include/vnode.h	222;"	d
-WAKER_WAKES	test/tt3.c	25;"	d	file:
-WORD_ALLBITS	lib/bitmap.c	22;"	d	file:
-WORD_TYPE	lib/bitmap.c	21;"	d	file:
-_ADDRSPACE_H_	include/addrspace.h	2;"	d
-_ARRAY_H_	include/array.h	2;"	d
-_AUTOCONF_H_	compile/ASST0/autoconf.h	3;"	d
-_AUTOCONF_H_	compile/ASST1/autoconf.h	3;"	d
-_BIG_ENDIAN	arch/mips/include/types.h	66;"	d
-_BIG_ENDIAN	compile/ASST0/machine/types.h	66;"	d
-_BIG_ENDIAN	compile/ASST1/machine/types.h	66;"	d
-_BITMAP_H_	include/bitmap.h	2;"	d
-_CLOCK_H_	include/clock.h	2;"	d
-_CURTHREAD_H_	include/curthread.h	2;"	d
-_DEV_H_	include/dev.h	2;"	d
-_ELF_H_	include/elf.h	2;"	d
-_EMUFS_H_	include/emufs.h	2;"	d
-_FS_H_	include/fs.h	2;"	d
-_GENERIC_BEEP_H_	dev/generic/beep.h	2;"	d
-_GENERIC_CONSOLE_H_	dev/generic/console.h	2;"	d
-_GENERIC_PSEUDORAND_H_	dev/generic/pseudorand.h	2;"	d
-_GENERIC_RANDOM_H_	dev/generic/random.h	2;"	d
-_GENERIC_RTCLOCK_H_	dev/generic/rtclock.h	2;"	d
-_KERN_CALLNO_H_	include/kern/callno.h	2;"	d
-_KERN_ERRMSG_H_	include/kern/errmsg.h	2;"	d
-_KERN_ERRNO_H_	include/kern/errno.h	2;"	d
-_KERN_IOCTL_H_	include/kern/ioctl.h	2;"	d
-_KERN_LIMITS_H_	include/kern/limits.h	2;"	d
-_KERN_SFS_H_	include/kern/sfs.h	2;"	d
-_KERN_STAT_H_	include/kern/stat.h	2;"	d
-_KERN_TYPES_H_	include/kern/types.h	2;"	d
-_KERN_UNISTD_H_	include/kern/unistd.h	2;"	d
-_LAMEBUS_EMU_H_	dev/lamebus/emu.h	2;"	d
-_LAMEBUS_H_	dev/lamebus/lamebus.h	2;"	d
-_LAMEBUS_LHD_H_	dev/lamebus/lhd.h	2;"	d
-_LAMEBUS_LRANDOM_H_	dev/lamebus/lrandom.h	2;"	d
-_LAMEBUS_LSCREEN_H_	dev/lamebus/lscreen.h	2;"	d
-_LAMEBUS_LSER_H_	dev/lamebus/lser.h	2;"	d
-_LAMEBUS_LTIMER_H_	dev/lamebus/ltimer.h	2;"	d
-_LAMEBUS_LTRACE_H_	dev/lamebus/ltrace.h	2;"	d
-_LIB_H_	include/lib.h	2;"	d
-_LITTLE_ENDIAN	arch/mips/include/types.h	65;"	d
-_LITTLE_ENDIAN	compile/ASST0/machine/types.h	65;"	d
-_LITTLE_ENDIAN	compile/ASST1/machine/types.h	65;"	d
-_MACHINE_PCB_H_	arch/mips/include/pcb.h	6;"	d
-_MACHINE_PCB_H_	compile/ASST0/machine/pcb.h	6;"	d
-_MACHINE_PCB_H_	compile/ASST1/machine/pcb.h	6;"	d
-_MACHINE_SPL_H_	arch/mips/include/spl.h	2;"	d
-_MACHINE_SPL_H_	compile/ASST0/machine/spl.h	2;"	d
-_MACHINE_SPL_H_	compile/ASST1/machine/spl.h	2;"	d
-_MACHINE_TLB_H_	arch/mips/include/tlb.h	2;"	d
-_MACHINE_TLB_H_	compile/ASST0/machine/tlb.h	2;"	d
-_MACHINE_TLB_H_	compile/ASST1/machine/tlb.h	2;"	d
-_MIPS_ASMDEFS_H_	arch/mips/include/asmdefs.h	5;"	d
-_MIPS_ASMDEFS_H_	compile/ASST0/machine/asmdefs.h	5;"	d
-_MIPS_ASMDEFS_H_	compile/ASST1/machine/asmdefs.h	5;"	d
-_MIPS_BUS_H_	arch/mips/include/bus.h	2;"	d
-_MIPS_BUS_H_	compile/ASST0/machine/bus.h	2;"	d
-_MIPS_BUS_H_	compile/ASST1/machine/bus.h	2;"	d
-_MIPS_KTYPES_H_	arch/mips/include/ktypes.h	2;"	d
-_MIPS_KTYPES_H_	compile/ASST0/machine/ktypes.h	2;"	d
-_MIPS_KTYPES_H_	compile/ASST1/machine/ktypes.h	2;"	d
-_MIPS_SETJMP_H_	arch/mips/include/setjmp.h	2;"	d
-_MIPS_SETJMP_H_	compile/ASST0/machine/setjmp.h	2;"	d
-_MIPS_SETJMP_H_	compile/ASST1/machine/setjmp.h	2;"	d
-_MIPS_SPECIALREG_H_	arch/mips/include/specialreg.h	2;"	d
-_MIPS_SPECIALREG_H_	compile/ASST0/machine/specialreg.h	2;"	d
-_MIPS_SPECIALREG_H_	compile/ASST1/machine/specialreg.h	2;"	d
-_MIPS_SWITCHFRAME_H_	arch/mips/include/switchframe.h	2;"	d
-_MIPS_SWITCHFRAME_H_	compile/ASST0/machine/switchframe.h	2;"	d
-_MIPS_SWITCHFRAME_H_	compile/ASST1/machine/switchframe.h	2;"	d
-_MIPS_TRAPFRAME_H_	arch/mips/include/trapframe.h	2;"	d
-_MIPS_TRAPFRAME_H_	compile/ASST0/machine/trapframe.h	2;"	d
-_MIPS_TRAPFRAME_H_	compile/ASST1/machine/trapframe.h	2;"	d
-_MIPS_TYPES_H_	arch/mips/include/types.h	2;"	d
-_MIPS_TYPES_H_	compile/ASST0/machine/types.h	2;"	d
-_MIPS_TYPES_H_	compile/ASST1/machine/types.h	2;"	d
-_MIPS_VM_H_	arch/mips/include/vm.h	2;"	d
-_MIPS_VM_H_	compile/ASST0/machine/vm.h	2;"	d
-_MIPS_VM_H_	compile/ASST1/machine/vm.h	2;"	d
-_OPT_A0_H_	compile/ASST0/opt-A0.h	3;"	d
-_OPT_A0_H_	compile/ASST1/opt-A0.h	3;"	d
-_OPT_A1_H_	compile/ASST0/opt-A1.h	3;"	d
-_OPT_A1_H_	compile/ASST1/opt-A1.h	3;"	d
-_OPT_A2_H_	compile/ASST0/opt-A2.h	3;"	d
-_OPT_A2_H_	compile/ASST1/opt-A2.h	3;"	d
-_OPT_A3_H_	compile/ASST0/opt-A3.h	3;"	d
-_OPT_A3_H_	compile/ASST1/opt-A3.h	3;"	d
-_OPT_A4_H_	compile/ASST0/opt-A4.h	3;"	d
-_OPT_A4_H_	compile/ASST1/opt-A4.h	3;"	d
-_OPT_A5_H_	compile/ASST0/opt-A5.h	3;"	d
-_OPT_A5_H_	compile/ASST1/opt-A5.h	3;"	d
-_OPT_DUMBVM_H_	compile/ASST0/opt-dumbvm.h	3;"	d
-_OPT_DUMBVM_H_	compile/ASST1/opt-dumbvm.h	3;"	d
-_OPT_NETFS_H_	compile/ASST0/opt-netfs.h	3;"	d
-_OPT_NETFS_H_	compile/ASST1/opt-netfs.h	3;"	d
-_OPT_NET_H_	compile/ASST0/opt-net.h	3;"	d
-_OPT_NET_H_	compile/ASST1/opt-net.h	3;"	d
-_OPT_SFS_H_	compile/ASST0/opt-sfs.h	3;"	d
-_OPT_SFS_H_	compile/ASST1/opt-sfs.h	3;"	d
-_OPT_SYNCHPROBS_H_	compile/ASST0/opt-synchprobs.h	3;"	d
-_OPT_SYNCHPROBS_H_	compile/ASST1/opt-synchprobs.h	3;"	d
-_PATH_SHELL	main/menu.c	21;"	d	file:
-_QUEUE_H_	include/queue.h	2;"	d
-_SCHEDULER_H_	include/scheduler.h	2;"	d
-_SFS_H_	include/sfs.h	2;"	d
-_STDARG_H_	include/stdarg.h	2;"	d
-_SYNCH_H_	include/synch.h	6;"	d
-_SYSCALL_H_	include/syscall.h	2;"	d
-_TEST_H_	include/test.h	2;"	d
-_THREAD_H_	include/thread.h	2;"	d
-_TYPES_H_	include/types.h	2;"	d
-_UIO_H_	include/uio.h	2;"	d
-_VERSION_H_	include/version.h	2;"	d
-_VFS_H_	include/vfs.h	2;"	d
-_VM_H_	include/vm.h	2;"	d
-_VNODE_H_	include/vnode.h	2;"	d
-__JB_REGS	arch/mips/include/setjmp.h	8;"	d
-__JB_REGS	compile/ASST0/machine/setjmp.h	8;"	d
-__JB_REGS	compile/ASST1/machine/setjmp.h	8;"	d
-__PF	include/lib.h	15;"	d
-__PF	include/lib.h	17;"	d
-__PRETTY_FUNCTION__	include/lib.h	24;"	d
-__VOP	include/vnode.h	213;"	d
+VMSTAT_COUNT	include/uw-vmstats.h	/^#define VMSTAT_COUNT /;"	d
+VMSTAT_ELF_FILE_READ	include/uw-vmstats.h	/^#define VMSTAT_ELF_FILE_READ /;"	d
+VMSTAT_PAGE_FAULT_DISK	include/uw-vmstats.h	/^#define VMSTAT_PAGE_FAULT_DISK /;"	d
+VMSTAT_PAGE_FAULT_ZERO	include/uw-vmstats.h	/^#define VMSTAT_PAGE_FAULT_ZERO /;"	d
+VMSTAT_SWAP_FILE_READ	include/uw-vmstats.h	/^#define VMSTAT_SWAP_FILE_READ /;"	d
+VMSTAT_SWAP_FILE_WRITE	include/uw-vmstats.h	/^#define VMSTAT_SWAP_FILE_WRITE /;"	d
+VMSTAT_TLB_FAULT	include/uw-vmstats.h	/^#define VMSTAT_TLB_FAULT /;"	d
+VMSTAT_TLB_FAULT_FREE	include/uw-vmstats.h	/^#define VMSTAT_TLB_FAULT_FREE /;"	d
+VMSTAT_TLB_FAULT_REPLACE	include/uw-vmstats.h	/^#define VMSTAT_TLB_FAULT_REPLACE /;"	d
+VMSTAT_TLB_INVALIDATE	include/uw-vmstats.h	/^#define VMSTAT_TLB_INVALIDATE /;"	d
+VMSTAT_TLB_RELOAD	include/uw-vmstats.h	/^#define VMSTAT_TLB_RELOAD /;"	d
+VM_FAULT_READ	include/vm.h	/^#define VM_FAULT_READ /;"	d
+VM_FAULT_READONLY	include/vm.h	/^#define VM_FAULT_READONLY /;"	d
+VM_FAULT_WRITE	include/vm.h	/^#define VM_FAULT_WRITE /;"	d
+VM_STATS_H	include/uw-vmstats.h	/^#define VM_STATS_H$/;"	d
+VOP_CLOSE	include/vnode.h	/^#define VOP_CLOSE(/;"	d
+VOP_CREAT	include/vnode.h	/^#define VOP_CREAT(/;"	d
+VOP_DECOPEN	include/vnode.h	/^#define VOP_DECOPEN(/;"	d
+VOP_DECREF	include/vnode.h	/^#define VOP_DECREF(/;"	d
+VOP_FSYNC	include/vnode.h	/^#define VOP_FSYNC(/;"	d
+VOP_GETDIRENTRY	include/vnode.h	/^#define VOP_GETDIRENTRY(/;"	d
+VOP_GETTYPE	include/vnode.h	/^#define VOP_GETTYPE(/;"	d
+VOP_INCOPEN	include/vnode.h	/^#define VOP_INCOPEN(/;"	d
+VOP_INCREF	include/vnode.h	/^#define VOP_INCREF(/;"	d
+VOP_INIT	include/vnode.h	/^#define VOP_INIT(/;"	d
+VOP_IOCTL	include/vnode.h	/^#define VOP_IOCTL(/;"	d
+VOP_KILL	include/vnode.h	/^#define VOP_KILL(/;"	d
+VOP_LINK	include/vnode.h	/^#define VOP_LINK(/;"	d
+VOP_LOOKPARENT	include/vnode.h	/^#define VOP_LOOKPARENT(/;"	d
+VOP_LOOKUP	include/vnode.h	/^#define VOP_LOOKUP(/;"	d
+VOP_MAGIC	include/vnode.h	/^#define VOP_MAGIC	/;"	d
+VOP_MKDIR	include/vnode.h	/^#define VOP_MKDIR(/;"	d
+VOP_MMAP	include/vnode.h	/^#define VOP_MMAP(/;"	d
+VOP_NAMEFILE	include/vnode.h	/^#define VOP_NAMEFILE(/;"	d
+VOP_OPEN	include/vnode.h	/^#define VOP_OPEN(/;"	d
+VOP_READ	include/vnode.h	/^#define VOP_READ(/;"	d
+VOP_READLINK	include/vnode.h	/^#define VOP_READLINK(/;"	d
+VOP_RECLAIM	include/vnode.h	/^#define VOP_RECLAIM(/;"	d
+VOP_REMOVE	include/vnode.h	/^#define VOP_REMOVE(/;"	d
+VOP_RENAME	include/vnode.h	/^#define VOP_RENAME(/;"	d
+VOP_RMDIR	include/vnode.h	/^#define VOP_RMDIR(/;"	d
+VOP_STAT	include/vnode.h	/^#define VOP_STAT(/;"	d
+VOP_SYMLINK	include/vnode.h	/^#define VOP_SYMLINK(/;"	d
+VOP_TRUNCATE	include/vnode.h	/^#define VOP_TRUNCATE(/;"	d
+VOP_TRYSEEK	include/vnode.h	/^#define VOP_TRYSEEK(/;"	d
+VOP_WRITE	include/vnode.h	/^#define VOP_WRITE(/;"	d
+WAKER_WAKES	test/tt3.c	/^#define WAKER_WAKES /;"	d	file:
+WORD_ALLBITS	lib/bitmap.c	/^#define WORD_ALLBITS /;"	d	file:
+WORD_TYPE	lib/bitmap.c	/^#define WORD_TYPE /;"	d	file:
+_ADDRSPACE_H_	include/addrspace.h	/^#define _ADDRSPACE_H_$/;"	d
+_ARRAY_H_	include/array.h	/^#define _ARRAY_H_$/;"	d
+_AUTOCONF_H_	compile/ASST0/autoconf.h	/^#define _AUTOCONF_H_$/;"	d
+_AUTOCONF_H_	compile/ASST1/autoconf.h	/^#define _AUTOCONF_H_$/;"	d
+_AUTOCONF_H_	compile/ASST2/autoconf.h	/^#define _AUTOCONF_H_$/;"	d
+_BIG_ENDIAN	arch/mips/include/types.h	/^#define _BIG_ENDIAN$/;"	d
+_BIG_ENDIAN	compile/ASST0/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
+_BIG_ENDIAN	compile/ASST1/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
+_BIG_ENDIAN	compile/ASST2/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
+_BITMAP_H_	include/bitmap.h	/^#define _BITMAP_H_$/;"	d
+_CLOCK_H_	include/clock.h	/^#define _CLOCK_H_$/;"	d
+_CURPROCESS_H_	include/curprocess.h	/^#define _CURPROCESS_H_$/;"	d
+_CURTHREAD_H_	include/curthread.h	/^#define _CURTHREAD_H_$/;"	d
+_DEV_H_	include/dev.h	/^#define _DEV_H_$/;"	d
+_ELF_H_	include/elf.h	/^#define _ELF_H_$/;"	d
+_EMUFS_H_	include/emufs.h	/^#define _EMUFS_H_$/;"	d
+_FILETABLE_H_	include/filetable.h	/^#define _FILETABLE_H_$/;"	d
+_FS_H_	include/fs.h	/^#define _FS_H_$/;"	d
+_GENERIC_BEEP_H_	dev/generic/beep.h	/^#define _GENERIC_BEEP_H_$/;"	d
+_GENERIC_CONSOLE_H_	dev/generic/console.h	/^#define _GENERIC_CONSOLE_H_$/;"	d
+_GENERIC_PSEUDORAND_H_	dev/generic/pseudorand.h	/^#define _GENERIC_PSEUDORAND_H_$/;"	d
+_GENERIC_RANDOM_H_	dev/generic/random.h	/^#define _GENERIC_RANDOM_H_$/;"	d
+_GENERIC_RTCLOCK_H_	dev/generic/rtclock.h	/^#define _GENERIC_RTCLOCK_H_$/;"	d
+_KERN_CALLNO_H_	include/kern/callno.h	/^#define _KERN_CALLNO_H_$/;"	d
+_KERN_ERRMSG_H_	include/kern/errmsg.h	/^#define _KERN_ERRMSG_H_$/;"	d
+_KERN_ERRNO_H_	include/kern/errno.h	/^#define _KERN_ERRNO_H_$/;"	d
+_KERN_IOCTL_H_	include/kern/ioctl.h	/^#define _KERN_IOCTL_H_$/;"	d
+_KERN_LIMITS_H_	include/kern/limits.h	/^#define _KERN_LIMITS_H_$/;"	d
+_KERN_SFS_H_	include/kern/sfs.h	/^#define _KERN_SFS_H_$/;"	d
+_KERN_STAT_H_	include/kern/stat.h	/^#define _KERN_STAT_H_$/;"	d
+_KERN_TYPES_H_	include/kern/types.h	/^#define _KERN_TYPES_H_$/;"	d
+_KERN_UNISTD_H_	include/kern/unistd.h	/^#define _KERN_UNISTD_H_$/;"	d
+_LAMEBUS_EMU_H_	dev/lamebus/emu.h	/^#define _LAMEBUS_EMU_H_$/;"	d
+_LAMEBUS_H_	dev/lamebus/lamebus.h	/^#define _LAMEBUS_H_$/;"	d
+_LAMEBUS_LHD_H_	dev/lamebus/lhd.h	/^#define _LAMEBUS_LHD_H_$/;"	d
+_LAMEBUS_LRANDOM_H_	dev/lamebus/lrandom.h	/^#define _LAMEBUS_LRANDOM_H_$/;"	d
+_LAMEBUS_LSCREEN_H_	dev/lamebus/lscreen.h	/^#define _LAMEBUS_LSCREEN_H_$/;"	d
+_LAMEBUS_LSER_H_	dev/lamebus/lser.h	/^#define _LAMEBUS_LSER_H_$/;"	d
+_LAMEBUS_LTIMER_H_	dev/lamebus/ltimer.h	/^#define _LAMEBUS_LTIMER_H_$/;"	d
+_LAMEBUS_LTRACE_H_	dev/lamebus/ltrace.h	/^#define _LAMEBUS_LTRACE_H_$/;"	d
+_LIB_H_	include/lib.h	/^#define _LIB_H_$/;"	d
+_LINKEDLIST_H_	include/linkedlist.h	/^#define _LINKEDLIST_H_$/;"	d
+_LITTLE_ENDIAN	arch/mips/include/types.h	/^#undef _LITTLE_ENDIAN$/;"	d
+_LITTLE_ENDIAN	compile/ASST0/machine/types.h	/^#undef _LITTLE_ENDIAN$/;"	d
+_LITTLE_ENDIAN	compile/ASST1/machine/types.h	/^#undef _LITTLE_ENDIAN$/;"	d
+_LITTLE_ENDIAN	compile/ASST2/machine/types.h	/^#undef _LITTLE_ENDIAN$/;"	d
+_MACHINE_PCB_H_	arch/mips/include/pcb.h	/^#define _MACHINE_PCB_H_$/;"	d
+_MACHINE_PCB_H_	compile/ASST0/machine/pcb.h	/^#define _MACHINE_PCB_H_$/;"	d
+_MACHINE_PCB_H_	compile/ASST1/machine/pcb.h	/^#define _MACHINE_PCB_H_$/;"	d
+_MACHINE_PCB_H_	compile/ASST2/machine/pcb.h	/^#define _MACHINE_PCB_H_$/;"	d
+_MACHINE_SPL_H_	arch/mips/include/spl.h	/^#define _MACHINE_SPL_H_$/;"	d
+_MACHINE_SPL_H_	compile/ASST0/machine/spl.h	/^#define _MACHINE_SPL_H_$/;"	d
+_MACHINE_SPL_H_	compile/ASST1/machine/spl.h	/^#define _MACHINE_SPL_H_$/;"	d
+_MACHINE_SPL_H_	compile/ASST2/machine/spl.h	/^#define _MACHINE_SPL_H_$/;"	d
+_MACHINE_TLB_H_	arch/mips/include/tlb.h	/^#define _MACHINE_TLB_H_$/;"	d
+_MACHINE_TLB_H_	compile/ASST0/machine/tlb.h	/^#define _MACHINE_TLB_H_$/;"	d
+_MACHINE_TLB_H_	compile/ASST1/machine/tlb.h	/^#define _MACHINE_TLB_H_$/;"	d
+_MACHINE_TLB_H_	compile/ASST2/machine/tlb.h	/^#define _MACHINE_TLB_H_$/;"	d
+_MIPS_ASMDEFS_H_	arch/mips/include/asmdefs.h	/^#define _MIPS_ASMDEFS_H_$/;"	d
+_MIPS_ASMDEFS_H_	compile/ASST0/machine/asmdefs.h	/^#define _MIPS_ASMDEFS_H_$/;"	d
+_MIPS_ASMDEFS_H_	compile/ASST1/machine/asmdefs.h	/^#define _MIPS_ASMDEFS_H_$/;"	d
+_MIPS_ASMDEFS_H_	compile/ASST2/machine/asmdefs.h	/^#define _MIPS_ASMDEFS_H_$/;"	d
+_MIPS_BUS_H_	arch/mips/include/bus.h	/^#define _MIPS_BUS_H_$/;"	d
+_MIPS_BUS_H_	compile/ASST0/machine/bus.h	/^#define _MIPS_BUS_H_$/;"	d
+_MIPS_BUS_H_	compile/ASST1/machine/bus.h	/^#define _MIPS_BUS_H_$/;"	d
+_MIPS_BUS_H_	compile/ASST2/machine/bus.h	/^#define _MIPS_BUS_H_$/;"	d
+_MIPS_KTYPES_H_	arch/mips/include/ktypes.h	/^#define _MIPS_KTYPES_H_$/;"	d
+_MIPS_KTYPES_H_	compile/ASST0/machine/ktypes.h	/^#define _MIPS_KTYPES_H_$/;"	d
+_MIPS_KTYPES_H_	compile/ASST1/machine/ktypes.h	/^#define _MIPS_KTYPES_H_$/;"	d
+_MIPS_KTYPES_H_	compile/ASST2/machine/ktypes.h	/^#define _MIPS_KTYPES_H_$/;"	d
+_MIPS_SETJMP_H_	arch/mips/include/setjmp.h	/^#define _MIPS_SETJMP_H_$/;"	d
+_MIPS_SETJMP_H_	compile/ASST0/machine/setjmp.h	/^#define _MIPS_SETJMP_H_$/;"	d
+_MIPS_SETJMP_H_	compile/ASST1/machine/setjmp.h	/^#define _MIPS_SETJMP_H_$/;"	d
+_MIPS_SETJMP_H_	compile/ASST2/machine/setjmp.h	/^#define _MIPS_SETJMP_H_$/;"	d
+_MIPS_SPECIALREG_H_	arch/mips/include/specialreg.h	/^#define _MIPS_SPECIALREG_H_$/;"	d
+_MIPS_SPECIALREG_H_	compile/ASST0/machine/specialreg.h	/^#define _MIPS_SPECIALREG_H_$/;"	d
+_MIPS_SPECIALREG_H_	compile/ASST1/machine/specialreg.h	/^#define _MIPS_SPECIALREG_H_$/;"	d
+_MIPS_SPECIALREG_H_	compile/ASST2/machine/specialreg.h	/^#define _MIPS_SPECIALREG_H_$/;"	d
+_MIPS_SWITCHFRAME_H_	arch/mips/include/switchframe.h	/^#define _MIPS_SWITCHFRAME_H_$/;"	d
+_MIPS_SWITCHFRAME_H_	compile/ASST0/machine/switchframe.h	/^#define _MIPS_SWITCHFRAME_H_$/;"	d
+_MIPS_SWITCHFRAME_H_	compile/ASST1/machine/switchframe.h	/^#define _MIPS_SWITCHFRAME_H_$/;"	d
+_MIPS_SWITCHFRAME_H_	compile/ASST2/machine/switchframe.h	/^#define _MIPS_SWITCHFRAME_H_$/;"	d
+_MIPS_TRAPFRAME_H_	arch/mips/include/trapframe.h	/^#define _MIPS_TRAPFRAME_H_$/;"	d
+_MIPS_TRAPFRAME_H_	compile/ASST0/machine/trapframe.h	/^#define _MIPS_TRAPFRAME_H_$/;"	d
+_MIPS_TRAPFRAME_H_	compile/ASST1/machine/trapframe.h	/^#define _MIPS_TRAPFRAME_H_$/;"	d
+_MIPS_TRAPFRAME_H_	compile/ASST2/machine/trapframe.h	/^#define _MIPS_TRAPFRAME_H_$/;"	d
+_MIPS_TYPES_H_	arch/mips/include/types.h	/^#define _MIPS_TYPES_H_$/;"	d
+_MIPS_TYPES_H_	compile/ASST0/machine/types.h	/^#define _MIPS_TYPES_H_$/;"	d
+_MIPS_TYPES_H_	compile/ASST1/machine/types.h	/^#define _MIPS_TYPES_H_$/;"	d
+_MIPS_TYPES_H_	compile/ASST2/machine/types.h	/^#define _MIPS_TYPES_H_$/;"	d
+_MIPS_VM_H_	arch/mips/include/vm.h	/^#define _MIPS_VM_H_$/;"	d
+_MIPS_VM_H_	compile/ASST0/machine/vm.h	/^#define _MIPS_VM_H_$/;"	d
+_MIPS_VM_H_	compile/ASST1/machine/vm.h	/^#define _MIPS_VM_H_$/;"	d
+_MIPS_VM_H_	compile/ASST2/machine/vm.h	/^#define _MIPS_VM_H_$/;"	d
+_OPT_A0_H_	compile/ASST0/opt-A0.h	/^#define _OPT_A0_H_$/;"	d
+_OPT_A0_H_	compile/ASST1/opt-A0.h	/^#define _OPT_A0_H_$/;"	d
+_OPT_A0_H_	compile/ASST2/opt-A0.h	/^#define _OPT_A0_H_$/;"	d
+_OPT_A1_H_	compile/ASST0/opt-A1.h	/^#define _OPT_A1_H_$/;"	d
+_OPT_A1_H_	compile/ASST1/opt-A1.h	/^#define _OPT_A1_H_$/;"	d
+_OPT_A1_H_	compile/ASST2/opt-A1.h	/^#define _OPT_A1_H_$/;"	d
+_OPT_A2_H_	compile/ASST0/opt-A2.h	/^#define _OPT_A2_H_$/;"	d
+_OPT_A2_H_	compile/ASST1/opt-A2.h	/^#define _OPT_A2_H_$/;"	d
+_OPT_A2_H_	compile/ASST2/opt-A2.h	/^#define _OPT_A2_H_$/;"	d
+_OPT_A3_H_	compile/ASST0/opt-A3.h	/^#define _OPT_A3_H_$/;"	d
+_OPT_A3_H_	compile/ASST1/opt-A3.h	/^#define _OPT_A3_H_$/;"	d
+_OPT_A3_H_	compile/ASST2/opt-A3.h	/^#define _OPT_A3_H_$/;"	d
+_OPT_A4_H_	compile/ASST0/opt-A4.h	/^#define _OPT_A4_H_$/;"	d
+_OPT_A4_H_	compile/ASST1/opt-A4.h	/^#define _OPT_A4_H_$/;"	d
+_OPT_A4_H_	compile/ASST2/opt-A4.h	/^#define _OPT_A4_H_$/;"	d
+_OPT_A5_H_	compile/ASST0/opt-A5.h	/^#define _OPT_A5_H_$/;"	d
+_OPT_A5_H_	compile/ASST1/opt-A5.h	/^#define _OPT_A5_H_$/;"	d
+_OPT_A5_H_	compile/ASST2/opt-A5.h	/^#define _OPT_A5_H_$/;"	d
+_OPT_DUMBVM_H_	compile/ASST0/opt-dumbvm.h	/^#define _OPT_DUMBVM_H_$/;"	d
+_OPT_DUMBVM_H_	compile/ASST1/opt-dumbvm.h	/^#define _OPT_DUMBVM_H_$/;"	d
+_OPT_DUMBVM_H_	compile/ASST2/opt-dumbvm.h	/^#define _OPT_DUMBVM_H_$/;"	d
+_OPT_NETFS_H_	compile/ASST0/opt-netfs.h	/^#define _OPT_NETFS_H_$/;"	d
+_OPT_NETFS_H_	compile/ASST1/opt-netfs.h	/^#define _OPT_NETFS_H_$/;"	d
+_OPT_NETFS_H_	compile/ASST2/opt-netfs.h	/^#define _OPT_NETFS_H_$/;"	d
+_OPT_NET_H_	compile/ASST0/opt-net.h	/^#define _OPT_NET_H_$/;"	d
+_OPT_NET_H_	compile/ASST1/opt-net.h	/^#define _OPT_NET_H_$/;"	d
+_OPT_NET_H_	compile/ASST2/opt-net.h	/^#define _OPT_NET_H_$/;"	d
+_OPT_SFS_H_	compile/ASST0/opt-sfs.h	/^#define _OPT_SFS_H_$/;"	d
+_OPT_SFS_H_	compile/ASST1/opt-sfs.h	/^#define _OPT_SFS_H_$/;"	d
+_OPT_SFS_H_	compile/ASST2/opt-sfs.h	/^#define _OPT_SFS_H_$/;"	d
+_OPT_SYNCHPROBS_H_	compile/ASST0/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/;"	d
+_OPT_SYNCHPROBS_H_	compile/ASST1/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/;"	d
+_OPT_SYNCHPROBS_H_	compile/ASST2/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/;"	d
+_PATH_SHELL	main/menu.c	/^#define _PATH_SHELL /;"	d	file:
+_PROCESS_H_	include/process.h	/^#define _PROCESS_H_$/;"	d
+_QUEUE_H_	include/queue.h	/^#define _QUEUE_H_$/;"	d
+_SCHEDULER_H_	include/scheduler.h	/^#define _SCHEDULER_H_$/;"	d
+_SFS_H_	include/sfs.h	/^#define _SFS_H_$/;"	d
+_STDARG_H_	include/stdarg.h	/^#define _STDARG_H_$/;"	d
+_SYNCH_H_	include/synch.h	/^#define _SYNCH_H_$/;"	d
+_SYSCALL_H_	include/syscall.h	/^#define _SYSCALL_H_$/;"	d
+_TABLE_H_	include/table.h	/^#define _TABLE_H_$/;"	d
+_TEST_H_	include/test.h	/^#define _TEST_H_$/;"	d
+_THREAD_H_	include/thread.h	/^#define _THREAD_H_$/;"	d
+_TYPES_H_	include/types.h	/^#define _TYPES_H_$/;"	d
+_UIO_H_	include/uio.h	/^#define _UIO_H_$/;"	d
+_VERSION_H_	include/version.h	/^#define _VERSION_H_$/;"	d
+_VFS_H_	include/vfs.h	/^#define _VFS_H_$/;"	d
+_VM_H_	include/vm.h	/^#define _VM_H_$/;"	d
+_VNODE_H_	include/vnode.h	/^#define _VNODE_H_$/;"	d
+__JB_REGS	arch/mips/include/setjmp.h	/^#define __JB_REGS /;"	d
+__JB_REGS	compile/ASST0/machine/setjmp.h	/^#define __JB_REGS /;"	d
+__JB_REGS	compile/ASST1/machine/setjmp.h	/^#define __JB_REGS /;"	d
+__JB_REGS	compile/ASST2/machine/setjmp.h	/^#define __JB_REGS /;"	d
+__PF	include/lib.h	/^#define __PF(/;"	d
+__PRETTY_FUNCTION__	include/lib.h	/^#define __PRETTY_FUNCTION__ /;"	d
+__VOP	include/vnode.h	/^#define __VOP(/;"	d
 __start	arch/mips/mips/start.S	/^__start:$/;"	l
 __userptr	include/types.h	/^struct __userptr { char _dummy; };$/;"	s
 __va_list	include/stdarg.h	/^typedef __builtin_va_list __va_list;$/;"	t
@@ -814,24 +927,29 @@ _dummy	include/types.h	/^struct __userptr { char _dummy; };$/;"	m	struct:__userp
 _vmstats_inc	vm/uw-vmstats.c	/^_vmstats_inc(unsigned int index)$/;"	f
 _vmstats_init	vm/uw-vmstats.c	/^_vmstats_init()$/;"	f
 _vmstats_print	vm/uw-vmstats.c	/^_vmstats_print()$/;"	f
-a0	arch/mips/include/asmdefs.h	14;"	d
-a0	compile/ASST0/machine/asmdefs.h	14;"	d
-a0	compile/ASST1/machine/asmdefs.h	14;"	d
-a1	arch/mips/include/asmdefs.h	15;"	d
-a1	compile/ASST0/machine/asmdefs.h	15;"	d
-a1	compile/ASST1/machine/asmdefs.h	15;"	d
-a2	arch/mips/include/asmdefs.h	16;"	d
-a2	compile/ASST0/machine/asmdefs.h	16;"	d
-a2	compile/ASST1/machine/asmdefs.h	16;"	d
-a3	arch/mips/include/asmdefs.h	17;"	d
-a3	compile/ASST0/machine/asmdefs.h	17;"	d
-a3	compile/ASST1/machine/asmdefs.h	17;"	d
+a0	arch/mips/include/asmdefs.h	/^#define a0 /;"	d
+a0	compile/ASST0/machine/asmdefs.h	/^#define a0 /;"	d
+a0	compile/ASST1/machine/asmdefs.h	/^#define a0 /;"	d
+a0	compile/ASST2/machine/asmdefs.h	/^#define a0 /;"	d
+a1	arch/mips/include/asmdefs.h	/^#define a1 /;"	d
+a1	compile/ASST0/machine/asmdefs.h	/^#define a1 /;"	d
+a1	compile/ASST1/machine/asmdefs.h	/^#define a1 /;"	d
+a1	compile/ASST2/machine/asmdefs.h	/^#define a1 /;"	d
+a2	arch/mips/include/asmdefs.h	/^#define a2 /;"	d
+a2	compile/ASST0/machine/asmdefs.h	/^#define a2 /;"	d
+a2	compile/ASST1/machine/asmdefs.h	/^#define a2 /;"	d
+a2	compile/ASST2/machine/asmdefs.h	/^#define a2 /;"	d
+a3	arch/mips/include/asmdefs.h	/^#define a3 /;"	d
+a3	compile/ASST0/machine/asmdefs.h	/^#define a3 /;"	d
+a3	compile/ASST1/machine/asmdefs.h	/^#define a3 /;"	d
+a3	compile/ASST2/machine/asmdefs.h	/^#define a3 /;"	d
 addrspace	include/addrspace.h	/^struct addrspace {$/;"	s
 allbase	lib/kheap.c	/^static struct pageref *allbase;$/;"	v	typeref:struct:pageref	file:
 alloc_kpages	arch/mips/mips/dumbvm.c	/^alloc_kpages(int npages)$/;"	f
 allocpageref	lib/kheap.c	/^allocpageref(void)$/;"	f	file:
 approachintersection	asst1/stoplight.c	/^approachintersection(void * unusedpointer,$/;"	f	file:
 array	lib/array.c	/^struct array {$/;"	s	file:
+array	lib/table.c	/^    struct array *array;$/;"	m	struct:table	typeref:struct:table::array	file:
 array_add	lib/array.c	/^array_add(struct array *a, void *guy)$/;"	f
 array_create	lib/array.c	/^array_create(void)$/;"	f
 array_destroy	lib/array.c	/^array_destroy(struct array *a)$/;"	f
@@ -866,7 +984,8 @@ as_stackpbase	include/addrspace.h	/^	paddr_t as_stackpbase;$/;"	m	struct:addrspa
 as_vbase1	include/addrspace.h	/^	vaddr_t as_vbase1;$/;"	m	struct:addrspace
 as_vbase2	include/addrspace.h	/^	vaddr_t as_vbase2;$/;"	m	struct:addrspace
 asm_usermode	arch/mips/mips/exception.S	/^asm_usermode:$/;"	l
-assert	include/lib.h	30;"	d
+assert	include/lib.h	/^#define assert(/;"	d
+assign_pid	process/process.c	/^int assign_pid (struct process *proc) {$/;"	f
 attach_beep_to_ltimer	dev/lamebus/beep_ltimer.c	/^attach_beep_to_ltimer(int beepno, struct ltimer_softc *ls)$/;"	f
 attach_con_to_lscreen	dev/lamebus/con_lscreen.c	/^attach_con_to_lscreen(int consno, struct lscreen_softc *ls)$/;"	f
 attach_con_to_lser	dev/lamebus/con_lser.c	/^attach_con_to_lser(int consno, struct lser_softc *ls)$/;"	f
@@ -884,28 +1003,40 @@ attach_random_to_pseudorand	dev/generic/pseudorand_att.c	/^attach_random_to_pseu
 attach_rtclock_to_ltimer	dev/lamebus/rtclock_ltimer.c	/^attach_rtclock_to_ltimer(int rtclockno, struct ltimer_softc *ls)$/;"	f
 autoconf_beep	compile/ASST0/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
 autoconf_beep	compile/ASST1/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
+autoconf_beep	compile/ASST2/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)$/;"	f	file:
 autoconf_con	compile/ASST0/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
 autoconf_con	compile/ASST1/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
+autoconf_con	compile/ASST2/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/;"	f	file:
 autoconf_emu	compile/ASST0/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
 autoconf_emu	compile/ASST1/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
+autoconf_emu	compile/ASST2/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/;"	f	file:
 autoconf_lamebus	compile/ASST0/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
 autoconf_lamebus	compile/ASST1/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
+autoconf_lamebus	compile/ASST2/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int busunit)$/;"	f
 autoconf_lhd	compile/ASST0/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
 autoconf_lhd	compile/ASST1/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
+autoconf_lhd	compile/ASST2/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/;"	f	file:
 autoconf_lrandom	compile/ASST0/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
 autoconf_lrandom	compile/ASST1/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
+autoconf_lrandom	compile/ASST2/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int busunit)$/;"	f	file:
 autoconf_lser	compile/ASST0/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
 autoconf_lser	compile/ASST1/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
+autoconf_lser	compile/ASST2/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltimer	compile/ASST0/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltimer	compile/ASST1/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltimer	compile/ASST2/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltrace	compile/ASST0/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
 autoconf_ltrace	compile/ASST1/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
+autoconf_ltrace	compile/ASST2/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busunit)$/;"	f	file:
 autoconf_pseudorand	compile/ASST0/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
 autoconf_pseudorand	compile/ASST1/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
+autoconf_pseudorand	compile/ASST2/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, int busunit)$/;"	f
 autoconf_random	compile/ASST0/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
 autoconf_random	compile/ASST1/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
+autoconf_random	compile/ASST2/autoconf.c	/^autoconf_random(struct random_softc *bus, int busunit)$/;"	f	file:
 autoconf_rtclock	compile/ASST0/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
 autoconf_rtclock	compile/ASST1/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
+autoconf_rtclock	compile/ASST2/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int busunit)$/;"	f	file:
 b_cat_turn	asst1/catmouse.c	/^    volatile int b_cat_turn = 0;$/;"	v
 b_cat_waiting	asst1/catmouse.c	/^    volatile int b_cat_waiting = 0;$/;"	v
 b_mouse_turn	asst1/catmouse.c	/^    volatile int b_mouse_turn = 0;$/;"	v
@@ -933,57 +1064,72 @@ bs_beep	dev/generic/beep.h	/^	void (*bs_beep)(void *devdata);$/;"	m	struct:beep_
 bs_devdata	dev/generic/beep.h	/^	void *bs_devdata;$/;"	m	struct:beep_softc
 buildconfig	compile/ASST0/vers.c	/^const char buildconfig[] = "ASST0";$/;"	v
 buildconfig	compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
+buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
-buildversion	compile/ASST1/vers.c	/^const int buildversion = 131;$/;"	v
-bus_map_area	arch/mips/include/bus.h	20;"	d
-bus_map_area	compile/ASST0/machine/bus.h	20;"	d
-bus_map_area	compile/ASST1/machine/bus.h	20;"	d
-bus_read_register	arch/mips/include/bus.h	17;"	d
-bus_read_register	compile/ASST0/machine/bus.h	17;"	d
-bus_read_register	compile/ASST1/machine/bus.h	17;"	d
-bus_write_register	arch/mips/include/bus.h	14;"	d
-bus_write_register	compile/ASST0/machine/bus.h	14;"	d
-bus_write_register	compile/ASST1/machine/bus.h	14;"	d
-c0_cause	arch/mips/include/asmdefs.h	57;"	d
-c0_cause	compile/ASST0/machine/asmdefs.h	57;"	d
-c0_cause	compile/ASST1/machine/asmdefs.h	57;"	d
-c0_context	arch/mips/include/asmdefs.h	49;"	d
-c0_context	compile/ASST0/machine/asmdefs.h	49;"	d
-c0_context	compile/ASST1/machine/asmdefs.h	49;"	d
-c0_entryhi	arch/mips/include/asmdefs.h	54;"	d
-c0_entryhi	compile/ASST0/machine/asmdefs.h	54;"	d
-c0_entryhi	compile/ASST1/machine/asmdefs.h	54;"	d
-c0_entrylo	arch/mips/include/asmdefs.h	46;"	d
-c0_entrylo	compile/ASST0/machine/asmdefs.h	46;"	d
-c0_entrylo	compile/ASST1/machine/asmdefs.h	46;"	d
-c0_epc	arch/mips/include/asmdefs.h	58;"	d
-c0_epc	compile/ASST0/machine/asmdefs.h	58;"	d
-c0_epc	compile/ASST1/machine/asmdefs.h	58;"	d
-c0_index	arch/mips/include/asmdefs.h	44;"	d
-c0_index	compile/ASST0/machine/asmdefs.h	44;"	d
-c0_index	compile/ASST1/machine/asmdefs.h	44;"	d
-c0_prid	arch/mips/include/asmdefs.h	59;"	d
-c0_prid	compile/ASST0/machine/asmdefs.h	59;"	d
-c0_prid	compile/ASST1/machine/asmdefs.h	59;"	d
-c0_random	arch/mips/include/asmdefs.h	45;"	d
-c0_random	compile/ASST0/machine/asmdefs.h	45;"	d
-c0_random	compile/ASST1/machine/asmdefs.h	45;"	d
-c0_status	arch/mips/include/asmdefs.h	56;"	d
-c0_status	compile/ASST0/machine/asmdefs.h	56;"	d
-c0_status	compile/ASST1/machine/asmdefs.h	56;"	d
-c0_vaddr	arch/mips/include/asmdefs.h	52;"	d
-c0_vaddr	compile/ASST0/machine/asmdefs.h	52;"	d
-c0_vaddr	compile/ASST1/machine/asmdefs.h	52;"	d
+buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
+buildversion	compile/ASST2/vers.c	/^const int buildversion = 56;$/;"	v
+bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
+bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
+bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
+bus_map_area	compile/ASST2/machine/bus.h	/^#define bus_map_area(/;"	d
+bus_read_register	arch/mips/include/bus.h	/^#define bus_read_register(/;"	d
+bus_read_register	compile/ASST0/machine/bus.h	/^#define bus_read_register(/;"	d
+bus_read_register	compile/ASST1/machine/bus.h	/^#define bus_read_register(/;"	d
+bus_read_register	compile/ASST2/machine/bus.h	/^#define bus_read_register(/;"	d
+bus_write_register	arch/mips/include/bus.h	/^#define bus_write_register(/;"	d
+bus_write_register	compile/ASST0/machine/bus.h	/^#define bus_write_register(/;"	d
+bus_write_register	compile/ASST1/machine/bus.h	/^#define bus_write_register(/;"	d
+bus_write_register	compile/ASST2/machine/bus.h	/^#define bus_write_register(/;"	d
+c0_cause	arch/mips/include/asmdefs.h	/^#define c0_cause /;"	d
+c0_cause	compile/ASST0/machine/asmdefs.h	/^#define c0_cause /;"	d
+c0_cause	compile/ASST1/machine/asmdefs.h	/^#define c0_cause /;"	d
+c0_cause	compile/ASST2/machine/asmdefs.h	/^#define c0_cause /;"	d
+c0_context	arch/mips/include/asmdefs.h	/^#define c0_context /;"	d
+c0_context	compile/ASST0/machine/asmdefs.h	/^#define c0_context /;"	d
+c0_context	compile/ASST1/machine/asmdefs.h	/^#define c0_context /;"	d
+c0_context	compile/ASST2/machine/asmdefs.h	/^#define c0_context /;"	d
+c0_entryhi	arch/mips/include/asmdefs.h	/^#define c0_entryhi /;"	d
+c0_entryhi	compile/ASST0/machine/asmdefs.h	/^#define c0_entryhi /;"	d
+c0_entryhi	compile/ASST1/machine/asmdefs.h	/^#define c0_entryhi /;"	d
+c0_entryhi	compile/ASST2/machine/asmdefs.h	/^#define c0_entryhi /;"	d
+c0_entrylo	arch/mips/include/asmdefs.h	/^#define c0_entrylo /;"	d
+c0_entrylo	compile/ASST0/machine/asmdefs.h	/^#define c0_entrylo /;"	d
+c0_entrylo	compile/ASST1/machine/asmdefs.h	/^#define c0_entrylo /;"	d
+c0_entrylo	compile/ASST2/machine/asmdefs.h	/^#define c0_entrylo /;"	d
+c0_epc	arch/mips/include/asmdefs.h	/^#define c0_epc /;"	d
+c0_epc	compile/ASST0/machine/asmdefs.h	/^#define c0_epc /;"	d
+c0_epc	compile/ASST1/machine/asmdefs.h	/^#define c0_epc /;"	d
+c0_epc	compile/ASST2/machine/asmdefs.h	/^#define c0_epc /;"	d
+c0_index	arch/mips/include/asmdefs.h	/^#define c0_index /;"	d
+c0_index	compile/ASST0/machine/asmdefs.h	/^#define c0_index /;"	d
+c0_index	compile/ASST1/machine/asmdefs.h	/^#define c0_index /;"	d
+c0_index	compile/ASST2/machine/asmdefs.h	/^#define c0_index /;"	d
+c0_prid	arch/mips/include/asmdefs.h	/^#define c0_prid /;"	d
+c0_prid	compile/ASST0/machine/asmdefs.h	/^#define c0_prid /;"	d
+c0_prid	compile/ASST1/machine/asmdefs.h	/^#define c0_prid /;"	d
+c0_prid	compile/ASST2/machine/asmdefs.h	/^#define c0_prid /;"	d
+c0_random	arch/mips/include/asmdefs.h	/^#define c0_random /;"	d
+c0_random	compile/ASST0/machine/asmdefs.h	/^#define c0_random /;"	d
+c0_random	compile/ASST1/machine/asmdefs.h	/^#define c0_random /;"	d
+c0_random	compile/ASST2/machine/asmdefs.h	/^#define c0_random /;"	d
+c0_status	arch/mips/include/asmdefs.h	/^#define c0_status /;"	d
+c0_status	compile/ASST0/machine/asmdefs.h	/^#define c0_status /;"	d
+c0_status	compile/ASST1/machine/asmdefs.h	/^#define c0_status /;"	d
+c0_status	compile/ASST2/machine/asmdefs.h	/^#define c0_status /;"	d
+c0_vaddr	arch/mips/include/asmdefs.h	/^#define c0_vaddr /;"	d
+c0_vaddr	compile/ASST0/machine/asmdefs.h	/^#define c0_vaddr /;"	d
+c0_vaddr	compile/ASST1/machine/asmdefs.h	/^#define c0_vaddr /;"	d
+c0_vaddr	compile/ASST2/machine/asmdefs.h	/^#define c0_vaddr /;"	d
 cat_eat	asst1/bowls.c	/^cat_eat(unsigned int bowlnumber) {$/;"	f
 cat_simulation	asst1/catmouse.c	/^cat_simulation(void * unusedpointer, $/;"	f	file:
 cat_sleep	asst1/bowls.c	/^cat_sleep() {$/;"	f
 catmouse	asst1/catmouse.c	/^catmouse(int nargs,$/;"	f
 change_bootfs	fs/vfs/vfslookup.c	/^change_bootfs(struct vnode *newguy)$/;"	f	file:
 checkfilesystem	test/fstest.c	/^checkfilesystem(int nargs, char **args)$/;"	f	file:
+checksubpage	lib/kheap.c	/^#define checksubpage(/;"	d	file:
 checksubpage	lib/kheap.c	/^checksubpage(struct pageref *pr)$/;"	f	file:
-checksubpage	lib/kheap.c	201;"	d	file:
+checksubpages	lib/kheap.c	/^#define checksubpages(/;"	d	file:
 checksubpages	lib/kheap.c	/^checksubpages(void)$/;"	f	file:
-checksubpages	lib/kheap.c	232;"	d	file:
 cleanup_bowls	asst1/bowls.c	/^cleanup_bowls()$/;"	f
 cleanupitems	test/synchtest.c	/^cleanupitems( void )$/;"	f	file:
 clocksleep	thread/hardclock.c	/^clocksleep(int num_secs)$/;"	f
@@ -1003,7 +1149,7 @@ cmd_shell	main/menu.c	/^cmd_shell(int nargs, char **args)$/;"	f	file:
 cmd_sync	main/menu.c	/^cmd_sync(int nargs, char **args)$/;"	f	file:
 cmd_testmenu	main/menu.c	/^cmd_testmenu(int n, char **a)$/;"	f	file:
 cmd_unmount	main/menu.c	/^cmd_unmount(int nargs, char **args)$/;"	f	file:
-cmdtable	main/menu.c	/^} cmdtable[] = {$/;"	v	typeref:struct:__anon6	file:
+cmdtable	main/menu.c	/^} cmdtable[] = {$/;"	v	typeref:struct:__anon5	file:
 common_exception	arch/mips/mips/exception.S	/^common_exception:	$/;"	l
 common_prog	main/menu.c	/^common_prog(int nargs, char **args)$/;"	f	file:
 compute_thread	test/tt3.c	/^compute_thread(void *junk1, unsigned long num)$/;"	f	file:
@@ -1051,6 +1197,7 @@ cs_send	dev/generic/console.h	/^	void (*cs_send)(void *devdata, int ch);$/;"	m	s
 cs_sendpolled	dev/generic/console.h	/^	void (*cs_sendpolled)(void *devdata, int ch);$/;"	m	struct:con_softc
 cs_wsem	dev/generic/console.h	/^	struct semaphore *cs_wsem;$/;"	m	struct:con_softc	typeref:struct:con_softc::semaphore
 curkstack	arch/mips/mips/pcb.c	/^u_int32_t curkstack;	\/* curthread's kernel stack, for use on kernel entry *\/$/;"	v
+curprocess	process/process.c	/^struct process *curprocess;$/;"	v	typeref:struct:process
 curspl	arch/mips/mips/spl.c	/^int curspl = SPL_HIGH;$/;"	v
 curthread	thread/thread.c	/^struct thread *curthread;$/;"	v	typeref:struct:thread
 cv	include/synch.h	/^struct cv {$/;"	s
@@ -1070,6 +1217,7 @@ d_data	include/dev.h	/^	void *d_data;   \/* device-specific data *\/$/;"	m	struc
 d_io	include/dev.h	/^	int (*d_io)(struct device *, struct uio *);$/;"	m	struct:device
 d_ioctl	include/dev.h	/^	int (*d_ioctl)(struct device *, int op, userptr_t data);$/;"	m	struct:device
 d_open	include/dev.h	/^	int (*d_open)(struct device *, int flags_from_open);$/;"	m	struct:device
+data	lib/linkedlist.c	/^    void *data;$/;"	m	struct:node	file:
 data	lib/queue.c	/^	void **data;$/;"	m	struct:queue	file:
 dbflags	lib/kprintf.c	/^u_int32_t dbflags = 0;$/;"	v
 delayed_outbuf	dev/generic/console.c	/^static char delayed_outbuf[DELAYBUFSIZE];$/;"	v	file:
@@ -1104,25 +1252,25 @@ dowritestress2	test/fstest.c	/^dowritestress2(const char *filesys)$/;"	f	file:
 dumpsubpage	lib/kheap.c	/^dumpsubpage(struct pageref *pr)$/;"	f	file:
 e_busdata	dev/lamebus/emu.h	/^	void *e_busdata;$/;"	m	struct:emu_softc
 e_buspos	dev/lamebus/emu.h	/^	u_int32_t e_buspos;$/;"	m	struct:emu_softc
-e_ehsize	include/elf.h	/^	u_int16_t	e_ehsize;          \/* actual size of file header *\/$/;"	m	struct:__anon2
-e_entry	include/elf.h	/^	u_int32_t	e_entry;           \/* address of program entry point *\/$/;"	m	struct:__anon2
-e_flags	include/elf.h	/^	u_int32_t	e_flags;	   \/* ignore *\/$/;"	m	struct:__anon2
-e_ident	include/elf.h	/^	unsigned char	e_ident[ELF_NIDENT];   \/* magic number et al. *\/$/;"	m	struct:__anon2
+e_ehsize	include/elf.h	/^	u_int16_t	e_ehsize;          \/* actual size of file header *\/$/;"	m	struct:__anon1
+e_entry	include/elf.h	/^	u_int32_t	e_entry;           \/* address of program entry point *\/$/;"	m	struct:__anon1
+e_flags	include/elf.h	/^	u_int32_t	e_flags;	   \/* ignore *\/$/;"	m	struct:__anon1
+e_ident	include/elf.h	/^	unsigned char	e_ident[ELF_NIDENT];   \/* magic number et al. *\/$/;"	m	struct:__anon1
 e_iobuf	dev/lamebus/emu.h	/^	void *e_iobuf;$/;"	m	struct:emu_softc
 e_lock	dev/lamebus/emu.h	/^	struct lock *e_lock;$/;"	m	struct:emu_softc	typeref:struct:emu_softc::lock
-e_machine	include/elf.h	/^	u_int16_t	e_machine;             \/* processor type file is for *\/$/;"	m	struct:__anon2
-e_phentsize	include/elf.h	/^	u_int16_t	e_phentsize;       \/* actual size of phdr *\/$/;"	m	struct:__anon2
-e_phnum	include/elf.h	/^	u_int16_t	e_phnum;           \/* number of phdrs *\/$/;"	m	struct:__anon2
-e_phoff	include/elf.h	/^	u_int32_t	e_phoff;           \/* location in file of phdrs *\/$/;"	m	struct:__anon2
+e_machine	include/elf.h	/^	u_int16_t	e_machine;             \/* processor type file is for *\/$/;"	m	struct:__anon1
+e_phentsize	include/elf.h	/^	u_int16_t	e_phentsize;       \/* actual size of phdr *\/$/;"	m	struct:__anon1
+e_phnum	include/elf.h	/^	u_int16_t	e_phnum;           \/* number of phdrs *\/$/;"	m	struct:__anon1
+e_phoff	include/elf.h	/^	u_int32_t	e_phoff;           \/* location in file of phdrs *\/$/;"	m	struct:__anon1
 e_result	dev/lamebus/emu.h	/^	u_int32_t e_result;$/;"	m	struct:emu_softc
 e_sem	dev/lamebus/emu.h	/^	struct semaphore *e_sem;$/;"	m	struct:emu_softc	typeref:struct:emu_softc::semaphore
-e_shentsize	include/elf.h	/^	u_int16_t	e_shentsize;       \/* ignore *\/$/;"	m	struct:__anon2
-e_shnum	include/elf.h	/^	u_int16_t	e_shnum;           \/* ignore *\/$/;"	m	struct:__anon2
-e_shoff	include/elf.h	/^	u_int32_t	e_shoff;           \/* ignore *\/$/;"	m	struct:__anon2
-e_shstrndx	include/elf.h	/^	u_int16_t	e_shstrndx;        \/* ignore *\/$/;"	m	struct:__anon2
-e_type	include/elf.h	/^	u_int16_t	e_type;                \/* type of file this is *\/$/;"	m	struct:__anon2
+e_shentsize	include/elf.h	/^	u_int16_t	e_shentsize;       \/* ignore *\/$/;"	m	struct:__anon1
+e_shnum	include/elf.h	/^	u_int16_t	e_shnum;           \/* ignore *\/$/;"	m	struct:__anon1
+e_shoff	include/elf.h	/^	u_int32_t	e_shoff;           \/* ignore *\/$/;"	m	struct:__anon1
+e_shstrndx	include/elf.h	/^	u_int16_t	e_shstrndx;        \/* ignore *\/$/;"	m	struct:__anon1
+e_type	include/elf.h	/^	u_int16_t	e_type;                \/* type of file this is *\/$/;"	m	struct:__anon1
 e_unit	dev/lamebus/emu.h	/^	int e_unit;$/;"	m	struct:emu_softc
-e_version	include/elf.h	/^	u_int32_t	e_version;             \/* ELF version *\/$/;"	m	struct:__anon2
+e_version	include/elf.h	/^	u_int32_t	e_version;             \/* ELF version *\/$/;"	m	struct:__anon1
 eating_cats_count	asst1/bowls.c	/^static int volatile eating_cats_count;$/;"	v	file:
 eating_mice_count	asst1/bowls.c	/^static int volatile eating_mice_count;$/;"	v	file:
 ef_emu	include/emufs.h	/^	struct emu_softc *ef_emu;	\/* device *\/$/;"	m	struct:emufs_fs	typeref:struct:emufs_fs::emu_softc
@@ -1180,7 +1328,13 @@ exception	arch/mips/mips/exception.S	/^exception:$/;"	l
 exception_end	arch/mips/mips/exception.S	/^exception_end:$/;"	l
 exception_return	arch/mips/mips/exception.S	/^exception_return:$/;"	l
 exorcise	thread/thread.c	/^exorcise(void)$/;"	f	file:
+f_create	filedes/filetable.c	/^struct file* f_create(struct uio u, struct vnode *v) {$/;"	f
+f_destroy	filedes/filetable.c	/^void f_destroy(struct file *f) {$/;"	f
 fail	test/synchtest.c	/^fail(unsigned long num, const char *msg)$/;"	f	file:
+file	include/filetable.h	/^struct file {$/;"	s
+file_table	include/process.h	/^    struct filetable* file_table; $/;"	m	struct:process	typeref:struct:process::filetable
+files	filedes/filetable.c	/^    struct table *files;$/;"	m	struct:filetable	typeref:struct:filetable::table	file:
+filetable	filedes/filetable.c	/^struct filetable {$/;"	s	file:
 fill_deadbeef	lib/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
 findmount	fs/vfs/vfslist.c	/^findmount(const char *devname, struct knowndev **result)$/;"	f	file:
 finish	test/tt3.c	/^finish(int howmanytotal)$/;"	f	file:
@@ -1188,6 +1342,7 @@ firstfree	arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual a
 firstpaddr	arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
 flush_delay_buf	dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
 free_kpages	arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
+freed_pids	process/process.c	/^	struct linkedlist* freed_pids;$/;"	m	struct:process_table	typeref:struct:process_table::linkedlist	file:
 freelist	lib/kheap.c	/^struct freelist {$/;"	s	file:
 freelist_offset	lib/kheap.c	/^	u_int16_t freelist_offset;$/;"	m	struct:pageref	file:
 freepageref	lib/kheap.c	/^freepageref(struct pageref *p)$/;"	f	file:
@@ -1202,10 +1357,17 @@ fstest_makename	test/fstest.c	/^fstest_makename(char *buf, size_t buflen, $/;"	f
 fstest_read	test/fstest.c	/^fstest_read(const char *fs, const char *namesuffix)$/;"	f	file:
 fstest_remove	test/fstest.c	/^fstest_remove(const char *fs, const char *namesuffix)$/;"	f	file:
 fstest_write	test/fstest.c	/^fstest_write(const char *fs, const char *namesuffix,$/;"	f	file:
-func	main/menu.c	/^	int (*func)(const char *device);$/;"	m	struct:__anon5	file:
-func	main/menu.c	/^	int (*func)(int nargs, char **args);$/;"	m	struct:__anon6	file:
+ft_create	filedes/filetable.c	/^struct filetable* ft_create() {$/;"	f
+ft_destroy	filedes/filetable.c	/^void ft_destroy(struct filetable *ft) {$/;"	f
+ft_getfile	filedes/filetable.c	/^struct file* ft_getfile(struct filetable *ft, int fd) {$/;"	f
+ft_lock	filedes/filetable.c	/^    struct lock *ft_lock;$/;"	m	struct:filetable	typeref:struct:filetable::lock	file:
+ft_removefile	filedes/filetable.c	/^int ft_removefile(struct filetable *ft, int fd) {$/;"	f
+ft_storefile	filedes/filetable.c	/^int ft_storefile(struct filetable *ft, struct file* f, int *err) {$/;"	f
+func	main/menu.c	/^	int (*func)(const char *device);$/;"	m	struct:__anon4	file:
+func	main/menu.c	/^	int (*func)(int nargs, char **args);$/;"	m	struct:__anon5	file:
 genprobe	conf/config	/^    function genprobe(dev, devunit, bus, busunit) {$/;"	f
-get_status	arch/mips/mips/spl.c	18;"	d	file:
+get_first_slot	lib/table.c	/^int get_first_slot(struct table *t) {$/;"	f
+get_status	arch/mips/mips/spl.c	/^#define get_status(/;"	d	file:
 getbase	conf/config	/^    function getbase(invalmsg, d,       base) {$/;"	f
 getch	dev/generic/console.c	/^getch(void)$/;"	f
 getch_intr	dev/generic/console.c	/^getch_intr(struct con_softc *cs)$/;"	f	file:
@@ -1215,12 +1377,14 @@ getppages	arch/mips/mips/dumbvm.c	/^getppages(unsigned long npages)$/;"	f	file:
 gettime	dev/generic/rtclock.c	/^gettime(time_t *secs, u_int32_t *nsecs)$/;"	f
 getunit	conf/config	/^    function getunit(invalmsg, d,       u, tmp) {$/;"	f
 gostraight	asst1/stoplight.c	/^gostraight(unsigned long cardirection,$/;"	f	file:
-gp	arch/mips/include/asmdefs.h	38;"	d
-gp	compile/ASST0/machine/asmdefs.h	38;"	d
-gp	compile/ASST1/machine/asmdefs.h	38;"	d
+gp	arch/mips/include/asmdefs.h	/^#define gp /;"	d
+gp	compile/ASST0/machine/asmdefs.h	/^#define gp /;"	d
+gp	compile/ASST1/machine/asmdefs.h	/^#define gp /;"	d
+gp	compile/ASST2/machine/asmdefs.h	/^#define gp /;"	d
 hardclock	thread/hardclock.c	/^hardclock(void)$/;"	f
 harvard_copyright	main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
 haveclock	dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
+head	lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 held	include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	main/hello.c	/^void hello() {$/;"	f
 in_interrupt	arch/mips/mips/interrupt.c	/^int in_interrupt;$/;"	v
@@ -1231,35 +1395,43 @@ inititems	test/synchtest.c	/^inititems(void)$/;"	f	file:
 int16_t	arch/mips/include/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	compile/ASST0/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	compile/ASST1/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
+int16_t	compile/ASST2/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int32_t	arch/mips/include/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
 int32_t	compile/ASST0/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
 int32_t	compile/ASST1/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
+int32_t	compile/ASST2/machine/types.h	/^typedef int       int32_t;		\/* 32-bit signed integer *\/$/;"	t
 int64_t	arch/mips/include/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
 int64_t	compile/ASST0/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
 int64_t	compile/ASST1/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
+int64_t	compile/ASST2/machine/types.h	/^typedef long long int64_t;		\/* 64-bit signed integer *\/$/;"	t
 int8_t	arch/mips/include/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
 int8_t	compile/ASST0/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
 int8_t	compile/ASST1/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
+int8_t	compile/ASST2/machine/types.h	/^typedef char      int8_t;		\/* 8-bit signed integer *\/$/;"	t
 interrupts_off	arch/mips/mips/spl.c	/^interrupts_off(void)$/;"	f	file:
 interrupts_on	arch/mips/mips/spl.c	/^interrupts_on(void)$/;"	f	file:
 interrupts_onoff	arch/mips/mips/spl.c	/^interrupts_onoff(void)$/;"	f	file:
 intptr_t	arch/mips/include/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
 intptr_t	compile/ASST0/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
 intptr_t	compile/ASST1/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
-iov_kbase	include/uio.h	27;"	d
+intptr_t	compile/ASST2/machine/types.h	/^typedef long intptr_t;			\/* Signed pointer-sized integer *\/$/;"	t
+iov_kbase	include/uio.h	/^#define iov_kbase /;"	d
 iov_len	include/uio.h	/^	size_t iov_len;                \/* Length of data *\/$/;"	m	struct:iovec
-iov_ubase	include/uio.h	28;"	d
-iov_un	include/uio.h	/^	} iov_un;$/;"	m	struct:iovec	typeref:union:iovec::__anon4
+iov_ubase	include/uio.h	/^#define iov_ubase /;"	d
+iov_un	include/uio.h	/^	} iov_un;$/;"	m	struct:iovec	typeref:union:iovec::__anon3
 iovec	include/uio.h	/^struct iovec {$/;"	s
 jmp_buf	arch/mips/include/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jmp_buf	compile/ASST0/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jmp_buf	compile/ASST1/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
-k0	arch/mips/include/asmdefs.h	36;"	d
-k0	compile/ASST0/machine/asmdefs.h	36;"	d
-k0	compile/ASST1/machine/asmdefs.h	36;"	d
-k1	arch/mips/include/asmdefs.h	37;"	d
-k1	compile/ASST0/machine/asmdefs.h	37;"	d
-k1	compile/ASST1/machine/asmdefs.h	37;"	d
+jmp_buf	compile/ASST2/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
+k0	arch/mips/include/asmdefs.h	/^#define k0 /;"	d
+k0	compile/ASST0/machine/asmdefs.h	/^#define k0 /;"	d
+k0	compile/ASST1/machine/asmdefs.h	/^#define k0 /;"	d
+k0	compile/ASST2/machine/asmdefs.h	/^#define k0 /;"	d
+k1	arch/mips/include/asmdefs.h	/^#define k1 /;"	d
+k1	compile/ASST0/machine/asmdefs.h	/^#define k1 /;"	d
+k1	compile/ASST1/machine/asmdefs.h	/^#define k1 /;"	d
+k1	compile/ASST2/machine/asmdefs.h	/^#define k1 /;"	d
 kd_device	fs/vfs/vfslist.c	/^	struct device *kd_device;$/;"	m	struct:knowndev	typeref:struct:knowndev::device	file:
 kd_fs	fs/vfs/vfslist.c	/^	struct fs *kd_fs;$/;"	m	struct:knowndev	typeref:struct:knowndev::fs	file:
 kd_name	fs/vfs/vfslist.c	/^	char *kd_name;$/;"	m	struct:knowndev	file:
@@ -1314,6 +1486,18 @@ lhd_open	dev/lamebus/lhd.c	/^lhd_open(struct device *d, int openflags)$/;"	f	fil
 lhd_rdreg	dev/lamebus/lhd.c	/^u_int32_t lhd_rdreg(struct lhd_softc *lh, u_int32_t reg)$/;"	f	file:
 lhd_softc	dev/lamebus/lhd.h	/^struct lhd_softc {$/;"	s
 lhd_wreg	dev/lamebus/lhd.c	/^void lhd_wreg(struct lhd_softc *lh, u_int32_t reg, u_int32_t val)$/;"	f	file:
+linkedlist	lib/linkedlist.c	/^struct linkedlist {$/;"	s	file:
+ll_back	lib/linkedlist.c	/^void *ll_back(struct linkedlist *ll) {$/;"	f
+ll_create	lib/linkedlist.c	/^struct linkedlist* ll_create() {$/;"	f
+ll_destroy	lib/linkedlist.c	/^void ll_destroy(struct linkedlist *ll) {$/;"	f
+ll_empty	lib/linkedlist.c	/^int ll_empty(struct linkedlist *ll) {$/;"	f
+ll_front	lib/linkedlist.c	/^void *ll_front(struct linkedlist *ll) {$/;"	f
+ll_pop_back	lib/linkedlist.c	/^void* ll_pop_back(struct linkedlist *ll) {$/;"	f
+ll_pop_front	lib/linkedlist.c	/^void* ll_pop_front(struct linkedlist *ll) {$/;"	f
+ll_print	lib/linkedlist.c	/^void ll_print(struct linkedlist *ll) {$/;"	f
+ll_push_back	lib/linkedlist.c	/^int ll_push_back(struct linkedlist *ll, void *ptr) {$/;"	f
+ll_push_front	lib/linkedlist.c	/^int ll_push_front(struct linkedlist *ll, void *ptr) {$/;"	f
+ll_size	lib/linkedlist.c	/^int ll_size(struct linkedlist *ll) {$/;"	f
 load_elf	userprog/loadelf.c	/^load_elf(struct vnode *v, vaddr_t *entrypoint)$/;"	f
 load_segment	userprog/loadelf.c	/^load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, $/;"	f	file:
 lock	include/synch.h	/^struct lock {$/;"	s
@@ -1408,45 +1592,60 @@ mips_trap	arch/mips/mips/trap.c	/^mips_trap(struct trapframe *tf)$/;"	f
 mips_usermode	arch/mips/mips/trap.c	/^mips_usermode(struct trapframe *tf)$/;"	f
 mk_kuio	userprog/uio.c	/^mk_kuio(struct uio *uio, void *kbuf, size_t len, off_t pos, enum uio_rw rw)$/;"	f
 mkrawname	fs/vfs/vfslist.c	/^mkrawname(const char *name)$/;"	f	file:
-mounttable	main/menu.c	/^} mounttable[] = {$/;"	v	typeref:struct:__anon5	file:
+mounttable	main/menu.c	/^} mounttable[] = {$/;"	v	typeref:struct:__anon4	file:
 mouse_eat	asst1/bowls.c	/^mouse_eat(unsigned int bowlnumber) {$/;"	f
 mouse_simulation	asst1/catmouse.c	/^mouse_simulation(void * unusedpointer,$/;"	f	file:
 mouse_sleep	asst1/bowls.c	/^mouse_sleep() {$/;"	f
 mutex	asst1/bowls.c	/^static struct semaphore *mutex;$/;"	v	typeref:struct:semaphore	file:
 mutex	asst1/catmouse.c	/^    struct lock *mutex;$/;"	v	typeref:struct:lock
+n_create	lib/linkedlist.c	/^struct node* n_create(void *data, struct node *next) {$/;"	f
+n_destroy	lib/linkedlist.c	/^void n_destroy(struct node *n) {$/;"	f
 name	include/synch.h	/^	char *name;$/;"	m	struct:cv
 name	include/synch.h	/^	char *name;$/;"	m	struct:lock
 name	include/synch.h	/^	char *name;$/;"	m	struct:semaphore
+name	main/menu.c	/^	const char *name;$/;"	m	struct:__anon4	file:
 name	main/menu.c	/^	const char *name;$/;"	m	struct:__anon5	file:
-name	main/menu.c	/^	const char *name;$/;"	m	struct:__anon6	file:
 nbits	lib/bitmap.c	/^	u_int32_t nbits;$/;"	m	struct:bitmap	file:
 nettest	test/nettest.c	/^nettest(void)$/;"	f
 next	lib/kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
+next	lib/linkedlist.c	/^    struct node *next;$/;"	m	struct:node	typeref:struct:node::node	file:
 next_all	lib/kheap.c	/^	struct pageref *next_all;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
 next_samesize	lib/kheap.c	/^	struct pageref *next_samesize;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
+nextpid	process/process.c	/^	pid_t nextpid;$/;"	m	struct:process_table	file:
 nextread	lib/queue.c	/^	int nextread;	\/\/ next element to read from (was tail)$/;"	m	struct:queue	file:
 nextunit_beep	compile/ASST0/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
 nextunit_beep	compile/ASST1/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
+nextunit_beep	compile/ASST2/autoconf.c	/^static int nextunit_beep;$/;"	v	file:
 nextunit_con	compile/ASST0/autoconf.c	/^static int nextunit_con;$/;"	v	file:
 nextunit_con	compile/ASST1/autoconf.c	/^static int nextunit_con;$/;"	v	file:
+nextunit_con	compile/ASST2/autoconf.c	/^static int nextunit_con;$/;"	v	file:
 nextunit_emu	compile/ASST0/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
 nextunit_emu	compile/ASST1/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
+nextunit_emu	compile/ASST2/autoconf.c	/^static int nextunit_emu;$/;"	v	file:
 nextunit_lhd	compile/ASST0/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
 nextunit_lhd	compile/ASST1/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
+nextunit_lhd	compile/ASST2/autoconf.c	/^static int nextunit_lhd;$/;"	v	file:
 nextunit_lrandom	compile/ASST0/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
 nextunit_lrandom	compile/ASST1/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
+nextunit_lrandom	compile/ASST2/autoconf.c	/^static int nextunit_lrandom;$/;"	v	file:
 nextunit_lser	compile/ASST0/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
 nextunit_lser	compile/ASST1/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
+nextunit_lser	compile/ASST2/autoconf.c	/^static int nextunit_lser;$/;"	v	file:
 nextunit_ltimer	compile/ASST0/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
 nextunit_ltimer	compile/ASST1/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
+nextunit_ltimer	compile/ASST2/autoconf.c	/^static int nextunit_ltimer;$/;"	v	file:
 nextunit_ltrace	compile/ASST0/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
 nextunit_ltrace	compile/ASST1/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
+nextunit_ltrace	compile/ASST2/autoconf.c	/^static int nextunit_ltrace;$/;"	v	file:
 nextunit_random	compile/ASST0/autoconf.c	/^static int nextunit_random;$/;"	v	file:
 nextunit_random	compile/ASST1/autoconf.c	/^static int nextunit_random;$/;"	v	file:
+nextunit_random	compile/ASST2/autoconf.c	/^static int nextunit_random;$/;"	v	file:
 nextunit_rtclock	compile/ASST0/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
 nextunit_rtclock	compile/ASST1/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
+nextunit_rtclock	compile/ASST2/autoconf.c	/^static int nextunit_rtclock;$/;"	v	file:
 nextwrite	lib/queue.c	/^	int nextwrite;	\/\/ next element to write to (was head)$/;"	m	struct:queue	file:
 nfree	lib/kheap.c	/^	u_int16_t nfree;$/;"	m	struct:pageref	file:
+node	lib/linkedlist.c	/^struct node {$/;"	s	file:
 null_creat	fs/vfs/device.c	/^null_creat(struct vnode *v, const char *name, int excl, struct vnode **result)$/;"	f	file:
 null_fsync	fs/vfs/device.c	/^null_fsync(struct vnode *v)$/;"	f	file:
 null_io	fs/vfs/device.c	/^null_io(struct vnode *v, struct uio *uio)$/;"	f	file:
@@ -1465,17 +1664,23 @@ numthreads	thread/thread.c	/^static int numthreads;$/;"	v	file:
 off_t	include/kern/types.h	/^typedef int32_t off_t;   \/* Offset within file *\/$/;"	t
 one_thread_only	thread/thread.c	/^one_thread_only() {$/;"	f
 opsmenu	main/menu.c	/^static const char *opsmenu[] = {$/;"	v	file:
-p_align	include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon3
-p_filesz	include/elf.h	/^	u_int32_t	p_filesz;    \/* Size of data within file *\/$/;"	m	struct:__anon3
-p_flags	include/elf.h	/^	u_int32_t	p_flags;     \/* Flags *\/$/;"	m	struct:__anon3
-p_memsz	include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon3
-p_offset	include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon3
-p_paddr	include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon3
-p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon3
-p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon3
+p_align	include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon2
+p_assign_thread	process/process.c	/^void p_assign_thread(struct process *p, struct thread *t) {$/;"	f
+p_create	process/process.c	/^struct process * p_create() {$/;"	f
+p_destroy	process/process.c	/^void p_destroy() {$/;"	f
+p_filesz	include/elf.h	/^	u_int32_t	p_filesz;    \/* Size of data within file *\/$/;"	m	struct:__anon2
+p_flags	include/elf.h	/^	u_int32_t	p_flags;     \/* Flags *\/$/;"	m	struct:__anon2
+p_memsz	include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon2
+p_offset	include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon2
+p_paddr	include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon2
+p_table	process/process.c	/^static struct process_table *p_table;$/;"	v	typeref:struct:process_table	file:
+p_thread	include/process.h	/^	struct thread* p_thread;$/;"	m	struct:process	typeref:struct:process::thread
+p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
+p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
 paddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+paddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 pageaddr_and_blocktype	lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
 pageref	lib/kheap.c	/^struct pageref {$/;"	s	file:
 pagerefs	lib/kheap.c	/^static struct pageref pagerefs[NPAGEREFS];$/;"	v	typeref:struct:pageref	file:
@@ -1485,37 +1690,52 @@ panicstr	arch/mips/mips/start.S	/^panicstr:$/;"	l
 pcb	arch/mips/include/pcb.h	/^struct pcb {$/;"	s
 pcb	compile/ASST0/machine/pcb.h	/^struct pcb {$/;"	s
 pcb	compile/ASST1/machine/pcb.h	/^struct pcb {$/;"	s
+pcb	compile/ASST2/machine/pcb.h	/^struct pcb {$/;"	s
 pcb_badfaultfunc	arch/mips/include/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
 pcb_badfaultfunc	compile/ASST0/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
 pcb_badfaultfunc	compile/ASST1/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
+pcb_badfaultfunc	compile/ASST2/machine/pcb.h	/^	pcb_faultfunc pcb_badfaultfunc; \/\/ recovery for fatal kernel traps$/;"	m	struct:pcb
 pcb_copyjmp	arch/mips/include/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
 pcb_copyjmp	compile/ASST0/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
 pcb_copyjmp	compile/ASST1/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
+pcb_copyjmp	compile/ASST2/machine/pcb.h	/^	jmp_buf pcb_copyjmp;            \/\/ jump area used by copyin\/out etc.$/;"	m	struct:pcb
 pcb_faultfunc	arch/mips/include/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
 pcb_faultfunc	compile/ASST0/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
 pcb_faultfunc	compile/ASST1/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
+pcb_faultfunc	compile/ASST2/machine/pcb.h	/^typedef void (*pcb_faultfunc)(void);$/;"	t
 pcb_ininterrupt	arch/mips/include/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
 pcb_ininterrupt	compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
 pcb_ininterrupt	compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
+pcb_ininterrupt	compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_ininterrupt;  \/\/ are we in an interrupt handler?$/;"	m	struct:pcb
 pcb_kstack	arch/mips/include/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
 pcb_kstack	compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
 pcb_kstack	compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
+pcb_kstack	compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_kstack;	    \/\/ stack to load on entry to kernel$/;"	m	struct:pcb
 pcb_switchstack	arch/mips/include/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
+pcb_switchstack	compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
+pid	include/process.h	/^	pid_t pid;$/;"	m	struct:process
 pid_t	include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
+print_proc_table	process/process.c	/^void print_proc_table() {$/;"	f
 print_run_queue	thread/scheduler.c	/^print_run_queue(void)$/;"	f
 print_state	asst1/bowls.c	/^print_state()$/;"	f	file:
 printfile	test/fstest.c	/^printfile(int nargs, char **args)$/;"	f
+process	include/process.h	/^struct process {$/;"	s
+process_bootstrap	process/process.c	/^void process_bootstrap() {$/;"	f
+process_list	process/process.c	/^	struct array *process_list;$/;"	m	struct:process_table	typeref:struct:process_table::array	file:
+process_table	process/process.c	/^struct process_table {$/;"	s	file:
 processline	conf/config	/^    function processline(filename, lineno) {$/;"	f
 ps_seed	dev/generic/pseudorand.h	/^	u_int32_t ps_seed;$/;"	m	struct:pseudorand_softc
 pseudoattach_pseudorand	dev/generic/pseudorand.c	/^pseudoattach_pseudorand(int unit)$/;"	f
 pseudoconfig	compile/ASST0/autoconf.c	/^pseudoconfig(void)$/;"	f
 pseudoconfig	compile/ASST1/autoconf.c	/^pseudoconfig(void)$/;"	f
+pseudoconfig	compile/ASST2/autoconf.c	/^pseudoconfig(void)$/;"	f
 pseudorand_randmax	dev/generic/pseudorand.c	/^pseudorand_randmax(void *devdata)$/;"	f
 pseudorand_random	dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/;"	f
 pseudorand_read	dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/;"	f
 pseudorand_softc	dev/generic/pseudorand.h	/^struct pseudorand_softc {$/;"	s
+pt_create	process/process.c	/^struct process_table *pt_create() {$/;"	f
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:
@@ -1534,9 +1754,10 @@ q_remhead	lib/queue.c	/^q_remhead(struct queue *q)$/;"	f
 queue	lib/queue.c	/^struct queue {$/;"	s	file:
 queuetest	test/queuetest.c	/^queuetest(int nargs, char **args)$/;"	f
 quietthread	test/threadtest.c	/^quietthread(void *junk, unsigned long num)$/;"	f	file:
-ra	arch/mips/include/asmdefs.h	41;"	d
-ra	compile/ASST0/machine/asmdefs.h	41;"	d
-ra	compile/ASST1/machine/asmdefs.h	41;"	d
+ra	arch/mips/include/asmdefs.h	/^#define ra /;"	d
+ra	compile/ASST0/machine/asmdefs.h	/^#define ra /;"	d
+ra	compile/ASST1/machine/asmdefs.h	/^#define ra /;"	d
+ra	compile/ASST2/machine/asmdefs.h	/^#define ra /;"	d
 ram_bootstrap	arch/mips/mips/ram.c	/^ram_bootstrap(void)$/;"	f
 ram_getsize	arch/mips/mips/ram.c	/^ram_getsize(u_int32_t *lo, u_int32_t *hi)$/;"	f
 ram_stealmem	arch/mips/mips/ram.c	/^ram_stealmem(unsigned long npages)$/;"	f
@@ -1552,6 +1773,7 @@ read_ctl_register	dev/lamebus/lamebus.c	/^read_ctl_register(struct lamebus_softc
 readstress	test/fstest.c	/^DEFTEST(readstress);$/;"	v
 readstress_thread	test/fstest.c	/^readstress_thread(void *fs, unsigned long num)$/;"	f	file:
 remove_lists	lib/kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
+remove_pid	process/process.c	/^void remove_pid (pid_t pid) {$/;"	f
 reserved	include/kern/sfs.h	/^	u_int32_t reserved[118];$/;"	m	struct:sfs_super
 rotate	test/fstest.c	/^rotate(char *str, int amt)$/;"	f	file:
 rs_dev	dev/generic/random.h	/^	struct device rs_dev;$/;"	m	struct:random_softc	typeref:struct:random_softc::device
@@ -1566,33 +1788,42 @@ runprogram	userprog/runprogram.c	/^runprogram(char *progname)$/;"	f
 runqueue	thread/scheduler.c	/^static struct queue *runqueue;$/;"	v	typeref:struct:queue	file:
 runtest3	test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
 runthreads	test/threadtest.c	/^runthreads(int doloud)$/;"	f	file:
-s0	arch/mips/include/asmdefs.h	26;"	d
-s0	compile/ASST0/machine/asmdefs.h	26;"	d
-s0	compile/ASST1/machine/asmdefs.h	26;"	d
-s1	arch/mips/include/asmdefs.h	27;"	d
-s1	compile/ASST0/machine/asmdefs.h	27;"	d
-s1	compile/ASST1/machine/asmdefs.h	27;"	d
-s2	arch/mips/include/asmdefs.h	28;"	d
-s2	compile/ASST0/machine/asmdefs.h	28;"	d
-s2	compile/ASST1/machine/asmdefs.h	28;"	d
-s3	arch/mips/include/asmdefs.h	29;"	d
-s3	compile/ASST0/machine/asmdefs.h	29;"	d
-s3	compile/ASST1/machine/asmdefs.h	29;"	d
-s4	arch/mips/include/asmdefs.h	30;"	d
-s4	compile/ASST0/machine/asmdefs.h	30;"	d
-s4	compile/ASST1/machine/asmdefs.h	30;"	d
-s5	arch/mips/include/asmdefs.h	31;"	d
-s5	compile/ASST0/machine/asmdefs.h	31;"	d
-s5	compile/ASST1/machine/asmdefs.h	31;"	d
-s6	arch/mips/include/asmdefs.h	32;"	d
-s6	compile/ASST0/machine/asmdefs.h	32;"	d
-s6	compile/ASST1/machine/asmdefs.h	32;"	d
-s7	arch/mips/include/asmdefs.h	33;"	d
-s7	compile/ASST0/machine/asmdefs.h	33;"	d
-s7	compile/ASST1/machine/asmdefs.h	33;"	d
-s8	arch/mips/include/asmdefs.h	40;"	d
-s8	compile/ASST0/machine/asmdefs.h	40;"	d
-s8	compile/ASST1/machine/asmdefs.h	40;"	d
+s0	arch/mips/include/asmdefs.h	/^#define s0 /;"	d
+s0	compile/ASST0/machine/asmdefs.h	/^#define s0 /;"	d
+s0	compile/ASST1/machine/asmdefs.h	/^#define s0 /;"	d
+s0	compile/ASST2/machine/asmdefs.h	/^#define s0 /;"	d
+s1	arch/mips/include/asmdefs.h	/^#define s1 /;"	d
+s1	compile/ASST0/machine/asmdefs.h	/^#define s1 /;"	d
+s1	compile/ASST1/machine/asmdefs.h	/^#define s1 /;"	d
+s1	compile/ASST2/machine/asmdefs.h	/^#define s1 /;"	d
+s2	arch/mips/include/asmdefs.h	/^#define s2 /;"	d
+s2	compile/ASST0/machine/asmdefs.h	/^#define s2 /;"	d
+s2	compile/ASST1/machine/asmdefs.h	/^#define s2 /;"	d
+s2	compile/ASST2/machine/asmdefs.h	/^#define s2 /;"	d
+s3	arch/mips/include/asmdefs.h	/^#define s3 /;"	d
+s3	compile/ASST0/machine/asmdefs.h	/^#define s3 /;"	d
+s3	compile/ASST1/machine/asmdefs.h	/^#define s3 /;"	d
+s3	compile/ASST2/machine/asmdefs.h	/^#define s3 /;"	d
+s4	arch/mips/include/asmdefs.h	/^#define s4 /;"	d
+s4	compile/ASST0/machine/asmdefs.h	/^#define s4 /;"	d
+s4	compile/ASST1/machine/asmdefs.h	/^#define s4 /;"	d
+s4	compile/ASST2/machine/asmdefs.h	/^#define s4 /;"	d
+s5	arch/mips/include/asmdefs.h	/^#define s5 /;"	d
+s5	compile/ASST0/machine/asmdefs.h	/^#define s5 /;"	d
+s5	compile/ASST1/machine/asmdefs.h	/^#define s5 /;"	d
+s5	compile/ASST2/machine/asmdefs.h	/^#define s5 /;"	d
+s6	arch/mips/include/asmdefs.h	/^#define s6 /;"	d
+s6	compile/ASST0/machine/asmdefs.h	/^#define s6 /;"	d
+s6	compile/ASST1/machine/asmdefs.h	/^#define s6 /;"	d
+s6	compile/ASST2/machine/asmdefs.h	/^#define s6 /;"	d
+s7	arch/mips/include/asmdefs.h	/^#define s7 /;"	d
+s7	compile/ASST0/machine/asmdefs.h	/^#define s7 /;"	d
+s7	compile/ASST1/machine/asmdefs.h	/^#define s7 /;"	d
+s7	compile/ASST2/machine/asmdefs.h	/^#define s7 /;"	d
+s8	arch/mips/include/asmdefs.h	/^#define s8 /;"	d
+s8	compile/ASST0/machine/asmdefs.h	/^#define s8 /;"	d
+s8	compile/ASST1/machine/asmdefs.h	/^#define s8 /;"	d
+s8	compile/ASST2/machine/asmdefs.h	/^#define s8 /;"	d
 samestring	fs/vfs/vfslist.c	/^samestring(const char *a, const char *b)$/;"	f	file:
 samestring3	fs/vfs/vfslist.c	/^samestring3(const char *a, const char *b, const char *c, const char *d)$/;"	f	file:
 scheduler	thread/scheduler.c	/^scheduler(void)$/;"	f
@@ -1605,42 +1836,53 @@ sem_destroy	thread/synch.c	/^sem_destroy(struct semaphore *sem)$/;"	f
 semaphore	include/synch.h	/^struct semaphore {$/;"	s
 semtest	test/synchtest.c	/^semtest(int nargs, char **args)$/;"	f
 semtestthread	test/synchtest.c	/^semtestthread(void *junk, unsigned long num)$/;"	f	file:
-set_status	arch/mips/mips/spl.c	19;"	d	file:
+set_status	arch/mips/mips/spl.c	/^#define set_status(/;"	d	file:
 setarch	conf/config	/^    function setarch(fn, lineno, newarch) {$/;"	f
 setup	test/tt3.c	/^setup(void)$/;"	f	file:
 sf_gp	arch/mips/include/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
 sf_gp	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
 sf_gp	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
+sf_gp	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_gp;$/;"	m	struct:switchframe
 sf_ra	arch/mips/include/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
 sf_ra	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
 sf_ra	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
+sf_ra	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_ra;$/;"	m	struct:switchframe
 sf_s0	arch/mips/include/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
 sf_s0	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
 sf_s0	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
+sf_s0	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s0;$/;"	m	struct:switchframe
 sf_s1	arch/mips/include/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
 sf_s1	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
 sf_s1	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
+sf_s1	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s1;$/;"	m	struct:switchframe
 sf_s2	arch/mips/include/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
 sf_s2	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
 sf_s2	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
+sf_s2	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s2;$/;"	m	struct:switchframe
 sf_s3	arch/mips/include/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
 sf_s3	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
 sf_s3	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
+sf_s3	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s3;$/;"	m	struct:switchframe
 sf_s4	arch/mips/include/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
 sf_s4	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
 sf_s4	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
+sf_s4	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s4;$/;"	m	struct:switchframe
 sf_s5	arch/mips/include/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
 sf_s5	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
 sf_s5	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
+sf_s5	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s5;$/;"	m	struct:switchframe
 sf_s6	arch/mips/include/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
 sf_s6	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
 sf_s6	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
+sf_s6	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s6;$/;"	m	struct:switchframe
 sf_s7	arch/mips/include/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
 sf_s7	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
 sf_s7	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
+sf_s7	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s7;$/;"	m	struct:switchframe
 sf_s8	arch/mips/include/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
 sf_s8	compile/ASST0/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
 sf_s8	compile/ASST1/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
+sf_s8	compile/ASST2/machine/switchframe.h	/^	u_int32_t sf_s8;$/;"	m	struct:switchframe
 sfd_ino	include/kern/sfs.h	/^	u_int32_t sfd_ino;              \/* Inode number *\/$/;"	m	struct:sfs_dir
 sfd_name	include/kern/sfs.h	/^	char sfd_name[SFS_NAMELEN];  \/* Filename *\/$/;"	m	struct:sfs_dir
 sfi_direct	include/kern/sfs.h	/^	u_int32_t sfi_direct[SFS_NDIRECT];	\/* Direct blocks *\/$/;"	m	struct:sfs_inode
@@ -1716,6 +1958,7 @@ sfs_write	fs/sfs/sfs_vnode.c	/^sfs_write(struct vnode *v, struct uio *uio)$/;"	f
 sfs_writedir	fs/sfs/sfs_vnode.c	/^sfs_writedir(struct sfs_vnode *sv, struct sfs_dir *sd, int slot)$/;"	f	file:
 showmenu	main/menu.c	/^showmenu(const char *name, const char *x[])$/;"	f	file:
 shutdown	main/main.c	/^shutdown(void)$/;"	f	file:
+size	lib/linkedlist.c	/^    int size;$/;"	m	struct:linkedlist	file:
 size	lib/queue.c	/^	int size;$/;"	m	struct:queue	file:
 size_t	arch/mips/include/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
 size_t	arch/mips/include/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
@@ -1723,13 +1966,17 @@ size_t	compile/ASST0/machine/types.h	/^typedef unsigned long size_t;		\/* Size o
 size_t	compile/ASST0/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
 size_t	compile/ASST1/machine/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
 size_t	compile/ASST1/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	compile/ASST2/machine/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
+size_t	compile/ASST2/machine/types.h	/^typedef unsigned size_t;		\/* Size of a memory region *\/$/;"	t
 sizebases	lib/kheap.c	/^static struct pageref *sizebases[NSIZES];$/;"	v	typeref:struct:pageref	file:
 sizes	lib/kheap.c	/^static const size_t sizes[NSIZES] = { 16, 32, 64, 128, 256, 512, 1024, 2048 };$/;"	v	file:
 sleepalot_thread	test/tt3.c	/^sleepalot_thread(void *junk, unsigned long num)$/;"	f	file:
 sleepers	thread/thread.c	/^static struct array *sleepers;$/;"	v	typeref:struct:array	file:
-sp	arch/mips/include/asmdefs.h	39;"	d
-sp	compile/ASST0/machine/asmdefs.h	39;"	d
-sp	compile/ASST1/machine/asmdefs.h	39;"	d
+slots	lib/table.c	/^    struct linkedlist *slots;$/;"	m	struct:table	typeref:struct:table::linkedlist	file:
+sp	arch/mips/include/asmdefs.h	/^#define sp /;"	d
+sp	compile/ASST0/machine/asmdefs.h	/^#define sp /;"	d
+sp	compile/ASST1/machine/asmdefs.h	/^#define sp /;"	d
+sp	compile/ASST2/machine/asmdefs.h	/^#define sp /;"	d
 sp_magic	include/kern/sfs.h	/^	u_int32_t sp_magic;       \/* Magic number, should be SFS_MAGIC *\/$/;"	m	struct:sfs_super
 sp_nblocks	include/kern/sfs.h	/^	u_int32_t sp_nblocks;     \/* Number of blocks in fs *\/$/;"	m	struct:sfs_super
 sp_volname	include/kern/sfs.h	/^	char sp_volname[SFS_VOLNAME_SIZE];  \/* Name of this volume *\/$/;"	m	struct:sfs_super
@@ -1755,45 +2002,72 @@ sv_v	include/sfs.h	/^	struct vnode sv_v;              \/* abstract vnode structu
 switchframe	arch/mips/include/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST0/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST1/machine/switchframe.h	/^struct switchframe {$/;"	s
+switchframe	compile/ASST2/machine/switchframe.h	/^struct switchframe {$/;"	s
+sys__exit	userprog/sysexit.c	/^    void sys__exit(int exitcode) {$/;"	f
+sys_close	userprog/sysclose.c	/^int sys_close(int fd) {$/;"	f
 sys_errlist	include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
+sys_fork	userprog/sysfork.c	/^    pid_t sys_fork(void) {$/;"	f
+sys_getpid	userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_nerr	include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
+sys_open	userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
+sys_read	userprog/sysread.c	/^    int sys_read(int fd, void *buf, size_t buflen) {$/;"	f
 sys_reboot	main/main.c	/^sys_reboot(int code)$/;"	f
-t0	arch/mips/include/asmdefs.h	18;"	d
-t0	compile/ASST0/machine/asmdefs.h	18;"	d
-t0	compile/ASST1/machine/asmdefs.h	18;"	d
-t1	arch/mips/include/asmdefs.h	19;"	d
-t1	compile/ASST0/machine/asmdefs.h	19;"	d
-t1	compile/ASST1/machine/asmdefs.h	19;"	d
-t2	arch/mips/include/asmdefs.h	20;"	d
-t2	compile/ASST0/machine/asmdefs.h	20;"	d
-t2	compile/ASST1/machine/asmdefs.h	20;"	d
-t3	arch/mips/include/asmdefs.h	21;"	d
-t3	compile/ASST0/machine/asmdefs.h	21;"	d
-t3	compile/ASST1/machine/asmdefs.h	21;"	d
-t4	arch/mips/include/asmdefs.h	22;"	d
-t4	compile/ASST0/machine/asmdefs.h	22;"	d
-t4	compile/ASST1/machine/asmdefs.h	22;"	d
-t5	arch/mips/include/asmdefs.h	23;"	d
-t5	compile/ASST0/machine/asmdefs.h	23;"	d
-t5	compile/ASST1/machine/asmdefs.h	23;"	d
-t6	arch/mips/include/asmdefs.h	24;"	d
-t6	compile/ASST0/machine/asmdefs.h	24;"	d
-t6	compile/ASST1/machine/asmdefs.h	24;"	d
-t7	arch/mips/include/asmdefs.h	25;"	d
-t7	compile/ASST0/machine/asmdefs.h	25;"	d
-t7	compile/ASST1/machine/asmdefs.h	25;"	d
-t8	arch/mips/include/asmdefs.h	34;"	d
-t8	compile/ASST0/machine/asmdefs.h	34;"	d
-t8	compile/ASST1/machine/asmdefs.h	34;"	d
-t9	arch/mips/include/asmdefs.h	35;"	d
-t9	compile/ASST0/machine/asmdefs.h	35;"	d
-t9	compile/ASST1/machine/asmdefs.h	35;"	d
+sys_waitpid	userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
+sys_write	userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
+t0	arch/mips/include/asmdefs.h	/^#define t0 /;"	d
+t0	compile/ASST0/machine/asmdefs.h	/^#define t0 /;"	d
+t0	compile/ASST1/machine/asmdefs.h	/^#define t0 /;"	d
+t0	compile/ASST2/machine/asmdefs.h	/^#define t0 /;"	d
+t1	arch/mips/include/asmdefs.h	/^#define t1 /;"	d
+t1	compile/ASST0/machine/asmdefs.h	/^#define t1 /;"	d
+t1	compile/ASST1/machine/asmdefs.h	/^#define t1 /;"	d
+t1	compile/ASST2/machine/asmdefs.h	/^#define t1 /;"	d
+t2	arch/mips/include/asmdefs.h	/^#define t2 /;"	d
+t2	compile/ASST0/machine/asmdefs.h	/^#define t2 /;"	d
+t2	compile/ASST1/machine/asmdefs.h	/^#define t2 /;"	d
+t2	compile/ASST2/machine/asmdefs.h	/^#define t2 /;"	d
+t3	arch/mips/include/asmdefs.h	/^#define t3 /;"	d
+t3	compile/ASST0/machine/asmdefs.h	/^#define t3 /;"	d
+t3	compile/ASST1/machine/asmdefs.h	/^#define t3 /;"	d
+t3	compile/ASST2/machine/asmdefs.h	/^#define t3 /;"	d
+t4	arch/mips/include/asmdefs.h	/^#define t4 /;"	d
+t4	compile/ASST0/machine/asmdefs.h	/^#define t4 /;"	d
+t4	compile/ASST1/machine/asmdefs.h	/^#define t4 /;"	d
+t4	compile/ASST2/machine/asmdefs.h	/^#define t4 /;"	d
+t5	arch/mips/include/asmdefs.h	/^#define t5 /;"	d
+t5	compile/ASST0/machine/asmdefs.h	/^#define t5 /;"	d
+t5	compile/ASST1/machine/asmdefs.h	/^#define t5 /;"	d
+t5	compile/ASST2/machine/asmdefs.h	/^#define t5 /;"	d
+t6	arch/mips/include/asmdefs.h	/^#define t6 /;"	d
+t6	compile/ASST0/machine/asmdefs.h	/^#define t6 /;"	d
+t6	compile/ASST1/machine/asmdefs.h	/^#define t6 /;"	d
+t6	compile/ASST2/machine/asmdefs.h	/^#define t6 /;"	d
+t7	arch/mips/include/asmdefs.h	/^#define t7 /;"	d
+t7	compile/ASST0/machine/asmdefs.h	/^#define t7 /;"	d
+t7	compile/ASST1/machine/asmdefs.h	/^#define t7 /;"	d
+t7	compile/ASST2/machine/asmdefs.h	/^#define t7 /;"	d
+t8	arch/mips/include/asmdefs.h	/^#define t8 /;"	d
+t8	compile/ASST0/machine/asmdefs.h	/^#define t8 /;"	d
+t8	compile/ASST1/machine/asmdefs.h	/^#define t8 /;"	d
+t8	compile/ASST2/machine/asmdefs.h	/^#define t8 /;"	d
+t9	arch/mips/include/asmdefs.h	/^#define t9 /;"	d
+t9	compile/ASST0/machine/asmdefs.h	/^#define t9 /;"	d
+t9	compile/ASST1/machine/asmdefs.h	/^#define t9 /;"	d
+t9	compile/ASST2/machine/asmdefs.h	/^#define t9 /;"	d
 t_cwd	include/thread.h	/^	struct vnode *t_cwd;$/;"	m	struct:thread	typeref:struct:thread::vnode
 t_name	include/thread.h	/^	char *t_name;$/;"	m	struct:thread
 t_pcb	include/thread.h	/^	struct pcb t_pcb;$/;"	m	struct:thread	typeref:struct:thread::pcb
 t_sleepaddr	include/thread.h	/^	const void *t_sleepaddr;$/;"	m	struct:thread
 t_stack	include/thread.h	/^	char *t_stack;$/;"	m	struct:thread
 t_vmspace	include/thread.h	/^	struct addrspace *t_vmspace;$/;"	m	struct:thread	typeref:struct:thread::addrspace
+tab_add	lib/table.c	/^int tab_add(struct table *t, void *ptr) {$/;"	f
+tab_create	lib/table.c	/^struct table* tab_create() {$/;"	f
+tab_destroy	lib/table.c	/^void tab_destroy(struct table *t) {$/;"	f
+tab_getnum	lib/table.c	/^int tab_getnum(struct table *t) {$/;"	f
+tab_getsize	lib/table.c	/^int tab_getsize(struct table *t) {$/;"	f
+tab_remove	lib/table.c	/^int tab_remove(struct table *t, int index) {$/;"	f
+table	lib/table.c	/^struct table {$/;"	s	file:
+tail	lib/linkedlist.c	/^    struct node *tail;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 testa	test/arraytest.c	/^testa(struct array *a)$/;"	f	file:
 testcv	test/synchtest.c	/^static struct cv *testcv;$/;"	v	typeref:struct:cv	file:
 testlock	test/synchtest.c	/^static struct lock *testlock;$/;"	v	typeref:struct:lock	file:
@@ -1806,114 +2080,151 @@ testval3	test/synchtest.c	/^static volatile unsigned long testval3;$/;"	v	file:
 tf_a0	arch/mips/include/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
 tf_a0	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
 tf_a0	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
+tf_a0	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a0;$/;"	m	struct:trapframe
 tf_a1	arch/mips/include/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
 tf_a1	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
 tf_a1	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
+tf_a1	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a1;$/;"	m	struct:trapframe
 tf_a2	arch/mips/include/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
 tf_a2	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
 tf_a2	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
+tf_a2	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a2;$/;"	m	struct:trapframe
 tf_a3	arch/mips/include/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
 tf_a3	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
 tf_a3	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
+tf_a3	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_a3;$/;"	m	struct:trapframe
 tf_at	arch/mips/include/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
 tf_at	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
 tf_at	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
+tf_at	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_at;	\/* Saved register 1 (AT) *\/$/;"	m	struct:trapframe
 tf_cause	arch/mips/include/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
 tf_cause	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
 tf_cause	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
+tf_cause	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_cause;	\/* coprocessor 0 cause register *\/$/;"	m	struct:trapframe
 tf_epc	arch/mips/include/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
 tf_epc	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
 tf_epc	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
+tf_epc	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_epc;	\/* coprocessor 0 epc register *\/$/;"	m	struct:trapframe
 tf_gp	arch/mips/include/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
 tf_gp	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
 tf_gp	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
+tf_gp	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_gp;$/;"	m	struct:trapframe
 tf_hi	arch/mips/include/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
 tf_hi	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
 tf_hi	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
+tf_hi	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_hi;$/;"	m	struct:trapframe
 tf_k0	arch/mips/include/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
 tf_k0	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
 tf_k0	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
+tf_k0	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_k0;	\/* dummy (see exception.S comments) *\/$/;"	m	struct:trapframe
 tf_k1	arch/mips/include/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
 tf_k1	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
 tf_k1	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
+tf_k1	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_k1;	\/* dummy *\/$/;"	m	struct:trapframe
 tf_lo	arch/mips/include/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
 tf_lo	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
 tf_lo	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
+tf_lo	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_lo;$/;"	m	struct:trapframe
 tf_ra	arch/mips/include/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
 tf_ra	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
 tf_ra	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
+tf_ra	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_ra;	\/* Saved register 31 *\/$/;"	m	struct:trapframe
 tf_s0	arch/mips/include/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
 tf_s0	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
 tf_s0	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
+tf_s0	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s0;$/;"	m	struct:trapframe
 tf_s1	arch/mips/include/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
 tf_s1	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
 tf_s1	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
+tf_s1	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s1;$/;"	m	struct:trapframe
 tf_s2	arch/mips/include/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
 tf_s2	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
 tf_s2	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
+tf_s2	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s2;$/;"	m	struct:trapframe
 tf_s3	arch/mips/include/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
 tf_s3	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
 tf_s3	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
+tf_s3	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s3;$/;"	m	struct:trapframe
 tf_s4	arch/mips/include/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
 tf_s4	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
 tf_s4	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
+tf_s4	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s4;$/;"	m	struct:trapframe
 tf_s5	arch/mips/include/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
 tf_s5	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
 tf_s5	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
+tf_s5	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s5;$/;"	m	struct:trapframe
 tf_s6	arch/mips/include/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
 tf_s6	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
 tf_s6	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
+tf_s6	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s6;$/;"	m	struct:trapframe
 tf_s7	arch/mips/include/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
 tf_s7	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
 tf_s7	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
+tf_s7	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s7;$/;"	m	struct:trapframe
 tf_s8	arch/mips/include/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
 tf_s8	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
 tf_s8	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
+tf_s8	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_s8;$/;"	m	struct:trapframe
 tf_sp	arch/mips/include/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
 tf_sp	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
 tf_sp	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
+tf_sp	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_sp;$/;"	m	struct:trapframe
 tf_status	arch/mips/include/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
 tf_status	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
 tf_status	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
+tf_status	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_status;	\/* coprocessor 0 status register *\/$/;"	m	struct:trapframe
 tf_t0	arch/mips/include/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
 tf_t0	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
 tf_t0	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
+tf_t0	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t0;$/;"	m	struct:trapframe
 tf_t1	arch/mips/include/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
 tf_t1	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
 tf_t1	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
+tf_t1	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t1;$/;"	m	struct:trapframe
 tf_t2	arch/mips/include/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
 tf_t2	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
 tf_t2	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
+tf_t2	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t2;$/;"	m	struct:trapframe
 tf_t3	arch/mips/include/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
 tf_t3	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
 tf_t3	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
+tf_t3	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t3;$/;"	m	struct:trapframe
 tf_t4	arch/mips/include/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
 tf_t4	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
 tf_t4	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
+tf_t4	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t4;$/;"	m	struct:trapframe
 tf_t5	arch/mips/include/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
 tf_t5	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
 tf_t5	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
+tf_t5	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t5;$/;"	m	struct:trapframe
 tf_t6	arch/mips/include/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
 tf_t6	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
 tf_t6	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
+tf_t6	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t6;$/;"	m	struct:trapframe
 tf_t7	arch/mips/include/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
 tf_t7	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
 tf_t7	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
+tf_t7	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t7;$/;"	m	struct:trapframe
 tf_t8	arch/mips/include/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
 tf_t8	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
 tf_t8	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
+tf_t8	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t8;$/;"	m	struct:trapframe
 tf_t9	arch/mips/include/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
 tf_t9	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
 tf_t9	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
+tf_t9	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_t9;$/;"	m	struct:trapframe
 tf_v0	arch/mips/include/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
 tf_v0	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
 tf_v0	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
+tf_v0	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_v0;	\/* Saved register 2 (v0) *\/$/;"	m	struct:trapframe
 tf_v1	arch/mips/include/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
 tf_v1	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
 tf_v1	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
+tf_v1	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_v1;	\/* etc. *\/$/;"	m	struct:trapframe
 tf_vaddr	arch/mips/include/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
 tf_vaddr	compile/ASST0/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
 tf_vaddr	compile/ASST1/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
+tf_vaddr	compile/ASST2/machine/trapframe.h	/^	u_int32_t tf_vaddr;	\/* coprocessor 0 vaddr register *\/$/;"	m	struct:trapframe
 the_beep	dev/generic/beep.c	/^static struct beep_softc *the_beep = NULL;$/;"	v	typeref:struct:beep_softc	file:
 the_clock	dev/generic/rtclock.c	/^static struct rtclock_softc *the_clock = NULL;$/;"	v	typeref:struct:rtclock_softc	file:
 the_console	dev/generic/console.c	/^static struct con_softc *the_console = NULL;$/;"	v	typeref:struct:con_softc	file:
@@ -1921,7 +2232,7 @@ the_random	dev/generic/random.c	/^static struct random_softc *the_random = NULL;
 the_trace	dev/lamebus/ltrace.c	/^static struct ltrace_softc *the_trace;$/;"	v	typeref:struct:ltrace_softc	file:
 thread	include/thread.h	/^struct thread {$/;"	s
 thread_bootstrap	thread/thread.c	/^thread_bootstrap(void)$/;"	f
-thread_create	thread/thread.c	/^thread_create(const char *name)$/;"	f	file:
+thread_create	thread/thread.c	/^thread_create(const char *name)$/;"	f
 thread_destroy	thread/thread.c	/^thread_destroy(struct thread *thread)$/;"	f	file:
 thread_exit	thread/thread.c	/^thread_exit(void)$/;"	f
 thread_fork	thread/thread.c	/^thread_fork(const char *name, $/;"	f
@@ -1933,7 +2244,7 @@ thread_sleep	thread/thread.c	/^thread_sleep(const void *addr)$/;"	f
 thread_wakeup	thread/thread.c	/^thread_wakeup(const void *addr)$/;"	f
 thread_yield	thread/thread.c	/^thread_yield(void)$/;"	f
 threadsem	test/fstest.c	/^static struct semaphore *threadsem = NULL;$/;"	v	typeref:struct:semaphore	file:
-threadstate_t	thread/thread.c	/^} threadstate_t;$/;"	t	typeref:enum:__anon1	file:
+threadstate_t	thread/thread.c	/^} threadstate_t;$/;"	t	typeref:enum:__anon6	file:
 threadtest	test/threadtest.c	/^threadtest(int nargs, char **args)$/;"	f
 threadtest2	test/threadtest.c	/^threadtest2(int nargs, char **args)$/;"	f
 threadtest3	test/tt3.c	/^threadtest3(int nargs, char **args)$/;"	f
@@ -1943,47 +2254,65 @@ trapcodenames	arch/mips/mips/trap.c	/^static const char *const trapcodenames[NTR
 trapframe	arch/mips/include/trapframe.h	/^struct trapframe {$/;"	s
 trapframe	compile/ASST0/machine/trapframe.h	/^struct trapframe {$/;"	s
 trapframe	compile/ASST1/machine/trapframe.h	/^struct trapframe {$/;"	s
+trapframe	compile/ASST2/machine/trapframe.h	/^struct trapframe {$/;"	s
 tryattach	conf/config	/^    function tryattach(combo) {$/;"	f
 tryattach_beep_to_ltimer	compile/ASST0/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 tryattach_beep_to_ltimer	compile/ASST1/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_beep_to_ltimer	compile/ASST2/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 tryattach_con_to_lser	compile/ASST0/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
 tryattach_con_to_lser	compile/ASST1/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
+tryattach_con_to_lser	compile/ASST2/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)$/;"	f	file:
 tryattach_emu_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_emu_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_emu_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lhd_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lhd_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lhd_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lrandom_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lrandom_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lrandom_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lser_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_lser_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_lser_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltimer_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltimer_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltimer_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltrace_to_lamebus	compile/ASST0/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_ltrace_to_lamebus	compile/ASST1/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
+tryattach_ltrace_to_lamebus	compile/ASST2/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_lrandom	compile/ASST0/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_lrandom	compile/ASST1/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_lrandom	compile/ASST2/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_pseudorand	compile/ASST0/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
 tryattach_random_to_pseudorand	compile/ASST1/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
+tryattach_random_to_pseudorand	compile/ASST2/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct pseudorand_softc *bus, int busunit)$/;"	f	file:
 tryattach_rtclock_to_ltimer	compile/ASST0/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 tryattach_rtclock_to_ltimer	compile/ASST1/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
+tryattach_rtclock_to_ltimer	compile/ASST2/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)$/;"	f	file:
 tsem	test/threadtest.c	/^static struct semaphore *tsem = NULL;$/;"	v	typeref:struct:semaphore	file:
 turnleft	asst1/stoplight.c	/^turnleft(unsigned long cardirection,$/;"	f	file:
 turnright	asst1/stoplight.c	/^turnright(unsigned long cardirection,$/;"	f	file:
+u	include/filetable.h	/^    struct uio u;$/;"	m	struct:file	typeref:struct:file::uio
 u_int16_t	arch/mips/include/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	compile/ASST0/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	compile/ASST1/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
+u_int16_t	compile/ASST2/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int32_t	arch/mips/include/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
 u_int32_t	compile/ASST0/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
 u_int32_t	compile/ASST1/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
+u_int32_t	compile/ASST2/machine/types.h	/^typedef unsigned int       u_int32_t;	\/* 32-bit unsigned integer *\/$/;"	t
 u_int64_t	arch/mips/include/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
 u_int64_t	compile/ASST0/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
 u_int64_t	compile/ASST1/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
+u_int64_t	compile/ASST2/machine/types.h	/^typedef unsigned long long u_int64_t;	\/* 64-bit unsigned integer *\/$/;"	t
 u_int8_t	arch/mips/include/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
 u_int8_t	compile/ASST0/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
 u_int8_t	compile/ASST1/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
+u_int8_t	compile/ASST2/machine/types.h	/^typedef unsigned char      u_int8_t;	\/* 8-bit unsigned integer *\/$/;"	t
 uintptr_t	arch/mips/include/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uintptr_t	compile/ASST0/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uintptr_t	compile/ASST1/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
+uintptr_t	compile/ASST2/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uio	include/uio.h	/^struct uio {$/;"	s
 uio_iovec	include/uio.h	/^	struct iovec      uio_iovec;       \/* Data block *\/$/;"	m	struct:uio	typeref:struct:uio::iovec
 uio_offset	include/uio.h	/^	off_t             uio_offset;      \/* desired offset into object *\/$/;"	m	struct:uio
@@ -1995,27 +2324,31 @@ uio_segflg	include/uio.h	/^	enum uio_seg      uio_segflg;      \/* what kind of 
 uio_space	include/uio.h	/^	struct addrspace *uio_space;       \/* address space for user pointer *\/$/;"	m	struct:uio	typeref:struct:uio::addrspace
 uiomove	userprog/uio.c	/^uiomove(void *ptr, size_t n, struct uio *uio)$/;"	f
 uiomovezeros	userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/;"	f
-un_kbase	include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon4
-un_ubase	include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon4
+un_kbase	include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon3
+un_ubase	include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon3
 userptr_t	include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	arch/mips/mips/exception.S	/^utlb_exception:$/;"	l
 utlb_exception_end	arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
+v	include/filetable.h	/^    struct vnode *v;$/;"	m	struct:file	typeref:struct:file::vnode
 v	lib/array.c	/^	void **v;$/;"	m	struct:array	file:
 v	lib/bitmap.c	/^	WORD_TYPE *v;$/;"	m	struct:bitmap	file:
-v0	arch/mips/include/asmdefs.h	12;"	d
-v0	compile/ASST0/machine/asmdefs.h	12;"	d
-v0	compile/ASST1/machine/asmdefs.h	12;"	d
-v1	arch/mips/include/asmdefs.h	13;"	d
-v1	compile/ASST0/machine/asmdefs.h	13;"	d
-v1	compile/ASST1/machine/asmdefs.h	13;"	d
-va_arg	include/stdarg.h	17;"	d
-va_copy	include/stdarg.h	18;"	d
-va_end	include/stdarg.h	19;"	d
+v0	arch/mips/include/asmdefs.h	/^#define v0 /;"	d
+v0	compile/ASST0/machine/asmdefs.h	/^#define v0 /;"	d
+v0	compile/ASST1/machine/asmdefs.h	/^#define v0 /;"	d
+v0	compile/ASST2/machine/asmdefs.h	/^#define v0 /;"	d
+v1	arch/mips/include/asmdefs.h	/^#define v1 /;"	d
+v1	compile/ASST0/machine/asmdefs.h	/^#define v1 /;"	d
+v1	compile/ASST1/machine/asmdefs.h	/^#define v1 /;"	d
+v1	compile/ASST2/machine/asmdefs.h	/^#define v1 /;"	d
+va_arg	include/stdarg.h	/^#define va_arg(/;"	d
+va_copy	include/stdarg.h	/^#define va_copy(/;"	d
+va_end	include/stdarg.h	/^#define va_end(/;"	d
 va_list	include/stdarg.h	/^typedef __va_list va_list;$/;"	t
-va_start	include/stdarg.h	16;"	d
+va_start	include/stdarg.h	/^#define va_start(/;"	d
 vaddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
+vaddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vfs_adddev	fs/vfs/vfslist.c	/^vfs_adddev(const char *devname, struct device *dev, int mountable)$/;"	f
 vfs_addfs	fs/vfs/vfslist.c	/^vfs_addfs(const char *devname, struct fs *fs)$/;"	f
 vfs_bootstrap	fs/vfs/vfslist.c	/^vfs_bootstrap(void)$/;"	f
@@ -2102,7 +2435,8 @@ writestress	test/fstest.c	/^DEFTEST(writestress);$/;"	v
 writestress2	test/fstest.c	/^DEFTEST(writestress2);$/;"	v
 writestress2_thread	test/fstest.c	/^writestress2_thread(void *fs, unsigned long num)$/;"	f	file:
 writestress_thread	test/fstest.c	/^writestress_thread(void *fs, unsigned long num)$/;"	f	file:
-z0	arch/mips/include/asmdefs.h	10;"	d
-z0	compile/ASST0/machine/asmdefs.h	10;"	d
-z0	compile/ASST1/machine/asmdefs.h	10;"	d
+z0	arch/mips/include/asmdefs.h	/^#define z0 /;"	d
+z0	compile/ASST0/machine/asmdefs.h	/^#define z0 /;"	d
+z0	compile/ASST1/machine/asmdefs.h	/^#define z0 /;"	d
+z0	compile/ASST2/machine/asmdefs.h	/^#define z0 /;"	d
 zombies	thread/thread.c	/^static struct array *zombies;$/;"	v	typeref:struct:array	file:

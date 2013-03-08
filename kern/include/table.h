@@ -6,15 +6,19 @@
 struct table;
 
 struct table *tab_create();
+
+// frees memory used by table
+// make sure you freed memory of pointers you've inserted
 void tab_destroy(struct table *t);
 
-//int tab_first_empty_slot(struct table *t);
-//int tab_insert(struct table *t, int index, void *ptr);
-
 // returns index where ptr was stored
-int tab_add(struct table *t, void *ptr);
+// returns -1 on failure and changes value of err
+int tab_add(struct table *t, void *ptr, int *err);
 // removes the entry at the given index
+// returns 0 if successful, -1 otherwise
 int tab_remove(struct table *t, int index);
+// returns the ptr at the given index
+void* tab_getguy(struct table *t, int index);
 // returns number of entries in table - number of holes
 int tab_getnum(struct table *t);
 // returns number of entries in table

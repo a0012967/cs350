@@ -28,7 +28,8 @@ void ft_destroy(struct filetable *ft);
 int ft_storefile(struct filetable *ft, struct file* f, int *err);
 // returns 0 if successful. returns error code otherwise
 int ft_removefile(struct filetable *ft, int fd);
-// gets file from filetable. returns NULL on error
+// asserts ft is not null and fd is valid
+// returns file stored at given fd
 struct file* ft_getfile(struct filetable *ft, int fd);
 
 #endif /* _FILETABLE_H_ */

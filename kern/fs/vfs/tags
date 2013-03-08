@@ -1,0 +1,87 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+badnames	vfslist.c	/^badnames(const char *n1, const char *n2, const char *n3)$/;"	f	file:
+bootfs_lock	vfslookup.c	/^static struct lock *bootfs_lock = NULL;$/;"	v	typeref:struct:lock	file:
+bootfs_vnode	vfslookup.c	/^static struct vnode *bootfs_vnode = NULL;$/;"	v	typeref:struct:vnode	file:
+change_bootfs	vfslookup.c	/^change_bootfs(struct vnode *newguy)$/;"	f	file:
+dev_close	device.c	/^dev_close(struct vnode *v)$/;"	f	file:
+dev_create_vnode	device.c	/^dev_create_vnode(struct device *dev)$/;"	f
+dev_gettype	device.c	/^dev_gettype(struct vnode *v, u_int32_t *ret)$/;"	f	file:
+dev_ioctl	device.c	/^dev_ioctl(struct vnode *v, int op, userptr_t data)$/;"	f	file:
+dev_lookparent	device.c	/^dev_lookparent(struct vnode *dir, $/;"	f	file:
+dev_lookup	device.c	/^dev_lookup(struct vnode *dir, $/;"	f	file:
+dev_mmap	device.c	/^dev_mmap(struct vnode *v  \/* add stuff as needed *\/)$/;"	f	file:
+dev_namefile	device.c	/^dev_namefile(struct vnode *v, struct uio *uio)$/;"	f	file:
+dev_open	device.c	/^dev_open(struct vnode *v, int flags)$/;"	f	file:
+dev_read	device.c	/^dev_read(struct vnode *v, struct uio *uio)$/;"	f	file:
+dev_reclaim	device.c	/^dev_reclaim(struct vnode *v)$/;"	f	file:
+dev_stat	device.c	/^dev_stat(struct vnode *v, struct stat *statbuf)$/;"	f	file:
+dev_truncate	device.c	/^dev_truncate(struct vnode *v, off_t len)$/;"	f	file:
+dev_tryseek	device.c	/^dev_tryseek(struct vnode *v, off_t pos)$/;"	f	file:
+dev_vnode_ops	device.c	/^static const struct vnode_ops dev_vnode_ops = {$/;"	v	typeref:struct:vnode_ops	file:
+dev_write	device.c	/^dev_write(struct vnode *v, struct uio *uio)$/;"	f	file:
+devnull_create	devnull.c	/^devnull_create(void)$/;"	f
+findmount	vfslist.c	/^findmount(const char *devname, struct knowndev **result)$/;"	f	file:
+getdevice	vfslookup.c	/^getdevice(char *path, char **subpath, struct vnode **startvn)$/;"	f	file:
+kd_device	vfslist.c	/^	struct device *kd_device;$/;"	m	struct:knowndev	typeref:struct:knowndev::device	file:
+kd_fs	vfslist.c	/^	struct fs *kd_fs;$/;"	m	struct:knowndev	typeref:struct:knowndev::fs	file:
+kd_name	vfslist.c	/^	char *kd_name;$/;"	m	struct:knowndev	file:
+kd_rawname	vfslist.c	/^	char *kd_rawname;$/;"	m	struct:knowndev	file:
+kd_vnode	vfslist.c	/^	struct vnode *kd_vnode;$/;"	m	struct:knowndev	typeref:struct:knowndev::vnode	file:
+knowndev	vfslist.c	/^struct knowndev {$/;"	s	file:
+knowndevs	vfslist.c	/^static struct array *knowndevs;$/;"	v	typeref:struct:array	file:
+knowndevs_lock	vfslist.c	/^static struct lock *knowndevs_lock;$/;"	v	typeref:struct:lock	file:
+mkrawname	vfslist.c	/^mkrawname(const char *name)$/;"	f	file:
+null_creat	device.c	/^null_creat(struct vnode *v, const char *name, int excl, struct vnode **result)$/;"	f	file:
+null_fsync	device.c	/^null_fsync(struct vnode *v)$/;"	f	file:
+null_io	device.c	/^null_io(struct vnode *v, struct uio *uio)$/;"	f	file:
+null_link	device.c	/^null_link(struct vnode *v, const char *name, struct vnode *file)$/;"	f	file:
+null_nameop	device.c	/^null_nameop(struct vnode *v, const char *name)$/;"	f	file:
+null_rename	device.c	/^null_rename(struct vnode *v, const char *n1, struct vnode *v2, const char *n2)$/;"	f	file:
+null_symlink	device.c	/^null_symlink(struct vnode *v, const char *contents, const char *name)$/;"	f	file:
+nullclose	devnull.c	/^nullclose(struct device *dev)$/;"	f	file:
+nullio	devnull.c	/^nullio(struct device *dev, struct uio *uio)$/;"	f	file:
+nullioctl	devnull.c	/^nullioctl(struct device *dev, int op, userptr_t data)$/;"	f	file:
+nullopen	devnull.c	/^nullopen(struct device *dev, int openflags)$/;"	f	file:
+samestring	vfslist.c	/^samestring(const char *a, const char *b)$/;"	f	file:
+samestring3	vfslist.c	/^samestring3(const char *a, const char *b, const char *c, const char *d)$/;"	f	file:
+vfs_adddev	vfslist.c	/^vfs_adddev(const char *devname, struct device *dev, int mountable)$/;"	f
+vfs_addfs	vfslist.c	/^vfs_addfs(const char *devname, struct fs *fs)$/;"	f
+vfs_bootstrap	vfslist.c	/^vfs_bootstrap(void)$/;"	f
+vfs_chdir	vfscwd.c	/^vfs_chdir(char *path)$/;"	f
+vfs_clearbootfs	vfslookup.c	/^vfs_clearbootfs(void)$/;"	f
+vfs_clearcurdir	vfscwd.c	/^vfs_clearcurdir(void)$/;"	f
+vfs_close	vfspath.c	/^vfs_close(struct vnode *vn)$/;"	f
+vfs_doadd	vfslist.c	/^vfs_doadd(const char *dname, int mountable, struct device *dev, struct fs *fs)$/;"	f	file:
+vfs_getcurdir	vfscwd.c	/^vfs_getcurdir(struct vnode **ret)$/;"	f
+vfs_getcwd	vfscwd.c	/^vfs_getcwd(struct uio *uio)$/;"	f
+vfs_getdevname	vfslist.c	/^vfs_getdevname(struct fs *fs)$/;"	f
+vfs_getroot	vfslist.c	/^vfs_getroot(const char *devname, struct vnode **result)$/;"	f
+vfs_initbootfs	vfslookup.c	/^vfs_initbootfs(void)$/;"	f
+vfs_link	vfspath.c	/^vfs_link(char *oldpath, char *newpath)$/;"	f
+vfs_lookparent	vfslookup.c	/^vfs_lookparent(char *path, struct vnode **retval,$/;"	f
+vfs_lookup	vfslookup.c	/^vfs_lookup(char *path, struct vnode **retval)$/;"	f
+vfs_mkdir	vfspath.c	/^vfs_mkdir(char *path)$/;"	f
+vfs_mount	vfslist.c	/^vfs_mount(const char *devname, void *data,$/;"	f
+vfs_open	vfspath.c	/^vfs_open(char *path, int openflags, struct vnode **ret)$/;"	f
+vfs_readlink	vfspath.c	/^vfs_readlink(char *path, struct uio *uio)$/;"	f
+vfs_remove	vfspath.c	/^vfs_remove(char *path)$/;"	f
+vfs_rename	vfspath.c	/^vfs_rename(char *oldpath, char *newpath)$/;"	f
+vfs_rmdir	vfspath.c	/^vfs_rmdir(char *path)$/;"	f
+vfs_setbootfs	vfslookup.c	/^vfs_setbootfs(const char *fsname)$/;"	f
+vfs_setcurdir	vfscwd.c	/^vfs_setcurdir(struct vnode *dir)$/;"	f
+vfs_symlink	vfspath.c	/^vfs_symlink(const char *contents, char *path)$/;"	f
+vfs_sync	vfslist.c	/^vfs_sync(void)$/;"	f
+vfs_unmount	vfslist.c	/^vfs_unmount(const char *devname)$/;"	f
+vfs_unmountall	vfslist.c	/^vfs_unmountall(void)$/;"	f
+vnode_check	vnode.c	/^vnode_check(struct vnode *v, const char *opstr)$/;"	f
+vnode_decopen	vnode.c	/^vnode_decopen(struct vnode *vn)$/;"	f
+vnode_decref	vnode.c	/^vnode_decref(struct vnode *vn)$/;"	f
+vnode_incopen	vnode.c	/^vnode_incopen(struct vnode *vn)$/;"	f
+vnode_incref	vnode.c	/^vnode_incref(struct vnode *vn)$/;"	f
+vnode_init	vnode.c	/^vnode_init(struct vnode *vn, const struct vnode_ops *ops,$/;"	f
+vnode_kill	vnode.c	/^vnode_kill(struct vnode *vn)$/;"	f

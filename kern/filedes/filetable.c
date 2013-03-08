@@ -1,5 +1,5 @@
 #include <filetable.h>
-#include <array.h>
+#include <table.h>
 #include <synch.h>
 #include <kern/errno.h>
 #include <vnode.h>
@@ -34,7 +34,7 @@ void f_destroy(struct file *f) {
  *************************/
 
 struct filetable {
-    struct array *files;
+    struct table *files;
     struct lock *ft_lock;
 };
 
@@ -46,7 +46,7 @@ struct filetable* ft_create() {
         return NULL;
     }
     
-    ft->files = array_create();
+    ft->files = tab_create();
     if (ft->files == NULL) {
         DEBUG(DB_EXEC, "FILETABLE: failed creating filetable array\n");
         kfree(ft);
@@ -56,7 +56,7 @@ struct filetable* ft_create() {
     ft->ft_lock = lock_create("ft_lock");
     if (ft->ft_lock == NULL) {
         DEBUG(DB_EXEC, "FILETABLE: failed creating filetable lock\n");
-        array_destroy(ft->files);
+        tab_destroy(ft->files);
         kfree(ft);
         return NULL;
     }
@@ -67,13 +67,13 @@ struct filetable* ft_create() {
 // destroys file table
 void ft_destroy(struct filetable *ft) {
     assert(ft != NULL);
-    // destroy all elements in array
+    // destroy all elements in table
     int i=0;
-    for (i=0; i < array_getnum(ft->files); i++) {
-        struct file *f = array_getguy(ft->files, i);
+    for (i=0; i < tab_getnum(ft->files); i++) {
+        struct file *f = tab_getguy(ft->files, i);
         f_destroy((struct file*)f);
     }
-    array_destroy(ft->files);
+    tab_destroy(ft->files);
     lock_destroy(ft->ft_lock);
     kfree(ft);
 }
@@ -85,16 +85,13 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
     int result;
 
     lock_acquire(ft->ft_lock);
-        result = array_add(ft->files, f);
-        if (result) {
-            *err = result;
+        result = tab_add(ft->files, f, err);
+        if (result == -1) {
+            // err's value has been changed in tab_add
             result = -1;
         }
-        else {
-            result = array_getnum(ft->files) - 1; // last index
-            // TODO: remove later
-            assert(result >= 0);
-        }
+        assert(result >= 0);
+        DEBUG(DB_EXEC, "FILETABLE: entry stored at index %d\n", result);
     lock_release(ft->ft_lock);
 
     return result;
@@ -106,14 +103,17 @@ int ft_removefile(struct filetable *ft, int fd) {
     int result;
 
     lock_acquire(ft->ft_lock);
-        if (fd < 0 || fd >= array_getnum(ft->files))
+        if (fd < 0 || fd >= tab_getnum(ft->files))
             result = ENOENT;
         else {
             // get file to be removed
-            void *file = array_getguy(ft->files, fd);
+            void *file = tab_getguy(ft->files, fd);
 
             // removed reference of file from array
-            array_remove(ft->files, fd);
+            result = tab_remove(ft->files, fd);
+
+            // TODO: change how to handle failure on remove
+            assert(result == 0);
 
             // free memory used by file
             f_destroy((struct file *)file);
@@ -126,19 +126,17 @@ int ft_removefile(struct filetable *ft, int fd) {
     return result;
 }
 
-// returns null if invalid index for now
+// asserts ft is not null and fd is valid
+// returns file stored at given fd
 struct file* ft_getfile(struct filetable *ft, int fd) {
     assert(ft != NULL);
     int size;
     struct file *ret;
 
     lock_acquire(ft->ft_lock);
-        size = array_getnum(ft->files);
-        if (fd < 0 || fd >= size) {
-            ret = NULL;
-        } else {
-            ret = (struct file*)array_getguy(ft->files, fd);
-        }
+        size = tab_getnum(ft->files);
+        assert(fd >=0 && fd < size);
+        ret = (struct file*)tab_getguy(ft->files, fd);
     lock_release(ft->ft_lock);
 
     return ret;

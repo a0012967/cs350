@@ -30,6 +30,8 @@ int sys_open(const char *filename, int flags, int *err) {
 
     struct file *f = f_create(u, v);
     ret = ft_storefile(curprocess->file_table, f, err);
+    // TODO: remove this
+    kprintf("SYSOPEN: file is stored at index %d\n", ret);
 
     return ret;
 }
