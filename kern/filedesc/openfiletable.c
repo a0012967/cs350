@@ -6,8 +6,11 @@
 #include <vnode.h>
 #include <lib.h>
 #include <uio.h>
+#include <vfs.h>
+#include <curprocess.h>
+#include <process.h>
 
-
+#include <kern/unistd.h>
 // TODO: put openfiletable.c into folder by itself
 static struct array *oft;
 static struct lock *oft_lock;
@@ -32,7 +35,7 @@ void of_destroy(struct openfile *of) {
     // TODO: might change how to store u
     kfree(of);
 }
-
+ 
 
 
 /*************************
@@ -52,6 +55,46 @@ void openfile_table_bootstrap() {
     if (oft_lock == NULL) {
         panic("filetable: Could not create open file table lock\n");
     }
+
+	
+	// open the console
+	int err;
+	struct vnode *vn;
+	
+	char *console = NULL;
+	console = kstrdup("con:");
+
+	
+	err = vfs_open(console, O_RDONLY | O_WRONLY, &vn); 
+	if (err) {
+		panic("filetable: Could not open console\n");
+	}
+
+	// store in open file table
+	struct uio u;	
+    u.uio_offset = 0;	    
+    u.uio_space = curprocess->p_thread->t_vmspace;	
+
+    struct openfile *of = of_create(0, &u, vn);
+	if (of == NULL) {
+		panic("filetable: Could not create an open file entry for console\n");
+	}
+
+	int result;
+    result = oft_storefile(of, err);
+	if(result == -1 ) {
+		panic("filetable: Could not add console to file table\n");
+	}
+
+	
+	
+	kfree(console);
+
+
+
+//TODO: open STDIN, STDOUT, & STDERR
+// make sure openfile_table_bootstrap is called after dev_bootstrap
+// so that console devices have been initialized
 }
 
 // returns index of openfile in table on success
@@ -83,7 +126,7 @@ int oft_removefile(int fd) {
     lock_acquire(oft_lock);
         if (fd < 0 || fd >= array_getnum(oft))
             result = ENOENT;
-        else {
+        else { 
             // get openfile to be removed
             void *file = array_getguy(oft, fd);
 
