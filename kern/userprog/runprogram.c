@@ -14,6 +14,9 @@
 #include <vm.h>
 #include <vfs.h>
 #include <test.h>
+#include <process.h>
+#include <curprocess.h>
+#include "opt-A2.h"
 
 /*
  * Load program "progname" and start running it in usermode.
@@ -36,6 +39,13 @@ runprogram(char *progname)
 
 	/* We should be a new thread. */
 	assert(curthread->t_vmspace == NULL);
+
+    // TODO: remove this from here. let fork do its job properly
+    #if OPT_A2
+        struct process *p = p_create();
+        p_assign_thread(p, curthread);
+        curprocess = p;
+    #endif /*OPT_A2*/
 
 	/* Create a new address space. */
 	curthread->t_vmspace = as_create();

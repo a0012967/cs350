@@ -11,7 +11,7 @@ struct file {
 };
 
 // creates an file. returns NULL on fail
-struct file* f_create();
+struct file* f_create(struct uio u, struct vnode *v);
 // free memory used by file
 void f_destroy(struct file *f);
 

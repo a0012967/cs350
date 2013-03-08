@@ -10,12 +10,16 @@
  * FILE STUFF
  *************************/
 
-struct file* f_create() {
+struct file* f_create(struct uio u, struct vnode *v) {
     struct file *f = kmalloc(sizeof(struct file));
     if (f == NULL) {
         DEBUG(DB_EXEC, "FILE: failed creating file\n");
         return NULL;
     }
+
+    f->u = u;
+    f->v = v;
+
     return f;
 }
 

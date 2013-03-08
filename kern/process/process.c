@@ -12,12 +12,12 @@
 #include <filetable.h>
 #include <array.h>
 
-/*****************************
- * Forward Declarations
- * **************************/
-int assign_pid (struct process *proc);
 
+// global reference to current process
 struct process *curprocess;
+
+// forward declaration
+int assign_pid (struct process *proc);
 
 struct process_table {
 	struct array *process_list;
@@ -41,14 +41,12 @@ void process_bootstrap() {
         panic("process: Process bootstrap failed\n");
     }
 	p->p_thread = thread_bootstrap();
-	int err = assign_pid(p);
-    // TODO: make use of err
-    (void)err;
 
     curprocess = p;
 }
 
 struct process * p_create() {
+    int result;
 	struct process *p = kmalloc(sizeof(struct process));
 	if (p == NULL)  {
         return NULL;
@@ -58,6 +56,14 @@ struct process * p_create() {
     p->file_table = ft_create();
     if (p->file_table == NULL) {
         // free allocated process cause it failed
+        kfree(p);
+        return NULL;
+    }
+
+    // asign pid
+    result = assign_pid(p);
+    if (result) {
+        ft_destroy(p->file_table);
         kfree(p);
         return NULL;
     }
