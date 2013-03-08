@@ -79,9 +79,10 @@ main()
   rc = read(f2, (char *) &intbuf, sizeof(intbuf));
   TEST_EQUAL(rc, sizeof(j), "read from f2 does not read/return proper value");
   TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
-*/
 
   TEST_STATS();
+*/
+
 
   exit(0);
 }
