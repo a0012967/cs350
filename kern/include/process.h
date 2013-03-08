@@ -9,16 +9,14 @@
 struct process {
 	pid_t pid;
 	struct thread* p_thread;
-
-    // holds index of open files in OpenFileTable
-    struct array* fd_table; //file descriptor table
+    struct filetable* file_table; 
 };
 
 // bootstraps initial process and process table
 void process_bootstrap();
 struct process * p_create();
-void p_destroy(struct process *p);
-void p_assign_thread(struct process * proc, struct thread * thread);
+void p_destroy();
+void p_assign_thread(struct process *p, struct thread *thread);
 
 
 struct process_table;

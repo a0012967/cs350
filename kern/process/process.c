@@ -3,18 +3,21 @@
 //      there is no use for the test in main.c
 
 #include <process.h>
+#include <curprocess.h>
 #include <array.h>
 #include <linkedlist.h>
 #include <lib.h>
 #include <thread.h>
-#include <curprocess.h>
+#include <curthread.h>
+#include <filetable.h>
 #include <array.h>
-#include <openfiletable.h>
 
 /*****************************
  * Forward Declarations
  * **************************/
 int assign_pid (struct process *proc);
+
+struct process *curprocess;
 
 struct process_table {
 	struct array *process_list;
@@ -51,34 +54,30 @@ struct process * p_create() {
         return NULL;
     }
 
-    // instantiate filedescriptor table
-    p->fd_table = array_create();
-    if (p->fd_table == NULL) {
+    // instantiate file table
+    p->file_table = ft_create();
+    if (p->file_table == NULL) {
         // free allocated process cause it failed
         kfree(p);
-        p = NULL;
+        return NULL;
     }
+
 	return p;
 }
 
-void p_destroy(struct process *p) {
-    // TODO: check the case when we destroy the current process
+// Cause the current process to be destroyed
+void p_destroy() {
+    // make sure we're deleting the current process and current thread
+    assert(curthread == curprocess->p_thread);
 
-    int i;
+    // destroy filetable
+    ft_destroy(curprocess->file_table);
 
-    // remove all open files referred by fd_table
-    // in openfiletable
-    for (i=0; i<array_getnum(p->fd_table); i++) {
-        // get index of file in OPENFILETABLE
-        int *index = (int*)array_getguy(p->fd_table, i);
-        // remove the file in OPENFILETABLE
-        oft_removefile(*index);
-    }
-    kfree(p->fd_table);
+    // free memory allocated to the process
+    kfree(curprocess); // TODO: process scheduling?
 
-    // TODO: destroy thread
-    // thread_destroy(p->p_thread);
-    kfree(p);
+    // exit the current thread
+    thread_exit();
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {
