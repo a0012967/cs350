@@ -75,7 +75,13 @@ mips_syscall(struct trapframe *tf)
 
         #if OPT_A2
             case SYS_open:
+                err = 0;
                 retval = sys_open((const char *)tf->tf_a0, (int)tf->tf_a1, &err);
+            break;
+            case SYS_close:
+                err = 0;
+                retval = sys_close((int)tf->tf_a0, &err);
+            break;
             case SYS_read:
             break;
             case SYS_fork:

@@ -18,6 +18,7 @@ int tab_add(struct table *t, void *ptr, int *err);
 // returns 0 if successful, -1 otherwise
 int tab_remove(struct table *t, int index);
 // returns the ptr at the given index
+// returns NULL when ptr has been removed
 void* tab_getguy(struct table *t, int index);
 // returns number of entries in table - number of holes
 int tab_getnum(struct table *t);

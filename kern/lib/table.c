@@ -71,6 +71,7 @@ void tab_destroy(struct table *t) {
 
 int tab_add(struct table *t, void *ptr, int *err) {
     assert(t != NULL);
+    assert(*err == 0);
     int result;
     int slot = get_first_slot(t);
 
@@ -112,6 +113,8 @@ int tab_remove(struct table *t, int index) {
     return result;
 }
 
+// returns the ptr at the given index
+// returns NULL when ptr has been removed
 void* tab_getguy(struct table *t, int index) {
     assert(t != NULL);
     return array_getguy(t->array, index);

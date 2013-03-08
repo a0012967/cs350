@@ -45,7 +45,7 @@ struct filetable* ft_create() {
         DEBUG(DB_EXEC, "FILETABLE: failed creating filetable\n");
         return NULL;
     }
-    
+
     ft->files = tab_create();
     if (ft->files == NULL) {
         DEBUG(DB_EXEC, "FILETABLE: failed creating filetable array\n");
@@ -82,19 +82,25 @@ void ft_destroy(struct filetable *ft) {
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
     assert(ft != NULL && f != NULL && err != NULL);
+    assert(*err == 0);
+
     int result;
 
     lock_acquire(ft->ft_lock);
         result = tab_add(ft->files, f, err);
         if (result == -1) {
-            // err's value has been changed in tab_add
-            result = -1;
+            goto fail;
         }
         assert(result >= 0);
-        DEBUG(DB_EXEC, "FILETABLE: entry stored at index %d\n", result);
+        assert(*err == 0);
     lock_release(ft->ft_lock);
-
     return result;
+
+fail:
+    lock_release(ft->ft_lock);
+    assert(*err);
+    assert(result == -1);
+    return -1;
 }
 
 // returns 0 if successful
@@ -103,9 +109,10 @@ int ft_removefile(struct filetable *ft, int fd) {
     int result;
 
     lock_acquire(ft->ft_lock);
-        if (fd < 0 || fd >= tab_getnum(ft->files))
+        if (fd < 0 || fd >= tab_getnum(ft->files)) {
             result = ENOENT;
-        else {
+            goto fail;
+        } else {
             // get file to be removed
             void *file = tab_getguy(ft->files, fd);
 
@@ -122,23 +129,42 @@ int ft_removefile(struct filetable *ft, int fd) {
             result = 0;
         }
     lock_release(ft->ft_lock);
+    return result;
 
+fail:
+    lock_release(ft->ft_lock);
     return result;
 }
 
-// asserts ft is not null and fd is valid
-// returns file stored at given fd
-struct file* ft_getfile(struct filetable *ft, int fd) {
+// SUCCESS: returns file stored at given fd
+// FAILURE: returns NULL and updates value of err
+struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
     assert(ft != NULL);
     int size;
     struct file *ret;
 
     lock_acquire(ft->ft_lock);
         size = tab_getnum(ft->files);
-        assert(fd >=0 && fd < size);
+
+        // out of bounds
+        if (fd < 0 && fd >= size) {
+            *err = ENOENT; // no such file
+            goto fail;
+        }
+
         ret = (struct file*)tab_getguy(ft->files, fd);
+
+        // file has been removed
+        if (ret == NULL) {
+            goto fail;
+        }
     lock_release(ft->ft_lock);
 
     return ret;
+
+fail:
+    lock_release(ft->ft_lock);
+    assert(*err);
+    return NULL;
 }
 

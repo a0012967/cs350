@@ -13,6 +13,9 @@
 
 // returns -1 if error occured and changes content of err
 int sys_open(const char *filename, int flags, int *err) {
+    assert(filename != NULL);
+    assert(*err == 0);
+
     struct vnode *v;
     struct uio u;
     int ret;
@@ -29,9 +32,8 @@ int sys_open(const char *filename, int flags, int *err) {
     u.uio_space = curprocess->p_thread->t_vmspace;
 
     struct file *f = f_create(u, v);
+    assert(f != NULL);
     ret = ft_storefile(curprocess->file_table, f, err);
-    // TODO: remove this
-    kprintf("SYSOPEN: file is stored at index %d\n", ret);
 
     return ret;
 }
