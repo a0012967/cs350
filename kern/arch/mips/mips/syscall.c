@@ -77,10 +77,24 @@ mips_syscall(struct trapframe *tf)
             case SYS_open:
                 err = 0;
                 retval = sys_open((const char *)tf->tf_a0, (int)tf->tf_a1, &err);
+                /*
+                kprintf("open index: %d\n", retval);
+                if (err)
+                    kprintf("open fail\n");
+                else
+                    kprintf("open success\n");
+                */
             break;
             case SYS_close:
                 err = 0;
+                //kprintf("close index: %d\n", (int)tf->tf_a0);
                 retval = sys_close((int)tf->tf_a0, &err);
+                /*
+                if (err)
+                    kprintf("close fail\n");
+                else
+                    kprintf("close success\n");
+                */
             break;
             case SYS_read:
             break;
@@ -92,7 +106,7 @@ mips_syscall(struct trapframe *tf)
                 sys__exit((int)tf->tf_a0);
             break;
         #endif /* OPT_A2 */
- 
+
 	    default:
 		kprintf("Unknown syscall %d\n", callno);
 		err = ENOSYS;

@@ -24,6 +24,7 @@ struct file* f_create(struct uio u, struct vnode *v) {
 }
 
 void f_destroy(struct file *f) {
+    assert(f != NULL);
     kfree(f);
 }
 
@@ -69,9 +70,11 @@ void ft_destroy(struct filetable *ft) {
     assert(ft != NULL);
     // destroy all elements in table
     int i=0;
-    for (i=0; i < tab_getnum(ft->files); i++) {
+    for (i=0; i < tab_getsize(ft->files); i++) {
         struct file *f = tab_getguy(ft->files, i);
-        f_destroy((struct file*)f);
+        // remember files could be null so be careful
+        if (f != NULL)
+            f_destroy((struct file*)f);
     }
     tab_destroy(ft->files);
     lock_destroy(ft->ft_lock);
@@ -104,19 +107,20 @@ fail:
 }
 
 // returns 0 if successful
+// frees memory used by the file
 int ft_removefile(struct filetable *ft, int fd) {
     assert(ft != NULL);
     int result;
 
     lock_acquire(ft->ft_lock);
-        if (fd < 0 || fd >= tab_getnum(ft->files)) {
+        if (fd < 0 || fd >= tab_getsize(ft->files)) {
             result = ENOENT;
             goto fail;
         } else {
             // get file to be removed
             void *file = tab_getguy(ft->files, fd);
 
-            // removed reference of file from array
+            // remove reference of file from array
             result = tab_remove(ft->files, fd);
 
             // TODO: change how to handle failure on remove
@@ -156,6 +160,7 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
 
         // file has been removed
         if (ret == NULL) {
+            *err = ENOENT;
             goto fail;
         }
     lock_release(ft->ft_lock);

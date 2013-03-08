@@ -31,6 +31,7 @@ struct node* n_create(void *data, struct node *next) {
 }
 
 void n_destroy(struct node *n) {
+    assert(n != NULL);
     kfree(n);
 }
 
@@ -54,7 +55,7 @@ struct linkedlist* ll_create() {
 }
 
 void ll_destroy(struct linkedlist *ll) {
-    assert(ll != NULL);    
+    assert(ll != NULL);
     // destroy all elements
     if (!ll_empty(ll)) {
         // remove this assert later
@@ -70,16 +71,18 @@ void ll_destroy(struct linkedlist *ll) {
 }
 
 int ll_empty(struct linkedlist *ll) {
+    assert(ll != NULL);
     return ll->size == 0;
 }
 
 int ll_size(struct linkedlist *ll) {
+    assert(ll != NULL);
     return ll->size;
 }
 
 // returns 0 if successful, -1 otherwise
 int ll_push_front(struct linkedlist *ll, void *ptr) {
-    assert(ll != NULL);    
+    assert(ll != NULL);
     struct node *n = n_create(ptr, NULL);
 
     if (n == NULL) // n_create failed
@@ -148,7 +151,7 @@ void* ll_pop_front(struct linkedlist *ll) {
 // asserts that linked list is not empty
 void* ll_pop_back(struct linkedlist *ll) {
     assert(ll != NULL);
-    assert(ll_empty(ll));
+    assert(!ll_empty(ll));
 
     struct node *curr = ll->head;
     void *ret;
@@ -159,6 +162,7 @@ void* ll_pop_back(struct linkedlist *ll) {
         n_destroy(ll->tail);
         ll->head = NULL;
         ll->tail = NULL;
+        ll->size = 0;
         return ret;
     }
 

@@ -19,7 +19,7 @@ int get_first_slot(struct table *t) {
     if (ll_size(t->slots) == 0) {
         return -1;
     }
-    
+
     int *ptr = (int *)ll_pop_front(t->slots);
     int ret = *ptr; // copy the value
 
@@ -92,6 +92,8 @@ int tab_add(struct table *t, void *ptr, int *err) {
 }
 
 // returns 0 if successful, -1 otherwise
+// sets NULL to pointer in table at the given index
+// saves the index as free in linked list
 int tab_remove(struct table *t, int index) {
     assert(t != NULL);
 
@@ -101,7 +103,7 @@ int tab_remove(struct table *t, int index) {
 
     // TODO: worry about shrinking the array and freeing up memory used
 
-    // remove data stored
+    // replace pointer stored as NULL
     array_setguy(t->array, index, NULL);
 
     // store the index to free slots
@@ -120,13 +122,15 @@ void* tab_getguy(struct table *t, int index) {
     return array_getguy(t->array, index);
 }
 
+int tab_getsize(struct table *t) {
+    assert(t != NULL);
+    return array_getnum(t->array);
+}
+
+// WARNING! DON'T USE THIS FOR NOW! USE THIS FOR THE SAKE OF DEBUGGING!
+// returns number of entries in table - number of holes
 int tab_getnum(struct table *t) {
     assert(t != NULL);
     // numbers of entry in table - free slots
     return array_getnum(t->array) - ll_size(t->slots);
-}
-
-int tab_getsize(struct table *t) {
-    assert(t != NULL);
-    return array_getnum(t->array);
 }
