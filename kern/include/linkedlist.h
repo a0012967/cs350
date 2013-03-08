@@ -2,23 +2,6 @@
 #define _LINKEDLIST_H_
 
 
-/*
- * Node used for linked list
- * Contains: 
- *     void pointer for data.
- *     a node pointer to the next node>
- * Functions
- *     n_create  - allocates a new node.
- *                 Returns NULL on error>
- *     n_destroy - dispose of the node.
- */
-
-struct node; // opaque
-
-struct node *n_create(void *data, struct node *next);
-void         n_destroy(struct node *n);
-
-
 /* Linked list of void pointers
  *
  * Functions:
@@ -28,9 +11,9 @@ void         n_destroy(struct node *n);
  *     ll_empty      - return true if linked list is empty.
  *     ll_size       - return size of linked list.
  *     ll_push_front - pushes a void pointer in front of the linked list.
- *                     Returns 1 if successful, 0 otherwise.
+ *                     Returns 0 if successful, -1 otherwise.
  *     ll_push_back  - pushes a void pointer in the end of the linkst list.
- *                     Returns 1 if successful, 0 otherwise.
+ *                     Returns 0 if successful, -1 otherwise.
  *     ll_pop_front  - removes and returns a pointer from the front of the linked list.
  *                     Asserts that linked list is not empty.
  *     ll_pop_back   - removes and returns a pointer from the back of the linked list.

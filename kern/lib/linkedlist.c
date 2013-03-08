@@ -3,11 +3,19 @@
 #include <linkedlist.h>
 
 
-// NOTE: see .h for comments
-
 /*
  * NODE IMPLEMENTATIONS
+ *
+ * Node used for linked list
+ * Contains: 
+ *     void pointer for data.
+ *     a node pointer to the next node>
+ * Functions
+ *     n_create  - allocates a new node.
+ *                 Returns NULL on error>
+ *     n_destroy - dispose of the node.
  */
+
 struct node {
     void *data;
     struct node *next;
@@ -69,13 +77,13 @@ int ll_size(struct linkedlist *ll) {
     return ll->size;
 }
 
-// returns 1 if successful, 0 otherwise
+// returns 0 if successful, -1 otherwise
 int ll_push_front(struct linkedlist *ll, void *ptr) {
     assert(ll != NULL);    
     struct node *n = n_create(ptr, NULL);
 
     if (n == NULL) // n_create failed
-        return 0;
+        return -1;
 
     if (ll->head == NULL) {
         ll->head = n;
@@ -88,16 +96,16 @@ int ll_push_front(struct linkedlist *ll, void *ptr) {
 
     ll->size++;
 
-    return 1;
+    return 0;
 }
 
-// returns 1 if successful, 0 otherwise
+// returns 0 if successful, -1 otherwise
 int ll_push_back(struct linkedlist *ll, void *ptr) {
     assert(ll != NULL);
     struct node *n = n_create(ptr, NULL);
 
     if (n == NULL) // n_create failed
-        return 0;
+        return -1;
 
     if (ll->head == NULL) {
         ll->head = n;
@@ -109,7 +117,7 @@ int ll_push_back(struct linkedlist *ll, void *ptr) {
 
     ll->size++;
 
-    return 1;
+    return 0;
 }
 
 // removes head and updates it
