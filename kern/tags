@@ -897,6 +897,7 @@ _OPT_SYNCHPROBS_H_	compile/ASST0/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/
 _OPT_SYNCHPROBS_H_	compile/ASST1/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/;"	d
 _OPT_SYNCHPROBS_H_	compile/ASST2/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/;"	d
 _PATH_SHELL	main/menu.c	/^#define _PATH_SHELL /;"	d	file:
+_PROCESSTABLE_H_	include/processtable.h	/^#define _PROCESSTABLE_H_$/;"	d
 _PROCESS_H_	include/process.h	/^#define _PROCESS_H_$/;"	d
 _QUEUE_H_	include/queue.h	/^#define _QUEUE_H_$/;"	d
 _SCHEDULER_H_	include/scheduler.h	/^#define _SCHEDULER_H_$/;"	d
@@ -985,7 +986,6 @@ as_vbase1	include/addrspace.h	/^	vaddr_t as_vbase1;$/;"	m	struct:addrspace
 as_vbase2	include/addrspace.h	/^	vaddr_t as_vbase2;$/;"	m	struct:addrspace
 asm_usermode	arch/mips/mips/exception.S	/^asm_usermode:$/;"	l
 assert	include/lib.h	/^#define assert(/;"	d
-assign_pid	process/process.c	/^int assign_pid (struct process *proc) {$/;"	f
 attach_beep_to_ltimer	dev/lamebus/beep_ltimer.c	/^attach_beep_to_ltimer(int beepno, struct ltimer_softc *ls)$/;"	f
 attach_con_to_lscreen	dev/lamebus/con_lscreen.c	/^attach_con_to_lscreen(int consno, struct lscreen_softc *ls)$/;"	f
 attach_con_to_lser	dev/lamebus/con_lser.c	/^attach_con_to_lser(int consno, struct lser_softc *ls)$/;"	f
@@ -1067,7 +1067,7 @@ buildconfig	compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
 buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	compile/ASST2/vers.c	/^const int buildversion = 56;$/;"	v
+buildversion	compile/ASST2/vers.c	/^const int buildversion = 136;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1219,7 +1219,7 @@ d_ioctl	include/dev.h	/^	int (*d_ioctl)(struct device *, int op, userptr_t data)
 d_open	include/dev.h	/^	int (*d_open)(struct device *, int flags_from_open);$/;"	m	struct:device
 data	lib/linkedlist.c	/^    void *data;$/;"	m	struct:node	file:
 data	lib/queue.c	/^	void **data;$/;"	m	struct:queue	file:
-dbflags	lib/kprintf.c	/^u_int32_t dbflags = 0;$/;"	v
+dbflags	lib/kprintf.c	/^u_int32_t dbflags = 1;$/;"	v
 delayed_outbuf	dev/generic/console.c	/^static char delayed_outbuf[DELAYBUFSIZE];$/;"	v	file:
 delayed_outbuf_pos	dev/generic/console.c	/^static size_t delayed_outbuf_pos=0;$/;"	v	file:
 dev_bootstrap	dev/init.c	/^dev_bootstrap(void)$/;"	f
@@ -1332,6 +1332,7 @@ f_create	filedes/filetable.c	/^struct file* f_create(struct uio u, struct vnode 
 f_destroy	filedes/filetable.c	/^void f_destroy(struct file *f) {$/;"	f
 fail	test/synchtest.c	/^fail(unsigned long num, const char *msg)$/;"	f	file:
 file	include/filetable.h	/^struct file {$/;"	s
+file_lock	include/filetable.h	/^    struct lock *file_lock; \/\/ when doing operations on the lock$/;"	m	struct:file	typeref:struct:file::lock
 file_table	include/process.h	/^    struct filetable* file_table; $/;"	m	struct:process	typeref:struct:process::filetable
 files	filedes/filetable.c	/^    struct table *files;$/;"	m	struct:filetable	typeref:struct:filetable::table	file:
 filetable	filedes/filetable.c	/^struct filetable {$/;"	s	file:
@@ -1359,8 +1360,10 @@ fstest_remove	test/fstest.c	/^fstest_remove(const char *fs, const char *namesuff
 fstest_write	test/fstest.c	/^fstest_write(const char *fs, const char *namesuffix,$/;"	f	file:
 ft_create	filedes/filetable.c	/^struct filetable* ft_create() {$/;"	f
 ft_destroy	filedes/filetable.c	/^void ft_destroy(struct filetable *ft) {$/;"	f
-ft_getfile	filedes/filetable.c	/^struct file* ft_getfile(struct filetable *ft, int fd) {$/;"	f
+ft_getfile	filedes/filetable.c	/^struct file* ft_getfile(struct filetable *ft, int fd, int *err) {$/;"	f
+ft_getsize	filedes/filetable.c	/^int ft_getsize(struct filetable *ft) {$/;"	f
 ft_lock	filedes/filetable.c	/^    struct lock *ft_lock;$/;"	m	struct:filetable	typeref:struct:filetable::lock	file:
+ft_numfiles	filedes/filetable.c	/^int ft_numfiles(struct filetable *ft) {$/;"	f
 ft_removefile	filedes/filetable.c	/^int ft_removefile(struct filetable *ft, int fd) {$/;"	f
 ft_storefile	filedes/filetable.c	/^int ft_storefile(struct filetable *ft, struct file* f, int *err) {$/;"	f
 func	main/menu.c	/^	int (*func)(const char *device);$/;"	m	struct:__anon4	file:
@@ -1673,7 +1676,6 @@ p_flags	include/elf.h	/^	u_int32_t	p_flags;     \/* Flags *\/$/;"	m	struct:__ano
 p_memsz	include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon2
 p_offset	include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon2
 p_paddr	include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon2
-p_table	process/process.c	/^static struct process_table *p_table;$/;"	v	typeref:struct:process_table	file:
 p_thread	include/process.h	/^	struct thread* p_thread;$/;"	m	struct:process	typeref:struct:process::thread
 p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
 p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
@@ -1717,7 +1719,6 @@ pcb_switchstack	compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ 
 pcb_switchstack	compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pid	include/process.h	/^	pid_t pid;$/;"	m	struct:process
 pid_t	include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
-print_proc_table	process/process.c	/^void print_proc_table() {$/;"	f
 print_run_queue	thread/scheduler.c	/^print_run_queue(void)$/;"	f
 print_state	asst1/bowls.c	/^print_state()$/;"	f	file:
 printfile	test/fstest.c	/^printfile(int nargs, char **args)$/;"	f
@@ -1725,7 +1726,13 @@ process	include/process.h	/^struct process {$/;"	s
 process_bootstrap	process/process.c	/^void process_bootstrap() {$/;"	f
 process_list	process/process.c	/^	struct array *process_list;$/;"	m	struct:process_table	typeref:struct:process_table::array	file:
 process_table	process/process.c	/^struct process_table {$/;"	s	file:
+process_table	process/processtable.c	/^static struct table *process_table;$/;"	v	typeref:struct:table	file:
 processline	conf/config	/^    function processline(filename, lineno) {$/;"	f
+processtable_bootstrap	process/processtable.c	/^void processtable_bootstrap() {$/;"	f
+processtable_getnum	process/processtable.c	/^int processtable_getnum() {$/;"	f
+processtable_getsize	process/processtable.c	/^int processtable_getsize() {$/;"	f
+processtable_insert	process/processtable.c	/^int processtable_insert(struct process *p) {$/;"	f
+processtable_remove	process/processtable.c	/^void processtable_remove(int fd) {$/;"	f
 ps_seed	dev/generic/pseudorand.h	/^	u_int32_t ps_seed;$/;"	m	struct:pseudorand_softc
 pseudoattach_pseudorand	dev/generic/pseudorand.c	/^pseudoattach_pseudorand(int unit)$/;"	f
 pseudoconfig	compile/ASST0/autoconf.c	/^pseudoconfig(void)$/;"	f
@@ -1735,7 +1742,7 @@ pseudorand_randmax	dev/generic/pseudorand.c	/^pseudorand_randmax(void *devdata)$
 pseudorand_random	dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/;"	f
 pseudorand_read	dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/;"	f
 pseudorand_softc	dev/generic/pseudorand.h	/^struct pseudorand_softc {$/;"	s
-pt_create	process/process.c	/^struct process_table *pt_create() {$/;"	f
+pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:
@@ -1773,7 +1780,6 @@ read_ctl_register	dev/lamebus/lamebus.c	/^read_ctl_register(struct lamebus_softc
 readstress	test/fstest.c	/^DEFTEST(readstress);$/;"	v
 readstress_thread	test/fstest.c	/^readstress_thread(void *fs, unsigned long num)$/;"	f	file:
 remove_lists	lib/kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
-remove_pid	process/process.c	/^void remove_pid (pid_t pid) {$/;"	f
 reserved	include/kern/sfs.h	/^	u_int32_t reserved[118];$/;"	m	struct:sfs_super
 rotate	test/fstest.c	/^rotate(char *str, int amt)$/;"	f	file:
 rs_dev	dev/generic/random.h	/^	struct device rs_dev;$/;"	m	struct:random_softc	typeref:struct:random_softc::device
@@ -1992,6 +1998,7 @@ stat	include/kern/stat.h	/^struct stat {$/;"	s
 stats_counts	vm/uw-vmstats.c	/^static unsigned int stats_counts[VMSTAT_COUNT];$/;"	v	file:
 stats_lock	vm/uw-vmstats.c	/^static struct lock *stats_lock = 0;$/;"	v	typeref:struct:lock	file:
 stats_names	vm/uw-vmstats.c	/^static const char *stats_names[] = {$/;"	v	file:
+status	include/filetable.h	/^    int status;$/;"	m	struct:file
 strerror	lib/misc.c	/^strerror(int errcode)$/;"	f
 subpage_kfree	lib/kheap.c	/^subpage_kfree(void *ptr)$/;"	f	file:
 subpage_kmalloc	lib/kheap.c	/^subpage_kmalloc(size_t sz)$/;"	f	file:
@@ -2004,7 +2011,7 @@ switchframe	compile/ASST0/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST1/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST2/machine/switchframe.h	/^struct switchframe {$/;"	s
 sys__exit	userprog/sysexit.c	/^    void sys__exit(int exitcode) {$/;"	f
-sys_close	userprog/sysclose.c	/^int sys_close(int fd) {$/;"	f
+sys_close	userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
 sys_fork	userprog/sysfork.c	/^    pid_t sys_fork(void) {$/;"	f
 sys_getpid	userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
@@ -2060,9 +2067,10 @@ t_pcb	include/thread.h	/^	struct pcb t_pcb;$/;"	m	struct:thread	typeref:struct:t
 t_sleepaddr	include/thread.h	/^	const void *t_sleepaddr;$/;"	m	struct:thread
 t_stack	include/thread.h	/^	char *t_stack;$/;"	m	struct:thread
 t_vmspace	include/thread.h	/^	struct addrspace *t_vmspace;$/;"	m	struct:thread	typeref:struct:thread::addrspace
-tab_add	lib/table.c	/^int tab_add(struct table *t, void *ptr) {$/;"	f
+tab_add	lib/table.c	/^int tab_add(struct table *t, void *ptr, int *err) {$/;"	f
 tab_create	lib/table.c	/^struct table* tab_create() {$/;"	f
 tab_destroy	lib/table.c	/^void tab_destroy(struct table *t) {$/;"	f
+tab_getguy	lib/table.c	/^void* tab_getguy(struct table *t, int index) {$/;"	f
 tab_getnum	lib/table.c	/^int tab_getnum(struct table *t) {$/;"	f
 tab_getsize	lib/table.c	/^int tab_getsize(struct table *t) {$/;"	f
 tab_remove	lib/table.c	/^int tab_remove(struct table *t, int index) {$/;"	f
@@ -2070,6 +2078,7 @@ table	lib/table.c	/^struct table {$/;"	s	file:
 tail	lib/linkedlist.c	/^    struct node *tail;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 testa	test/arraytest.c	/^testa(struct array *a)$/;"	f	file:
 testcv	test/synchtest.c	/^static struct cv *testcv;$/;"	v	typeref:struct:cv	file:
+testfiletable	main/main.c	/^void testfiletable() {$/;"	f
 testlock	test/synchtest.c	/^static struct lock *testlock;$/;"	v	typeref:struct:lock	file:
 testmenu	main/menu.c	/^static const char *testmenu[] = {$/;"	v	file:
 testq	test/queuetest.c	/^testq(struct queue *q, int n)$/;"	f	file:

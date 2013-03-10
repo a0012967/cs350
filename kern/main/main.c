@@ -44,7 +44,6 @@ static const char harvard_copyright[] =
 
 
 
-/*
 void testfiletable() {
     int result = 0, err = 0;
     struct filetable *ft = ft_create();
@@ -55,21 +54,63 @@ void testfiletable() {
 
     struct file *f1 = f_create(u, v);
     assert(f1 != NULL);
+    struct file *f2 = f_create(u, v);
+    assert(f1 != NULL);
+    struct file *f3 = f_create(u, v);
+    assert(f1 != NULL);
+    struct file *f4 = f_create(u, v);
+    assert(f1 != NULL);
+    struct file *f5 = f_create(u, v);
+    assert(f1 != NULL);
+    struct file *f6 = f_create(u, v);
+    assert(f1 != NULL);
+    struct file *f7 = f_create(u, v);
+    assert(f1 != NULL);
 
     result = ft_storefile(ft, f1, &err);
     assert(result != -1 && !err);
+    kprintf("f1 inserted at: %d\n", result);
+    result = ft_storefile(ft, f2, &err);
+    assert(result != -1 && !err);
+    kprintf("f2 inserted at: %d\n", result);
+    result = ft_storefile(ft, f3, &err);
+    assert(result != -1 && !err);
+    kprintf("f3 inserted at: %d\n", result);
+    result = ft_storefile(ft, f4, &err);
+    assert(result != -1 && !err);
+    kprintf("f4 inserted at: %d\n", result);
 
     kprintf("Number of files: %d\n", ft_numfiles(ft));
     kprintf("Size of filetable: %d\n", ft_getsize(ft));
 
-    ft_removefile(ft, result);
+    result = ft_removefile(ft, 1);
+    assert(!result);
+    kprintf("File removed at index: 1\n");
+    result = ft_removefile(ft, 3);
+    assert(!result);
+    kprintf("File removed at index: 3\n");
 
+    kprintf("Number of files: %d\n", ft_numfiles(ft));
+    kprintf("Size of filetable: %d\n", ft_getsize(ft));
+
+    result = ft_storefile(ft, f5, &err);
+    assert(result != -1 && !err);
+    kprintf("f5 inserted at: %d\n", result);
+    result = ft_storefile(ft, f6, &err);
+    assert(result != -1 && !err);
+    kprintf("f6 inserted at: %d\n", result);
+
+    kprintf("Number of files: %d\n", ft_numfiles(ft));
+    kprintf("Size of filetable: %d\n", ft_getsize(ft));
+
+    result = ft_storefile(ft, f7, &err);
+    assert(result != -1 && !err);
+    kprintf("f7 inserted at: %d\n", result);
     kprintf("Number of files: %d\n", ft_numfiles(ft));
     kprintf("Size of filetable: %d\n", ft_getsize(ft));
 
     ft_destroy(ft);
 }
-*/
 
 /*
  * Initial boot sequence.
@@ -127,7 +168,7 @@ boot(void)
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
 
     #if OPT_A2
-        // testfiletable();
+        testfiletable();
     #endif // OPT_A2
 
     #if OPT_A0
