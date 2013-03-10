@@ -106,13 +106,18 @@ boot(void)
 
 	ram_bootstrap();
 	scheduler_bootstrap();
+	vfs_bootstrap();
+
 	#if OPT_A2
+		// Note: the order of these bootstrap calls is important
 		process_bootstrap();
+		dev_bootstrap();
 	#else
 		thread_bootstrap();
+		dev_bootstrap();
 	#endif // OPT_A2
-	vfs_bootstrap();
-	dev_bootstrap();
+//	vfs_bootstrap();
+//	dev_bootstrap();
 	vm_bootstrap();
 	kprintf_bootstrap();
 

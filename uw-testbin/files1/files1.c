@@ -25,8 +25,14 @@ main()
   int i = 42;
   int j = -999;
   int intbuf = 0;
-  int rc = 0;      // return code
-	int save_errno = 0;
+    int rc = 0;      /* return code */
+    int save_errno = 0;
+
+    (void)save_errno;
+    (void)i;
+    (void)j;
+    (void)intbuf;
+    (void)rc;
 
 
   /* Useful for debugging, if failures occur turn verbose on by uncommenting */
@@ -42,7 +48,6 @@ main()
   TEST_EQUAL(f1, f2, "fd f1 != f2 as should be the case");
   TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
-/*
   // Write something simple to file 1 
   rc = write(f1, (char *) &i, sizeof(i));
   TEST_EQUAL(rc, sizeof(i), "write to f1 does not write/return proper value");
@@ -61,7 +66,6 @@ main()
 
   rc = close(f2);
   TEST_EQUAL(rc, SUCCESS, "close f2 failed");
-*/
   f1 = open("FILE1", O_RDONLY);
   TEST_POSITIVE(f1, "Unable to open FILE1, after Close");
 
