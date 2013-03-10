@@ -25,7 +25,7 @@ int tab_remove(struct table *t, int index);
 // returns the ptr at the given index
 // returns NULL when ptr has been removed
 void* tab_getguy(struct table *t, int index);
-// returns number of entries in table
+// returns number of entries including NULL in table
 int tab_getsize(struct table *t);
 
 // WARNING! DON'T USE THIS FOR NOW! USE THIS FOR THE SAKE OF DEBUGGING!

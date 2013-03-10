@@ -6,9 +6,10 @@
 
 /* FILE STUFF */
 struct file {
-    struct int status;
+    int status;
     struct uio u;
     struct vnode *v;
+    struct lock *file_lock; // when doing operations on the lock
 };
 
 // creates an file. returns NULL on fail
@@ -19,7 +20,6 @@ void f_destroy(struct file *f);
 
 
 /* FILE TABLE STUFF */
-
 struct filetable;
 // creates file table. returns NULL on failure
 struct filetable* ft_create();
@@ -32,5 +32,13 @@ int ft_removefile(struct filetable *ft, int fd);
 // SUCCESS: returns file stored at given fd
 // FAILURE: returns NULL and updates value of err
 struct file* ft_getfile(struct filetable *ft, int fd, int *err);
+
+
+// USE THE BELOW only for debugging purposes!
+// returns number of files in filetable
+// DON'T USE THIS TO ITERATE THROUGH THE TABLE. IT HAS HOLES INSIDE
+int ft_numfiles(struct filetable *ft);
+// returns number of entries (including NULL) inside the filetable
+int ft_getsize(struct filetable *ft);
 
 #endif /* _FILETABLE_H_ */

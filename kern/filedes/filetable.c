@@ -17,6 +17,13 @@ struct file* f_create(struct uio u, struct vnode *v) {
         return NULL;
     }
 
+    f->file_lock = lock_create("file_lock");
+    if (f == NULL) {
+        DEBUG(DB_EXEC, "FILE: failed creating file lock\n");
+        kfree(f);
+        return NULL;
+    }
+
     f->u = u;
     f->v = v;
 
@@ -173,3 +180,23 @@ fail:
     return NULL;
 }
 
+
+// USE THE BELOW only for debugging purposes!
+// returns number of files in filetable
+// DON'T USE THIS TO ITERATE THROUGH THE TABLE. IT HAS HOLES INSIDE
+int ft_numfiles(struct filetable *ft) {
+    assert(ft != NULL);
+    lock_acquire(ft->ft_lock);
+        int ret = tab_getnum(ft->files);
+    lock_release(ft->ft_lock);
+    return ret;
+}
+
+// returns number of entries (including NULL) inside the filetable
+int ft_getsize(struct filetable *ft) {
+    assert(ft != NULL);
+    lock_acquire(ft->ft_lock);
+        int ret = tab_getsize(ft->files); 
+    lock_release(ft->ft_lock);
+    return ret;
+}

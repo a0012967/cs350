@@ -17,6 +17,9 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
+
+// REMOVE
+#include <filetable.h>
 #include "opt-A0.h"
 
 /*
@@ -39,6 +42,34 @@ static const char harvard_copyright[] =
     "Copyright (c) 2000, 2001, 2002, 2003\n"
     "   President and Fellows of Harvard College.  All rights reserved.\n";
 
+
+
+/*
+void testfiletable() {
+    int result = 0, err = 0;
+    struct filetable *ft = ft_create();
+    assert(ft != NULL);
+
+    struct uio u;
+    struct vnode *v;
+
+    struct file *f1 = f_create(u, v);
+    assert(f1 != NULL);
+
+    result = ft_storefile(ft, f1, &err);
+    assert(result != -1 && !err);
+
+    kprintf("Number of files: %d\n", ft_numfiles(ft));
+    kprintf("Size of filetable: %d\n", ft_getsize(ft));
+
+    ft_removefile(ft, result);
+
+    kprintf("Number of files: %d\n", ft_numfiles(ft));
+    kprintf("Size of filetable: %d\n", ft_getsize(ft));
+
+    ft_destroy(ft);
+}
+*/
 
 /*
  * Initial boot sequence.
@@ -94,6 +125,10 @@ boot(void)
 	 */
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
+
+    #if OPT_A2
+        // testfiletable();
+    #endif // OPT_A2
 
     #if OPT_A0
         hello();
