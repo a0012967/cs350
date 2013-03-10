@@ -97,7 +97,12 @@ mips_syscall(struct trapframe *tf)
                 */
             break;
             case SYS_read:
-            break;
+	      err  = sys_read((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a3, &retval);
+		if (err == -1) {
+		   err = retval;
+
+		}
+	        break;
             case SYS_fork:
             break;
             case SYS_write:
