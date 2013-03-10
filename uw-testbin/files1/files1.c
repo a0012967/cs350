@@ -30,7 +30,7 @@ main()
 */
 
   /* Useful for debugging, if failures occur turn verbose on by uncommenting */
-  // TEST_VERBOSE_ON();
+   TEST_VERBOSE_ON();
 
   // Check that open succeeds 
   f1 = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
@@ -39,7 +39,7 @@ main()
   // Check that open succeeds 
   f2 = open("FILE2", O_RDWR | O_CREAT | O_TRUNC);
   TEST_POSITIVE(f2, "Unable to open FILE2");
-
+  TEST_EQUAL(f1, f2, "fd f1 != f2 as should be the case");
   TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
 /*

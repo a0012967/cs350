@@ -13,7 +13,7 @@ int sys_reboot(int code);
 #if OPT_A2
     int sys_open(const char *filename, int flags, int *err);
     int sys_close(int fd, int *err);
-    int sys_read(int fd, void *buf, size_t buflen);
+    int sys_read(int fd, void *buf, size_t buflen,  int *retval);
     void sys__exit(int exitcode);
     pid_t sys_fork(void);
 #endif /* OPT_A2 */
