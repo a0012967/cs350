@@ -6,6 +6,7 @@
 
 /* FILE STUFF */
 struct file {
+    struct int status;
     struct uio u;
     struct vnode *v;
 };

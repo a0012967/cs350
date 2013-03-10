@@ -33,6 +33,7 @@ int sys_open(const char *filename, int flags, int *err) {
 
     struct file *f = f_create(u, v);
     assert(f != NULL);
+    f->status = flags;
     ret = ft_storefile(curprocess->file_table, f, err);
 
     return ret;
