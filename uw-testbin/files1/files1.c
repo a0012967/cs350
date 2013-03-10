@@ -21,13 +21,13 @@ int
 main()
 {
   int f1, f2;
-/*
+
   int i = 42;
   int j = -999;
   int intbuf = 0;
   int rc = 0;      // return code
 	int save_errno = 0;
-*/
+
 
   /* Useful for debugging, if failures occur turn verbose on by uncommenting */
    TEST_VERBOSE_ON();
@@ -61,7 +61,7 @@ main()
 
   rc = close(f2);
   TEST_EQUAL(rc, SUCCESS, "close f2 failed");
-
+*/
   f1 = open("FILE1", O_RDONLY);
   TEST_POSITIVE(f1, "Unable to open FILE1, after Close");
 
@@ -81,7 +81,7 @@ main()
   TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
 
   TEST_STATS();
-*/
+
 
 
   exit(0);
