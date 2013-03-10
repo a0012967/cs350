@@ -466,6 +466,7 @@ file    userprog/sysfork.c
 file    lib/linkedlist.c
 file    lib/table.c
 file    process/process.c
+file    process/processtable.c
 # UW For A3 use the stats tracking code provided
 defoption A3
    file    vm/uw-vmstats.c
