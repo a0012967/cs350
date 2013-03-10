@@ -12,21 +12,22 @@
 #include <lib.h>
 #include <vm.h>
 #include <kern/unistd.h>
-
+#include <vnode.h>
+#include <synch.h>
 #if OPT_A2
  int sys_read(int fd, void *buf, size_t buflen,  int *retval) {
             
         
-	int spl;
 	int result;
 	int how;
 	struct file *file;
-	spl = splhigh();
+	
 	
  	file = ft_getfile(curprocess->file_table, fd, retval);	
+	lock_acquire(file->file_lock);
 	if (file == NULL) {
 		*retval = EBADF; // invalid fd
-		splx(spl);
+		lock_release(file->file_lock);
 		return -1;
 		
 	}
@@ -38,13 +39,14 @@
 		break;
   	   default:
 		*retval = EBADF;
+		lock_release(file->file_lock);
 		return -1;
 	}
 	
 	//check for valid buffer
 	if (buf == NULL) {
 	  *retval = EFAULT;
-	  splx(spl);
+	  lock_release(file->file_lock);
 	  return -1;
 	}
 	
@@ -52,25 +54,32 @@
 	result = buffer_check(buf, buflen);
 	if (result == -1) {
 	   *retval = EFAULT;
-	   splx(spl);
+	   lock_release(file->file_lock);          
 	   return -1;
+
 	}
 
 	// initialize the file's uio for reading
 	result = uio_init(file, buf, buflen);
 	if (result == -1 ) {
-		splx(spl);
+		 lock_release(file->file_lock);
 		//TODO: figure out if need to set retval
 		return -1;
 	}
+	
         // errors:
         // invalid fd
         // buflen > file
         // think about end of file
-	splx(spl); // make sure to enable interrupts before all returns
+	*retval = VOP_READ(file->v, &(file->u));
+	if (*retval !=0) {
+		lock_release(file->file_lock);
+		return -1;
+	}
 	// return the number of bytes read
         *retval = buflen - file->u.uio_resid;
 	assert(*retval >= 0);
+        lock_release(file->file_lock);
 	 return 0;
     }
 
