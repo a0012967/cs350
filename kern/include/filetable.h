@@ -35,6 +35,12 @@ int ft_removefile(struct filetable *ft, int fd);
 struct file* ft_getfile(struct filetable *ft, int fd, int *err);
 
 
+
+
+/* Opening console devices */
+void console_files_bootstrap();
+
+
 // USE THE BELOW only for debugging purposes!
 // returns number of files in filetable
 // DON'T USE THIS TO ITERATE THROUGH THE TABLE. IT HAS HOLES INSIDE
