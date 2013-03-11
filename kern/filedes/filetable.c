@@ -71,6 +71,70 @@ struct filetable* ft_create() {
         return NULL;
     }
 
+    if (inprocessbootstrap){
+        //do nothing, console_files_bootstrap dtakes care of this
+    }else {
+
+        int err, result;
+        struct file * f_in, *f_out, *f_err;
+        struct uio u_in, u_out, u_err;
+
+        // increase console vnode reference count
+        vnode_incref(vn_console); 
+       
+        // create and add stdin file to file_table[0]
+        u_in.uio_space = curprocess->p_thread->t_vmspace;
+        u_in.uio_offset = 0;
+        u_in.uio_rw = UIO_READ;
+
+        f_in  = f_create( u_in, vn_console);
+        if (f_in == NULL) {
+            panic("Could not create an open file entry for stdin\n");
+        }
+        
+        result  = ft_storefile(ft, f_in, &err);
+        if (result == -1) {
+            panic("Could not add stdin file to filetable");
+        }   
+        
+         vnode_incref(vn_console);  
+
+        // create and add stdout file to file_table[1]
+        u_out.uio_space = curprocess->p_thread->t_vmspace;
+        u_out.uio_offset = 0;
+        u_out.uio_rw = UIO_WRITE;
+
+        f_out  = f_create( u_out, vn_console);
+        if (f_out == NULL) {
+            panic("Could not create an open file entry for stdout\n");
+        }
+
+        result  = ft_storefile(ft, f_out, &err);
+        if (result == -1) {
+            panic("Could not add stdin file to filetable");
+        }
+
+        
+     // create and add stderr file to file_table[2]
+        vnode_incref(vn_console);
+         u_err.uio_space = curprocess->p_thread->t_vmspace;
+        u_err.uio_offset = 0;
+        u_err.uio_rw = UIO_WRITE;
+
+        f_err  = f_create( u_err, vn_console);
+        if (f_err == NULL) {
+            panic("Could not create an open file entry for stderr\n");
+        }
+
+        result  = ft_storefile(ft, f_err, &err);
+        if (result == -1) {
+            panic("Could not add sderr file to filetable");
+        }
+
+        //TODO: decide if panics should be removed
+    }
+    
+
     return ft;
 }
 
@@ -204,7 +268,9 @@ void console_files_bootstrap() {
     if(err){
         panic("console files: Could not open console\n");
     }
-    
+    // set global vnode for console devices
+    vn_console = vn;
+
     // create and add stdin file to file_table[0]
     u_in.uio_space = curprocess->p_thread->t_vmspace;
     u_in.uio_offset = 0;
@@ -217,13 +283,11 @@ void console_files_bootstrap() {
     
     // store stdinfile at file_table[0]
     result  = ft_storefile(curprocess->file_table, stdinfile, &err);
-    if (result == -1) {
-        panic("Could not add stdin file to filetable");
+    if (result == -1) {   
+      panic("Could not add stdin file to filetable");
     }
-            
-
-
-
+        
+   
     // create and add stdout file to file_table[1]
     u_out.uio_space = curprocess->p_thread->t_vmspace;
     u_out.uio_offset = 0;
@@ -239,9 +303,11 @@ void console_files_bootstrap() {
     if (result == -1) {
         panic("Could not add stdout file to filetable");
     }
-        
-    
 
+    // increase vnode reference       
+     vnode_incref(vn);
+
+ 
     // create and add stderr file to file_table
     u_err.uio_space = curprocess->p_thread->t_vmspace;
     u_err.uio_offset = 0;
@@ -249,16 +315,18 @@ void console_files_bootstrap() {
 
     stderrfile = f_create( u_err, vn);
     if (stderrfile == NULL) {
-        panic("Could not create an open file entry for stderr\n");
+        panic("console files: Could not create an open file entry for stderr\n");
     }
 
+    vnode_incref(vn);
+    
     // store stderrfile at file_table[2]
     result  = ft_storefile(curprocess->file_table, stderrfile, &err);
     if (result == -1) {
         panic("Could not add stdin file to filetable");
     }
 
-
+    inprocessbootstrap = 0;
 
     kfree(console);
 

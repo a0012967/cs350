@@ -13,6 +13,11 @@ struct file {
     struct lock *file_lock; // when doing operations on the lock
 };
 
+
+/* CONSOLE VNODE */
+struct vnode *vn_console;
+
+
 // creates an file. returns NULL on fail
 struct file* f_create(struct uio u, struct vnode *v);
 // free memory used by file

@@ -13,6 +13,9 @@
 #include <filetable.h>
 #include <array.h>
 
+// global boolean, needed for opening console
+// devices
+int inprocessbootstrap;
 
 // global reference to current process
 struct process *curprocess;
@@ -26,7 +29,8 @@ struct process_table {
 void process_bootstrap() {
     // bootstrap processtable
     processtable_bootstrap();
-
+    
+    inprocessbootstrap = 1;
 	struct process * p = p_create();
     if (p == NULL) {
         panic("PROCESS: Process bootstrap failed\n");
@@ -37,6 +41,7 @@ void process_bootstrap() {
     assert(p->p_thread != NULL);
 
     curprocess = p;
+    
 }
 
 struct process * p_create() {
