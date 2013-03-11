@@ -147,6 +147,7 @@ boot(void)
 
 	ram_bootstrap();
 	scheduler_bootstrap();
+	
 	#if OPT_A2
 		process_bootstrap();
 	#else
@@ -154,6 +155,9 @@ boot(void)
 	#endif // OPT_A2
 	vfs_bootstrap();
 	dev_bootstrap();
+	#if OPT_A2
+	    console_files_bootstrap();
+    #endif // OPT_A2
 	vm_bootstrap();
 	kprintf_bootstrap();
 
@@ -168,7 +172,7 @@ boot(void)
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
 
     #if OPT_A2
-        testfiletable();
+        //testfiletable();
     #endif // OPT_A2
 
     #if OPT_A0

@@ -5,6 +5,10 @@
 #include <vnode.h>
 #include <lib.h>
 
+#include <curprocess.h>	
+#include <process.h>
+#include <vfs.h>
+#include <kern/unistd.h>
 
 /*************************
  * FILE STUFF
@@ -91,7 +95,7 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
-    assert(ft != NULL && f != NULL && err != NULL);
+    assert(ft != NULL && f != NULL);
     assert(*err == 0);
 
     int result;
@@ -156,7 +160,6 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
 
     lock_acquire(ft->ft_lock);
         size = tab_getnum(ft->files);
-
         // out of bounds
         if (fd < 0 && fd >= size) {
             *err = ENOENT; // no such file
@@ -178,6 +181,86 @@ fail:
     lock_release(ft->ft_lock);
     assert(*err);
     return NULL;
+}
+
+
+/* CONSOLE DEVICES FILES 
+ * Opens the console and creates a file for stdin, stdout, & stderr
+ * Files stored in file_table at index 0, 1, and 2 respectively
+ */
+void console_files_bootstrap() {
+    // open the console
+    int err, result;
+    struct vnode *vn;
+    struct uio u_in, u_out, u_err;    
+    struct file *stdinfile, *stdoutfile, *stderrfile;
+    
+    char *console = NULL;
+    console = kstrdup("con:");
+    
+    // open the console
+    err = vfs_open(console, O_RDONLY, &vn);
+    if(err){
+        panic("console files: Could not open console\n");
+    }
+    
+    // create and add stdin file to file_table[0]
+    u_in.uio_space = curprocess->p_thread->t_vmspace;
+    u_in.uio_offset = 0;
+    u_in.uio_rw = UIO_READ;
+    
+    stdinfile = f_create( u_in, vn);
+    if (stdinfile == NULL) {
+        panic("Could not create an open file entry for stdin\n");
+    }
+    
+    stdinfile->status = O_RDONLY;
+    
+    // store stdinfile at file_table[0]
+    result  = ft_storefile(curprocess->file_table, stdinfile, &err);
+    if (result == -1) {
+        panic("Could not add stdin file to filetable");
+    }
+
+    // create and add stdout file to file_table[1]
+    u_out.uio_space = curprocess->p_thread->t_vmspace;
+    u_out.uio_offset = 0;
+    u_out.uio_rw = UIO_WRITE;
+
+    stdoutfile = f_create( u_out, vn);
+    if (stdoutfile == NULL) {
+        panic("Could not create an open file entry for stdout\n");
+    }
+
+    stdoutfile->status = O_WRONLY;
+
+    result  = ft_storefile(curprocess->file_table, stdoutfile, &err);
+    if (result == -1) {
+        panic("Could not add stdout file to filetable");
+    }
+        
+    // create and add stderr file to file_table
+    u_err.uio_space = curprocess->p_thread->t_vmspace;
+    u_err.uio_offset = 0;
+    u_err.uio_rw = UIO_WRITE;
+
+    stderrfile = f_create( u_err, vn);
+    if (stderrfile == NULL) {
+        panic("Could not create an open file entry for stderr\n");
+    }
+
+    stderrfile->status = O_WRONLY;
+
+    // store stderrfile at file_table[2]
+    result  = ft_storefile(curprocess->file_table, stderrfile, &err);
+    if (result == -1) {
+        panic("Could not add stdin file to filetable");
+    }
+    kfree(console);
+    
+    struct file *fi;
+    int err2;
+    fi = ft_getfile(curprocess->file_table, 0, &err2);
 }
 
 

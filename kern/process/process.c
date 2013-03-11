@@ -26,7 +26,6 @@ struct process_table {
 void process_bootstrap() {
     // bootstrap processtable
     processtable_bootstrap();
-
 	struct process * p = p_create();
     if (p == NULL) {
         panic("PROCESS: Process bootstrap failed\n");
@@ -37,6 +36,7 @@ void process_bootstrap() {
     assert(p->p_thread != NULL);
 
     curprocess = p;
+    
 }
 
 struct process * p_create() {

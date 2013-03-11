@@ -45,6 +45,7 @@ runprogram(char *progname)
         struct process *p = p_create();
         p_assign_thread(p, curthread);
         curprocess = p;
+        console_files_bootstrap();
     #endif /*OPT_A2*/
 
 	/* Create a new address space. */
