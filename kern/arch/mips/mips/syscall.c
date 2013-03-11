@@ -46,114 +46,97 @@
  * arch/mips/include/types.h.)
  */
 
-void
-mips_syscall(struct trapframe *tf)
+void mips_syscall(struct trapframe *tf)
 {
-	int callno;
-	int32_t retval;
-	int err;
+    int callno;
+    int32_t retval;
+    int err;
 
-	assert(curspl==0);
+    assert(curspl==0);
 
-	callno = tf->tf_v0;
+    callno = tf->tf_v0;
 
-	/*
-	 * Initialize retval to 0. Many of the system calls don't
-	 * really return a value, just 0 for success and -1 on
-	 * error. Since retval is the value returned on success,
-	 * initialize it to 0 by default; thus it's not necessary to
-	 * deal with it except for calls that return other values, 
-	 * like write.
-	 */
+    /*
+     * Initialize retval to 0. Many of the system calls don't
+     * really return a value, just 0 for success and -1 on
+     * error. Since retval is the value returned on success,
+     * initialize it to 0 by default; thus it's not necessary to
+     * deal with it except for calls that return other values, 
+     * like write.
+     */
 
-	retval = 0;
+    retval = 0;
 
-	switch (callno) {
-	    case SYS_reboot:
-		err = sys_reboot(tf->tf_a0);
-		break;
+    switch (callno) {
+        case SYS_reboot:
+            err = sys_reboot(tf->tf_a0);
+            break;
 
         #if OPT_A2
             case SYS_open:
                 err = 0;
                 retval = sys_open((const char *)tf->tf_a0, (int)tf->tf_a1, &err);
-                /*
-                kprintf("open index: %d\n", retval);
-                if (err)
-                    kprintf("open fail\n");
-                else
-                    kprintf("open success\n");
-                */
-            break;
+                break;
             case SYS_close:
                 err = 0;
                 //kprintf("close index: %d\n", (int)tf->tf_a0);
                 retval = sys_close((int)tf->tf_a0, &err);
-                /*
-                if (err)
-                    kprintf("close fail\n");
-                else
-                    kprintf("close success\n");
-                */
-            break;
+                break;
             case SYS_read:
-	      err  = sys_read((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a3, &retval);
-		if (err == -1) {
-		   err = retval;
-		}
-	        break;
+                err = 0;
+                retval = sys_read((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a3, &err);
+                break;
             case SYS_fork:
-            break;
+                break;
             case SYS_write:
-            break;
+                break;
 
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
-            break;
+                break;
         #endif /* OPT_A2 */
 
-	    default:
-		kprintf("Unknown syscall %d\n", callno);
-		err = ENOSYS;
-		break;
-	}
+        default:
+            kprintf("Unknown syscall %d\n", callno);
+            err = ENOSYS;
+            break;
+    }
 
 
-	if (err) {
-		/*
-		 * Return the error code. This gets converted at
-		 * userlevel to a return value of -1 and the error
-		 * code in errno.
-		 */
-		tf->tf_v0 = err;
-		tf->tf_a3 = 1;      /* signal an error */
-	}
-	else {
-		/* Success. */
-		tf->tf_v0 = retval;
-		tf->tf_a3 = 0;      /* signal no error */
-	}
-	
-	/*
-	 * Now, advance the program counter, to avoid restarting
-	 * the syscall over and over again.
-	 */
-	
-	tf->tf_epc += 4;
+    if (err) {
+        /*
+         * Return the error code. This gets converted at
+         * userlevel to a return value of -1 and the error
+         * code in errno.
+         */
+        tf->tf_v0 = err;
+        tf->tf_a3 = 1;      /* signal an error */
+    }
+    else {
+        /* Success. */
+        tf->tf_v0 = retval;
+        tf->tf_a3 = 0;      /* signal no error */
+    }
 
-	/* Make sure the syscall code didn't forget to lower spl */
-	assert(curspl==0);
+    /*
+     * Now, advance the program counter, to avoid restarting
+     * the syscall over and over again.
+     */
+
+    tf->tf_epc += 4;
+
+    /* Make sure the syscall code didn't forget to lower spl */
+    assert(curspl==0);
 }
 
-void
-md_forkentry(struct trapframe *tf)
+void md_forkentry(struct trapframe *tf)
 {
-	/*
-	 * This function is provided as a reminder. You need to write
-	 * both it and the code that calls it.
-	 *
-	 * Thus, you can trash it and do things another way if you prefer.
-	 */
+    /*
+     * This function is provided as a reminder. You need to write
+     * both it and the code that calls it.
+     *
+     * Thus, you can trash it and do things another way if you prefer.
+     */
 
-	(void)tf;
+    (void)tf;
 }
