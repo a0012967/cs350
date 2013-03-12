@@ -194,7 +194,6 @@ void console_files_bootstrap() {
     // open the console
     int err, result;
     struct vnode *vn;
-    struct uio u_in, u_out, u_err;    
     struct file *stdinfile, *stdoutfile, *stderrfile;
     
     char *console = NULL;
@@ -207,11 +206,7 @@ void console_files_bootstrap() {
     }
     
     // create and add stdin file to file_table[0]
-    u_in.uio_space = curprocess->p_thread->t_vmspace;
-    u_in.uio_offset = 0;
-    u_in.uio_rw = UIO_READ;
-    
-    stdinfile = f_create( u_in, vn);
+    stdinfile = f_create(UIO_READ, 0, vn);
     if (stdinfile == NULL) {
         panic("Could not create an open file entry for stdin\n");
     }
@@ -225,11 +220,7 @@ void console_files_bootstrap() {
     }
 
     // create and add stdout file to file_table[1]
-    u_out.uio_space = curprocess->p_thread->t_vmspace;
-    u_out.uio_offset = 0;
-    u_out.uio_rw = UIO_WRITE;
-
-    stdoutfile = f_create( u_out, vn);
+    stdoutfile = f_create(UIO_WRITE, 0, vn);
     if (stdoutfile == NULL) {
         panic("Could not create an open file entry for stdout\n");
     }
@@ -242,11 +233,7 @@ void console_files_bootstrap() {
     }
         
     // create and add stderr file to file_table
-    u_err.uio_space = curprocess->p_thread->t_vmspace;
-    u_err.uio_offset = 0;
-    u_err.uio_rw = UIO_WRITE;
-
-    stderrfile = f_create( u_err, vn);
+    stderrfile = f_create(UIO_WRITE, 0, vn);
     if (stderrfile == NULL) {
         panic("Could not create an open file entry for stderr\n");
     }

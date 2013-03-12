@@ -22,7 +22,7 @@ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     struct file *file;
     struct uio u;
     
-    assert(err); // retval should exist
+    assert(err); // err should exist
     assert(*err == 0); // error should be cleared when calling this
 
     file = ft_getfile(curprocess->file_table, fd, err);
@@ -73,12 +73,11 @@ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     // invalid fd
     // buflen > file
     // think about end of file
-// JULIA! I'm not sure what you were trying to accomplish here but just update it
-/*
-    *retval = VOP_READ(file->v, &(file->u));
-    if (*retval !=0) {
+// JULIA! DOUBLE CHECK THIS!
+    result = VOP_READ(file->v, &u);
+    if (result !=0) {
+
     }
-*/
     // return the number of bytes read
     result = buflen - u.uio_resid;
     assert(result >= 0);
