@@ -13,12 +13,22 @@
 
 // returns -1 if error occured and changes content of err
 int sys_open(const char *filename, int flags, int *err) {
-    assert(filename != NULL);
+    struct vnode *v;
+    int ret;
+
+    assert(err);
     assert(*err == 0);
 
-    struct vnode *v;
-    struct uio u;
-    int ret;
+    if (filename == NULL) {
+        *err = EFAULT;
+        return -1;
+    }
+
+    // check for validity of memory address
+    if (buffer_check((void*)filename, MAX_FILENAME_LEN)) {
+        *err = EFAULT;
+        return -1;
+    }
 
     ret = vfs_open((char*)filename, flags, &v);
     if (ret) {
@@ -26,14 +36,8 @@ int sys_open(const char *filename, int flags, int *err) {
         return -1;
     }
 
-    // start storing info in OPEN FILE STUFF
-    u.uio_offset = 0;
-    // TODO: not sure about this
-    u.uio_space = curprocess->p_thread->t_vmspace;
-
-    struct file *f = f_create(u, v);
+    struct file *f = f_create(flags, 0, v);
     assert(f != NULL);
-    f->status = flags;
     ret = ft_storefile(curprocess->file_table, f, err);
 
     return ret;

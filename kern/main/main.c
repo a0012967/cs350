@@ -49,22 +49,21 @@ void testfiletable() {
     struct filetable *ft = ft_create();
     assert(ft != NULL);
 
-    struct uio u;
     struct vnode *v;
 
-    struct file *f1 = f_create(u, v);
+    struct file *f1 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f2 = f_create(u, v);
+    struct file *f2 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f3 = f_create(u, v);
+    struct file *f3 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f4 = f_create(u, v);
+    struct file *f4 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f5 = f_create(u, v);
+    struct file *f5 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f6 = f_create(u, v);
+    struct file *f6 = f_create(0, 0, v);
     assert(f1 != NULL);
-    struct file *f7 = f_create(u, v);
+    struct file *f7 = f_create(0, 0, v);
     assert(f1 != NULL);
 
     result = ft_storefile(ft, f1, &err);
@@ -168,7 +167,7 @@ boot(void)
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
 
     #if OPT_A2
-        testfiletable();
+        //testfiletable();
     #endif // OPT_A2
 
     #if OPT_A0

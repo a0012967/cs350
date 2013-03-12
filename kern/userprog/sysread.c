@@ -16,22 +16,26 @@
 #include <synch.h>
 #include "opt-A2.h"
 
-    int sys_read(int fd, void *buf, size_t buflen,  int *retval) {
-
-
+int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     int result;
     int how;
     struct file *file;
+    struct uio u;
+    
+    assert(err); // retval should exist
+    assert(*err == 0); // error should be cleared when calling this
 
+    file = ft_getfile(curprocess->file_table, fd, err);
 
-    file = ft_getfile(curprocess->file_table, fd, retval);	
-    lock_acquire(file->file_lock);
     if (file == NULL) {
-        *retval = EBADF; // invalid fd
-        lock_release(file->file_lock);
+        // err should have been updated with the error code
+        assert(*err != 0);
         return -1;
-
     }
+
+    // start the lock
+    lock_acquire(file->file_lock);
+
     // check that the file is opened for reading
     how = file->status & O_ACCMODE;
     switch (how) {
@@ -39,65 +43,54 @@
         case O_RDWR:
             break;
         default:
-            *retval = EBADF;
-            lock_release(file->file_lock);
-            return -1;
+            *err = EBADF;
+            goto fail;
     }
 
     //check for valid buffer
     if (buf == NULL) {
-        *retval = EFAULT;
-        lock_release(file->file_lock);
-        return -1;
+        *err = EFAULT;
+        goto fail;
     }
 
     // check for valid buffer region
     result = buffer_check(buf, buflen);
     if (result == -1) {
-        *retval = EFAULT;
-        lock_release(file->file_lock);
-        return -1;
-
+        *err = EFAULT;
+        goto fail;
     }
 
-    // initialize the file's uio for reading
-    result = uio_init(file, buf, buflen);
-    if (result == -1 ) {
-        lock_release(file->file_lock);
-        //TODO: figure out if need to set retval
-        return -1;
-    }
+    // initialize the uio for reading
+    u.uio_iovec.iov_un.un_ubase = buf;
+    u.uio_iovec.iov_len = buflen;
+    // get the offset from the file
+    u.uio_offset = file->offset;
+    u.uio_rw = UIO_READ;
+    u.uio_resid = buflen;
+    u.uio_space = curprocess->p_thread->t_vmspace;
 
     // errors:
     // invalid fd
     // buflen > file
     // think about end of file
+// JULIA! I'm not sure what you were trying to accomplish here but just update it
+/*
     *retval = VOP_READ(file->v, &(file->u));
     if (*retval !=0) {
-        lock_release(file->file_lock);
-        return -1;
     }
+*/
     // return the number of bytes read
-    *retval = buflen - file->u.uio_resid;
-    assert(*retval >= 0);
+    result = buflen - u.uio_resid;
+    assert(result >= 0);
+    // update the offset of the file
+    file->offset = u.uio_offset;
     lock_release(file->file_lock);
-    return 0;
-}
+    return result;
 
-//  initializes the uio of the file for reading
-//  returns 0 on success
-//  returns -1 if error occured and changes err to errno
-int uio_init(struct file *file, void * buf, size_t buflen){
-
-    assert(file != NULL);
-
-    file->u.uio_iovec.iov_un.un_ubase = buf;
-    file->u.uio_iovec.iov_len = buflen;
-    file->u.uio_rw = UIO_READ;
-    file->u.uio_resid = buflen;
-    file->u.uio_space = curprocess->p_thread->t_vmspace;
-
-    return 0;
+fail:
+    assert(*err != 0);
+    lock_release(file->file_lock);
+    return -1;
 }
 
 /* Memory region check function. Checks to make sure the block

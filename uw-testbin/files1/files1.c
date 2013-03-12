@@ -48,6 +48,7 @@ main()
   TEST_EQUAL(f1, f2, "fd f1 != f2 as should be the case");
   TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
+/*
   // Write something simple to file 1 
   rc = write(f1, (char *) &i, sizeof(i));
   TEST_EQUAL(rc, sizeof(i), "write to f1 does not write/return proper value");
@@ -55,6 +56,7 @@ main()
   // Write something simple to file 2 
   rc = write(f2, (char *) &j, sizeof(j));
   TEST_EQUAL(rc, sizeof(j), "write to f2 does not write/return proper value");
+*/
 
   rc = close(f1);
   TEST_EQUAL(rc, SUCCESS, "close f1 failed");
@@ -74,6 +76,7 @@ main()
 
   TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
+/*
   rc = read(f1, (char *) &intbuf, sizeof(intbuf));
   TEST_EQUAL(rc, sizeof(intbuf), 
      "read from f1 does not read/return proper value");
@@ -83,6 +86,7 @@ main()
   rc = read(f2, (char *) &intbuf, sizeof(intbuf));
   TEST_EQUAL(rc, sizeof(j), "read from f2 does not read/return proper value");
   TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
+*/
 
   TEST_STATS();
 
