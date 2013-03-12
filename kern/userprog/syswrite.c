@@ -8,6 +8,7 @@
 #include <process.h>
 #include <thread.h>
 #include <vnode.h>
+#include <synch.h>
 #include <kern/errno.h>
 #include <vfs.h>
 #include <filetable.h>
@@ -35,14 +36,10 @@
 		    
 		    // check if file is open for writing
 	        file_status = fi->status & O_ACCMODE;
-            switch (file_status) {
-            case O_WRONLY:
-            case O_RDWR:
-            break;
-            default:
+            if (file_status != O_WRONLY && file_status != O_RDWR) {
                 *err = EBADF;
                 lock_release(fi->file_lock);
-            return -1;
+                return -1;
             }
 	        
 	        // check for valid buffer
