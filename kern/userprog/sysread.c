@@ -15,7 +15,7 @@
 #include <vnode.h>
 #include <synch.h>
 #if OPT_A2
- int sys_read(int fd, void *buf, size_t buflen,  int *retval) {
+ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
             
         
 	int result;
@@ -23,14 +23,14 @@
 	struct file *file;
 	
 	
- 	file = ft_getfile(curprocess->file_table, fd, retval);	
-	lock_acquire(file->file_lock);
+ 	file = ft_getfile(curprocess->file_table, fd, err);	
+
 	if (file == NULL) {
-		*retval = EBADF; // invalid fd
-		lock_release(file->file_lock);
+		*err = EBADF; // invalid fd	
 		return -1;
 		
 	}
+    lock_acquire(file->file_lock);
 	// check that the file is opened for reading
 	how = file->status & O_ACCMODE;
 	switch (how) {
@@ -38,14 +38,14 @@
 	   case O_RDWR:
 		break;
   	   default:
-		*retval = EBADF;
+		*err = EBADF;
 		lock_release(file->file_lock);
 		return -1;
 	}
 	
 	//check for valid buffer
 	if (buf == NULL) {
-	  *retval = EFAULT;
+	  *err = EFAULT;
 	  lock_release(file->file_lock);
 	  return -1;
 	}
@@ -53,7 +53,7 @@
 	// check for valid buffer region
 	result = buffer_check(buf, buflen);
 	if (result == -1) {
-	   *retval = EFAULT;
+	   *err = EFAULT;
 	   lock_release(file->file_lock);          
 	   return -1;
 
@@ -71,14 +71,14 @@
         // invalid fd
         // buflen > file
         // think about end of file
-	*retval = VOP_READ(file->v, &(file->u));
-	if (*retval !=0) {
+	*err = VOP_READ(file->v, &(file->u));
+	if (*err !=0) {
 		lock_release(file->file_lock);
 		return -1;
 	}
 	// return the number of bytes read
-        *retval = buflen - file->u.uio_resid;
-	assert(*retval >= 0);
+        *err = buflen - file->u.uio_resid;
+	assert(*err >= 0);
         lock_release(file->file_lock);
 	 return 0;
     }
