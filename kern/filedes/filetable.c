@@ -14,7 +14,7 @@
  * FILE STUFF
  *************************/
 
-struct file* f_create(struct uio u, struct vnode *v) {
+struct file* f_create(int status, int offset, struct vnode *v) {
     struct file *f = kmalloc(sizeof(struct file));
     if (f == NULL) {
         DEBUG(DB_EXEC, "FILE: failed creating file\n");
@@ -28,7 +28,8 @@ struct file* f_create(struct uio u, struct vnode *v) {
         return NULL;
     }
 
-    f->u = u;
+    f->status = status;
+    f->offset = offset;
     f->v = v;
 
     return f;
@@ -159,10 +160,11 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
     struct file *ret;
 
     lock_acquire(ft->ft_lock);
-        size = tab_getnum(ft->files);
+        size = tab_getsize(ft->files);
+
         // out of bounds
-        if (fd < 0 && fd >= size) {
-            *err = ENOENT; // no such file
+        if (fd < 0 || fd >= size) {
+            *err = EBADF; // no such file
             goto fail;
         }
 
