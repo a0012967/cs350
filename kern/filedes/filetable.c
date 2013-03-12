@@ -206,12 +206,10 @@ void console_files_bootstrap() {
     }
     
     // create and add stdin file to file_table[0]
-    stdinfile = f_create(UIO_READ, 0, vn);
+    stdinfile = f_create(O_RDONLY, 0, vn);
     if (stdinfile == NULL) {
         panic("Could not create an open file entry for stdin\n");
     }
-    
-    stdinfile->status = O_RDONLY;
     
     // store stdinfile at file_table[0]
     result  = ft_storefile(curprocess->file_table, stdinfile, &err);
@@ -220,12 +218,10 @@ void console_files_bootstrap() {
     }
 
     // create and add stdout file to file_table[1]
-    stdoutfile = f_create(UIO_WRITE, 0, vn);
+    stdoutfile = f_create(O_WRONLY, 0, vn);
     if (stdoutfile == NULL) {
         panic("Could not create an open file entry for stdout\n");
     }
-
-    stdoutfile->status = O_WRONLY;
 
     result  = ft_storefile(curprocess->file_table, stdoutfile, &err);
     if (result == -1) {
@@ -233,12 +229,10 @@ void console_files_bootstrap() {
     }
         
     // create and add stderr file to file_table
-    stderrfile = f_create(UIO_WRITE, 0, vn);
+    stderrfile = f_create(O_WRONLY, 0, vn);
     if (stderrfile == NULL) {
         panic("Could not create an open file entry for stderr\n");
     }
-
-    stderrfile->status = O_WRONLY;
 
     // store stderrfile at file_table[2]
     result  = ft_storefile(curprocess->file_table, stderrfile, &err);

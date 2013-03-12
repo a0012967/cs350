@@ -1,7 +1,6 @@
 #include <syscall.h>
 #include <curprocess.h>
 #include <filetable.h>
-#include <vfs.h>
 #include <uio.h>
 #include <types.h>
 #include <lib.h>
@@ -11,14 +10,15 @@
 #include <synch.h>
 #include <kern/errno.h>
 #include <vfs.h>
-#include <filetable.h>
 #include <kern/unistd.h>
+#include <machine/spl.h>
+#include <kern/errno.h>
+#include <vm.h>
 
 // TODO ENOSPC	There is no free space remaining on the filesystem containing the file.
 // TODO EIO	A hardware I/O error occurred writing the data.
 
-int sys_write(int fd, const void *buf, size_t buflen, int *err) {
-/*
+int sys_write(int fd, void *buf, size_t buflen, int *err) {
     int result;
     int file_status;
     struct uio u;
@@ -63,7 +63,7 @@ int sys_write(int fd, const void *buf, size_t buflen, int *err) {
         u.uio_resid = buflen;
         u.uio_space = curprocess->p_thread->t_vmspace;
         u.uio_segflg = UIO_USERSPACE;
-        u.uio_offset = fi->offset
+        u.uio_offset = fi->offset;
         
         // write to file
         result = VOP_WRITE(fi->v, &u);
@@ -74,10 +74,8 @@ int sys_write(int fd, const void *buf, size_t buflen, int *err) {
         
         fi->offset = u.uio_offset;
         //*err = buflen - u.uio_resid;
-        
         assert(*err >= 0);
     lock_release(fi->file_lock);
     
-    return buflen - u.uio_resid;
-*/
+    return u.uio_offset;
 }
