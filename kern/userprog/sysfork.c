@@ -1,7 +1,12 @@
 #include <syscall.h>
+#include <process.h>
+#include <curprocess.h>
+#include <processtable.h>
+#include <lib.h>
 
-#if OPT_A2
-    pid_t sys_fork(void) {
-        return 0;
-    }
-#endif /* OPT_A2 */
+pid_t sys_fork(int *err) {
+    assert(err != NULL);
+    assert(*err == 0);
+
+    return 0;
+}

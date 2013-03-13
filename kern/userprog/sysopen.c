@@ -16,7 +16,7 @@ int sys_open(const char *filename, int flags, int *err) {
     struct vnode *v;
     int ret;
 
-    assert(err);
+    assert(err != NULL);
     assert(*err == 0);
 
     if (filename == NULL) {

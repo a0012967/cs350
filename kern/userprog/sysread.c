@@ -21,8 +21,8 @@ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     int how;
     struct file *file;
     struct uio u;
-    
-    assert(err); // err should exist
+
+    assert(err != NULL); // err should exist
     assert(*err == 0); // error should be cleared when calling this
 
     file = ft_getfile(curprocess->file_table, fd, err);
