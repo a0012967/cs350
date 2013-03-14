@@ -8,11 +8,12 @@
 #include <process.h>
 #include <vfs.h>
 #include <kern/unistd.h>
+
 /*************************
  * FILE STUFF
  *************************/
 
-struct file* f_create(struct uio u, struct vnode *v) {
+struct file* f_create(int status, int offset, struct vnode *v) {
     struct file *f = kmalloc(sizeof(struct file));
     if (f == NULL) {
         DEBUG(DB_EXEC, "FILE: failed creating file\n");
@@ -26,7 +27,8 @@ struct file* f_create(struct uio u, struct vnode *v) {
         return NULL;
     }
 
-    f->u = u;
+    f->status = status;
+    f->offset = offset;
     f->v = v;
 
     return f;
@@ -77,17 +79,10 @@ struct filetable* ft_create() {
 
         int err, result;
         struct file * f_in, *f_out, *f_err;
-        struct uio u_in, u_out, u_err;
 
-        // increase console vnode reference count
-        vnode_incref(vn_console); 
-       
-        // create and add stdin file to file_table[0]
-        u_in.uio_space = curprocess->p_thread->t_vmspace;
-        u_in.uio_offset = 0;
-        u_in.uio_rw = UIO_READ;
+      
 
-        f_in  = f_create( u_in, vn_console);
+        f_in  = f_create( O_RDONLY,0, vn_console);
         if (f_in == NULL) {
             panic("Could not create an open file entry for stdin\n");
         }
@@ -96,15 +91,11 @@ struct filetable* ft_create() {
         if (result == -1) {
             panic("Could not add stdin file to filetable");
         }   
-        
+        // increase the ref count for the global vnode for the console
          vnode_incref(vn_console);  
 
-        // create and add stdout file to file_table[1]
-        u_out.uio_space = curprocess->p_thread->t_vmspace;
-        u_out.uio_offset = 0;
-        u_out.uio_rw = UIO_WRITE;
-
-        f_out  = f_create( u_out, vn_console);
+        // create and store stdout file
+        f_out  = f_create( O_WRONLY, 0, vn_console);
         if (f_out == NULL) {
             panic("Could not create an open file entry for stdout\n");
         }
@@ -114,22 +105,19 @@ struct filetable* ft_create() {
             panic("Could not add stdin file to filetable");
         }
 
-        
-     // create and add stderr file to file_table[2]
         vnode_incref(vn_console);
-         u_err.uio_space = curprocess->p_thread->t_vmspace;
-        u_err.uio_offset = 0;
-        u_err.uio_rw = UIO_WRITE;
 
-        f_err  = f_create( u_err, vn_console);
+        // create and store stderr file        
+        f_err  = f_create( O_WRONLY, 0, vn_console);
         if (f_err == NULL) {
             panic("Could not create an open file entry for stderr\n");
         }
-
+        
         result  = ft_storefile(ft, f_err, &err);
         if (result == -1) {
             panic("Could not add sderr file to filetable");
         }
+        vnode_incref(vn_console);
 
         //TODO: decide if panics should be removed
     }
@@ -157,7 +145,7 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
-    assert(ft != NULL && f != NULL && err != NULL);
+    assert(ft != NULL && f != NULL);
     assert(*err == 0);
 
     int result;
@@ -221,11 +209,11 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
     struct file *ret;
 
     lock_acquire(ft->ft_lock);
-        size = tab_getnum(ft->files);
+        size = tab_getsize(ft->files);
 
         // out of bounds
-        if (fd < 0 && fd >= size) {
-            *err = ENOENT; // no such file
+        if (fd < 0 || fd >= size) {
+            *err = EBADF; // no such file
             goto fail;
         }
 
@@ -255,7 +243,6 @@ void console_files_bootstrap() {
     // open the console
     int err, result;
     struct vnode *vn;
-    struct uio u_in, u_out, u_err;    
     struct file *stdinfile, *stdoutfile, *stderrfile;
     
     char *console = NULL;
@@ -270,13 +257,9 @@ void console_files_bootstrap() {
     }
     // set global vnode for console devices
     vn_console = vn;
-
-    // create and add stdin file to file_table[0]
-    u_in.uio_space = curprocess->p_thread->t_vmspace;
-    u_in.uio_offset = 0;
-    u_in.uio_rw = UIO_READ;
     
-    stdinfile = f_create( u_in, vn);
+    // create and add stdin file to file_table[0]
+    stdinfile = f_create(O_RDONLY, 0, vn);
     if (stdinfile == NULL) {
         panic("Could not create an open file entry for stdin\n");
     }
@@ -287,13 +270,9 @@ void console_files_bootstrap() {
       panic("Could not add stdin file to filetable");
     }
         
-   
-    // create and add stdout file to file_table[1]
-    u_out.uio_space = curprocess->p_thread->t_vmspace;
-    u_out.uio_offset = 0;
-    u_out.uio_rw = UIO_WRITE;
 
-    stdoutfile = f_create( u_out, vn);
+    // create and add stdout file to file_table[1]
+    stdoutfile = f_create(O_WRONLY, 0, vn);
     if (stdoutfile == NULL) {
         panic("Could not create an open file entry for stdout\n");
     }
@@ -304,22 +283,13 @@ void console_files_bootstrap() {
         panic("Could not add stdout file to filetable");
     }
 
-    // increase vnode reference       
-     vnode_incref(vn);
-
- 
+        
     // create and add stderr file to file_table
-    u_err.uio_space = curprocess->p_thread->t_vmspace;
-    u_err.uio_offset = 0;
-    u_err.uio_rw = UIO_WRITE;
-
-    stderrfile = f_create( u_err, vn);
+    stderrfile = f_create(O_WRONLY, 0, vn);
     if (stderrfile == NULL) {
-        panic("console files: Could not create an open file entry for stderr\n");
+        panic("Could not create an open file entry for stderr\n");
     }
 
-    vnode_incref(vn);
-    
     // store stderrfile at file_table[2]
     result  = ft_storefile(curprocess->file_table, stderrfile, &err);
     if (result == -1) {
@@ -327,15 +297,13 @@ void console_files_bootstrap() {
     }
 
     inprocessbootstrap = 0;
-
+    //increase vnode ref count for stdout and stderr
+    vnode_incref(vn);
+    vnode_incref(vn);
     kfree(console);
 
 
 }
-
-
-
-
 
 
 

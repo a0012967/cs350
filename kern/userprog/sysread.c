@@ -14,89 +14,89 @@
 #include <kern/unistd.h>
 #include <vnode.h>
 #include <synch.h>
-#if OPT_A2
- int sys_read(int fd, void *buf, size_t buflen,  int *err) {
-            
+
+int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
+    int result;
+    int how;
+    struct file *file;
+    struct uio u;
+  
+    
+    assert(err); // err should exist
+    assert(*err == 0); // error should be cleared when calling this
+       
+    
+    file = ft_getfile(curprocess->file_table, fd, err);
+
+    if (file == NULL) {
+        // err should have been updated with the error code
+        assert(*err != 0);
         
-	int result;
-	int how;
-	struct file *file;
-	
-	
- 	file = ft_getfile(curprocess->file_table, fd, err);	
-
-	if (file == NULL) {
-		*err = EBADF; // invalid fd	
-		return -1;
-		
-	}
-    lock_acquire(file->file_lock);
-	// check that the file is opened for reading
-	how = file->status & O_ACCMODE;
-	switch (how) {
-	   case O_RDONLY:
-	   case O_RDWR:
-		break;
-  	   default:
-		*err = EBADF;
-		lock_release(file->file_lock);
-		return -1;
-	}
-	
-	//check for valid buffer
-	if (buf == NULL) {
-	  *err = EFAULT;
-	  lock_release(file->file_lock);
-	  return -1;
-	}
-	
-	// check for valid buffer region
-	result = buffer_check(buf, buflen);
-	if (result == -1) {
-	   *err = EFAULT;
-	   lock_release(file->file_lock);          
-	   return -1;
-
-	}
-
-	// initialize the file's uio for reading
-	result = uio_init(file, buf, buflen);
-	if (result == -1 ) {
-		 lock_release(file->file_lock);
-		//TODO: figure out if need to set retval
-		return -1;
-	}
-	
-        // errors:
-        // invalid fd
-        // buflen > file
-        // think about end of file
-	*err = VOP_READ(file->v, &(file->u));
-	if (*err !=0) {
-		lock_release(file->file_lock);
-		return -1;
-	}
-	// return the number of bytes read
-        *err = buflen - file->u.uio_resid;
-	assert(*err >= 0);
-        lock_release(file->file_lock);
-	 return 0;
+        if (*err == ENOENT){ // file closed or doesnt exist
+            *err =  EBADF;
+        }
+        return -1;
     }
 
-//  initializes the uio of the file for reading
-//  returns 0 on success
-//  returns -1 if error occured and changes err to errno
-int uio_init(struct file *file, void * buf, size_t buflen){
-	
-	assert(file != NULL);
-	
-	file->u.uio_iovec.iov_un.un_ubase = buf;
-	file->u.uio_iovec.iov_len = buflen;
-	file->u.uio_rw = UIO_READ;
-	file->u.uio_resid = buflen;
-	file->u.uio_space = curprocess->p_thread->t_vmspace;
+    // start the lock
+    lock_acquire(file->file_lock);
+    
 
- 	return 0;
+    // check that the file is opened for reading
+    how = file->status & O_ACCMODE;
+    switch (how) {
+        case O_RDONLY:
+        case O_RDWR:
+            break;
+        default:
+            *err = EBADF;
+            goto fail;
+    }
+
+    //check for valid buffer
+    if (buf == NULL) {
+        *err = EFAULT;
+        goto fail;
+    }
+
+    // check for valid buffer region
+    result = buffer_check(buf, buflen);
+    if (result == -1) {
+        *err = EFAULT;
+        goto fail;
+    }
+
+    // initialize the uio for reading
+    u.uio_iovec.iov_ubase = buf;
+    u.uio_iovec.iov_len = buflen;
+    u.uio_offset = file->offset;
+    u.uio_rw = UIO_READ;
+    u.uio_resid = buflen;
+    u.uio_segflg = UIO_USERSPACE;
+    u.uio_space = curprocess->p_thread->t_vmspace;
+
+    //mk_kuio(&u, srcbuf, buflen, file->offset, UIO_READ);
+    
+    result = VOP_READ(file->v, &u);
+    if (result !=0) {
+        goto fail;
+    }
+//    result = uiomove(file->v, buflen, &u);
+    
+  
+    // return the number of bytes read
+    result  = buflen - u.uio_resid;
+    assert(result >= 0);
+    // update the offset of the file
+    file->offset = u.uio_offset;
+    lock_release(file->file_lock);
+    *err = result;
+    return 0;
+
+fail:
+    assert(*err != 0);
+    lock_release(file->file_lock);
+    return -1;
 }
 
 /* Memory region check function. Checks to make sure the block
@@ -106,24 +106,23 @@ int uio_init(struct file *file, void * buf, size_t buflen){
  * Note: most of this code is taken from copycheck() in copyinout.c
  */
 int buffer_check(void *buf, size_t buflen){
-	vaddr_t bot, top;
-	bot = (vaddr_t) buf;
-	top = bot + buflen - 1;
-	if (buf == NULL) {
-		return -1;
-	}
-	if (top < bot) {
-		/* addresses wrapped around */
-		return -1;
-	}
-	if (bot >= USERTOP){
-		/* region is within the kernel */
-		return -1;
-	}
-	if (top >= USERTOP) {
-		/* region overlaps the kernel */
-		return -1;
-	}
-	return 0;
+    vaddr_t bot, top;
+    bot = (vaddr_t) buf;
+    top = bot + buflen - 1;
+    if (buf == NULL) {
+        return -1;
+    }
+    if (top < bot) {
+        /* addresses wrapped around */
+        return -1;
+    }
+    if (bot >= USERTOP){
+        /* region is within the kernel */
+        return -1;
+    }
+    if (top >= USERTOP) {
+        /* region overlaps the kernel */
+        return -1;
+    }
+    return 0;
 }
-#endif /* OPT_A2 */

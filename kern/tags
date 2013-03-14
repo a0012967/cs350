@@ -1062,6 +1062,7 @@ bootfs_vnode	fs/vfs/vfslookup.c	/^static struct vnode *bootfs_vnode = NULL;$/;"	
 bowls	asst1/bowls.c	/^static volatile char *bowls;$/;"	v	file:
 bs_beep	dev/generic/beep.h	/^	void (*bs_beep)(void *devdata);$/;"	m	struct:beep_softc
 bs_devdata	dev/generic/beep.h	/^	void *bs_devdata;$/;"	m	struct:beep_softc
+buffer_check	userprog/sysread.c	/^int buffer_check(void *buf, size_t buflen){$/;"	f
 buildconfig	compile/ASST0/vers.c	/^const char buildconfig[] = "ASST0";$/;"	v
 buildconfig	compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
 buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
@@ -1570,7 +1571,7 @@ mallocstress	test/malloctest.c	/^mallocstress(int nargs, char **args)$/;"	f
 malloctest	test/malloctest.c	/^malloctest(int nargs, char **args)$/;"	f
 mallocthread	test/malloctest.c	/^mallocthread(void *sm, unsigned long num)$/;"	f	file:
 max	lib/array.c	/^	int max;$/;"	m	struct:array	file:
-md_forkentry	arch/mips/mips/syscall.c	/^md_forkentry(struct trapframe *tf)$/;"	f
+md_forkentry	arch/mips/mips/syscall.c	/^void md_forkentry(struct trapframe *tf)$/;"	f
 md_halt	arch/mips/mips/lamebus_mips.c	/^md_halt(void)$/;"	f
 md_initpcb	arch/mips/mips/pcb.c	/^md_initpcb(struct pcb *pcb, char *stack, $/;"	f
 md_initpcb0	arch/mips/mips/pcb.c	/^md_initpcb0(struct pcb *pcb)$/;"	f
@@ -1589,7 +1590,7 @@ mips_interrupt	arch/mips/mips/interrupt.c	/^mips_interrupt(u_int32_t cause)$/;"	
 mips_lamebus_interrupt	arch/mips/mips/lamebus_mips.c	/^mips_lamebus_interrupt(void)$/;"	f
 mips_ramsize	arch/mips/mips/lamebus_mips.c	/^mips_ramsize(void)$/;"	f
 mips_switch	arch/mips/mips/switch.S	/^mips_switch:$/;"	l
-mips_syscall	arch/mips/mips/syscall.c	/^mips_syscall(struct trapframe *tf)$/;"	f
+mips_syscall	arch/mips/mips/syscall.c	/^void mips_syscall(struct trapframe *tf)$/;"	f
 mips_threadstart	arch/mips/mips/threadstart.S	/^mips_threadstart:$/;"	l
 mips_trap	arch/mips/mips/trap.c	/^mips_trap(struct trapframe *tf)$/;"	f
 mips_usermode	arch/mips/mips/trap.c	/^mips_usermode(struct trapframe *tf)$/;"	f
@@ -2010,14 +2011,14 @@ switchframe	arch/mips/include/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST0/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST1/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST2/machine/switchframe.h	/^struct switchframe {$/;"	s
-sys__exit	userprog/sysexit.c	/^    void sys__exit(int exitcode) {$/;"	f
+sys__exit	userprog/sysexit.c	/^void sys__exit(int exitcode) {$/;"	f
 sys_close	userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
 sys_fork	userprog/sysfork.c	/^    pid_t sys_fork(void) {$/;"	f
 sys_getpid	userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_nerr	include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
 sys_open	userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
-sys_read	userprog/sysread.c	/^    int sys_read(int fd, void *buf, size_t buflen) {$/;"	f
+sys_read	userprog/sysread.c	/^    int sys_read(int fd, void *buf, size_t buflen,  int *retval) {$/;"	f
 sys_reboot	main/main.c	/^sys_reboot(int code)$/;"	f
 sys_waitpid	userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
 sys_write	userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
@@ -2323,6 +2324,7 @@ uintptr_t	compile/ASST0/machine/types.h	/^typedef unsigned long uintptr_t;	\/* U
 uintptr_t	compile/ASST1/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uintptr_t	compile/ASST2/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uio	include/uio.h	/^struct uio {$/;"	s
+uio_init	userprog/sysread.c	/^int uio_init(struct file *file, void * buf, size_t buflen){$/;"	f
 uio_iovec	include/uio.h	/^	struct iovec      uio_iovec;       \/* Data block *\/$/;"	m	struct:uio	typeref:struct:uio::iovec
 uio_offset	include/uio.h	/^	off_t             uio_offset;      \/* desired offset into object *\/$/;"	m	struct:uio
 uio_resid	include/uio.h	/^	size_t            uio_resid;       \/* Remaining amt of data to xfer *\/$/;"	m	struct:uio

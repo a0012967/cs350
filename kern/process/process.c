@@ -31,7 +31,8 @@ void process_bootstrap() {
     processtable_bootstrap();
     
     inprocessbootstrap = 1;
-	struct process * p = p_create();
+	
+    struct process * p = p_create();
     if (p == NULL) {
         panic("PROCESS: Process bootstrap failed\n");
     }
