@@ -7,6 +7,7 @@
 
 /* Get machine-dependent stuff */
 #include <machine/pcb.h>
+#include "opt-A2.h"
 
 
 struct addrspace;
@@ -38,6 +39,7 @@ struct thread {
 	 */
 	struct vnode *t_cwd;
 };
+
 
 /* Call once during startup to allocate data structures. */
 struct thread *thread_bootstrap(void);
@@ -132,5 +134,9 @@ void mi_threadstart(void *data1, unsigned long data2,
 /* Machine dependent context switch. */
 void md_switch(struct pcb *old, struct pcb *nu);
 
+
+// creates a new thread. this is called in sysfork.c
+// TODO: remove this shit
+struct thread *thread_childprocess(const char *name, int *err);
 
 #endif /* _THREAD_H_ */

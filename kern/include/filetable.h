@@ -35,6 +35,9 @@ int ft_removefile(struct filetable *ft, int fd);
 // FAILURE: returns NULL and updates value of err
 struct file* ft_getfile(struct filetable *ft, int fd, int *err);
 
+// DUPLICATES THE FILE TABLE
+struct filetable* ft_duplicate(struct filetable *ft);
+
 
 // USE THE BELOW only for debugging purposes!
 // returns number of files in filetable

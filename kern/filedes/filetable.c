@@ -172,7 +172,7 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
 
         // file has been removed
         if (ret == NULL) {
-            *err = ENOENT;
+            *err = EBADF;
             goto fail;
         }
     lock_release(ft->ft_lock);
@@ -182,6 +182,13 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
 fail:
     lock_release(ft->ft_lock);
     assert(*err);
+    return NULL;
+}
+
+// TODO: implement this
+struct filetable* ft_duplicate(struct filetable *ft) {
+    (void)ft;
+    assert(0);
     return NULL;
 }
 

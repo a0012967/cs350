@@ -79,7 +79,6 @@ void mips_syscall(struct trapframe *tf)
                 break;
             case SYS_close:
                 err = 0;
-                //kprintf("close index: %d\n", (int)tf->tf_a0);
                 retval = sys_close((int)tf->tf_a0, &err);
                 break;
             case SYS_read:
@@ -87,8 +86,10 @@ void mips_syscall(struct trapframe *tf)
                 if (err == -1) {
                     err = retval;
                 }
-	        break;
+                break;
             case SYS_fork:
+                err = 0;
+                retval = sys_fork(tf, &err);
                 break;
             case SYS_write:
                 err = 0;
@@ -96,7 +97,7 @@ void mips_syscall(struct trapframe *tf)
                 if (retval < 0) {
                     retval = err;
                 }
-            break;
+                break;
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
                 break;
@@ -137,12 +138,50 @@ void mips_syscall(struct trapframe *tf)
 
 void md_forkentry(struct trapframe *tf)
 {
-    /*
-     * This function is provided as a reminder. You need to write
-     * both it and the code that calls it.
-     *
-     * Thus, you can trash it and do things another way if you prefer.
-     */
+    #if OPT_A2
+        struct trapframe f_tf;
 
-    (void)tf;
+        f_tf.tf_vaddr = tf->tf_vaddr;	
+        f_tf.tf_status = tf->tf_status;	
+        f_tf.tf_cause = tf->tf_cause;	
+        f_tf.tf_lo = tf->tf_lo;
+        f_tf.tf_hi = tf->tf_hi;
+        f_tf.tf_ra = tf->tf_ra;
+        f_tf.tf_at = tf->tf_at;
+
+        // set return code as 0
+        f_tf.tf_v0 = 0;
+
+        f_tf.tf_v1 = tf->tf_v1;
+        f_tf.tf_a0 = tf->tf_a0;
+        f_tf.tf_a1 = tf->tf_a1;
+        f_tf.tf_a2 = tf->tf_a2;
+        f_tf.tf_a3 = tf->tf_a3;
+        f_tf.tf_t0 = tf->tf_t0;
+        f_tf.tf_t1 = tf->tf_t1;
+        f_tf.tf_t2 = tf->tf_t2;
+        f_tf.tf_t3 = tf->tf_t3;
+        f_tf.tf_t4 = tf->tf_t4;
+        f_tf.tf_t5 = tf->tf_t5;
+        f_tf.tf_t6 = tf->tf_t6;
+        f_tf.tf_t7 = tf->tf_t7;
+        f_tf.tf_s0 = tf->tf_s0;
+        f_tf.tf_s1 = tf->tf_s1;
+        f_tf.tf_s2 = tf->tf_s2;
+        f_tf.tf_s3 = tf->tf_s3;
+        f_tf.tf_s4 = tf->tf_s4;
+        f_tf.tf_s5 = tf->tf_s5;
+        f_tf.tf_s6 = tf->tf_s6;
+        f_tf.tf_s7 = tf->tf_s7;
+        f_tf.tf_t8 = tf->tf_t8;
+        f_tf.tf_t9 = tf->tf_t9;
+        f_tf.tf_k0 = tf->tf_k0;
+        f_tf.tf_k1 = tf->tf_k1;
+        f_tf.tf_gp = tf->tf_gp;
+        f_tf.tf_sp = tf->tf_sp;
+        f_tf.tf_s8 = tf->tf_s8;
+        f_tf.tf_epc = tf->tf_epc;
+
+        mips_usermode(&tf);
+    #endif // OPT_A2
 }

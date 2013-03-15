@@ -8,6 +8,9 @@
  * Prototypes for IN-KERNEL entry points for system call implementations.
  */
 
+// forward decls
+struct trapframe;
+
 int sys_reboot(int code);
 
 #if OPT_A2
@@ -18,7 +21,8 @@ int sys_reboot(int code);
     int sys_close(int fd, int *err);
     int sys_read(int fd, void *buf, size_t buflen,  int *retval);
     void sys__exit(int exitcode);
-    pid_t sys_fork(int *err);
+    // we pass the trap frame to fork so we can copy it
+    pid_t sys_fork(struct trapframe *tf, int *err);
 
 /********************
  * Helper functions
