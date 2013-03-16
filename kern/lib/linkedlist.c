@@ -1,6 +1,7 @@
 #include <types.h>
 #include <lib.h>
 #include <linkedlist.h>
+#include <kern/errno.h>
 
 
 /*
@@ -195,21 +196,19 @@ void *ll_back(struct linkedlist *ll) {
     return ll->tail->data;
 }
 
-// for debugging purposes only
-void ll_print(struct linkedlist *ll) {
+struct linkedlist *ll_copy(struct linkedlist *ll) {
     assert(ll != NULL);
-    struct node *n = ll->head;
-    while (n != NULL) {
-        kprintf("value: %d\n", *((int*)(n->data)));
-        n = n->next;
+
+    struct linkedlist *new_ll = ll_create();
+    if (new_ll == NULL)
+        return NULL;
+
+    struct node *curr = ll->head;
+    while (curr != NULL) {
+        struct node *tmp = curr;
+        curr = curr->next;
+        ll_push_back(new_ll, tmp->data);
     }
-    if (ll->head != NULL)
-        kprintf("head: %d\n", *((int*)(ll->head->data)));
-    else
-        kprintf("head: NULL\n");
-    if (ll->tail != NULL)
-        kprintf("tail: %d\n", *((int*)(ll->tail->data)));
-    else
-        kprintf("tail: NULL\n");
-    kprintf("size: %d\n", ll->size);
+
+    return new_ll;
 }

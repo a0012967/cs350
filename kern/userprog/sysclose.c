@@ -2,6 +2,7 @@
 #include <vfs.h>
 #include <process.h>
 #include <curprocess.h>
+#include <file.h>
 #include <filetable.h>
 #include <kern/errno.h>
 #include <lib.h>

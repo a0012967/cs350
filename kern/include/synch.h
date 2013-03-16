@@ -113,3 +113,4 @@ void       cv_broadcast(struct cv *cv, struct lock *lock);
 void       cv_destroy(struct cv *);
 
 #endif /* _SYNCH_H_ */
+

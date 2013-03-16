@@ -8,6 +8,7 @@
 #include <vfs.h>
 #include <machine/spl.h>
 #include <kern/errno.h>
+#include <file.h>
 #include <filetable.h>
 #include <uio.h>
 #include <lib.h>

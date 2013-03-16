@@ -3,11 +3,12 @@
 
 #include <types.h>
 #include <uio.h>
-#include <file.h>
 
 #define MAX_FILENAME_LEN 1024
 
+struct file;
 struct filetable;
+
 // creates file table. returns NULL on failure
 struct filetable* ft_create();
 void ft_destroy(struct filetable *ft);
@@ -23,9 +24,8 @@ int ft_removefile(struct filetable *ft, int fd);
 struct file* ft_getfile(struct filetable *ft, int fd, int *err);
 
 // DUPLICATES THE FILE TABLE
-// returns NULL on failure and updates err with errcode
-struct filetable* ft_duplicate(struct filetable *ft, int *err);
-
+// returns error code on failure
+int ft_duplicate(struct filetable *ft, struct filetable **new_ft);
 
 /* Opening console devices */
 void console_files_bootstrap();

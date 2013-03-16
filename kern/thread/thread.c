@@ -303,11 +303,11 @@ thread_fork(const char *name,
     #if OPT_A2
         if (curthread->t_vmspace) {
             // copy the address space of the one who called
-            result = as_copy(curthread->t_vmspace, &newguy->t_vmspace);
+            result = as_copy(curthread->t_vmspace, &(newguy->t_vmspace));
             if (result) {
-                // TODO: think about this
                 return result;
             }
+            //as_activate(newguy->t_vmspace);
         }
     #endif // OPT_A2
 

@@ -1,3 +1,4 @@
+#include <file.h>
 #include <filetable.h>
 #include <table.h>
 #include <synch.h>
@@ -60,11 +61,10 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
-    assert(ft != NULL && f != NULL);
+    assert(ft != NULL);
     assert(*err == 0);
 
     int result;
-
     lock_acquire(ft->ft_lock);
         result = tab_add(ft->files, f, err);
         if (result == -1) {
@@ -148,34 +148,38 @@ fail:
     return NULL;
 }
 
-struct filetable* ft_duplicate(struct filetable *ft, int *err) {
-    assert(ft != NULL && err != NULL);
-    assert(*err == 0);
+int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
+    assert(ft != NULL);
+    assert(*new_ft != NULL);
 
-    struct filetable *new_ft;
-    int size, ret, i;
+    struct filetable *nft;
+    int i, size, err = 0;
 
     lock_acquire(ft->ft_lock);
-        new_ft = ft_create();
-        size = tab_getsize(ft->files);
+        nft = *new_ft;
+        err = tab_duplicate(ft->files, &(nft->files));
+
+        size = tab_getsize(nft->files);
+        assert(size == tab_getsize(ft->files));
+
+        // test validity
         for (i=0; i<size; i++) {
-            void *guy = tab_getguy(ft->files, i);
-            if (guy != NULL) {
-                ret = ft_storefile(new_ft, (struct file*)guy, err);
-                if (ret == -1) {
-                    goto fail;
-                }
+            void *ptr1, *ptr2;
+            ptr1 = tab_getguy(ft->files, i);
+            ptr2 = tab_getguy(nft->files, i);
+            assert(ptr1 == ptr2);
+        }
+
+        for (i=0; i<size; i++) {
+            struct file *f = (struct file*)tab_getguy(nft->files, i);
+            if (f != NULL) {
+                err = systemft_update(f);
+                assert(!err);
             }
         }
     lock_release(ft->ft_lock);
 
-    return new_ft;
-
-fail:
-    assert(*err);
-    lock_release(ft->ft_lock);
-    ft_destroy(new_ft);
-    return NULL;
+    return err;
 }
 
 /* CONSOLE DEVICES FILES 

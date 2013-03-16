@@ -3,6 +3,7 @@
 #include <lib.h>
 #include <array.h>
 #include <linkedlist.h>
+#include <kern/errno.h>
 
 
 
@@ -120,6 +121,68 @@ int tab_remove(struct table *t, int index) {
 void* tab_getguy(struct table *t, int index) {
     assert(t != NULL);
     return array_getguy(t->array, index);
+}
+
+// DUPLICATES TABLE (SOFT COPY)
+// returns error code on failure
+int tab_duplicate(struct table *t, struct table **new_t) {
+    assert(t != NULL);
+    assert(*new_t != NULL);
+
+    struct table *n_t;
+    struct array *n_arr;
+    struct linkedlist *n_ll;
+    void *ptr;
+    int i, size, err=0;
+
+    n_t = *new_t;
+    n_arr = n_t->array;
+    n_ll = n_t->slots;
+    size = tab_getsize(t);
+
+    // copy array
+    err = array_preallocate(n_arr, size);
+    if (err) {
+        goto fail;
+    }
+
+    // soft copy is okay in this case since they are shared
+    for (i=0; i<size; i++) {
+        ptr = array_getguy(t->array, i);
+        array_add(n_arr, ptr);
+    }
+
+    // SOFT-COPY LINKED LIST
+    struct linkedlist *temp_ll = ll_copy(t->slots); 
+    if (temp_ll == NULL) {
+        err = ENOMEM;
+        goto fail;
+    }
+    // HARD-COPY LINKED LIST
+    while (!ll_empty(temp_ll)) {
+        int *tmp_ptr = (int*)ll_pop_front(temp_ll);
+        int *ptr = kmalloc(sizeof(int));
+        if (ptr == NULL) {
+            err = ENOMEM;
+            ll_destroy(temp_ll);
+            goto fail;
+        }
+        *ptr = *tmp_ptr;
+        ll_push_back(n_ll, ptr);
+    }
+    // DESTROY THE TEMPORARY LINKED LIST
+    ll_destroy(temp_ll);
+
+    if (err) {
+        goto fail;
+    }
+
+    return 0;
+
+fail:
+    assert(err);
+    assert(0); // remove this
+    return err;
 }
 
 int tab_getsize(struct table *t) {
