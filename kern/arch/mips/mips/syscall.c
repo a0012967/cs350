@@ -107,7 +107,7 @@ void mips_syscall(struct trapframe *tf)
                 err = 0;
                 retval = sys_getpid();
             break;
-
+            
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
             break;

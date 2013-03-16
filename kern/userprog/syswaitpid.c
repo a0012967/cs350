@@ -32,7 +32,7 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
         return -1;
     }
     
-   lock_acquire(proc->p_lock); 
+    lock_acquire(proc->p_lock); 
 	    if (proc->parentpid != curprocess->pid) {
 	        *err = EINVAL; // TODO correct err val?
             lock_release(proc->p_lock);

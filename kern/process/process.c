@@ -12,6 +12,7 @@
 #include <curthread.h>
 #include <filetable.h>
 #include <array.h>
+#include <synch.h>
 
 // global boolean, needed for opening console
 // devices
@@ -59,8 +60,8 @@ struct process * p_create() {
         return NULL;
     }
 
-    /*// initiate condition variable for waitpid
-    p->p_waitcv = cv_create();
+    // initiate condition variable for waitpid
+    p->p_waitcv = cv_create("proc_cv");
     if (p->p_waitcv == NULL) {
         // free allocated process cause it failed
         kfree(p);
@@ -68,7 +69,7 @@ struct process * p_create() {
     }
     
     // initiate its lock
-    p->p_lock = lock_create();
+    p->p_lock = lock_create("proc_lock");
     if (p->p_lock == NULL) {
         // free allocated process cause it failed
         kfree(p);
@@ -81,7 +82,7 @@ struct process * p_create() {
 
     // set parent pid to 0 for now -> this value needs to be
     // set explicitly when doing a fork
-    p->parentpid = 0;*/
+    p->parentpid = 0;
 
     // insert process to process table
     int index = processtable_insert(p);
@@ -102,6 +103,10 @@ void p_destroy() {
     // destroy filetable
     ft_destroy(p->file_table);
 
+    // destroy synch primitives
+    lock_destroy(curprocess->p_lock);
+    cv_destroy(curprocess->p_waitcv);
+
     // free memory allocated to the process
     kfree(p); // TODO: process scheduling?
 
@@ -111,7 +116,13 @@ void p_destroy() {
 
 // destroy the specified process
 void p_destroy_at(struct process * p) {
+    // destroy filetable
     ft_destroy(p->file_table);
+    
+    // destroy synch primitives
+    lock_destroy(p->p_lock);
+    lock_destroy(p->p_waitcv);
+    
     kfree(p);
 }
 
