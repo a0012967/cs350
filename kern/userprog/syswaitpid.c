@@ -1,5 +1,7 @@
 #include <syscall.h>
 #include <curprocess.h>
+#include <curthread.h>
+#include <thread.h>
 #include <process.h>
 #include <synch.h>
 #include <kern/errno.h>
@@ -26,6 +28,7 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
     }
 	
     struct process * proc = processtable_get(pid);
+    struct thread * th = proc->p_thread;
     
     if (proc == NULL) {
         *err = EINVAL; // TODO correct err val?
@@ -34,20 +37,20 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
     
     lock_acquire(proc->p_lock); 
 
-	    if (proc->parentpid != curprocess->pid) {
+	    if (th->parentpid != curthread->pid) {
 	        *err = EINVAL; // TODO correct err val?
-            lock_release(proc->p_lock);
+            lock_release(th->t_lock);
             return -1;
 	    }
 	
-        while (!proc->has_exited) {
-            cv_wait(proc->p_waitcv, proc->p_lock);
+        while (!th->has_exited) {
+            cv_wait(th->t_waitcv, th->t_lock);
         }
-        *status = proc->exitcode;
+        *status = th->exitcode;
         
         // remove the child from the proc table
         processtable_remove(pid);
-    lock_release(proc->p_lock);
+    lock_release(th->t_lock);
     
     // free the child
     p_destroy_at(proc);

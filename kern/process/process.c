@@ -121,7 +121,7 @@ void p_destroy_at(struct process * p) {
     
     // destroy synch primitives
     lock_destroy(p->p_lock);
-    lock_destroy(p->p_waitcv);
+    cv_destroy(p->p_waitcv);
     
     kfree(p);
 }

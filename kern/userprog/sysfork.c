@@ -1,6 +1,7 @@
 #include <syscall.h>
 #include <process.h>
 #include <curprocess.h>
+#include <curthread.h>
 #include <processtable.h>
 #include <thread.h>
 #include <lib.h>
@@ -48,8 +49,6 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
         goto fail;
     }
 
-	new_process->parentpid = curprocess->pid;
-
     // copy open file information
     *err = ft_duplicate(curprocess->file_table, &(new_process->file_table));
     if (*err) {
@@ -78,6 +77,9 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
 
     // set the retval to new_process' pid
     retval = new_process->pid;
+    
+    // set the parent pid
+	new_process->p_thread->parentpid = curthread->pid;
 
     // return 1 for now (must return pid)
     return retval;
