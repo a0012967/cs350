@@ -53,6 +53,30 @@ struct process * p_create() {
         return NULL;
     }
 
+    // initiate condition variable for waitpid
+    p->p_waitcv = cv_create();
+    if (p->p_waitcv == NULL) {
+        // free allocated process cause it failed
+        kfree(p);
+        return NULL;
+    }
+    
+    // initiate its lock
+    p->p_lock = lock_create();
+    if (p->p_lock == NULL) {
+        // free allocated process cause it failed
+        kfree(p);
+        return NULL;
+    }
+
+    // signify process hasn't exited yet
+    p->has_exited = 0;
+    p->exitcode = 0;
+
+    // set parent pid to 0 for now -> this value needs to be
+    // set explicitly when doing a fork
+    p->parentpid = 0;
+
     // insert process to process table
     int index = processtable_insert(p);
     p->pid = (pid_t)index;
@@ -73,6 +97,12 @@ void p_destroy() {
 
     // exit the current thread
     thread_exit();
+}
+
+// destroy the specified process
+void p_destroy_at(struct process * p) {
+    ft_destroy(p->file_table);
+    kfree(p);
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {
