@@ -18,7 +18,7 @@ int sys_reboot(int code);
     int sys_close(int fd, int *err);
     int sys_read(int fd, userptr_t buf, size_t buflen,  int *retval);
     void sys__exit(int exitcode);
-    pid_t sys_fork(void);
+    pid_t sys_fork(int *err);
 
 /********************
  * Helper functions

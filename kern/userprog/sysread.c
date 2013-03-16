@@ -20,18 +20,17 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     int how;
     struct file *file;
     struct uio u;
-  
-    
-    assert(err); // err should exist
+
+    assert(err != NULL); // err should exist
     assert(*err == 0); // error should be cleared when calling this
-       
-    
+
+
     file = ft_getfile(curprocess->file_table, fd, err);
 
     if (file == NULL) {
         // err should have been updated with the error code
         assert(*err != 0);
-        
+
         if (*err == ENOENT){ // file closed or doesnt exist
             *err =  EBADF;
         }
@@ -40,7 +39,7 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
 
     // start the lock
     lock_acquire(file->file_lock);
-    
+
 
     // check that the file is opened for reading
     how = file->status & O_ACCMODE;
@@ -75,15 +74,11 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     u.uio_segflg = UIO_USERSPACE;
     u.uio_space = curprocess->p_thread->t_vmspace;
 
-    //mk_kuio(&u, srcbuf, buflen, file->offset, UIO_READ);
-    
     result = VOP_READ(file->v, &u);
     if (result !=0) {
         goto fail;
     }
-//    result = uiomove(file->v, buflen, &u);
-    
-  
+
     // return the number of bytes read
     result  = buflen - u.uio_resid;
     assert(result >= 0);

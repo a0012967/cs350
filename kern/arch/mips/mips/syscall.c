@@ -87,7 +87,7 @@ void mips_syscall(struct trapframe *tf)
                 if (err == -1) {
                     err = retval;
                 }
-	        break;
+	            break;
             case SYS_fork:
                 break;
             case SYS_write:
@@ -96,7 +96,16 @@ void mips_syscall(struct trapframe *tf)
                 if (retval < 0) {
                     retval = err;
                 }
-            break;
+                break;
+            case SYS_getpid:
+                retval = sys_getpid();
+                break;
+            case SYS_waitpid:
+                err = 0;
+                retval = sys_waitpid((pid_t)tf->tf_a0, (int *)tf->tf_a1, (int)tf->tf_a2, &err);
+                if (retval < 0) {
+                    retval = err;
+                }
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
                 break;

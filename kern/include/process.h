@@ -6,7 +6,12 @@
 #define MAX_PROCESSES 4
 
 struct process {
+    int has_exited; // TODO init to 0
+    int exitcode; // TODO init to 0
+    pid_t parentpid; // TODO init on fork -> should we keep this?
 	pid_t pid;
+	struct cv* p_waitcv; // TODO malloc on create, free on destroy
+	struct lock* p_lock; // TODO malloc on create, free on destroy
 	struct thread* p_thread;
     struct filetable* file_table; 
 };
@@ -23,6 +28,7 @@ void process_bootstrap();
 // Returns NULL on failure
 struct process * p_create();
 void p_destroy();
+void p_destroy_at(struct process *p);
 void p_assign_thread(struct process *p, struct thread *thread);
 
 #endif // _PROCESS_H_
