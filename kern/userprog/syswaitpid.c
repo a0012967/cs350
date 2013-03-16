@@ -5,6 +5,14 @@
 #include <kern/errno.h>
 #include <processtable.h>
 
+/*
+Is the status pointer properly aligned (by 4) ?
+Is the status pointer a valid pointer anyway (NULL, point to kernel, …)?
+Is options valid? (More flags than WNOHANG | WUNTRACED )
+Does the waited pid exist/valid?
+If exist, are we allowed to wait it ? (Is it our child?)
+*/
+
 int sys_waitpid(pid_t pid, int *status, int options, int* err) {
 
     if (options != 0) {

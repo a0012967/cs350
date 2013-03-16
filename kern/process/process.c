@@ -53,7 +53,7 @@ struct process * p_create() {
         return NULL;
     }
 
-    // initiate condition variable for waitpid
+    /*// initiate condition variable for waitpid
     p->p_waitcv = cv_create();
     if (p->p_waitcv == NULL) {
         // free allocated process cause it failed
@@ -75,7 +75,7 @@ struct process * p_create() {
 
     // set parent pid to 0 for now -> this value needs to be
     // set explicitly when doing a fork
-    p->parentpid = 0;
+    p->parentpid = 0;*/
 
     // insert process to process table
     int index = processtable_insert(p);
