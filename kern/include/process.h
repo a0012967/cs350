@@ -3,7 +3,7 @@
 
 #include <types.h>
 
-#define MAX_PROCESSES 4
+#define MAX_PROCESSES 10
 
 struct process {
     int has_exited; // TODO init to 0

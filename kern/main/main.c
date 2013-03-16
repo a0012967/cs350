@@ -20,6 +20,7 @@
 #include <curprocess.h>
 
 // REMOVE
+#include <file.h>
 #include <filetable.h>
 #include <systemfiletable.h>
 #include "opt-A0.h"
@@ -47,71 +48,26 @@ static const char harvard_copyright[] =
 
 
 void testfiletable() {
+    /*
     int result = 0, err = 0;
-//    struct filetable *ft = ft_create();
     struct filetable *ft = curprocess->file_table;
-      assert(ft != NULL);
+    assert(ft != NULL);
 
     struct vnode *v;
 
     struct file *f1 = f_create(0, 0, v);
-    assert(f1 != NULL);
     struct file *f2 = f_create(0, 0, v);
-    assert(f1 != NULL);
     struct file *f3 = f_create(0, 0, v);
-    assert(f1 != NULL);
-    struct file *f4 = f_create(0, 0, v);
-    assert(f1 != NULL);
-    struct file *f5 = f_create(0, 0, v);
-    assert(f1 != NULL);
-    struct file *f6 = f_create(0, 0, v);
-    assert(f1 != NULL);
-    struct file *f7 = f_create(0, 0, v);
-    assert(f1 != NULL);
 
-    result = ft_storefile(ft, f1, &err);
-    assert(result != -1 && !err);
-    kprintf("f1 inserted at: %d\n", result);
-    result = ft_storefile(ft, f2, &err);
-    assert(result != -1 && !err);
-    kprintf("f2 inserted at: %d\n", result);
-    result = ft_storefile(ft, f3, &err);
-    assert(result != -1 && !err);
-    kprintf("f3 inserted at: %d\n", result);
-    result = ft_storefile(ft, f4, &err);
-    assert(result != -1 && !err);
-    kprintf("f4 inserted at: %d\n", result);
-
-    kprintf("Number of files: %d\n", ft_numfiles(ft));
-    kprintf("Size of filetable: %d\n", ft_getsize(ft));
-
-    result = ft_removefile(ft, 1);
-    assert(!result);
-    kprintf("File removed at index: 1\n");
-    result = ft_removefile(ft, 3);
-    assert(!result);
-    kprintf("File removed at index: 3\n");
-
-    kprintf("Number of files: %d\n", ft_numfiles(ft));
-    kprintf("Size of filetable: %d\n", ft_getsize(ft));
-
-    result = ft_storefile(ft, f5, &err);
-    assert(result != -1 && !err);
-    kprintf("f5 inserted at: %d\n", result);
-    result = ft_storefile(ft, f6, &err);
-    assert(result != -1 && !err);
-    kprintf("f6 inserted at: %d\n", result);
-
-    kprintf("Number of files: %d\n", ft_numfiles(ft));
-    kprintf("Size of filetable: %d\n", ft_getsize(ft));
-
-    result = ft_storefile(ft, f7, &err);
-    assert(result != -1 && !err);
-    kprintf("f7 inserted at: %d\n", result);
-    kprintf("Number of files: %d\n", ft_numfiles(ft));
-    kprintf("Size of filetable: %d\n", ft_getsize(ft));
+    systemft_insert(f1);
+    ft_storefile(ft, f1, &err);
+    systemft_insert(f1);
+    ft_storefile(ft, f1, &err);
+    systemft_insert(f1);
+    ft_storefile(ft, f1, &err);
 
     ft_destroy(ft);
+    */
 }
 
 /*
@@ -174,42 +130,14 @@ boot(void)
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
 
+    #if OPT_A2
+        testfiletable();
+    #endif
+
     #if OPT_A0
         hello();
     #endif /* OPT_A0 */
-    
-    // SIMPLE TEST
-    /*
-    struct process * proc = proc_create();
-    struct process * proc2 = proc_create();
-    struct process * proc3 = proc_create();
-    
-    proc_assign_thread(proc, thread_create("lu"));
-    proc_assign_thread(proc2, thread_create("bu"));
-    proc_assign_thread(proc3, thread_create("ru"));
-    assign_pid(proc);
-    print_proc_table ();
-    kprintf("a1\n\n");
-    
-    remove_pid(1);
-    print_proc_table ();
-    kprintf("r1\n\n");
-    
-    assign_pid(proc2);
-    print_proc_table ();
-    kprintf("a2\n\n");
-        
-    remove_pid(2);
-    print_proc_table ();
-    kprintf("r2\n\n");
-    
-    assign_pid(proc3);
-    print_proc_table ();
-    kprintf("a3\n\n");
-    
-    assign_pid(proc2);
-    assign_pid(proc);
-    print_proc_table();*/
+
 }
 
 /*

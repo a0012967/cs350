@@ -9,6 +9,7 @@
 #include <machine/trapframe.h>
 #include <addrspace.h>
 #include <filetable.h>
+#include <kern/errno.h>
 
 
 // set up to be called by new thread during fork
@@ -33,38 +34,37 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     int retval;
     struct process *new_process;
     struct thread *new_thread;
-    struct filetable *new_ft;
-    struct trapframe *new_tf;
+    struct trapframe *new_trapframe;
 
     // copy trapframe
-    new_tf = kmalloc(sizeof(struct trapframe));
-    *new_tf = *tf; // copy trapframe
+    new_trapframe = kmalloc(sizeof(struct trapframe));
+    *new_trapframe = *tf; // copy trapframe
 
-    // copy open file information
-    new_ft = ft_duplicate(curprocess->file_table, err);
-    if (new_ft == NULL) {
-        kfree(new_tf);
+    // create new process
+    new_process = p_create();
+    if (new_process == NULL) {
+        kfree(new_trapframe);
+        *err = ENOMEM;
         goto fail;
     }
 
-    // create new process and new thread
-    new_process = p_create();
-    if (new_process == NULL) {
-        kfree(new_tf);
-
-        // TODO: error code
-        assert(0);
-        goto fail;
+    // copy open file information
+    *err = ft_duplicate(curprocess->file_table, &(new_process->file_table));
+    if (*err) {
+        kfree(new_trapframe);
+        ft_destroy(new_process->file_table);
+        kfree(new_process);
     }
 
     *err = thread_fork("child_thread",       // thread name
-                        new_tf, 0,             // arguments
+                        new_trapframe, 0,           // arguments
                         new_thread_handler,  // function to be called
                         &new_thread);        // thread
 
     if (*err) {
-        kfree(new_tf); // free trapframe
-        ft_destroy(new_ft); // free filetable
+        kfree(new_trapframe); // free trapframe
+        ft_destroy(new_process->file_table);
+        kfree(new_process);
         goto fail;
     }
 
@@ -73,9 +73,6 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
 
     // set thread of new process
     new_process->p_thread = new_thread;
-
-    // set file table of new process
-    new_process->file_table = new_ft;
 
     // set the retval to new_process' pid
     retval = new_process->pid;

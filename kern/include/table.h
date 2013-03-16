@@ -18,13 +18,20 @@ void tab_destroy(struct table *t);
 // returns index where ptr was stored
 // returns -1 on failure and changes value of err
 int tab_add(struct table *t, void *ptr, int *err);
+
 // removes the entry at the given index
 // returns 0 if successful, -1 otherwise
 // sets NULL to pointer in table at the given index
 int tab_remove(struct table *t, int index);
+
 // returns the ptr at the given index
 // returns NULL when ptr has been removed
 void* tab_getguy(struct table *t, int index);
+
+// DUPLICATES TABLE
+// returns error code on failure
+int tab_duplicate(struct table *t, struct table **new_t);
+
 // returns number of entries including NULL in table
 int tab_getsize(struct table *t);
 

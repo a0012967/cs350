@@ -9,6 +9,7 @@
 #include <syscall.h>
 #include <kern/errno.h>
 #include <vfs.h>
+#include <file.h>
 #include <filetable.h>
 #include <systemfiletable.h>
 
@@ -39,7 +40,10 @@ int sys_open(const char *filename, int flags, int *err) {
 
     // create a file
     struct file *f = f_create(flags, 0, v);
-    assert(f != NULL);
+    if (f == NULL) {
+        vfs_close(v);
+        return ENOMEM;
+    }
 
     // add the file to systemwide filetable
     ret = systemft_insert(f);
@@ -47,6 +51,9 @@ int sys_open(const char *filename, int flags, int *err) {
 
     // add the file to ft_storefile as well
     ret = ft_storefile(curprocess->file_table, f, err);
+    if (ret == -1) {
+        vfs_close(v);
+    }
 
     return ret;
 }

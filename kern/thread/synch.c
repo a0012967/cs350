@@ -311,3 +311,4 @@ cv_broadcast(struct cv *cv, struct lock *lock)
         (void)lock;  // suppress warning until code gets written
     #endif /* OPT_A1 */
 }
+

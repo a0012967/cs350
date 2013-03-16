@@ -30,7 +30,7 @@ struct process_table {
 void process_bootstrap() {
     // bootstrap processtable
     processtable_bootstrap();
-    
+
     inprocessbootstrap = 1;
 	
     struct process * p = p_create();
@@ -67,7 +67,7 @@ struct process * p_create() {
         kfree(p);
         return NULL;
     }
-    
+
     // initiate its lock
     p->p_lock = lock_create("proc_lock");
     if (p->p_lock == NULL) {

@@ -36,7 +36,7 @@ void              *ll_pop_back(struct linkedlist *ll);
 void              *ll_front(struct linkedlist *ll);
 void              *ll_back(struct linkedlist *ll);
 
-// for debugging purposes only. NEVER USE THIS!
-void ll_print(struct linkedlist *ll);
+// returns a SOFT COPY of the linkedlist
+struct linkedlist *ll_copy(struct linkedlist *ll);
 
 #endif /* _LINKEDLIST_H_ */

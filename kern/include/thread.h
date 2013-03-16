@@ -48,7 +48,6 @@ struct thread {
     #endif // OPT_A2
 };
 
-
 /* Call once during startup to allocate data structures. */
 struct thread *thread_bootstrap(void);
 
