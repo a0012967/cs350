@@ -655,7 +655,7 @@ MAXSTRING	testbin/tictac/tictac.c	/^#define MAXSTRING	/;"	d	file:
 MAXTHREADS	kern/include/synch.h	/^#define MAXTHREADS /;"	d
 MAX_FILENAME_LEN	kern/include/filetable.h	/^#define MAX_FILENAME_LEN /;"	d
 MAX_PROCESSES	kern/include/process.h	/^#define MAX_PROCESSES /;"	d
-MAX_SYSTEMWIDE_OPEN_FILES	kern/include/systemfiletable.h	/^#define MAX_SYSTEMWIDE_OPEN_FILES /;"	d
+MAX_SYSTEM_OPEN_FILES	kern/include/systemfiletable.h	/^#define MAX_SYSTEM_OPEN_FILES /;"	d
 MAX_TYPES	lib/libc/random.c	/^#define	MAX_TYPES	/;"	d	file:
 MDHEADERS	kern/Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	kern/Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
@@ -1725,7 +1725,7 @@ buildconfig	kern/compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	
 buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 154;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 233;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -2098,6 +2098,7 @@ exec_common_fork	testbin/badcall/bad_execv.c	/^exec_common_fork(void)$/;"	f	file
 exec_emptyprog	testbin/badcall/bad_execv.c	/^exec_emptyprog(void)$/;"	f	file:
 exec_onearg	testbin/badcall/bad_execv.c	/^exec_onearg(void *ptr, const char *desc)$/;"	f	file:
 exit	lib/libc/exit.c	/^exit(int code)$/;"	f
+exitcode	kern/include/process.h	/^    int exitcode; \/\/ TODO init to 0$/;"	m	struct:process
 exorcise	kern/thread/thread.c	/^exorcise(void)$/;"	f	file:
 f	testbin/badcall/driver.c	/^	void (*f)(void);$/;"	m	struct:__anon10	file:
 f	testbin/crash/crash.c	/^	func f;$/;"	m	struct:__anon11	file:
@@ -2149,7 +2150,7 @@ fsync	testbin/badcall/common_fds.c	/^T(fsync);$/;"	v
 fsync_badfd	testbin/badcall/common_fds.c	/^fsync_badfd(int fd)$/;"	f	file:
 ft_create	kern/filedes/filetable.c	/^struct filetable* ft_create() {$/;"	f
 ft_destroy	kern/filedes/filetable.c	/^void ft_destroy(struct filetable *ft) {$/;"	f
-ft_duplicate	kern/filedes/filetable.c	/^struct filetable* ft_duplicate(struct filetable *ft) {$/;"	f
+ft_duplicate	kern/filedes/filetable.c	/^struct filetable* ft_duplicate(struct filetable *ft, int *err) {$/;"	f
 ft_getfile	kern/filedes/filetable.c	/^struct file* ft_getfile(struct filetable *ft, int fd, int *err) {$/;"	f
 ft_getsize	kern/filedes/filetable.c	/^int ft_getsize(struct filetable *ft) {$/;"	f
 ft_lock	kern/filedes/filetable.c	/^    struct lock *ft_lock;$/;"	m	struct:filetable	typeref:struct:filetable::lock	file:
@@ -2202,6 +2203,7 @@ hardclock	kern/thread/hardclock.c	/^hardclock(void)$/;"	f
 hargv	testbin/farm/farm.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v	file:
 hargv	testbin/sty/sty.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v	file:
 harvard_copyright	kern/main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
+has_exited	kern/include/process.h	/^    int has_exited; \/\/ TODO init to 0$/;"	m	struct:process
 haveclock	kern/dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
 head	kern/filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 head	kern/lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
@@ -2235,7 +2237,8 @@ initialize_board	testbin/tictac/tictac.c	/^initialize_board(void)$/;"	f
 initialize_bowls	kern/asst1/bowls.c	/^initialize_bowls(unsigned int bowlcount)$/;"	f
 inititems	kern/test/synchtest.c	/^inititems(void)$/;"	f	file:
 initstate	lib/libc/random.c	/^initstate($/;"	f
-insert	kern/filedes/systemfiletable.c	/^int insert(struct file *f) {$/;"	f
+inprocessbootstrap	kern/include/process.h	/^int inprocessbootstrap;$/;"	v
+inprocessbootstrap	kern/process/process.c	/^int inprocessbootstrap;$/;"	v
 int16_t	kern/arch/mips/include/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	kern/compile/ASST0/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	kern/compile/ASST1/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
@@ -2590,7 +2593,7 @@ nbits	kern/lib/bitmap.c	/^	u_int32_t nbits;$/;"	m	struct:bitmap	file:
 nblocks	sbin/dumpsfs/disk.c	/^static u_int32_t nblocks;$/;"	v	file:
 nblocks	sbin/mksfs/disk.c	/^static u_int32_t nblocks;$/;"	v	file:
 nettest	kern/test/nettest.c	/^nettest(void)$/;"	f
-new_thread_handler	kern/userprog/sysfork.c	/^void new_thread_handler(void *tf, unsigned long dummy) {$/;"	f
+new_thread_handler	kern/userprog/sysfork.c	/^static void new_thread_handler(void *tf, unsigned long dummy) {$/;"	f	file:
 next	kern/include/file.h	/^    struct file *next;$/;"	m	struct:file	typeref:struct:file::file
 next	kern/lib/kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
 next	kern/lib/linkedlist.c	/^    struct node *next;$/;"	m	struct:node	typeref:struct:node::node	file:
@@ -2677,14 +2680,17 @@ p_align	kern/include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - ca
 p_assign_thread	kern/process/process.c	/^void p_assign_thread(struct process *p, struct thread *t) {$/;"	f
 p_create	kern/process/process.c	/^struct process * p_create() {$/;"	f
 p_destroy	kern/process/process.c	/^void p_destroy() {$/;"	f
+p_destroy_at	kern/process/process.c	/^void p_destroy_at(struct process * p) {$/;"	f
 p_filesz	kern/include/elf.h	/^	u_int32_t	p_filesz;    \/* Size of data within file *\/$/;"	m	struct:__anon2
 p_flags	kern/include/elf.h	/^	u_int32_t	p_flags;     \/* Flags *\/$/;"	m	struct:__anon2
+p_lock	kern/include/process.h	/^	struct lock* p_lock; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:process	typeref:struct:process::lock
 p_memsz	kern/include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon2
 p_offset	kern/include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon2
 p_paddr	kern/include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon2
 p_thread	kern/include/process.h	/^	struct thread* p_thread;$/;"	m	struct:process	typeref:struct:process::thread
 p_type	kern/include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
 p_vaddr	kern/include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
+p_waitcv	kern/include/process.h	/^	struct cv* p_waitcv; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:process	typeref:struct:process::cv
 paddr_t	kern/arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	kern/compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	kern/compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
@@ -2696,6 +2702,7 @@ pagerefs_inuse	kern/lib/kheap.c	/^static u_int32_t pagerefs_inuse[INUSE_WORDS];$
 palindrome	testbin/palin/palin.c	/^char palindrome[8000] = $/;"	v
 panic	kern/lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	kern/arch/mips/mips/start.S	/^panicstr:$/;"	l
+parentpid	kern/include/process.h	/^    pid_t parentpid; \/\/ TODO init on fork -> should we keep this?$/;"	m	struct:process
 pcb	kern/arch/mips/include/pcb.h	/^struct pcb {$/;"	s
 pcb	kern/compile/ASST0/machine/pcb.h	/^struct pcb {$/;"	s
 pcb	kern/compile/ASST1/machine/pcb.h	/^struct pcb {$/;"	s
@@ -2725,6 +2732,7 @@ pcb_switchstack	kern/compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_switchstack;  
 pcb_switchstack	kern/compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	kern/compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pid	kern/include/process.h	/^	pid_t pid;$/;"	m	struct:process
+pid	kern/include/thread.h	/^        pid_t pid;$/;"	m	struct:thread
 pid	testbin/forkbomb/forkbomb.c	/^static volatile int pid;$/;"	v	file:
 pid_t	kern/include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
 pids	testbin/farm/farm.c	/^static int pids[MAXPROCS], npids;$/;"	v	file:
@@ -2852,7 +2860,6 @@ reboot_badflags	testbin/badcall/bad_reboot.c	/^reboot_badflags(void)$/;"	f	file:
 recurse_inf	testbin/crash/crash.c	/^recurse_inf(void)$/;"	f	file:
 recursedir	bin/ls/ls.c	/^recursedir(const char *path)$/;"	f	file:
 recursive_cleanup	testbin/dirconc/dirconc.c	/^recursive_cleanup(const char *sofar, int depth)$/;"	f	file:
-remove	kern/filedes/systemfiletable.c	/^int remove(struct file *f) {$/;"	f
 remove	testbin/badcall/common_path.c	/^T(remove);$/;"	v
 remove_badpath	testbin/badcall/common_path.c	/^remove_badpath(const char *path)$/;"	f	file:
 remove_dir	testbin/badcall/bad_remove.c	/^remove_dir(void)$/;"	f	file:
@@ -2893,11 +2900,10 @@ rtc_gettime	kern/dev/generic/rtclock.h	/^	void (*rtc_gettime)(void *devdata, tim
 rtclock_softc	kern/dev/generic/rtclock.h	/^struct rtclock_softc {$/;"	s
 run	testbin/dirconc/dirconc.c	/^run(void)$/;"	f	file:
 runit	testbin/badcall/driver.c	/^runit(int op)$/;"	f	file:
-runprogram	kern/userprog/runprogram.c	/^runprogram(char *progname)$/;"	f
+runprogram	kern/userprog/runprogram.c	/^runprogram(char *progname, int argc, char ** argv)$/;"	f
 runqueue	kern/thread/scheduler.c	/^static struct queue *runqueue;$/;"	v	typeref:struct:queue	file:
 runtest	testbin/badcall/common_fds.c	/^runtest(int (*func)(int fd), void (*cleanup)(void), const char *callname)$/;"	f	file:
 runtest3	kern/test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
-runtests	kern/filedes/systemfiletable.c	/^void runtests() {$/;"	f
 runthreads	kern/test/threadtest.c	/^runthreads(int doloud)$/;"	f	file:
 s0	kern/arch/mips/include/asmdefs.h	/^#define s0 /;"	d
 s0	kern/compile/ASST0/machine/asmdefs.h	/^#define s0 /;"	d
@@ -3179,16 +3185,23 @@ sys_close	kern/userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	kern/include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
 sys_fork	kern/userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
 sys_getpid	kern/userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
+sys_getpid	kern/userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
 sys_nerr	kern/include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
 sys_open	kern/userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
-sys_read	kern/userprog/sysread.c	/^int sys_read(int fd, void *buf, size_t buflen,  int *err) {$/;"	f
+sys_read	kern/userprog/sysread.c	/^int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {$/;"	f
 sys_reboot	kern/main/main.c	/^sys_reboot(int code)$/;"	f
 sys_waitpid	kern/userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
+sys_waitpid	kern/userprog/syswaitpid.c	/^int sys_waitpid(pid_t pid, int *status, int options, int* err) {$/;"	f
 sys_write	kern/userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
 sys_write	kern/userprog/syswrite.c	/^int sys_write(int fd, void *buf, size_t buflen, int *err) {$/;"	f
 system	lib/libc/system.c	/^system(const char *cmd)$/;"	f
 systemfiletable	kern/filedes/systemfiletable.c	/^struct systemfiletable {$/;"	s	file:
 systemfiletable_bootstrap	kern/filedes/systemfiletable.c	/^void systemfiletable_bootstrap() {$/;"	f
+systemft_getcount	kern/filedes/systemfiletable.c	/^int systemft_getcount() {$/;"	f
+systemft_insert	kern/filedes/systemfiletable.c	/^int systemft_insert(struct file *f) {$/;"	f
+systemft_iter_ct	kern/filedes/systemfiletable.c	/^int systemft_iter_ct() {$/;"	f
+systemft_remove	kern/filedes/systemfiletable.c	/^int systemft_remove(struct file *f) {$/;"	f
+systemft_update	kern/filedes/systemfiletable.c	/^int systemft_update(struct file *f) {$/;"	f
 t0	kern/arch/mips/include/asmdefs.h	/^#define t0 /;"	d
 t0	kern/compile/ASST0/machine/asmdefs.h	/^#define t0 /;"	d
 t0	kern/compile/ASST1/machine/asmdefs.h	/^#define t0 /;"	d
@@ -3622,7 +3635,6 @@ uiomovezeros	kern/userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/;"	f
 un_kbase	kern/include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon3
 un_ubase	kern/include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon3
 uninit	uw-testbin/vm-stack2/vm-stack2.c	/^unsigned int uninit[UNINIT_ARRAY_ELEMS];$/;"	v
-update	kern/filedes/systemfiletable.c	/^int update(struct file *f) {$/;"	f
 usage	testbin/randcall/main.c	/^usage(void)$/;"	f	file:
 userptr_t	kern/include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	kern/arch/mips/mips/exception.S	/^utlb_exception:$/;"	l

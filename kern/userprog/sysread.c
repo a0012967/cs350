@@ -14,9 +14,8 @@
 #include <kern/unistd.h>
 #include <vnode.h>
 #include <synch.h>
-#include "opt-A2.h"
 
-int sys_read(int fd, void *buf, size_t buflen,  int *err) {
+int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     int result;
     int how;
     struct file *file;
@@ -25,16 +24,22 @@ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     assert(err != NULL); // err should exist
     assert(*err == 0); // error should be cleared when calling this
 
+
     file = ft_getfile(curprocess->file_table, fd, err);
 
     if (file == NULL) {
         // err should have been updated with the error code
         assert(*err != 0);
+
+        if (*err == ENOENT){ // file closed or doesnt exist
+            *err =  EBADF;
+        }
         return -1;
     }
 
     // start the lock
     lock_acquire(file->file_lock);
+
 
     // check that the file is opened for reading
     how = file->status & O_ACCMODE;
@@ -61,30 +66,27 @@ int sys_read(int fd, void *buf, size_t buflen,  int *err) {
     }
 
     // initialize the uio for reading
-    u.uio_iovec.iov_un.un_ubase = buf;
+    u.uio_iovec.iov_ubase = buf;
     u.uio_iovec.iov_len = buflen;
-    // get the offset from the file
     u.uio_offset = file->offset;
     u.uio_rw = UIO_READ;
     u.uio_resid = buflen;
+    u.uio_segflg = UIO_USERSPACE;
     u.uio_space = curprocess->p_thread->t_vmspace;
 
-    // errors:
-    // invalid fd
-    // buflen > file
-    // think about end of file
-// JULIA! DOUBLE CHECK THIS!
     result = VOP_READ(file->v, &u);
     if (result !=0) {
-
+        goto fail;
     }
+
     // return the number of bytes read
-    result = buflen - u.uio_resid;
+    result  = buflen - u.uio_resid;
     assert(result >= 0);
     // update the offset of the file
     file->offset = u.uio_offset;
     lock_release(file->file_lock);
-    return result;
+    *err = result;
+    return 0;
 
 fail:
     assert(*err != 0);

@@ -17,6 +17,7 @@
 #include "opt-synchprobs.h"
 #include "opt-sfs.h"
 #include "opt-net.h"
+#include "opt-A2.h"
 
 #define _PATH_SHELL "/bin/sh"
 
@@ -69,7 +70,11 @@ cmd_progthread(void *ptr, unsigned long nargs)
 
 	strcpy(progname, args[0]);
 
-	result = runprogram(progname);
+    #if OPT_A2
+        result = runprogram(progname, nargs, args);
+    #else
+	    result = runprogram(progname);
+    #endif //OPT_A2
 	if (result) {
 		kprintf("Running program %s failed: %s\n", args[0],
 			strerror(result));

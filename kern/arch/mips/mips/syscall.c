@@ -84,10 +84,13 @@ void mips_syscall(struct trapframe *tf)
             break;
 
             case SYS_read:
-                err  = sys_read((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a2, &retval);
-                if (err == -1) {
-                    err = retval;
-                }
+                err = 0;
+                retval  = sys_read((int)tf->tf_a0, (userptr_t)tf->tf_a1, (size_t)tf->tf_a2, &err);
+            break;
+
+            case SYS_write:
+                err = 0;
+                retval = sys_write((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a2, &err);
             break;
 
             case SYS_fork:
@@ -95,12 +98,9 @@ void mips_syscall(struct trapframe *tf)
                 retval = sys_fork(tf, &err);
             break;
 
-            case SYS_write:
+            case SYS_waitpid:
                 err = 0;
-                retval = sys_write((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a2, &err);
-                if (retval < 0) {
-                    retval = err;
-                }
+                retval = sys_waitpid((pid_t)tf->tf_a0, (int *)tf->tf_a1, (int)tf->tf_a2, &err);
             break;
 
             case SYS_getpid:
@@ -110,7 +110,7 @@ void mips_syscall(struct trapframe *tf)
 
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
-                break;
+            break;
         #endif /* OPT_A2 */
 
         default:

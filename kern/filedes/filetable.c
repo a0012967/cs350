@@ -4,7 +4,7 @@
 #include <kern/errno.h>
 #include <vnode.h>
 #include <lib.h>
-#include <curprocess.h>	
+#include <curprocess.h>
 #include <process.h>
 #include <vfs.h>
 #include <kern/unistd.h>
@@ -46,12 +46,8 @@ void ft_destroy(struct filetable *ft) {
     int i;
     for (i=0; i < tab_getsize(ft->files); i++) {
         struct file *f = tab_getguy(ft->files, i);
-        tab_remove(ft->files, i);
-
-        // for console files
-        if (i<3) {
-            f_destroy(f);
-        } else if (f != NULL) {
+        if (f != NULL) {
+            tab_remove(ft->files, i);
             int ret = systemft_remove(f);
             assert(ret == 0);
         }
@@ -201,16 +197,25 @@ void console_files_bootstrap() {
         panic("console files: Could not open console\n");
     }
 
+    /*
+    // set global vnode for console devices
+    vn_console = vn;
+    */
+
     // create and add stdin file to file_table[0]
     stdinfile = f_create(O_RDONLY, 0, vn);
     if (stdinfile == NULL) {
         panic("Could not create an open file entry for stdin\n");
     }
 
+    // store stdinfile in systemwide filetable
+    result = systemft_insert(stdinfile);
+    assert(result == 0);
+
     // store stdinfile at file_table[0]
     result  = ft_storefile(curprocess->file_table, stdinfile, &err);
-    if (result == -1) {
-        panic("Could not add stdin file to filetable");
+    if (result == -1) {   
+      panic("Could not add stdin file to filetable");
     }
 
     // create and add stdout file to file_table[1]
@@ -218,6 +223,10 @@ void console_files_bootstrap() {
     if (stdoutfile == NULL) {
         panic("Could not create an open file entry for stdout\n");
     }
+
+    // store stdoutfile in systemwide filetable
+    result = systemft_insert(stdoutfile);
+    assert(result == 0);
 
     result  = ft_storefile(curprocess->file_table, stdoutfile, &err);
     if (result == -1) {
@@ -230,17 +239,23 @@ void console_files_bootstrap() {
         panic("Could not create an open file entry for stderr\n");
     }
 
+    // store stderrfile in systemwide filetable
+    result = systemft_insert(stderrfile);
+    assert(result == 0);
+
     // store stderrfile at file_table[2]
     result  = ft_storefile(curprocess->file_table, stderrfile, &err);
     if (result == -1) {
         panic("Could not add stdin file to filetable");
     }
-    kfree(console);
 
-    struct file *fi;
-    int err2;
-    fi = ft_getfile(curprocess->file_table, 0, &err2);
+    inprocessbootstrap = 0;
+    //increase vnode ref count for stdout and stderr
+    vnode_incref(vn);
+    vnode_incref(vn);
+    kfree(console);
 }
+
 
 
 // USE THE BELOW only for debugging purposes!

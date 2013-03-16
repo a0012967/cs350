@@ -19,6 +19,7 @@ struct file* f_create(int status, int offset, struct vnode *v) {
     f->offset = offset;
     f->v = v;
 
+    // PRIVATE: please don't touch my private parts
     // system-wide-filetable-related internals
     f->count = 0;
     f->prev = NULL;

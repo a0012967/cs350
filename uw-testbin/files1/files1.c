@@ -17,81 +17,67 @@
 #include <errno.h>
 #include "../lib/testutils.h"
 
-int
-main()
+int main()
 {
-  int f1, f2;
+    int f1, f2;
 
-  int i = 42;
-  int j = -999;
-  int intbuf = 0;
+    int i = 42;
+    int j = -999;
+    int intbuf = 0;
     int rc = 0;      /* return code */
     int save_errno = 0;
 
-    (void)save_errno;
-    (void)i;
-    (void)j;
-    (void)intbuf;
-    (void)rc;
+    /* Useful for debugging, if failures occur turn verbose on by uncommenting */
+    TEST_VERBOSE_ON();
 
+    // Check that open succeeds 
+    f1 = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
+    TEST_POSITIVE(f1, "Unable to open FILE1");
 
-  /* Useful for debugging, if failures occur turn verbose on by uncommenting */
-   TEST_VERBOSE_ON();
+    // Check that open succeeds 
+    f2 = open("FILE2", O_RDWR | O_CREAT | O_TRUNC);
+    TEST_POSITIVE(f2, "Unable to open FILE2");
+    TEST_EQUAL(f1, f2, "fd f1 != f2 as should be the case");
+    TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
-  // Check that open succeeds 
-  f1 = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
-  TEST_POSITIVE(f1, "Unable to open FILE1");
+    // Write something simple to file 1 
+    rc = write(f1, (char *) &i, sizeof(i));
+    TEST_EQUAL(rc, sizeof(i), "write to f1 does not write/return proper value");
 
-  // Check that open succeeds 
-  f2 = open("FILE2", O_RDWR | O_CREAT | O_TRUNC);
-  TEST_POSITIVE(f2, "Unable to open FILE2");
-  TEST_EQUAL(f1, f2, "fd f1 != f2 as should be the case");
-  TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
+    // Write something simple to file 2 
+    rc = write(f2, (char *) &j, sizeof(j));
+    TEST_EQUAL(rc, sizeof(j), "write to f2 does not write/return proper value");
 
-/*
-  // Write something simple to file 1 
-  rc = write(f1, (char *) &i, sizeof(i));
-  TEST_EQUAL(rc, sizeof(i), "write to f1 does not write/return proper value");
+    rc = close(f1);
+    TEST_EQUAL(rc, SUCCESS, "close f1 failed");
 
-  // Write something simple to file 2 
-  rc = write(f2, (char *) &j, sizeof(j));
-  TEST_EQUAL(rc, sizeof(j), "write to f2 does not write/return proper value");
-*/
+    rc = close(f1);
+    save_errno = errno;
+    // closing a second time should fail - it's already closed 
+    TEST_NEGATIVE(rc, "close f1 second time didn't fail");
 
-  rc = close(f1);
-  TEST_EQUAL(rc, SUCCESS, "close f1 failed");
+    rc = close(f2);
+    TEST_EQUAL(rc, SUCCESS, "close f2 failed");
+    f1 = open("FILE1", O_RDONLY);
+    TEST_POSITIVE(f1, "Unable to open FILE1, after Close");
 
-  rc = close(f1);
-	save_errno = errno;
-  // closing a second time should fail - it's already closed 
-  TEST_NEGATIVE(rc, "close f1 second time didn't fail");
+    f2 = open("FILE2", O_RDONLY);
+    TEST_POSITIVE(f1, "Unable to open FILE2, after Close");
 
-  rc = close(f2);
-  TEST_EQUAL(rc, SUCCESS, "close f2 failed");
-  f1 = open("FILE1", O_RDONLY);
-  TEST_POSITIVE(f1, "Unable to open FILE1, after Close");
+    TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
 
-  f2 = open("FILE2", O_RDONLY);
-  TEST_POSITIVE(f1, "Unable to open FILE2, after Close");
+    rc = read(f1, (char *) &intbuf, sizeof(intbuf));
+    TEST_EQUAL(rc, sizeof(intbuf), 
+            "read from f1 does not read/return proper value");
+    TEST_EQUAL(intbuf, i,
+            "read from f1 did not get correct value");
 
-  TEST_NOT_EQUAL(f1, f2, "fd f1 == f2");
+    rc = read(f2, (char *) &intbuf, sizeof(intbuf));
+    TEST_EQUAL(rc, sizeof(j), "read from f2 does not read/return proper value");
+    TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
 
-/*
-  rc = read(f1, (char *) &intbuf, sizeof(intbuf));
-  TEST_EQUAL(rc, sizeof(intbuf), 
-     "read from f1 does not read/return proper value");
-  TEST_EQUAL(intbuf, i,
-     "read from f1 did not get correct value");
+    TEST_STATS();
 
-  rc = read(f2, (char *) &intbuf, sizeof(intbuf));
-  TEST_EQUAL(rc, sizeof(j), "read from f2 does not read/return proper value");
-  TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
-*/
-
-  TEST_STATS();
-
-
-
-  exit(0);
+    exit(0);
 }
 

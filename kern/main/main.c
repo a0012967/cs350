@@ -17,6 +17,7 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
+#include <curprocess.h>
 
 // REMOVE
 #include <filetable.h>
@@ -47,8 +48,9 @@ static const char harvard_copyright[] =
 
 void testfiletable() {
     int result = 0, err = 0;
-    struct filetable *ft = ft_create();
-    assert(ft != NULL);
+//    struct filetable *ft = ft_create();
+    struct filetable *ft = curprocess->file_table;
+      assert(ft != NULL);
 
     struct vnode *v;
 
@@ -155,8 +157,9 @@ boot(void)
 	#endif // OPT_A2
 	vfs_bootstrap();
 	dev_bootstrap();
-	#if OPT_A2
-	    console_files_bootstrap();
+    #if OPT_A2
+        systemfiletable_bootstrap();
+        console_files_bootstrap();
     #endif // OPT_A2
 	vm_bootstrap();
 	kprintf_bootstrap();
@@ -170,11 +173,6 @@ boot(void)
 	 */
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
-
-    #if OPT_A2
-        //testfiletable();
-        systemfiletable_bootstrap();
-    #endif // OPT_A2
 
     #if OPT_A0
         hello();

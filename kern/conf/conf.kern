@@ -467,6 +467,7 @@ file    userprog/sysread.c
 file    userprog/syswrite.c
 file    userprog/sysgetpid.c
 file    userprog/sysfork.c
+file    userprog/syswaitpid.c
 file    lib/linkedlist.c
 file    lib/table.c
 file    process/process.c

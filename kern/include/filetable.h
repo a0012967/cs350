@@ -7,7 +7,6 @@
 
 #define MAX_FILENAME_LEN 1024
 
-/* FILE TABLE STUFF */
 struct filetable;
 // creates file table. returns NULL on failure
 struct filetable* ft_create();
@@ -27,6 +26,9 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err);
 // returns NULL on failure and updates err with errcode
 struct filetable* ft_duplicate(struct filetable *ft, int *err);
 
+
+/* Opening console devices */
+void console_files_bootstrap();
 
 // USE THE BELOW only for debugging purposes!
 // returns number of files in filetable
