@@ -8,6 +8,7 @@
 #include <process.h>
 #include <vfs.h>
 #include <kern/unistd.h>
+#include <systemfiletable.h>
 
 struct filetable {
     struct table *files;
@@ -42,9 +43,18 @@ void ft_destroy(struct filetable *ft) {
     assert(ft != NULL);
 
     // destroy all elements in table
-    int i=0;
+    int i;
     for (i=0; i < tab_getsize(ft->files); i++) {
+        struct file *f = tab_getguy(ft->files, i);
         tab_remove(ft->files, i);
+
+        // for console files
+        if (i<3) {
+            f_destroy(f);
+        } else if (f != NULL) {
+            int ret = systemft_remove(f);
+            assert(ret == 0);
+        }
     }
     tab_destroy(ft->files);
     lock_destroy(ft->ft_lock);

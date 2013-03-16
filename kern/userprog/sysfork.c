@@ -74,6 +74,7 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
         ft_destroy(new_ft);
         // TODO: error code
         assert(0);
+        splx(spl);
         goto fail;
     }
 
@@ -85,6 +86,9 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
 
     // set thread of new process
     new_process->p_thread = new_thread;
+
+    // set file table of new process
+    new_process->file_table = new_ft;
 
     // set the retval to new_process' pid
     retval = new_process->pid;

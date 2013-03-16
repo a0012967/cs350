@@ -35,6 +35,10 @@ int systemft_insert(struct file *f) {
     assert(f->prev == NULL && f->next == NULL && f->count == 0);
 
     lock_acquire(sft_lock);
+        if (sft->count >= MAX_SYSTEM_OPEN_FILES) {
+            assert(0); // assert for now
+        }
+
         // 0 current entries in sytem-wide filetable
         if (sft->tail == NULL) {
             sft->head = f;

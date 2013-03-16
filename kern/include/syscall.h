@@ -23,6 +23,7 @@ int sys_reboot(int code);
     void sys__exit(int exitcode);
     // we pass the trap frame to fork so we can copy it
     pid_t sys_fork(struct trapframe *tf, int *err);
+    pid_t sys_getpid(void);
 
 /********************
  * Helper functions

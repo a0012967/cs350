@@ -2,7 +2,7 @@
 #define _SYSTEMFILETABLE_H_
 
 
-#define MAX_SYSTEMWIDE_OPEN_FILES 1024
+#define MAX_SYSTEM_OPEN_FILES 1024
 
 struct file;
 

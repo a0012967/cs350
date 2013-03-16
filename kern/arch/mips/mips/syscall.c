@@ -70,34 +70,44 @@ void mips_syscall(struct trapframe *tf)
     switch (callno) {
         case SYS_reboot:
             err = sys_reboot(tf->tf_a0);
-            break;
+        break;
 
         #if OPT_A2
             case SYS_open:
                 err = 0;
                 retval = sys_open((const char *)tf->tf_a0, (int)tf->tf_a1, &err);
-                break;
+            break;
+
             case SYS_close:
                 err = 0;
                 retval = sys_close((int)tf->tf_a0, &err);
-                break;
+            break;
+
             case SYS_read:
                 err  = sys_read((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a2, &retval);
                 if (err == -1) {
                     err = retval;
                 }
-                break;
+            break;
+
             case SYS_fork:
                 err = 0;
                 retval = sys_fork(tf, &err);
-                break;
+            break;
+
             case SYS_write:
                 err = 0;
                 retval = sys_write((int)tf->tf_a0, (void *)tf->tf_a1, (size_t)tf->tf_a2, &err);
                 if (retval < 0) {
                     retval = err;
                 }
-                break;
+            break;
+
+            case SYS_getpid:
+                err = 0;
+                retval = sys_getpid();
+            break;
+
             case SYS__exit:
                 sys__exit((int)tf->tf_a0);
                 break;
