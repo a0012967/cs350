@@ -8,6 +8,7 @@
 #include <machine/spl.h>
 #include <machine/trapframe.h>
 #include <addrspace.h>
+#include <filetable.h>
 
 
 // set up to be called by new thread during fork
@@ -47,11 +48,9 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
 	new_as->as_stackpbase = old_as->as_stackpbase;
 
     // copy open file information
-    new_ft = ft_duplicate(curprocess->file_table);
+    new_ft = ft_duplicate(curprocess->file_table, err);
     if (new_ft == NULL) {
         as_destroy(new_as);
-        // TODO: error code
-        assert(0);
         goto fail;
     }
 

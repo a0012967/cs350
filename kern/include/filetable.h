@@ -3,23 +3,9 @@
 
 #include <types.h>
 #include <uio.h>
+#include <file.h>
 
 #define MAX_FILENAME_LEN 1024
-
-/* FILE STUFF */
-struct file {
-    int status;
-    int offset;
-    struct vnode *v;
-    struct lock *file_lock; // when doing operations on the file
-};
-
-// creates an file. returns NULL on fail
-struct file* f_create(int status, int offset, struct vnode *v);
-// free memory used by file
-void f_destroy(struct file *f);
-
-
 
 /* FILE TABLE STUFF */
 struct filetable;
@@ -30,13 +16,16 @@ void ft_destroy(struct filetable *ft);
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err);
 // returns 0 if successful. returns error code otherwise
+// removes the reference of the file inside the filetable
+// does not destroy the file
 int ft_removefile(struct filetable *ft, int fd);
 // SUCCESS: returns file stored at given fd
 // FAILURE: returns NULL and updates value of err
 struct file* ft_getfile(struct filetable *ft, int fd, int *err);
 
 // DUPLICATES THE FILE TABLE
-struct filetable* ft_duplicate(struct filetable *ft);
+// returns NULL on failure and updates err with errcode
+struct filetable* ft_duplicate(struct filetable *ft, int *err);
 
 
 // USE THE BELOW only for debugging purposes!

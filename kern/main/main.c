@@ -20,6 +20,7 @@
 
 // REMOVE
 #include <filetable.h>
+#include <systemfiletable.h>
 #include "opt-A0.h"
 
 /*
@@ -172,6 +173,7 @@ boot(void)
 
     #if OPT_A2
         //testfiletable();
+        systemfiletable_bootstrap();
     #endif // OPT_A2
 
     #if OPT_A0

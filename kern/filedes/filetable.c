@@ -4,47 +4,10 @@
 #include <kern/errno.h>
 #include <vnode.h>
 #include <lib.h>
-
 #include <curprocess.h>	
 #include <process.h>
 #include <vfs.h>
 #include <kern/unistd.h>
-
-/*************************
- * FILE STUFF
- *************************/
-
-struct file* f_create(int status, int offset, struct vnode *v) {
-    struct file *f = kmalloc(sizeof(struct file));
-    if (f == NULL) {
-        DEBUG(DB_EXEC, "FILE: failed creating file\n");
-        return NULL;
-    }
-
-    f->file_lock = lock_create("file_lock");
-    if (f == NULL) {
-        DEBUG(DB_EXEC, "FILE: failed creating file lock\n");
-        kfree(f);
-        return NULL;
-    }
-
-    f->status = status;
-    f->offset = offset;
-    f->v = v;
-
-    return f;
-}
-
-void f_destroy(struct file *f) {
-    assert(f != NULL);
-    kfree(f);
-}
-
-
-
-/*************************
- * FILE TABLE STUFF
- *************************/
 
 struct filetable {
     struct table *files;
@@ -55,20 +18,17 @@ struct filetable {
 struct filetable* ft_create() {
     struct filetable *ft = kmalloc(sizeof(struct filetable));
     if (ft == NULL) {
-        DEBUG(DB_EXEC, "FILETABLE: failed creating filetable\n");
         return NULL;
     }
 
     ft->files = tab_create();
     if (ft->files == NULL) {
-        DEBUG(DB_EXEC, "FILETABLE: failed creating filetable array\n");
         kfree(ft);
         return NULL;
     }
 
     ft->ft_lock = lock_create("ft_lock");
     if (ft->ft_lock == NULL) {
-        DEBUG(DB_EXEC, "FILETABLE: failed creating filetable lock\n");
         tab_destroy(ft->files);
         kfree(ft);
         return NULL;
@@ -80,13 +40,11 @@ struct filetable* ft_create() {
 // destroys file table
 void ft_destroy(struct filetable *ft) {
     assert(ft != NULL);
+
     // destroy all elements in table
     int i=0;
     for (i=0; i < tab_getsize(ft->files); i++) {
-        struct file *f = tab_getguy(ft->files, i);
-        // remember files could be null so be careful
-        if (f != NULL)
-            f_destroy((struct file*)f);
+        tab_remove(ft->files, i);
     }
     tab_destroy(ft->files);
     lock_destroy(ft->ft_lock);
@@ -131,15 +89,14 @@ int ft_removefile(struct filetable *ft, int fd) {
         } else {
             // get file to be removed
             void *file = tab_getguy(ft->files, fd);
+            // TODO: for now
+            assert(file != NULL);
 
             // remove reference of file from array
             result = tab_remove(ft->files, fd);
 
             // TODO: change how to handle failure on remove
             assert(result == 0);
-
-            // free memory used by file
-            f_destroy((struct file *)file);
 
             // success
             result = 0;
@@ -185,13 +142,35 @@ fail:
     return NULL;
 }
 
-// TODO: implement this
-struct filetable* ft_duplicate(struct filetable *ft) {
-    (void)ft;
-    assert(0);
+struct filetable* ft_duplicate(struct filetable *ft, int *err) {
+    assert(ft != NULL && err != NULL);
+    assert(*err == 0);
+
+    struct filetable *new_ft;
+    int size, ret, i;
+
+    lock_acquire(ft->ft_lock);
+        new_ft = ft_create();
+        size = tab_getsize(ft->files);
+        for (i=0; i<size; i++) {
+            void *guy = tab_getguy(ft->files, i);
+            if (guy != NULL) {
+                ret = ft_storefile(new_ft, (struct file*)guy, err);
+                if (ret == -1) {
+                    goto fail;
+                }
+            }
+        }
+    lock_release(ft->ft_lock);
+
+    return new_ft;
+
+fail:
+    assert(*err);
+    lock_release(ft->ft_lock);
+    ft_destroy(new_ft);
     return NULL;
 }
-
 
 /* CONSOLE DEVICES FILES 
  * Opens the console and creates a file for stdin, stdout, & stderr
@@ -202,22 +181,22 @@ void console_files_bootstrap() {
     int err, result;
     struct vnode *vn;
     struct file *stdinfile, *stdoutfile, *stderrfile;
-    
+
     char *console = NULL;
     console = kstrdup("con:");
-    
+
     // open the console
     err = vfs_open(console, O_RDONLY, &vn);
     if(err){
         panic("console files: Could not open console\n");
     }
-    
+
     // create and add stdin file to file_table[0]
     stdinfile = f_create(O_RDONLY, 0, vn);
     if (stdinfile == NULL) {
         panic("Could not create an open file entry for stdin\n");
     }
-    
+
     // store stdinfile at file_table[0]
     result  = ft_storefile(curprocess->file_table, stdinfile, &err);
     if (result == -1) {
@@ -234,7 +213,7 @@ void console_files_bootstrap() {
     if (result == -1) {
         panic("Could not add stdout file to filetable");
     }
-        
+
     // create and add stderr file to file_table
     stderrfile = f_create(O_WRONLY, 0, vn);
     if (stderrfile == NULL) {
@@ -247,7 +226,7 @@ void console_files_bootstrap() {
         panic("Could not add stdin file to filetable");
     }
     kfree(console);
-    
+
     struct file *fi;
     int err2;
     fi = ft_getfile(curprocess->file_table, 0, &err2);

@@ -180,8 +180,10 @@ void md_forkentry(struct trapframe *tf)
         f_tf.tf_gp = tf->tf_gp;
         f_tf.tf_sp = tf->tf_sp;
         f_tf.tf_s8 = tf->tf_s8;
-        f_tf.tf_epc = tf->tf_epc;
 
-        mips_usermode(&tf);
+        // increment program counter
+        f_tf.tf_epc = tf->tf_epc + 4;
+
+        mips_usermode(&f_tf);
     #endif // OPT_A2
 }

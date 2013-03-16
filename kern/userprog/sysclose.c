@@ -5,6 +5,7 @@
 #include <filetable.h>
 #include <kern/errno.h>
 #include <lib.h>
+#include <systemfiletable.h>
 
 int sys_close(int fd, int *err) {
     assert(*err == 0);
@@ -28,7 +29,9 @@ int sys_close(int fd, int *err) {
         return -1;
     }
 
-
+    // calls remove on the file for the systemwide filetable
+    result = systemft_remove(f);
+    assert(result == 0);
 
     return 0;
 }
