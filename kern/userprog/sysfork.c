@@ -12,9 +12,16 @@
 
 
 // set up to be called by new thread during fork
-void new_thread_handler(void *tf, unsigned long dummy) {
+static void new_thread_handler(void *tf, unsigned long dummy) {
     (void)dummy;
-    md_forkentry((struct trapframe *)tf);
+
+    struct trapframe new_tf;
+    struct trapframe *old_tf = tf;
+
+    new_tf = *old_tf;
+    kfree(tf);
+
+    md_forkentry(&new_tf);
 }
 
 // TODO: worry about synchronization problems
@@ -24,65 +31,47 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     assert(*err == 0);
 
     int retval;
-    int spl;
-    struct addrspace *old_as;
-    struct addrspace *new_as;
     struct process *new_process;
     struct thread *new_thread;
     struct filetable *new_ft;
+    struct trapframe *new_tf;
 
-    // copy address space
-    old_as = curprocess->p_thread->t_vmspace;
-    new_as = as_create();
-    if (new_as == NULL) {
-        // TODO: error code
-        assert(0);
-        goto fail;
-    }
-	new_as->as_vbase1 = old_as->as_vbase1;
-	new_as->as_pbase1 = old_as->as_pbase1;
-	new_as->as_npages1 = old_as->as_npages1;
-	new_as->as_vbase2 = old_as->as_vbase2;
-	new_as->as_pbase2 = old_as->as_pbase2;
-	new_as->as_npages2 = old_as->as_npages2;
-	new_as->as_stackpbase = old_as->as_stackpbase;
+    // copy trapframe
+    new_tf = kmalloc(sizeof(struct trapframe));
+    *new_tf = *tf; // copy trapframe
 
     // copy open file information
     new_ft = ft_duplicate(curprocess->file_table, err);
     if (new_ft == NULL) {
-        as_destroy(new_as);
+        kfree(new_tf);
         goto fail;
     }
-
-    // disable interrupts
-    spl = splhigh();
 
     // create new process and new thread
     new_process = p_create();
     if (new_process == NULL) {
+        kfree(new_tf);
+
         // TODO: error code
         assert(0);
         goto fail;
     }
 
     *err = thread_fork("child_thread",       // thread name
-                        tf, 0,               // arguments
+                        new_tf, 0,             // arguments
                         new_thread_handler,  // function to be called
                         &new_thread);        // thread
+
     if (*err) {
-        as_destroy(new_as);
+        kfree(new_tf);
         ft_destroy(new_ft);
         // TODO: error code
         assert(0);
-        splx(spl);
         goto fail;
     }
 
-    // set address space of new thread
-    new_thread->t_vmspace = new_as;
-
-    // activate address space
-    as_activate(new_thread->t_vmspace);
+    // set the process reference of the thread to new_process' pid
+    new_thread->pid = new_process->pid;
 
     // set thread of new process
     new_process->p_thread = new_thread;
@@ -92,9 +81,6 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
 
     // set the retval to new_process' pid
     retval = new_process->pid;
-
-    // enable interrupts
-    splx(spl);
 
     // return 1 for now (must return pid)
     return retval;

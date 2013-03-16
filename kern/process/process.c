@@ -62,14 +62,18 @@ struct process * p_create() {
 
 // Cause the current process to be destroyed
 void p_destroy() {
+    struct process *p = processtable_get(curthread->pid);
+
+    /*
     // make sure we're deleting the current process and current thread
     assert(curthread == curprocess->p_thread);
+    */
 
     // destroy filetable
-    ft_destroy(curprocess->file_table);
+    ft_destroy(p->file_table);
 
     // free memory allocated to the process
-    kfree(curprocess); // TODO: process scheduling?
+    kfree(p); // TODO: process scheduling?
 
     // exit the current thread
     thread_exit();

@@ -102,8 +102,8 @@ test(int nowait)
 {
 	int pid0, pid1, pid2, pid3;
 
-	/*
-	 * Caution: This generates processes geometrically.
+	/* Caution: This generates processes geometrically.
+	 *
 	 *
 	 * It is unrolled to encourage gcc to registerize the pids,
 	 * to prevent wait/exit problems if fork corrupts memory.
@@ -151,5 +151,6 @@ main(int argc, char *argv[])
 	test(nowait);
 
 	warnx("Complete.");
+
 	return 0;
 }

@@ -38,6 +38,14 @@ struct thread {
 	 * and is manipulated by the virtual filesystem (VFS) code.
 	 */
 	struct vnode *t_cwd;
+
+
+    // TODO: merge process with thread
+    // refers to the pid of the process holding the thread
+    // We do this so we can abstract process in another file
+    #if OPT_A2
+        pid_t pid;
+    #endif // OPT_A2
 };
 
 

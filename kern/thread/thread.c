@@ -299,6 +299,17 @@ thread_fork(const char *name,
 		newguy->t_cwd = curthread->t_cwd;
 	}
 
+
+    #if OPT_A2
+        if (curthread->t_vmspace) {
+            // copy the address space of the one who called
+            result = as_copy(curthread->t_vmspace, &newguy->t_vmspace);
+            if (result) {
+                assert(0);
+            }
+        }
+    #endif // OPT_A2
+
 	/* Set up the pcb (this arranges for func to be called) */
 	md_initpcb(&newguy->t_pcb, newguy->t_stack, data1, data2, func);
 
