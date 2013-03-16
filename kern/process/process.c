@@ -36,7 +36,7 @@ void process_bootstrap() {
     assert(p->p_thread != NULL);
 
     curprocess = p;
-    
+
 }
 
 struct process * p_create() {
