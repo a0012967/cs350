@@ -6,6 +6,7 @@
 #include <lib.h>
 #include <process.h>
 #include <thread.h>
+#include <curthread.h>
 #include <vnode.h>
 #include <synch.h>
 #include <kern/errno.h>
@@ -61,7 +62,7 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
         u.uio_iovec.iov_len = buflen;
         u.uio_rw = UIO_WRITE;
         u.uio_resid = buflen;
-        u.uio_space = curprocess->p_thread->t_vmspace;
+        u.uio_space = curthread->t_vmspace;
         u.uio_segflg = UIO_USERSPACE;
         u.uio_offset = fi->offset;
         

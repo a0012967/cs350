@@ -305,7 +305,8 @@ thread_fork(const char *name,
             // copy the address space of the one who called
             result = as_copy(curthread->t_vmspace, &newguy->t_vmspace);
             if (result) {
-                assert(0);
+                // TODO: think about this
+                return result;
             }
         }
     #endif // OPT_A2

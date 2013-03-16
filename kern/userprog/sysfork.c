@@ -63,10 +63,8 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
                         &new_thread);        // thread
 
     if (*err) {
-        kfree(new_tf);
-        ft_destroy(new_ft);
-        // TODO: error code
-        assert(0);
+        kfree(new_tf); // free trapframe
+        ft_destroy(new_ft); // free filetable
         goto fail;
     }
 

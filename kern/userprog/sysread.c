@@ -3,6 +3,7 @@
 #include <types.h>
 #include <curprocess.h>
 #include <thread.h>
+#include <curthread.h>
 #include <process.h>
 #include <vfs.h>
 #include <machine/spl.h>
@@ -72,7 +73,7 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     u.uio_rw = UIO_READ;
     u.uio_resid = buflen;
     u.uio_segflg = UIO_USERSPACE;
-    u.uio_space = curprocess->p_thread->t_vmspace;
+    u.uio_space = curthread->t_vmspace;
 
     result = VOP_READ(file->v, &u);
     if (result !=0) {
@@ -85,8 +86,7 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     // update the offset of the file
     file->offset = u.uio_offset;
     lock_release(file->file_lock);
-    *err = result;
-    return 0;
+    return result;
 
 fail:
     assert(*err != 0);

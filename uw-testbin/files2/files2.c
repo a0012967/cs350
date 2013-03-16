@@ -44,19 +44,18 @@ main()
   int count = 0;
 	int saved_errno = 0;
 
-
-  // Uncomment this when you have failures and you are trying to debug 
+  /* Uncomment this when you have failures and you are trying to debug */
   // TEST_VERBOSE_ON();
 
-  // Check that we can create the file 
+  /* Check that we can create the file */
   rc = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
   TEST_POSITIVE(rc, "Unable to create FILE1 (assumes that it doesn't exist)");
 
-  // Check that we can create the file 
+  /* Check that we can create the file */
   rc = open("FILE2", O_RDWR | O_CREAT | O_TRUNC);
   TEST_POSITIVE(rc, "Unable to create FILE2 (assumes that it doesn't exist)");
 
-  // check that we can open the same file many times 
+  /* check that we can open the same file many times */
   f1 = open("FILE1", O_RDWR);
   TEST_POSITIVE(f1, "Unable to open FILE1 first time");
 
@@ -66,7 +65,7 @@ main()
   f3 = open("FILE1", O_RDWR);
   TEST_POSITIVE(f3, "Unable to open FILE1 third time");
 
-  // Check that f1 != f2 != f3 
+  /* Check that f1 != f2 != f3 */
   TEST_NOT_EQUAL(f1, f2, "Using same fd for multiple opens f1 = f2");
   TEST_NOT_EQUAL(f2, f3, "Using same fd for multiple opens f2 = f3");
 
@@ -77,59 +76,59 @@ main()
   rc = close(f3);
   TEST_EQUAL(rc, SUCCESS, "Unable to close f3");
 
-  // Try writing to a closed file should fail 
+  /* Try writing to a closed file should fail */
   rc = write(f1, (char *) &i, sizeof(i));
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "write to closed file f1 should fail");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EBADF, "Expected EBADF when writing to closed file f1");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
-  // Try reading from a closed file should fail 
+  /* Try reading from a closed file should fail */
   rc = read(f2, (char *) &j, sizeof(j));
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "read from closed file f2 should fail");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EBADF, "Expected EBADF when reading from closed file f2");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
   rc = close(0xdeadbeef);
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "close on invalid file id didn't return error code");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EBADF, "Expected EBADF when closing invalid file fd");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
   rc = open(BOGUS_NAME, O_RDWR);
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "open non-existant file returns incorrect value");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, ENOENT, "Expected ENOENT when opening non existant file");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
-  // Open read only 
+  /* Open read only */
   f1 = open("FILE1", O_RDONLY);
   TEST_POSITIVE(f1, "Unable to open FILE1");
 
-  // Try writing to read only file 
+  /* Try writing to read only file */
   rc = write(f1, "hello", 5);
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "Trying to write to read only file does not fail");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EBADF, "Expected EBAD when trying to write to read only file");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
   
-  // Open write only 
+  /* Open write only */
   f2 = open("FILE2", O_WRONLY);
   TEST_POSITIVE(f1, "Unable to open FILE2");
 
-  // Try reading from write only file 
+  /* Try reading from write only file */
   rc = read(f2, &i, 1);
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "Trying to read from write only file does not fail");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EBADF, "Expected EBAD when trying to read from write only file");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
   rc = close(f1);
   TEST_EQUAL(rc, SUCCESS, "Unable to close f1");
@@ -152,25 +151,25 @@ main()
     TEST_NEGATIVE(f1, "Opening too many files doesn't return error code");
 #ifdef USING_ERR_CODES
     TEST_EQUAL(saved_errno, EMFILE, "Expected EMFILE when opening too many files");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
   }
 
   TEST_POSITIVE(count, "Count of open files expected to be > 0");
   printf("Number of files opened = %d\n", count);
 
-  // Close them all so we have more fds available to do other things with 
+  /* Close them all so we have more fds available to do other things with */
   for (i=0; i<count; i++) {
     rc = close(fd_array[i]);
     TEST_EQUAL(rc, 0, "Expected close to return 0 for success");
   }
 
-  // Try passing a bogus address, should return failure code, should not crash kernel 
+  /* Try passing a bogus address, should return failure code, should not crash kernel */
   rc = open((char *) 0xffffffff, O_RDWR);
 	saved_errno = errno;
   TEST_NEGATIVE(rc, "open file using bad address doesn't return error code");
 #ifdef USING_ERR_CODES
   TEST_EQUAL(saved_errno, EFAULT, "Expected EFAULT for invalid address for filename");
-#endif // USING_ERR_CODES 
+#endif /* USING_ERR_CODES */
 
   TEST_STATS();
 
