@@ -48,6 +48,8 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
         goto fail;
     }
 
+	new_process->parentpid = curprocess->pid;
+
     // copy open file information
     *err = ft_duplicate(curprocess->file_table, &(new_process->file_table));
     if (*err) {
