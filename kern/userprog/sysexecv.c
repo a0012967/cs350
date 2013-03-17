@@ -6,10 +6,55 @@
 #include <curthread.h>
 #include <vnode.h>
 #include <thread.h>
+#include <kern/limits.h>
 #include <addrspace.h>
 #include <vm.h>
 #include <vfs.h>
 #include <kern/limits.h>
+
+// check if program name is invalid
+int program_invalid(const char *program, int *err) {
+    if (program == NULL) {
+        *err = EFAULT;
+        return 1;
+    }
+
+    char foo[PATH_MAX];
+	*err = copyinstr((userptr_t)program, foo, sizeof(foo), NULL);
+	if (*err) {
+		return 1;
+	}
+
+	if (strlen(program) <= 0) {
+		*err = EINVAL;
+		return 1;
+	}
+
+    return 0;
+}
+
+// check if arguments and argument pointer are invalid
+int args_invalid(char **args, int *err) {
+	if (args == NULL) {
+        *err = EFAULT;
+        return 1;
+    }
+    
+    char foo[PATH_MAX];
+	*err = copyinstr((userptr_t)args, foo, sizeof(foo), NULL);
+	if (*err) {
+		return 1;
+	}
+	
+	int i = 0;
+	while (args[i] != NULL) {
+		*err = copyinstr((userptr_t)args[i], foo, sizeof(foo), NULL);
+		if (*err) {
+			return 1;
+		}
+		i++;
+	}
+}
 
 int sys_execv(const char *program, char **args, int *err) {
     struct vnode *v;
@@ -19,10 +64,15 @@ int sys_execv(const char *program, char **args, int *err) {
     int result, i;
     char *prog_name;
 
-    if (program == NULL) {
-        *err = EFAULT;
+	if (program_invalid(program, err)) {
+		assert(*err);
         return -1;
-    }
+	}
+	
+	if (args_invalid(args, err)) {
+		assert(*err);
+        return -1;
+	}
 
     /*******************************
      * COPY STUFF INTO KERNEL SPACE
