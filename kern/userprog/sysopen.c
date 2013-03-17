@@ -1,5 +1,6 @@
 #include <types.h>
 #include <lib.h>
+#include <kern/limits.h>
 #include <uio.h>
 #include <elf.h>
 #include <curthread.h>
@@ -29,7 +30,7 @@ int sys_open(const char *filename, int flags, int *err) {
     }
 
     // check for validity of memory address
-    if (buffer_check((void*)filename, MAX_FILENAME_LEN)) {
+    if (buffer_check((void*)filename, PATH_MAX)) {
         *err = EFAULT;
         return -1;
     }
@@ -44,17 +45,26 @@ int sys_open(const char *filename, int flags, int *err) {
     struct file *f = f_create(flags, 0, v);
     if (f == NULL) {
         vfs_close(v);
-        return ENOMEM;
+        *err = ENOMEM;
+        return -1;
     }
 
     // add the file to systemwide filetable
     ret = systemft_insert(f);
-    assert(ret == 0);
+    if (ret) {
+        vfs_close(v);
+        *err = ret;
+        return -1;
+    }
 
     // add the file to ft_storefile as well
     ret = ft_storefile(curprocess->file_table, f, err);
     if (ret == -1) {
+        // remove from system file table
+        // systemfiletable will take care of destroying the file
+        systemft_remove(f);
         vfs_close(v);
+        return -1;
     }
 
     return ret;

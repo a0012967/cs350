@@ -652,7 +652,6 @@ MAXPROCS	testbin/kitchen/kitchen.c	/^#define MAXPROCS /;"	d	file:
 MAXPROCS	testbin/sty/sty.c	/^#define MAXPROCS /;"	d	file:
 MAXSTRING	testbin/tictac/tictac.c	/^#define MAXSTRING	/;"	d	file:
 MAXTHREADS	kern/include/synch.h	/^#define MAXTHREADS /;"	d
-MAX_FILENAME_LEN	kern/include/filetable.h	/^#define MAX_FILENAME_LEN /;"	d
 MAX_PROCESSES	kern/include/process.h	/^#define MAX_PROCESSES /;"	d
 MAX_SYSTEM_OPEN_FILES	kern/include/systemfiletable.h	/^#define MAX_SYSTEM_OPEN_FILES /;"	d
 MAX_TYPES	lib/libc/random.c	/^#define	MAX_TYPES	/;"	d	file:
@@ -1725,7 +1724,7 @@ buildconfig	kern/compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	
 buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 296;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 311;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d

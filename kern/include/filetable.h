@@ -4,8 +4,6 @@
 #include <types.h>
 #include <uio.h>
 
-#define MAX_FILENAME_LEN 1024
-
 struct file;
 struct filetable;
 
