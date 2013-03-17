@@ -1,7 +1,7 @@
 #include <syscall.h>
-#include <process.h>
-#include <curprocess.h>
+#include <curthread.h>
+#include <thread.h>
 
 pid_t sys_getpid() {
-    return curprocess->pid;
+    return curthread->pid;
 }

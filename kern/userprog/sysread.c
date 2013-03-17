@@ -1,10 +1,10 @@
 #include <syscall.h>
 #include <lib.h>
 #include <types.h>
-#include <curprocess.h>
-#include <thread.h>
 #include <curthread.h>
+#include <thread.h>
 #include <process.h>
+#include <processtable.h>
 #include <vfs.h>
 #include <machine/spl.h>
 #include <kern/errno.h>
@@ -18,6 +18,7 @@
 #include <synch.h>
 
 int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
+    struct process *curprocess = processtable_get(curthread->pid);
     int result;
     int how;
     struct file *file;

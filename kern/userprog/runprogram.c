@@ -15,7 +15,6 @@
 #include <vfs.h>
 #include <test.h>
 #include <process.h>
-#include <curprocess.h>
 #include <filetable.h>
 #include "opt-A2.h"
 
@@ -45,7 +44,6 @@ runprogram(char *progname, int argc, char ** argv)
     #if OPT_A2
         struct process *p = p_create();
         p_assign_thread(p, curthread);
-        curprocess = p;
         console_files_bootstrap();
     #endif /*OPT_A2*/
 
