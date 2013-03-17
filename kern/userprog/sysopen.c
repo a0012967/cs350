@@ -28,11 +28,13 @@ int sys_open(const char *filename, int flags, int *err) {
         return -1;
     }
 
-    // check for validity of memory address
-    if (buffer_check((void*)filename, MAX_FILENAME_LEN)) {
-        *err = EFAULT;
-        return -1;
-    }
+	// check if the buffer is in appropriate addr
+	int dest;
+	int ptr_check = copyin((userptr_t)filename, &dest, sizeof(filename));
+	if (ptr_check !=0) {
+		*err = ptr_check;
+		return -1;
+	}
 
     ret = vfs_open((char*)filename, flags, &v);
     if (ret) {

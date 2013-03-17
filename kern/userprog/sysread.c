@@ -28,6 +28,23 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     assert(err != NULL); // err should exist
     assert(*err == 0); // error should be cleared when calling this
 
+	if( buf == NULL) {
+		kprintf("aaa\n");
+	}
+
+	//check for valid buffer
+	if (buf == NULL) {
+	    *err = EFAULT;
+		return -1;
+	}
+
+	// check if the buffer is in appropriate addr
+	int dest;
+	int ptr_check = copyin((userptr_t)buf, &dest, sizeof(buf));
+	if (ptr_check !=0) {
+		*err = ptr_check;
+		return -1;
+	}
 
     file = ft_getfile(curprocess->file_table, fd, err);
 
@@ -56,19 +73,6 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
             goto fail;
     }
 
-    //check for valid buffer
-    if (buf == NULL) {
-        *err = EFAULT;
-        goto fail;
-    }
-
-    // check for valid buffer region
-    result = buffer_check(buf, buflen);
-    if (result == -1) {
-        *err = EFAULT;
-        goto fail;
-    }
-
     // initialize the uio for reading
     u.uio_iovec.iov_ubase = buf;
     u.uio_iovec.iov_len = buflen;
@@ -95,32 +99,4 @@ fail:
     assert(*err != 0);
     lock_release(file->file_lock);
     return -1;
-}
-
-/* Memory region check function. Checks to make sure the block
- * of user memory provided (buf to buflen) falls within the proper
- * userspace region. If it does not, -1 is returned. 
- * Returns 0 if valid buffer
- * Note: most of this code is taken from copycheck() in copyinout.c
- */
-int buffer_check(void *buf, size_t buflen){
-    vaddr_t bot, top;
-    bot = (vaddr_t) buf;
-    top = bot + buflen - 1;
-    if (buf == NULL) {
-        return -1;
-    }
-    if (top < bot) {
-        /* addresses wrapped around */
-        return -1;
-    }
-    if (bot >= USERTOP){
-        /* region is within the kernel */
-        return -1;
-    }
-    if (top >= USERTOP) {
-        /* region overlaps the kernel */
-        //return -1;
-    }
-    return 0;
 }

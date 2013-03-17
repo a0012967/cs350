@@ -7,6 +7,7 @@
 #include <lib.h>
 #include <types.h>
 #include <kern/errno.h>
+#include <vm.h>
 
 // TODO status pointer not pointing to kernel?
 // TODO status pointer != 0x40000000 | 0x80000000
@@ -23,6 +24,14 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
         *err = EFAULT;
         return -1;
     }
+
+	// check if the buffer is valid
+    int dest;
+	int ptr_check = copyin((userptr_t)status, &dest, sizeof(status));
+	if (ptr_check !=0) {
+		*err = ptr_check;
+		return -1;
+	}
 
 	// make sure pointer is aligned
 	if ((int)status % 4 != 0){

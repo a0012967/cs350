@@ -54,14 +54,14 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
             *err = EFAULT;
             goto fail;
         }
-
-        // check for valid buffer region
-        result = buffer_check(buf, buflen);
-        if (result == -1) {
-            //assert(0);
-            *err = EFAULT;
-            goto fail;
-        }
+        
+        // check if the buffer is in appropriate addr
+		int dest;
+		int ptr_check = copyin((userptr_t)buf, &dest, sizeof(buf));
+		if (ptr_check !=0) {
+			*err = ptr_check;
+			goto fail;
+		}
 
         // set up uio for writing
         u.uio_iovec.iov_ubase = buf;
