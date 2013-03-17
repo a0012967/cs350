@@ -28,10 +28,6 @@ int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {
     assert(err != NULL); // err should exist
     assert(*err == 0); // error should be cleared when calling this
 
-	if( buf == NULL) {
-		kprintf("aaa\n");
-	}
-
 	//check for valid buffer
 	if (buf == NULL) {
 	    *err = EFAULT;
