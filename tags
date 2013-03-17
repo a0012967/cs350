@@ -586,7 +586,6 @@ LHD_STATEMASK	kern/dev/lamebus/lhd.c	/^#define LHD_STATEMASK /;"	d	file:
 LHD_WORKING	kern/dev/lamebus/lhd.c	/^#define LHD_WORKING /;"	d	file:
 LIB	lib/hostcompat/Makefile	/^LIB=hostcompat$/;"	m
 LIB	lib/libc/Makefile	/^LIB=c$/;"	m
-LIB	my-testbin/lib/Makefile	/^LIB=testutils$/;"	m
 LIB	uw-testbin/common/Makefile	/^LIB=common$/;"	m
 LIB	uw-testbin/lib/Makefile	/^LIB=testutils$/;"	m
 LIBS	defs.mk	/^LIBS=$/;"	m
@@ -850,6 +849,7 @@ PROG	bin/sync/Makefile	/^PROG=sync$/;"	m
 PROG	bin/true/Makefile	/^PROG=true$/;"	m
 PROG	my-testbin/badopen/Makefile	/^PROG=.\/badopen$/;"	m
 PROG	my-testbin/example/Makefile	/^PROG=.\/example$/;"	m
+PROG	my-testbin/lib/Makefile	/^PROG=.\/lib$/;"	m
 PROG	sbin/dumpsfs/Makefile	/^PROG=dumpsfs$/;"	m
 PROG	sbin/halt/Makefile	/^PROG=halt$/;"	m
 PROG	sbin/mksfs/Makefile	/^PROG=mksfs$/;"	m
@@ -1025,6 +1025,7 @@ SRCS	bin/true/Makefile	/^SRCS=true.c$/;"	m
 SRCS	lib/hostcompat/Makefile	/^SRCS=err.c time.c hostcompat.c$/;"	m
 SRCS	my-testbin/badopen/Makefile	/^SRCS=.\/bad_open.c$/;"	m
 SRCS	my-testbin/example/Makefile	/^SRCS=.\/myExampleTest.c$/;"	m
+SRCS	my-testbin/lib/Makefile	/^SRCS=.\/testutils.c$/;"	m
 SRCS	sbin/dumpsfs/Makefile	/^SRCS=dumpsfs.c disk.c support.c$/;"	m
 SRCS	sbin/halt/Makefile	/^SRCS=halt.c$/;"	m
 SRCS	sbin/mksfs/Makefile	/^SRCS=mksfs.c disk.c support.c$/;"	m
@@ -1724,7 +1725,7 @@ buildconfig	kern/compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	
 buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 285;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 296;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -2097,7 +2098,6 @@ exec_emptyprog	testbin/badcall/bad_execv.c	/^exec_emptyprog(void)$/;"	f	file:
 exec_onearg	testbin/badcall/bad_execv.c	/^exec_onearg(void *ptr, const char *desc)$/;"	f	file:
 exit	lib/libc/exit.c	/^exit(int code)$/;"	f
 exitcode	kern/include/process.h	/^    int exitcode; \/\/ TODO init to 0$/;"	m	struct:process
-exitcode	kern/include/thread.h	/^    	int exitcode; \/\/ TODO init to 0$/;"	m	struct:thread
 exorcise	kern/thread/thread.c	/^exorcise(void)$/;"	f	file:
 f	testbin/badcall/driver.c	/^	void (*f)(void);$/;"	m	struct:__anon10	file:
 f	testbin/crash/crash.c	/^	func f;$/;"	m	struct:__anon11	file:
@@ -2203,7 +2203,6 @@ hargv	testbin/farm/farm.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"
 hargv	testbin/sty/sty.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v	file:
 harvard_copyright	kern/main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
 has_exited	kern/include/process.h	/^    int has_exited; \/\/ TODO init to 0$/;"	m	struct:process
-has_exited	kern/include/thread.h	/^	    int has_exited; \/\/ TODO init to 0$/;"	m	struct:thread
 haveclock	kern/dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
 head	kern/filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 head	kern/lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
@@ -2591,6 +2590,7 @@ nbits	kern/lib/bitmap.c	/^	u_int32_t nbits;$/;"	m	struct:bitmap	file:
 nblocks	sbin/dumpsfs/disk.c	/^static u_int32_t nblocks;$/;"	v	file:
 nblocks	sbin/mksfs/disk.c	/^static u_int32_t nblocks;$/;"	v	file:
 nettest	kern/test/nettest.c	/^nettest(void)$/;"	f
+new_thread_handler	kern/userprog/sysfork.c	/^static void new_thread_handler(void *tf, unsigned long dummy) {$/;"	f	file:
 next	kern/include/file.h	/^    struct file *next;$/;"	m	struct:file	typeref:struct:file::file
 next	kern/lib/kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
 next	kern/lib/linkedlist.c	/^    struct node *next;$/;"	m	struct:node	typeref:struct:node::node	file:
@@ -2700,7 +2700,6 @@ palindrome	testbin/palin/palin.c	/^char palindrome[8000] = $/;"	v
 panic	kern/lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	kern/arch/mips/mips/start.S	/^panicstr:$/;"	l
 parentpid	kern/include/process.h	/^    pid_t parentpid; \/\/ TODO init on fork -> should we keep this?$/;"	m	struct:process
-parentpid	kern/include/thread.h	/^    	pid_t parentpid; \/\/ TODO init on fork -> should we keep this?$/;"	m	struct:thread
 pcb	kern/arch/mips/include/pcb.h	/^struct pcb {$/;"	s
 pcb	kern/compile/ASST0/machine/pcb.h	/^struct pcb {$/;"	s
 pcb	kern/compile/ASST1/machine/pcb.h	/^struct pcb {$/;"	s
@@ -3178,8 +3177,11 @@ symlink_badpath1	testbin/badcall/common_path.c	/^symlink_badpath1(const char *pa
 symlink_badpath2	testbin/badcall/common_path.c	/^symlink_badpath2(const char *path)$/;"	f	file:
 symlink_empty1	testbin/badcall/bad_symlink.c	/^symlink_empty1(void)$/;"	f	file:
 symlink_empty2	testbin/badcall/bad_symlink.c	/^symlink_empty2(void)$/;"	f	file:
+sys__exit	kern/userprog/sysexit.c	/^void sys__exit(int exitcode) {$/;"	f
 sys_close	kern/userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	kern/include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
+sys_execv	kern/userprog/sysexecv.c	/^int sys_execv(char * program, char **args, int *err) {$/;"	f
+sys_fork	kern/userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
 sys_getpid	kern/userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_getpid	kern/userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
 sys_nerr	kern/include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
@@ -3187,6 +3189,7 @@ sys_open	kern/userprog/sysopen.c	/^int sys_open(const char *filename, int flags,
 sys_read	kern/userprog/sysread.c	/^int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {$/;"	f
 sys_reboot	kern/main/main.c	/^sys_reboot(int code)$/;"	f
 sys_waitpid	kern/userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
+sys_waitpid	kern/userprog/syswaitpid.c	/^int sys_waitpid(pid_t pid, int *status, int options, int* err) {$/;"	f
 sys_write	kern/userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
 sys_write	kern/userprog/syswrite.c	/^int sys_write(int fd, void *buf, size_t buflen, int *err) {$/;"	f
 system	lib/libc/system.c	/^system(const char *cmd)$/;"	f
@@ -3241,13 +3244,11 @@ t9	kern/compile/ASST0/machine/asmdefs.h	/^#define t9 /;"	d
 t9	kern/compile/ASST1/machine/asmdefs.h	/^#define t9 /;"	d
 t9	kern/compile/ASST2/machine/asmdefs.h	/^#define t9 /;"	d
 t_cwd	kern/include/thread.h	/^	struct vnode *t_cwd;$/;"	m	struct:thread	typeref:struct:thread::vnode
-t_lock	kern/include/thread.h	/^		struct lock* t_lock; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:thread	typeref:struct:thread::lock
 t_name	kern/include/thread.h	/^	char *t_name;$/;"	m	struct:thread
 t_pcb	kern/include/thread.h	/^	struct pcb t_pcb;$/;"	m	struct:thread	typeref:struct:thread::pcb
 t_sleepaddr	kern/include/thread.h	/^	const void *t_sleepaddr;$/;"	m	struct:thread
 t_stack	kern/include/thread.h	/^	char *t_stack;$/;"	m	struct:thread
 t_vmspace	kern/include/thread.h	/^	struct addrspace *t_vmspace;$/;"	m	struct:thread	typeref:struct:thread::addrspace
-t_waitcv	kern/include/thread.h	/^		struct cv* t_waitcv; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:thread	typeref:struct:thread::cv
 tab_add	kern/lib/table.c	/^int tab_add(struct table *t, void *ptr, int *err) {$/;"	f
 tab_create	kern/lib/table.c	/^struct table* tab_create() {$/;"	f
 tab_destroy	kern/lib/table.c	/^void tab_destroy(struct table *t) {$/;"	f
@@ -3498,7 +3499,7 @@ thread_childprocess	kern/thread/thread.c	/^struct thread *thread_childprocess(co
 thread_create	kern/thread/thread.c	/^thread_create(const char *name)$/;"	f
 thread_destroy	kern/thread/thread.c	/^thread_destroy(struct thread *thread)$/;"	f	file:
 thread_exit	kern/thread/thread.c	/^thread_exit(void)$/;"	f
-thread_fork	kern/thread/thread.c	/^thread_fork(const char *name,$/;"	f
+thread_fork	kern/thread/thread.c	/^    thread_fork(const char *name,$/;"	f
 thread_hassleepers	kern/thread/thread.c	/^thread_hassleepers(const void *addr)$/;"	f
 thread_killall	kern/thread/thread.c	/^thread_killall(void)$/;"	f	file:
 thread_panic	kern/thread/thread.c	/^thread_panic(void)$/;"	f

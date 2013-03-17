@@ -2,6 +2,7 @@
 #include <lib.h>
 #include <types.h>
 #include <curthread.h>
+#include <addrspace.h>
 #include <thread.h>
 #include <process.h>
 #include <processtable.h>
@@ -119,7 +120,7 @@ int buffer_check(void *buf, size_t buflen){
     }
     if (top >= USERTOP) {
         /* region overlaps the kernel */
-        return -1;
+        //return -1;
     }
     return 0;
 }

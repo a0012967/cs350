@@ -66,7 +66,7 @@ struct process * p_create() {
 
     // signify process hasn't exited yet
     p->has_exited = 0;
-    p->exitcode = 0;
+    p->exitcode = -1;
 
     // set parent pid to 0 for now -> this value needs to be
     // set explicitly when doing a fork

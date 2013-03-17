@@ -315,6 +315,7 @@ thread_shutdown(void)
             }
 
             if (proc != NULL) {
+                proc->parentpid = curthread->pid;
                 p_assign_thread(proc, newguy);
             }
             //as_activate(newguy->t_vmspace);
