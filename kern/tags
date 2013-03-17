@@ -429,7 +429,9 @@ LT_REG_SPKR	dev/lamebus/ltimer.c	/^#define LT_REG_SPKR /;"	d	file:
 MAKENAME	test/fstest.c	/^#define MAKENAME(/;"	d	file:
 MAXMENUARGS	main/menu.c	/^#define MAXMENUARGS /;"	d	file:
 MAXTHREADS	include/synch.h	/^#define MAXTHREADS /;"	d
+MAX_FILENAME_LEN	include/filetable.h	/^#define MAX_FILENAME_LEN /;"	d
 MAX_PROCESSES	include/process.h	/^#define MAX_PROCESSES /;"	d
+MAX_SYSTEM_OPEN_FILES	include/systemfiletable.h	/^#define MAX_SYSTEM_OPEN_FILES /;"	d
 MDHEADERS	Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
 MIPS_KSEG0	arch/mips/include/vm.h	/^#define MIPS_KSEG0 /;"	d
@@ -780,12 +782,12 @@ _BIG_ENDIAN	compile/ASST1/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BIG_ENDIAN	compile/ASST2/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BITMAP_H_	include/bitmap.h	/^#define _BITMAP_H_$/;"	d
 _CLOCK_H_	include/clock.h	/^#define _CLOCK_H_$/;"	d
-_CURPROCESS_H_	include/curprocess.h	/^#define _CURPROCESS_H_$/;"	d
 _CURTHREAD_H_	include/curthread.h	/^#define _CURTHREAD_H_$/;"	d
 _DEV_H_	include/dev.h	/^#define _DEV_H_$/;"	d
 _ELF_H_	include/elf.h	/^#define _ELF_H_$/;"	d
 _EMUFS_H_	include/emufs.h	/^#define _EMUFS_H_$/;"	d
 _FILETABLE_H_	include/filetable.h	/^#define _FILETABLE_H_$/;"	d
+_FILE_H_	include/file.h	/^#define _FILE_H_$/;"	d
 _FS_H_	include/fs.h	/^#define _FS_H_$/;"	d
 _GENERIC_BEEP_H_	dev/generic/beep.h	/^#define _GENERIC_BEEP_H_$/;"	d
 _GENERIC_CONSOLE_H_	dev/generic/console.h	/^#define _GENERIC_CONSOLE_H_$/;"	d
@@ -905,6 +907,7 @@ _SFS_H_	include/sfs.h	/^#define _SFS_H_$/;"	d
 _STDARG_H_	include/stdarg.h	/^#define _STDARG_H_$/;"	d
 _SYNCH_H_	include/synch.h	/^#define _SYNCH_H_$/;"	d
 _SYSCALL_H_	include/syscall.h	/^#define _SYSCALL_H_$/;"	d
+_SYSTEMFILETABLE_H_	include/systemfiletable.h	/^#define _SYSTEMFILETABLE_H_$/;"	d
 _TABLE_H_	include/table.h	/^#define _TABLE_H_$/;"	d
 _TEST_H_	include/test.h	/^#define _TEST_H_$/;"	d
 _THREAD_H_	include/thread.h	/^#define _THREAD_H_$/;"	d
@@ -1068,7 +1071,7 @@ buildconfig	compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
 buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	compile/ASST2/vers.c	/^const int buildversion = 136;$/;"	v
+buildversion	compile/ASST2/vers.c	/^const int buildversion = 287;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1175,6 +1178,7 @@ config_ltimer	dev/lamebus/ltimer.c	/^config_ltimer(struct ltimer_softc *lt, int 
 config_ltrace	dev/lamebus/ltrace.c	/^config_ltrace(struct ltrace_softc *sc, int ltraceno)$/;"	f
 config_random	dev/generic/random.c	/^config_random(struct random_softc *rs, int unit)$/;"	f
 config_rtclock	dev/generic/rtclock.c	/^config_rtclock(struct rtclock_softc *rtc, int unit)$/;"	f
+console_files_bootstrap	filedes/filetable.c	/^void console_files_bootstrap() {$/;"	f
 console_send	lib/kprintf.c	/^console_send(void *junk, const char *data, size_t len)$/;"	f	file:
 const_userptr_t	include/types.h	/^typedef const struct __userptr *const_userptr_t;$/;"	t	typeref:struct:__userptr
 copycheck	lib/copyinout.c	/^copycheck(const_userptr_t userptr, size_t len, size_t *stoplen)$/;"	f	file:
@@ -1184,6 +1188,8 @@ copyinstr	lib/copyinout.c	/^copyinstr(const_userptr_t usersrc, char *dest, size_
 copyout	lib/copyinout.c	/^copyout(const void *src, userptr_t userdest, size_t len)$/;"	f
 copyoutstr	lib/copyinout.c	/^copyoutstr(const char *src, userptr_t userdest, size_t len, size_t *actual)$/;"	f
 copystr	lib/copyinout.c	/^copystr(char *dest, const char *src, size_t maxlen, size_t stoplen,$/;"	f	file:
+count	filedes/systemfiletable.c	/^    int count;$/;"	m	struct:systemfiletable	file:
+count	include/file.h	/^    int count;$/;"	m	struct:file
 count	include/synch.h	/^	volatile int count;$/;"	m	struct:semaphore
 counter	asst1/catmouse.c	/^    volatile int counter = 0;$/;"	v
 cpu_halt	arch/mips/mips/spl.c	/^cpu_halt(void)$/;"	f
@@ -1198,7 +1204,6 @@ cs_send	dev/generic/console.h	/^	void (*cs_send)(void *devdata, int ch);$/;"	m	s
 cs_sendpolled	dev/generic/console.h	/^	void (*cs_sendpolled)(void *devdata, int ch);$/;"	m	struct:con_softc
 cs_wsem	dev/generic/console.h	/^	struct semaphore *cs_wsem;$/;"	m	struct:con_softc	typeref:struct:con_softc::semaphore
 curkstack	arch/mips/mips/pcb.c	/^u_int32_t curkstack;	\/* curthread's kernel stack, for use on kernel entry *\/$/;"	v
-curprocess	process/process.c	/^struct process *curprocess;$/;"	v	typeref:struct:process
 curspl	arch/mips/mips/spl.c	/^int curspl = SPL_HIGH;$/;"	v
 curthread	thread/thread.c	/^struct thread *curthread;$/;"	v	typeref:struct:thread
 cv	include/synch.h	/^struct cv {$/;"	s
@@ -1328,12 +1333,13 @@ ev_v	include/emufs.h	/^	struct vnode ev_v;		\/* abstract vnode structure *\/$/;"
 exception	arch/mips/mips/exception.S	/^exception:$/;"	l
 exception_end	arch/mips/mips/exception.S	/^exception_end:$/;"	l
 exception_return	arch/mips/mips/exception.S	/^exception_return:$/;"	l
+exitcode	include/process.h	/^    int exitcode; \/\/ TODO init to 0$/;"	m	struct:process
 exorcise	thread/thread.c	/^exorcise(void)$/;"	f	file:
-f_create	filedes/filetable.c	/^struct file* f_create(struct uio u, struct vnode *v) {$/;"	f
-f_destroy	filedes/filetable.c	/^void f_destroy(struct file *f) {$/;"	f
+f_create	filedes/file.c	/^struct file* f_create(int status, int offset, struct vnode *v) {$/;"	f
+f_destroy	filedes/file.c	/^void f_destroy(struct file *f) {$/;"	f
 fail	test/synchtest.c	/^fail(unsigned long num, const char *msg)$/;"	f	file:
-file	include/filetable.h	/^struct file {$/;"	s
-file_lock	include/filetable.h	/^    struct lock *file_lock; \/\/ when doing operations on the lock$/;"	m	struct:file	typeref:struct:file::lock
+file	include/file.h	/^struct file {$/;"	s
+file_lock	include/file.h	/^    struct lock *file_lock; \/\/ when doing operations on the file$/;"	m	struct:file	typeref:struct:file::lock
 file_table	include/process.h	/^    struct filetable* file_table; $/;"	m	struct:process	typeref:struct:process::filetable
 files	filedes/filetable.c	/^    struct table *files;$/;"	m	struct:filetable	typeref:struct:filetable::table	file:
 filetable	filedes/filetable.c	/^struct filetable {$/;"	s	file:
@@ -1361,6 +1367,7 @@ fstest_remove	test/fstest.c	/^fstest_remove(const char *fs, const char *namesuff
 fstest_write	test/fstest.c	/^fstest_write(const char *fs, const char *namesuffix,$/;"	f	file:
 ft_create	filedes/filetable.c	/^struct filetable* ft_create() {$/;"	f
 ft_destroy	filedes/filetable.c	/^void ft_destroy(struct filetable *ft) {$/;"	f
+ft_duplicate	filedes/filetable.c	/^int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {$/;"	f
 ft_getfile	filedes/filetable.c	/^struct file* ft_getfile(struct filetable *ft, int fd, int *err) {$/;"	f
 ft_getsize	filedes/filetable.c	/^int ft_getsize(struct filetable *ft) {$/;"	f
 ft_lock	filedes/filetable.c	/^    struct lock *ft_lock;$/;"	m	struct:filetable	typeref:struct:filetable::lock	file:
@@ -1387,7 +1394,9 @@ gp	compile/ASST1/machine/asmdefs.h	/^#define gp /;"	d
 gp	compile/ASST2/machine/asmdefs.h	/^#define gp /;"	d
 hardclock	thread/hardclock.c	/^hardclock(void)$/;"	f
 harvard_copyright	main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
+has_exited	include/process.h	/^    int has_exited; \/\/ TODO init to 0$/;"	m	struct:process
 haveclock	dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
+head	filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 head	lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 held	include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	main/hello.c	/^void hello() {$/;"	f
@@ -1492,13 +1501,13 @@ lhd_softc	dev/lamebus/lhd.h	/^struct lhd_softc {$/;"	s
 lhd_wreg	dev/lamebus/lhd.c	/^void lhd_wreg(struct lhd_softc *lh, u_int32_t reg, u_int32_t val)$/;"	f	file:
 linkedlist	lib/linkedlist.c	/^struct linkedlist {$/;"	s	file:
 ll_back	lib/linkedlist.c	/^void *ll_back(struct linkedlist *ll) {$/;"	f
+ll_copy	lib/linkedlist.c	/^struct linkedlist *ll_copy(struct linkedlist *ll) {$/;"	f
 ll_create	lib/linkedlist.c	/^struct linkedlist* ll_create() {$/;"	f
 ll_destroy	lib/linkedlist.c	/^void ll_destroy(struct linkedlist *ll) {$/;"	f
 ll_empty	lib/linkedlist.c	/^int ll_empty(struct linkedlist *ll) {$/;"	f
 ll_front	lib/linkedlist.c	/^void *ll_front(struct linkedlist *ll) {$/;"	f
 ll_pop_back	lib/linkedlist.c	/^void* ll_pop_back(struct linkedlist *ll) {$/;"	f
 ll_pop_front	lib/linkedlist.c	/^void* ll_pop_front(struct linkedlist *ll) {$/;"	f
-ll_print	lib/linkedlist.c	/^void ll_print(struct linkedlist *ll) {$/;"	f
 ll_push_back	lib/linkedlist.c	/^int ll_push_back(struct linkedlist *ll, void *ptr) {$/;"	f
 ll_push_front	lib/linkedlist.c	/^int ll_push_front(struct linkedlist *ll, void *ptr) {$/;"	f
 ll_size	lib/linkedlist.c	/^int ll_size(struct linkedlist *ll) {$/;"	f
@@ -1611,6 +1620,8 @@ name	main/menu.c	/^	const char *name;$/;"	m	struct:__anon4	file:
 name	main/menu.c	/^	const char *name;$/;"	m	struct:__anon5	file:
 nbits	lib/bitmap.c	/^	u_int32_t nbits;$/;"	m	struct:bitmap	file:
 nettest	test/nettest.c	/^nettest(void)$/;"	f
+new_thread_handler	userprog/sysfork.c	/^static void new_thread_handler(void *tf, unsigned long dummy) {$/;"	f	file:
+next	include/file.h	/^    struct file *next;$/;"	m	struct:file	typeref:struct:file::file
 next	lib/kheap.c	/^	struct freelist *next;$/;"	m	struct:freelist	typeref:struct:freelist::freelist	file:
 next	lib/linkedlist.c	/^    struct node *next;$/;"	m	struct:node	typeref:struct:node::node	file:
 next_all	lib/kheap.c	/^	struct pageref *next_all;$/;"	m	struct:pageref	typeref:struct:pageref::pageref	file:
@@ -1666,20 +1677,24 @@ num_bowls	asst1/bowls.c	/^static int num_bowls;$/;"	v	file:
 num_eating	asst1/catmouse.c	/^    volatile int num_eating = 0;$/;"	v
 numthreads	thread/thread.c	/^static int numthreads;$/;"	v	file:
 off_t	include/kern/types.h	/^typedef int32_t off_t;   \/* Offset within file *\/$/;"	t
+offset	include/file.h	/^    int offset;$/;"	m	struct:file
 one_thread_only	thread/thread.c	/^one_thread_only() {$/;"	f
 opsmenu	main/menu.c	/^static const char *opsmenu[] = {$/;"	v	file:
 p_align	include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon2
 p_assign_thread	process/process.c	/^void p_assign_thread(struct process *p, struct thread *t) {$/;"	f
 p_create	process/process.c	/^struct process * p_create() {$/;"	f
 p_destroy	process/process.c	/^void p_destroy() {$/;"	f
+p_destroy_at	process/process.c	/^void p_destroy_at(struct process * p) {$/;"	f
 p_filesz	include/elf.h	/^	u_int32_t	p_filesz;    \/* Size of data within file *\/$/;"	m	struct:__anon2
 p_flags	include/elf.h	/^	u_int32_t	p_flags;     \/* Flags *\/$/;"	m	struct:__anon2
+p_lock	include/process.h	/^	struct lock* p_lock; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:process	typeref:struct:process::lock
 p_memsz	include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon2
 p_offset	include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon2
 p_paddr	include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon2
 p_thread	include/process.h	/^	struct thread* p_thread;$/;"	m	struct:process	typeref:struct:process::thread
 p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
 p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
+p_waitcv	include/process.h	/^	struct cv* p_waitcv; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:process	typeref:struct:process::cv
 paddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
@@ -1690,6 +1705,7 @@ pagerefs	lib/kheap.c	/^static struct pageref pagerefs[NPAGEREFS];$/;"	v	typeref:
 pagerefs_inuse	lib/kheap.c	/^static u_int32_t pagerefs_inuse[INUSE_WORDS];$/;"	v	file:
 panic	lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	arch/mips/mips/start.S	/^panicstr:$/;"	l
+parentpid	include/process.h	/^    pid_t parentpid; \/\/ TODO init on fork -> should we keep this?$/;"	m	struct:process
 pcb	arch/mips/include/pcb.h	/^struct pcb {$/;"	s
 pcb	compile/ASST0/machine/pcb.h	/^struct pcb {$/;"	s
 pcb	compile/ASST1/machine/pcb.h	/^struct pcb {$/;"	s
@@ -1719,7 +1735,9 @@ pcb_switchstack	compile/ASST0/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ 
 pcb_switchstack	compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pid	include/process.h	/^	pid_t pid;$/;"	m	struct:process
+pid	include/thread.h	/^		pid_t pid;$/;"	m	struct:thread
 pid_t	include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
+prev	include/file.h	/^    struct file *prev;$/;"	m	struct:file	typeref:struct:file::file
 print_run_queue	thread/scheduler.c	/^print_run_queue(void)$/;"	f
 print_state	asst1/bowls.c	/^print_state()$/;"	f	file:
 printfile	test/fstest.c	/^printfile(int nargs, char **args)$/;"	f
@@ -1730,6 +1748,7 @@ process_table	process/process.c	/^struct process_table {$/;"	s	file:
 process_table	process/processtable.c	/^static struct table *process_table;$/;"	v	typeref:struct:table	file:
 processline	conf/config	/^    function processline(filename, lineno) {$/;"	f
 processtable_bootstrap	process/processtable.c	/^void processtable_bootstrap() {$/;"	f
+processtable_get	process/processtable.c	/^struct process * processtable_get(pid_t pid) {$/;"	f
 processtable_getnum	process/processtable.c	/^int processtable_getnum() {$/;"	f
 processtable_getsize	process/processtable.c	/^int processtable_getsize() {$/;"	f
 processtable_insert	process/processtable.c	/^int processtable_insert(struct process *p) {$/;"	f
@@ -1791,7 +1810,7 @@ rs_read	dev/generic/random.h	/^	int (*rs_read)(void *devdata, struct uio *uio);$
 rtc_devdata	dev/generic/rtclock.h	/^	void *rtc_devdata;$/;"	m	struct:rtclock_softc
 rtc_gettime	dev/generic/rtclock.h	/^	void (*rtc_gettime)(void *devdata, time_t *secs, u_int32_t *nsecs);$/;"	m	struct:rtclock_softc
 rtclock_softc	dev/generic/rtclock.h	/^struct rtclock_softc {$/;"	s
-runprogram	userprog/runprogram.c	/^runprogram(char *progname)$/;"	f
+runprogram	userprog/runprogram.c	/^runprogram(char *progname, int argc, char ** argv)$/;"	f
 runqueue	thread/scheduler.c	/^static struct queue *runqueue;$/;"	v	typeref:struct:queue	file:
 runtest3	test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
 runthreads	test/threadtest.c	/^runthreads(int doloud)$/;"	f	file:
@@ -1963,6 +1982,8 @@ sfs_vnodes	include/sfs.h	/^	struct array *sfs_vnodes;       \/* vnodes loaded in
 sfs_wblock	fs/sfs/sfs_io.c	/^sfs_wblock(struct sfs_fs *sfs, void *data, u_int32_t block)$/;"	f
 sfs_write	fs/sfs/sfs_vnode.c	/^sfs_write(struct vnode *v, struct uio *uio)$/;"	f	file:
 sfs_writedir	fs/sfs/sfs_vnode.c	/^sfs_writedir(struct sfs_vnode *sv, struct sfs_dir *sd, int slot)$/;"	f	file:
+sft	filedes/systemfiletable.c	/^static struct systemfiletable *sft;$/;"	v	typeref:struct:systemfiletable	file:
+sft_lock	filedes/systemfiletable.c	/^static struct lock *sft_lock;$/;"	v	typeref:struct:lock	file:
 showmenu	main/menu.c	/^showmenu(const char *name, const char *x[])$/;"	f	file:
 shutdown	main/main.c	/^shutdown(void)$/;"	f	file:
 size	lib/linkedlist.c	/^    int size;$/;"	m	struct:linkedlist	file:
@@ -1999,7 +2020,7 @@ stat	include/kern/stat.h	/^struct stat {$/;"	s
 stats_counts	vm/uw-vmstats.c	/^static unsigned int stats_counts[VMSTAT_COUNT];$/;"	v	file:
 stats_lock	vm/uw-vmstats.c	/^static struct lock *stats_lock = 0;$/;"	v	typeref:struct:lock	file:
 stats_names	vm/uw-vmstats.c	/^static const char *stats_names[] = {$/;"	v	file:
-status	include/filetable.h	/^    int status;$/;"	m	struct:file
+status	include/file.h	/^    int status;$/;"	m	struct:file
 strerror	lib/misc.c	/^strerror(int errcode)$/;"	f
 subpage_kfree	lib/kheap.c	/^subpage_kfree(void *ptr)$/;"	f	file:
 subpage_kmalloc	lib/kheap.c	/^subpage_kmalloc(size_t sz)$/;"	f	file:
@@ -2014,14 +2035,25 @@ switchframe	compile/ASST2/machine/switchframe.h	/^struct switchframe {$/;"	s
 sys__exit	userprog/sysexit.c	/^void sys__exit(int exitcode) {$/;"	f
 sys_close	userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
-sys_fork	userprog/sysfork.c	/^    pid_t sys_fork(void) {$/;"	f
+sys_execv	userprog/sysexecv.c	/^int sys_execv(char * program, char **args, int *err) {$/;"	f
+sys_fork	userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
 sys_getpid	userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
+sys_getpid	userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
 sys_nerr	include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
 sys_open	userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
-sys_read	userprog/sysread.c	/^    int sys_read(int fd, void *buf, size_t buflen,  int *retval) {$/;"	f
+sys_read	userprog/sysread.c	/^int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {$/;"	f
 sys_reboot	main/main.c	/^sys_reboot(int code)$/;"	f
 sys_waitpid	userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
+sys_waitpid	userprog/syswaitpid.c	/^int sys_waitpid(pid_t pid, int *status, int options, int* err) {$/;"	f
 sys_write	userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
+sys_write	userprog/syswrite.c	/^int sys_write(int fd, void *buf, size_t buflen, int *err) {$/;"	f
+systemfiletable	filedes/systemfiletable.c	/^struct systemfiletable {$/;"	s	file:
+systemfiletable_bootstrap	filedes/systemfiletable.c	/^void systemfiletable_bootstrap() {$/;"	f
+systemft_getcount	filedes/systemfiletable.c	/^int systemft_getcount() {$/;"	f
+systemft_insert	filedes/systemfiletable.c	/^int systemft_insert(struct file *f) {$/;"	f
+systemft_iter_ct	filedes/systemfiletable.c	/^int systemft_iter_ct() {$/;"	f
+systemft_remove	filedes/systemfiletable.c	/^int systemft_remove(struct file *f) {$/;"	f
+systemft_update	filedes/systemfiletable.c	/^int systemft_update(struct file *f) {$/;"	f
 t0	arch/mips/include/asmdefs.h	/^#define t0 /;"	d
 t0	compile/ASST0/machine/asmdefs.h	/^#define t0 /;"	d
 t0	compile/ASST1/machine/asmdefs.h	/^#define t0 /;"	d
@@ -2071,11 +2103,13 @@ t_vmspace	include/thread.h	/^	struct addrspace *t_vmspace;$/;"	m	struct:thread	t
 tab_add	lib/table.c	/^int tab_add(struct table *t, void *ptr, int *err) {$/;"	f
 tab_create	lib/table.c	/^struct table* tab_create() {$/;"	f
 tab_destroy	lib/table.c	/^void tab_destroy(struct table *t) {$/;"	f
+tab_duplicate	lib/table.c	/^int tab_duplicate(struct table *t, struct table **new_t) {$/;"	f
 tab_getguy	lib/table.c	/^void* tab_getguy(struct table *t, int index) {$/;"	f
 tab_getnum	lib/table.c	/^int tab_getnum(struct table *t) {$/;"	f
 tab_getsize	lib/table.c	/^int tab_getsize(struct table *t) {$/;"	f
 tab_remove	lib/table.c	/^int tab_remove(struct table *t, int index) {$/;"	f
 table	lib/table.c	/^struct table {$/;"	s	file:
+tail	filedes/systemfiletable.c	/^    struct file *tail;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 tail	lib/linkedlist.c	/^    struct node *tail;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 testa	test/arraytest.c	/^testa(struct array *a)$/;"	f	file:
 testcv	test/synchtest.c	/^static struct cv *testcv;$/;"	v	typeref:struct:cv	file:
@@ -2242,10 +2276,11 @@ the_random	dev/generic/random.c	/^static struct random_softc *the_random = NULL;
 the_trace	dev/lamebus/ltrace.c	/^static struct ltrace_softc *the_trace;$/;"	v	typeref:struct:ltrace_softc	file:
 thread	include/thread.h	/^struct thread {$/;"	s
 thread_bootstrap	thread/thread.c	/^thread_bootstrap(void)$/;"	f
+thread_childprocess	thread/thread.c	/^struct thread *thread_childprocess(const char *name, int *err) {$/;"	f
 thread_create	thread/thread.c	/^thread_create(const char *name)$/;"	f
 thread_destroy	thread/thread.c	/^thread_destroy(struct thread *thread)$/;"	f	file:
 thread_exit	thread/thread.c	/^thread_exit(void)$/;"	f
-thread_fork	thread/thread.c	/^thread_fork(const char *name, $/;"	f
+thread_fork	thread/thread.c	/^thread_fork(const char *name,$/;"	f
 thread_hassleepers	thread/thread.c	/^thread_hassleepers(const void *addr)$/;"	f
 thread_killall	thread/thread.c	/^thread_killall(void)$/;"	f	file:
 thread_panic	thread/thread.c	/^thread_panic(void)$/;"	f
@@ -2302,7 +2337,6 @@ tryattach_rtclock_to_ltimer	compile/ASST2/autoconf.c	/^tryattach_rtclock_to_ltim
 tsem	test/threadtest.c	/^static struct semaphore *tsem = NULL;$/;"	v	typeref:struct:semaphore	file:
 turnleft	asst1/stoplight.c	/^turnleft(unsigned long cardirection,$/;"	f	file:
 turnright	asst1/stoplight.c	/^turnright(unsigned long cardirection,$/;"	f	file:
-u	include/filetable.h	/^    struct uio u;$/;"	m	struct:file	typeref:struct:file::uio
 u_int16_t	arch/mips/include/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	compile/ASST0/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
 u_int16_t	compile/ASST1/machine/types.h	/^typedef unsigned short     u_int16_t;	\/* 16-bit unsigned integer *\/$/;"	t
@@ -2324,7 +2358,6 @@ uintptr_t	compile/ASST0/machine/types.h	/^typedef unsigned long uintptr_t;	\/* U
 uintptr_t	compile/ASST1/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uintptr_t	compile/ASST2/machine/types.h	/^typedef unsigned long uintptr_t;	\/* Unsigned pointer-sized integer *\/$/;"	t
 uio	include/uio.h	/^struct uio {$/;"	s
-uio_init	userprog/sysread.c	/^int uio_init(struct file *file, void * buf, size_t buflen){$/;"	f
 uio_iovec	include/uio.h	/^	struct iovec      uio_iovec;       \/* Data block *\/$/;"	m	struct:uio	typeref:struct:uio::iovec
 uio_offset	include/uio.h	/^	off_t             uio_offset;      \/* desired offset into object *\/$/;"	m	struct:uio
 uio_resid	include/uio.h	/^	size_t            uio_resid;       \/* Remaining amt of data to xfer *\/$/;"	m	struct:uio
@@ -2340,7 +2373,7 @@ un_ubase	include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}
 userptr_t	include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	arch/mips/mips/exception.S	/^utlb_exception:$/;"	l
 utlb_exception_end	arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
-v	include/filetable.h	/^    struct vnode *v;$/;"	m	struct:file	typeref:struct:file::vnode
+v	include/file.h	/^    struct vnode *v;$/;"	m	struct:file	typeref:struct:file::vnode
 v	lib/array.c	/^	void **v;$/;"	m	struct:array	file:
 v	lib/bitmap.c	/^	WORD_TYPE *v;$/;"	m	struct:bitmap	file:
 v0	arch/mips/include/asmdefs.h	/^#define v0 /;"	d

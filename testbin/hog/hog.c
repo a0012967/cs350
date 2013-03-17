@@ -9,9 +9,10 @@ int
 main(void)
 {
 	volatile int i;
-
+/*
 	for (i=0; i<50000; i++)
 		;
-
+*/
+    printf("Execv passed\n");
 	return 0;
 }
