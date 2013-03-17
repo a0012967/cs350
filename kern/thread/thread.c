@@ -9,6 +9,7 @@
 #include <machine/pcb.h>
 #include <thread.h>
 #include <curthread.h>
+#include <process.h>
 #include <scheduler.h>
 #include <addrspace.h>
 #include <vnode.h>
@@ -55,9 +56,7 @@ thread_create(const char *name)
 	}
 	thread->t_sleepaddr = NULL;
 	thread->t_stack = NULL;
-	
 	thread->t_vmspace = NULL;
-
 	thread->t_cwd = NULL;
 	
 	return thread;
@@ -262,11 +261,20 @@ thread_shutdown(void)
  * The new thread has name NAME, and starts executing in function FUNC.
  * DATA1 and DATA2 are passed to FUNC.
  */
-int
-thread_fork(const char *name,
-	    void *data1, unsigned long data2,
-	    void (*func)(void *, unsigned long),
-	    struct thread **ret)
+// PRO-CODING 101
+#if OPT_A2
+    int
+    thread_fork(const char *name,
+            void *data1, unsigned long data2,
+            void (*func)(void *, unsigned long),
+            struct thread **ret, struct process *proc)
+#else
+    int
+    thread_fork(const char *name,
+            void *data1, unsigned long data2,
+            void (*func)(void *, unsigned long),
+            struct thread **ret)
+#endif // OPT_A2
 {
 	struct thread *newguy;
 	int s, result;
@@ -304,6 +312,10 @@ thread_fork(const char *name,
             result = as_copy(curthread->t_vmspace, &(newguy->t_vmspace));
             if (result) {
                 return result;
+            }
+
+            if (proc != NULL) {
+                p_assign_thread(proc, newguy);
             }
             //as_activate(newguy->t_vmspace);
         }

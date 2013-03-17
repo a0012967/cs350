@@ -8,6 +8,7 @@
 #include <thread.h>
 #include <test.h>
 
+#include "opt-A2.h"
 #include "opt-synchprobs.h"
 
 /* dimension of matrices (cannot be too large or will overflow stack) */
@@ -102,12 +103,20 @@ make_sleepalots(int howmany)
 
 	for (i=0; i<howmany; i++) {
 		snprintf(name, sizeof(name), "sleepalot%d", i);
-		result = thread_fork(name, NULL, i, sleepalot_thread, NULL);
+        #if OPT_A2
+            result = thread_fork(name, NULL, i, sleepalot_thread, NULL, NULL);
+        #else
+            result = thread_fork(name, NULL, i, sleepalot_thread, NULL);
+        #endif // OPT_A2
 		if (result) {
 			panic("thread_fork failed: %s\n", strerror(result));
 		}
 	}
-	result = thread_fork("waker", NULL, 0, waker_thread, NULL);
+    #if OPT_A2
+        result = thread_fork("waker", NULL, 0, waker_thread, NULL, NULL);
+    #else
+        result = thread_fork("waker", NULL, 0, waker_thread, NULL);
+    #endif // OPT_A2
 	if (result) {
 		panic("thread_fork failed: %s\n", strerror(result));
 	}
@@ -179,7 +188,11 @@ make_computes(int howmany)
 
 	for (i=0; i<howmany; i++) {
 		snprintf(name, sizeof(name), "compute%d", i);
-		result = thread_fork(name, NULL, i, compute_thread, NULL);
+        #if OPT_A2
+            result = thread_fork(name, NULL, i, compute_thread, NULL, NULL);
+        #else
+            result = thread_fork(name, NULL, i, compute_thread, NULL);
+        #endif // OPT_A2
 		if (result) {
 			panic("thread_fork failed: %s\n", strerror(result));
 		}

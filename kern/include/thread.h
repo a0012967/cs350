@@ -11,6 +11,9 @@
 
 
 struct addrspace;
+#if OPT_A2
+    struct process;
+#endif // OPT_A2
 
 struct thread {
 	/**********************************************************/
@@ -68,10 +71,20 @@ void thread_shutdown(void);
  * general the child thread might exit at any time.) Returns an error
  * code.
  */
-int thread_fork(const char *name, 
-		void *data1, unsigned long data2, 
-		void (*func)(void *, unsigned long),
-		struct thread **ret);
+// TOP CODER SHIT RIGHT HERE
+#if OPT_A2
+    int
+    thread_fork(const char *name,
+            void *data1, unsigned long data2,
+            void (*func)(void *, unsigned long),
+            struct thread **ret, struct process *proc);
+#else
+    int
+    thread_fork(const char *name,
+            void *data1, unsigned long data2,
+            void (*func)(void *, unsigned long),
+            struct thread **ret);
+#endif // OPT_A2
 
 /*
  * Cause the current thread to exit.

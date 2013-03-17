@@ -6,6 +6,7 @@
 #include <synch.h>
 #include <thread.h>
 #include <test.h>
+#include "opt-A2.h"
 
 #define NTHREADS  8
 
@@ -73,9 +74,15 @@ runthreads(int doloud)
 
 	for (i=0; i<NTHREADS; i++) {
 		snprintf(name, sizeof(name), "threadtest%d", i);
-		result = thread_fork(name, NULL, i, 
-				     doloud ? loudthread : quietthread,
-				     NULL);
+        #if OPT_A2
+            result = thread_fork(name, NULL, i, 
+                         doloud ? loudthread : quietthread,
+                         NULL, NULL);
+        #else
+            result = thread_fork(name, NULL, i, 
+                         doloud ? loudthread : quietthread,
+                         NULL);
+        #endif // OPT_A2
 		if (result) {
 			panic("threadtest: thread_fork failed %s)\n", 
 			      strerror(result));

@@ -57,9 +57,10 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     }
 
     *err = thread_fork("child_thread",       // thread name
-                        new_trapframe, 0,           // arguments
+                        new_trapframe, 0,    // arguments
                         new_thread_handler,  // function to be called
-                        &new_thread);        // thread
+                        &new_thread,         // thread
+                        new_process);        // reference to process
 
     if (*err) {
         kfree(new_trapframe); // free trapframe
@@ -67,10 +68,6 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
         kfree(new_process);
         goto fail;
     }
-
-    // set thread of new process
-    // (also sets the thread's reference OF process)
-    p_assign_thread(new_process, new_thread);
 
     // set the retval to new_process' pid
     retval = new_process->pid;

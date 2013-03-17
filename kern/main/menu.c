@@ -114,9 +114,15 @@ common_prog(int nargs, char **args)
 		"synchronization-problems kernel.\n");
 #endif
 
+#if OPT_A2
+	result = thread_fork(args[0] /* thread name */,
+			args /* thread arg */, nargs /* thread arg */,
+			cmd_progthread, NULL, NULL);
+#else
 	result = thread_fork(args[0] /* thread name */,
 			args /* thread arg */, nargs /* thread arg */,
 			cmd_progthread, NULL);
+#endif // OPT_A2
 	if (result) {
 		kprintf("thread_fork failed: %s\n", strerror(result));
 		return result;

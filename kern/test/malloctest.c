@@ -6,6 +6,7 @@
 #include <synch.h>
 #include <thread.h>
 #include <test.h>
+#include "opt-A2.h"
 
 /*
  * Test kmalloc; allocate ITEMSIZE bytes NTRIES times, freeing
@@ -91,8 +92,11 @@ mallocstress(int nargs, char **args)
 	kprintf("Starting kmalloc stress test...\n");
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("mallocstress", sem, i, mallocthread,
-				     NULL);
+#if OPT_A2
+		result = thread_fork("mallocstress", sem, i, mallocthread, NULL, NULL);
+#else
+		result = thread_fork("mallocstress", sem, i, mallocthread, NULL);
+#endif // OPT_A2
 		if (result) {
 			panic("mallocstress: thread_fork failed: %s\n",
 			      strerror(result));

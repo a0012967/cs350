@@ -8,6 +8,7 @@
 #include <thread.h>
 #include <test.h>
 #include <clock.h>
+#include "opt-A2.h"
 
 #define NSEMLOOPS     63
 #define NLOCKLOOPS    120
@@ -109,7 +110,11 @@ semtest(int nargs, char **args)
 	kprintf("ok\n");
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("semtest", NULL, i, semtestthread, NULL);
+        #if OPT_A2
+            result = thread_fork("semtest", NULL, i, semtestthread, NULL, NULL);
+        #else
+            result = thread_fork("semtest", NULL, i, semtestthread, NULL);
+        #endif // OPT_A2
 		if (result) {
 			panic("semtest: thread_fork failed: %s\n", 
 			      strerror(result));
@@ -198,8 +203,11 @@ locktest(int nargs, char **args)
 	kprintf("Starting lock test...\n");
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("synchtest", NULL, i, locktestthread,
-				     NULL);
+#if OPT_A2
+		result = thread_fork("synchtest", NULL, i, locktestthread, NULL, NULL);
+#else
+		result = thread_fork("synchtest", NULL, i, locktestthread, NULL);
+#endif // OPT_A2
 		if (result) {
 			panic("locktest: thread_fork failed: %s\n",
 			      strerror(result));
@@ -280,8 +288,11 @@ cvtest(int nargs, char **args)
 	testval1 = NTHREADS-1;
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("synchtest", NULL, i, cvtestthread,
-				      NULL);
+#if OPT_A2
+		result = thread_fork("synchtest", NULL, i, cvtestthread, NULL, NULL);
+#else
+		result = thread_fork("synchtest", NULL, i, cvtestthread, NULL);
+#endif // OPT_A2
 		if (result) {
 			panic("cvtest: thread_fork failed: %s\n",
 			      strerror(result));

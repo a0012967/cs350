@@ -20,6 +20,7 @@
 #include <uio.h>
 #include <test.h>
 #include <thread.h>
+#include "opt-A2.h"
 
 #define SLOGAN   "HODIE MIHI - CRAS TIBI\n"
 #define FILENAME "fstest.tmp"
@@ -294,8 +295,11 @@ doreadstress(const char *filesys)
 	}
 
 	for (i=0; i<NTHREADS; i++) {
-		err = thread_fork("readstress", (void *)filesys, i, 
-				  readstress_thread, NULL);
+#if OPT_A2
+		err = thread_fork("readstress", (void *)filesys, i, readstress_thread, NULL, NULL);
+#else
+		err = thread_fork("readstress", (void *)filesys, i, readstress_thread, NULL);
+#endif // OPT_A2
 		if (err) {
 			panic("readstress: thread_fork failed: %s\n",
 			      strerror(err));
@@ -356,8 +360,11 @@ dowritestress(const char *filesys)
 	kprintf("*** Starting fs write stress test on %s:\n", filesys);
 
 	for (i=0; i<NTHREADS; i++) {
-		err = thread_fork("writestress", (void *)filesys, i, 
-				     writestress_thread, NULL);
+#if OPT_A2
+		err = thread_fork("writestress", (void *)filesys, i, writestress_thread, NULL, NULL);
+#else
+		err = thread_fork("writestress", (void *)filesys, i, writestress_thread, NULL);
+#endif // OPT_A2
 		if (err) {
 			panic("thread_fork failed %s\n", strerror(err));
 		}
@@ -410,8 +417,11 @@ dowritestress2(const char *filesys)
 	vfs_close(vn);
 
 	for (i=0; i<NTHREADS; i++) {
-		err = thread_fork("writestress2", (void *)filesys, i, 
-				      writestress2_thread, NULL);
+#if OPT_A2
+		err = thread_fork("writestress2", (void *)filesys, i, writestress2_thread, NULL, NULL);
+#else
+		err = thread_fork("writestress2", (void *)filesys, i, writestress2_thread, NULL);
+#endif // OPT_A2
 		if (err) {
 			panic("writestress2: thread_fork failed: %s\n",
 			      strerror(err));
@@ -483,8 +493,11 @@ docreatestress(const char *filesys)
 	kprintf("*** Starting fs create stress test on %s:\n", filesys);
 
 	for (i=0; i<NTHREADS; i++) {
-		err = thread_fork("createstress", (void *)filesys, i, 
-				  createstress_thread, NULL);
+#if OPT_A2
+		err = thread_fork("createstress", (void *)filesys, i, createstress_thread, NULL, NULL);
+#else
+		err = thread_fork("createstress", (void *)filesys, i, createstress_thread, NULL);
+#endif // OPT_A2
 		if (err) {
 			panic("createstress: thread_fork failed %s\n",
 			      strerror(err));
