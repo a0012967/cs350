@@ -10,6 +10,14 @@
 #include <vm.h>
 #include <vfs.h>
 
+
+static
+int
+copystring(char *dest, const char *src, size_t maxlen, size_t stoplen,
+    size_t *gotlen);
+
+
+
 int sys_execv(char * program, char **args, int *err) {
 
     int argc = 0;
@@ -22,17 +30,50 @@ int sys_execv(char * program, char **args, int *err) {
     int result;
     actual = 0;
     struct addrspace *curaddrspace, *newaddrspace;    
-
+    char *kprogram;
 
     // TODO: error checking!
     if (program == NULL) {
         *err = ENOENT;
         return -1;
     }
-
+    if (args == NULL) {
+        *err = EFAULT;
+        return -1;
+    }
    /*******************************
        COPY ARGS INTO KSPACE
     ******************************/
+     *err = copyin(program, kprogram, strlen(program)*sizeof(char));  
+   // *err = copyin(program, kprogram, sizeof(char*));
+    if (*err) {
+        return -1;
+    }
+    while(kprogram[i]!= '\0') { i++;}
+    *err = copyinstr(program, kprogram, i*sizeof(char), &actual);
+    if (*err) {
+        return -1;
+    }
+    // TODO: make sure kprogram terminates with '\0'
+     // copy program int argv
+    size_t k;
+    for (k=0; k<i; k++){
+        argv[0][k] = kprogram[k];
+        if (kprogram[k]==0) {
+            break;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+//    argv[0] = kprogram;
 
     //get the number of arguments
     while (args[argc] != NULL){
@@ -42,12 +83,9 @@ int sys_execv(char * program, char **args, int *err) {
     argv = kmalloc(sizeof(char *) * (argc + 2 )); // + 1 for the NULL terminating entry, +1 for program
 
     // copy in program pointers
-    // need to check valid program name!
-    argv[0] = program;
-
-/*  *err = copyin(program, argv, sizeof(char*));
-     if (*err){ return -1;}*/
-
+//    argv[0] = program;
+      
+    
      // copy in the argument pointers
     argv++;
      *err = copyin((userptr_t)args, argv, (argc)*sizeof(char*));
@@ -56,17 +94,9 @@ int sys_execv(char * program, char **args, int *err) {
 
     argv[argc+1] = NULL;
     // TODO: make sure argv starts at an address divisible by 4
+
    
-
-    //copy in the program string
-   /* *err = copyinstr( program, 
-                      argv[0], 
-                      sizeof(char)*strlen(program),
-                      &actual
-                      );   
-    if (*err) { return -1; }*/
-
-   // copy the argument strings from args into kernel space
+// copy the argument strings from args into kernel space
     
     for(i = 0; i < argc; i++) {
          //copy the arguments in 
@@ -223,6 +253,27 @@ int sys_execv(char * program, char **args, int *err) {
 
 
 
+static
+int
+copystring(char *dest, const char *src, size_t maxlen, size_t stoplen,
+    size_t *gotlen)
+{
+    size_t i;
+    for (i=0; i<maxlen && i<stoplen; i++) {
+        dest[i] = src[i];
+        if (src[i]==0) {
+            if (gotlen != NULL) {
+                *gotlen = i+1;
+            }
+            return 0;
+        }
+    }
+    if (stoplen < maxlen) {
+        /* ran into user-kernel boundary */
+        return EFAULT;
+    }
+    return ENAMETOOLONG;
+}
 
 
 
