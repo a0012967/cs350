@@ -1,10 +1,3 @@
-
-include ../../defs.mk
-
-SRCS+=testutils.c
-
-include ../../mk/lib.mk
-
-LIB=testutils
-
-
+PROG=./lib
+SRCS=./testutils.c
+include ../my-prog.mk

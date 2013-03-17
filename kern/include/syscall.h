@@ -7,10 +7,7 @@
 /*
  * Prototypes for IN-KERNEL entry points for system call implementations.
  */
-
-// forward decls
 struct trapframe;
-
 int sys_reboot(int code);
 
 #if OPT_A2
@@ -20,12 +17,11 @@ int sys_reboot(int code);
     int sys_open(const char *filename, int flags, int *err);
     int sys_close(int fd, int *err);
     int sys_read(int fd, userptr_t buf, size_t buflen,  int *retval);
-    int sys_write(int fd, void *buf, size_t buflen, int *err);
     void sys__exit(int exitcode);
-    pid_t sys_fork(struct trapframe *tf, int *err);
-    int sys_waitpid(pid_t pid, int *status, int options, int* err);
+    int sys_execv(char *program, char **args, int *err);
+    pid_t sys_fork(struct trapframe *tf, int *err); 
+    int sys_waitpid(pid_t pid, int *status, int options, int *err);
     pid_t sys_getpid(void);
-
 /********************
  * Helper functions
  ********************/
