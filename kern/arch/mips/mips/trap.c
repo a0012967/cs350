@@ -8,6 +8,8 @@
 #include <thread.h>
 #include <curthread.h>
 
+#include "opt-A2.h"
+
 extern u_int32_t curkstack;
 
 /* in exception.S */
@@ -45,8 +47,11 @@ kill_curthread(u_int32_t epc, unsigned code, u_int32_t vaddr)
 	/*
 	 * You will probably want to change this.
 	 */
-	 sys__exit(0);
-	//panic("I don't know how to handle this\n");
+	#if OPT_A2
+		sys__exit(0);
+	#else
+		panic("I don't know how to handle this\n");
+	#endif //OPT_A2
 }
 
 /*
