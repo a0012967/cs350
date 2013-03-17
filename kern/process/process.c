@@ -3,7 +3,6 @@
 //      there is no use for the test in main.c
 
 #include <process.h>
-#include <curprocess.h>
 #include <processtable.h>
 #include <array.h>
 #include <linkedlist.h>
@@ -12,13 +11,7 @@
 #include <curthread.h>
 #include <filetable.h>
 #include <array.h>
-
-// global boolean, needed for opening console
-// devices
-int inprocessbootstrap;
-
-// global reference to current process
-struct process *curprocess;
+#include <synch.h>
 
 struct process_table {
 	struct array *process_list;
@@ -29,20 +22,16 @@ struct process_table {
 void process_bootstrap() {
     // bootstrap processtable
     processtable_bootstrap();
-
-    inprocessbootstrap = 1;
 	
     struct process * p = p_create();
     if (p == NULL) {
         panic("PROCESS: Process bootstrap failed\n");
     }
 
-    // bootstraps thread
-	p->p_thread = thread_bootstrap();
-    assert(p->p_thread != NULL);
+    struct thread *t = thread_bootstrap();
+    assert(t != NULL);
 
-    curprocess = p;
-
+    p_assign_thread(p, t);
 }
 
 struct process * p_create() {
@@ -59,8 +48,8 @@ struct process * p_create() {
         return NULL;
     }
 
-    /*// initiate condition variable for waitpid
-    p->p_waitcv = cv_create();
+    // initiate condition variable for waitpid
+    p->p_waitcv = cv_create("proc_cv");
     if (p->p_waitcv == NULL) {
         // free allocated process cause it failed
         kfree(p);
@@ -68,7 +57,7 @@ struct process * p_create() {
     }
 
     // initiate its lock
-    p->p_lock = lock_create();
+    p->p_lock = lock_create("proc_lock");
     if (p->p_lock == NULL) {
         // free allocated process cause it failed
         kfree(p);
@@ -81,7 +70,7 @@ struct process * p_create() {
 
     // set parent pid to 0 for now -> this value needs to be
     // set explicitly when doing a fork
-    p->parentpid = 0;*/
+    p->parentpid = 0;
 
     // insert process to process table
     int index = processtable_insert(p);
@@ -92,18 +81,17 @@ struct process * p_create() {
 
 // Cause the current process to be destroyed
 void p_destroy() {
-    struct process *p = processtable_get(curthread->pid);
-
-    /*
-    // make sure we're deleting the current process and current thread
-    assert(curthread == curprocess->p_thread);
-    */
+    struct process *curprocess = processtable_get(curthread->pid);
 
     // destroy filetable
-    ft_destroy(p->file_table);
+    ft_destroy(curprocess->file_table);
+
+    // destroy synch primitives
+    lock_destroy(curprocess->p_lock);
+    cv_destroy(curprocess->p_waitcv);
 
     // free memory allocated to the process
-    kfree(p); // TODO: process scheduling?
+    kfree(curprocess);
 
     // exit the current thread
     thread_exit();
@@ -111,11 +99,18 @@ void p_destroy() {
 
 // destroy the specified process
 void p_destroy_at(struct process * p) {
+    // destroy filetable
     ft_destroy(p->file_table);
+
+    // destroy synch primitives
+    lock_destroy(p->p_lock);
+    cv_destroy(p->p_waitcv);
+
     kfree(p);
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {
 	p->p_thread = t;
+    t->pid = p->pid;
 }
 

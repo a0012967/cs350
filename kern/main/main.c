@@ -17,7 +17,6 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
-#include <curprocess.h>
 
 // REMOVE
 #include <file.h>

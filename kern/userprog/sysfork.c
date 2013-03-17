@@ -1,6 +1,7 @@
 #include <syscall.h>
+#include <curthread.h>
+#include <thread.h>
 #include <process.h>
-#include <curprocess.h>
 #include <processtable.h>
 #include <thread.h>
 #include <lib.h>
@@ -25,13 +26,12 @@ static void new_thread_handler(void *tf, unsigned long dummy) {
     md_forkentry(&new_tf);
 }
 
-// TODO: worry about synchronization problems
-// TODO: worry about error codes
 pid_t sys_fork(struct trapframe *tf, int *err) {
     assert(err != NULL);
     assert(*err == 0);
 
     int retval;
+    struct process *curprocess = processtable_get(curthread->pid);
     struct process *new_process;
     struct thread *new_thread;
     struct trapframe *new_trapframe;
@@ -68,11 +68,9 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
         goto fail;
     }
 
-    // set the process reference of the thread to new_process' pid
-    new_thread->pid = new_process->pid;
-
     // set thread of new process
-    new_process->p_thread = new_thread;
+    // (also sets the thread's reference OF process)
+    p_assign_thread(new_process, new_thread);
 
     // set the retval to new_process' pid
     retval = new_process->pid;
