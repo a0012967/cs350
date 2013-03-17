@@ -52,6 +52,7 @@ struct process * p_create() {
     p->p_waitcv = cv_create("proc_cv");
     if (p->p_waitcv == NULL) {
         // free allocated process cause it failed
+        ft_destroy(p->file_table);
         kfree(p);
         return NULL;
     }
@@ -60,6 +61,8 @@ struct process * p_create() {
     p->p_lock = lock_create("proc_lock");
     if (p->p_lock == NULL) {
         // free allocated process cause it failed
+        ft_destroy(p->file_table);
+        cv_destroy(p->p_waitcv);
         kfree(p);
         return NULL;
     }
@@ -73,7 +76,15 @@ struct process * p_create() {
     p->parentpid = 0;
 
     // insert process to process table
-    int index = processtable_insert(p);
+    int err = 0;
+    int index = processtable_insert(p, &err);
+    if (index == -1) {
+        ft_destroy(p->file_table);
+        cv_destroy(p->p_waitcv);
+        lock_destroy(p->p_lock);
+        kfree(p);
+        return NULL;
+    }
     p->pid = (pid_t)index;
 
 	return p;
@@ -107,6 +118,16 @@ void p_destroy_at(struct process * p) {
     cv_destroy(p->p_waitcv);
 
     kfree(p);
+}
+
+void kill_process(int exitcode) {
+    struct process *curprocess = processtable_get(curthread->pid);
+	lock_acquire (curprocess->p_lock);
+		curprocess->exitcode = exitcode;
+		curprocess->has_exited = 1;
+	    cv_signal(curprocess->p_waitcv, curprocess->p_lock);
+    lock_release (curprocess->p_lock);
+	thread_exit();
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {

@@ -70,10 +70,10 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
     lock_acquire(ft->ft_lock);
         int numfiles = tab_getnum(ft->files);
 
-        if (numfiles > PROC_FILES_MAX)
+        if (numfiles > PROC_NFILES_MAX)
             panic("FILETABLE: filetable implementation broken\n");
 
-        if (numfiles == PROC_FILES_MAX) {
+        if (numfiles == PROC_NFILES_MAX) {
             *err = EMFILE;
             goto fail;
         }

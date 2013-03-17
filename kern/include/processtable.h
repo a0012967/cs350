@@ -13,7 +13,8 @@ struct process;
 void processtable_bootstrap();
 
 // inserts process into processtable. returns index where process was inserted
-int processtable_insert(struct process *p);
+// updates value of err and returns -1 on failure
+int processtable_insert(struct process *p, int *err);
 
 // BEWARE! This function just removes the reference to the process in the table
 // It doesn't deallocate the process. YOU HAVE TO CALL destroy the process yourself

@@ -15,13 +15,8 @@
 #include <filetable.h>
 #include <systemfiletable.h>
 
-int flags_invalid(int flags, int *err) {
-
-    return 0;
-}
-
 // returns 1 if INVALID, 0 otherwise
-int filename_invalid(char *filename, int *err) {
+int filename_invalid(const char *filename, int *err) {
     if (filename == NULL) {
         *err = EFAULT;
         return 1;
@@ -47,11 +42,6 @@ int sys_open(const char *filename, int flags, int *err) {
     assert(*err == 0);
 
     if (filename_invalid(filename, err)) {
-        assert(*err);
-        return -1;
-    }
-
-    if (flags_invalid(flags, err)) {
         assert(*err);
         return -1;
     }

@@ -21,6 +21,7 @@ void process_bootstrap();
 // creates process and inserts it to processtable. also assigns pid inside
 // Returns NULL on failure
 struct process * p_create();
+void kill_process(int exitcode);
 void p_destroy();
 void p_destroy_at(struct process *p);
 void p_assign_thread(struct process *p, struct thread *thread);

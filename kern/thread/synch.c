@@ -7,8 +7,10 @@
 #include <lib.h>
 #include <synch.h>
 #include <thread.h>
+#include <process.h>
 #include <curthread.h>
 #include <machine/spl.h>
+#include <syscall.h>
 
 ////////////////////////////////////////////////////////////
 //
@@ -157,7 +159,10 @@ lock_acquire(struct lock *lock)
         spl = splhigh();
         if (lock->held != NULL) {
             int err = q_addtail((struct queue *)lock->wait_queue, curthread);
-            assert(err == 0);
+            if (err) {
+                splx(spl);
+                kill_process(0);
+            }
             thread_sleep(curthread);
         }
         lock->held = curthread;

@@ -7,6 +7,9 @@
 #include <vm.h>
 #include <thread.h>
 #include <curthread.h>
+#include <synch.h>
+#include <process.h>
+#include <processtable.h>
 
 #include "opt-A2.h"
 
@@ -48,7 +51,7 @@ kill_curthread(u_int32_t epc, unsigned code, u_int32_t vaddr)
 	 * You will probably want to change this.
 	 */
 	#if OPT_A2
-		sys__exit(0);
+        kill_process(0);
 	#else
 		panic("I don't know how to handle this\n");
 	#endif //OPT_A2
