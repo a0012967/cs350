@@ -72,6 +72,9 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     // set the retval to new_process' pid
     retval = new_process->pid;
 
+	// add the new proc's pid to the current proc's array of children 
+	array_add(curprocess->p_childrenpids, new_process->pid);
+
     // return 1 for now (must return pid)
     return retval;
 

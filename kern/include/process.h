@@ -14,6 +14,7 @@ struct process {
 	struct lock* p_lock; // TODO malloc on create, free on destroy
 	struct thread* p_thread;
     struct filetable* file_table; 
+    struct array * p_childrenpids; // TODO malloc on create, free on destroy
 };
 
 // bootstraps initial process. calls thread bootstrap and processtable bootstrap

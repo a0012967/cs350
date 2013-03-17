@@ -10,7 +10,6 @@
 #include <thread.h>
 #include <curthread.h>
 #include <filetable.h>
-#include <array.h>
 #include <synch.h>
 
 struct process_table {
@@ -66,6 +65,17 @@ struct process * p_create() {
         kfree(p);
         return NULL;
     }
+    
+    // initiate its array of children
+    p->p_childrenpids = array_create();
+    if (p->p_childrenpids == NULL) {
+        // free allocated process cause it failed
+        ft_destroy(p->file_table);
+        cv_destroy(p->p_waitcv);
+        lock_destroy(p->p_lock);
+        kfree(p);
+        return NULL;
+    }
 
     // signify process hasn't exited yet
     p->has_exited = 0;
@@ -101,6 +111,9 @@ void p_destroy() {
     lock_destroy(curprocess->p_lock);
     cv_destroy(curprocess->p_waitcv);
 
+    // destroy array of children
+    array_destroy(curprocess->p_childrenpids);
+
     // free memory allocated to the process
     kfree(curprocess);
 
@@ -116,6 +129,9 @@ void p_destroy_at(struct process * p) {
     // destroy synch primitives
     lock_destroy(p->p_lock);
     cv_destroy(p->p_waitcv);
+    
+    // destroy array of children
+    array_destroy(p->p_childrenpids);
 
     kfree(p);
 }
@@ -123,11 +139,33 @@ void p_destroy_at(struct process * p) {
 void kill_process(int exitcode) {
     struct process *curprocess = processtable_get(curthread->pid);
 	lock_acquire (curprocess->p_lock);
+
 		curprocess->exitcode = exitcode;
 		curprocess->has_exited = 1;
 	    cv_signal(curprocess->p_waitcv, curprocess->p_lock);
+
+		// set all of the curprocess children to have a parent of pid 0
+		// (signifies that the parent is dead)
+		int i;
+		pid_t childpid;
+		struct process * curprocess_child;
+		for (i = 0; i < array_getnum(curprocess->p_childrenpids); i++) {
+			childpid = array_getguy(curprocess->p_childrenpids, i);
+			curprocess_child = processtable_get(childpid);
+			curprocess_child->parentpid = 0;
+
+		}
     lock_release (curprocess->p_lock);
-	thread_exit();
+	
+	// if the parent is dead, free memory
+	// if not, the parent will take care of freeing memory
+	if (curprocess->parentpid == 0) {
+		processtable_remove(curprocess->pid);
+		p_destroy();
+	}
+	else {
+		thread_exit();
+	}
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {
