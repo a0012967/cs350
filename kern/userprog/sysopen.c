@@ -1,5 +1,6 @@
 #include <types.h>
 #include <lib.h>
+#include <kern/limits.h>
 #include <uio.h>
 #include <elf.h>
 #include <curthread.h>
@@ -14,6 +15,28 @@
 #include <filetable.h>
 #include <systemfiletable.h>
 
+int flags_invalid(int flags, int *err) {
+
+    return 0;
+}
+
+// returns 1 if INVALID, 0 otherwise
+int filename_invalid(char *filename, int *err) {
+    if (filename == NULL) {
+        *err = EFAULT;
+        return 1;
+    }
+
+	// check if the buffer is in appropriate addr
+    char foo[PATH_MAX];
+	*err = copyinstr((userptr_t)filename, foo, sizeof(foo), NULL);
+	if (*err) {
+		return 1;
+	}
+
+    return 0;
+}
+
 // returns -1 if error occured and changes content of err
 int sys_open(const char *filename, int flags, int *err) {
     struct process *curprocess = processtable_get(curthread->pid);
@@ -23,18 +46,15 @@ int sys_open(const char *filename, int flags, int *err) {
     assert(err != NULL);
     assert(*err == 0);
 
-    if (filename == NULL) {
-        *err = EFAULT;
+    if (filename_invalid(filename, err)) {
+        assert(*err);
         return -1;
     }
 
-	// check if the buffer is in appropriate addr
-	int dest;
-	int ptr_check = copyin((userptr_t)filename, &dest, sizeof(filename));
-	if (ptr_check !=0) {
-		*err = ptr_check;
-		return -1;
-	}
+    if (flags_invalid(flags, err)) {
+        assert(*err);
+        return -1;
+    }
 
     ret = vfs_open((char*)filename, flags, &v);
     if (ret) {
@@ -46,17 +66,26 @@ int sys_open(const char *filename, int flags, int *err) {
     struct file *f = f_create(flags, 0, v);
     if (f == NULL) {
         vfs_close(v);
-        return ENOMEM;
+        *err = ENOMEM;
+        return -1;
     }
 
     // add the file to systemwide filetable
     ret = systemft_insert(f);
-    assert(ret == 0);
+    if (ret) {
+        vfs_close(v);
+        *err = ret;
+        return -1;
+    }
 
     // add the file to ft_storefile as well
     ret = ft_storefile(curprocess->file_table, f, err);
     if (ret == -1) {
+        // remove from system file table
+        // systemfiletable will take care of destroying the file
+        systemft_remove(f);
         vfs_close(v);
+        return -1;
     }
 
     return ret;

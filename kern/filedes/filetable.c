@@ -3,6 +3,7 @@
 #include <table.h>
 #include <synch.h>
 #include <kern/errno.h>
+#include <kern/limits.h>
 #include <vnode.h>
 #include <lib.h>
 #include <process.h>
@@ -67,10 +68,22 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
 
     int result;
     lock_acquire(ft->ft_lock);
+        int numfiles = tab_getnum(ft->files);
+
+        if (numfiles > PROC_FILES_MAX)
+            panic("FILETABLE: filetable implementation broken\n");
+
+        if (numfiles == PROC_FILES_MAX) {
+            *err = EMFILE;
+            goto fail;
+        }
+
         result = tab_add(ft->files, f, err);
+
         if (result == -1) {
             goto fail;
         }
+
         assert(result >= 0);
         assert(*err == 0);
     lock_release(ft->ft_lock);
@@ -79,7 +92,6 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
 fail:
     lock_release(ft->ft_lock);
     assert(*err);
-    assert(result == -1);
     return -1;
 }
 

@@ -54,7 +54,7 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
             *err = EFAULT;
             goto fail;
         }
-        
+
         // check if the buffer is in appropriate addr
 		int dest;
 		int ptr_check = copyin((userptr_t)buf, &dest, sizeof(buf));

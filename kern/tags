@@ -1071,7 +1071,7 @@ buildconfig	compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	v
 buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	compile/ASST2/vers.c	/^const int buildversion = 287;$/;"	v
+buildversion	compile/ASST2/vers.c	/^const int buildversion = 308;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -2280,7 +2280,7 @@ thread_childprocess	thread/thread.c	/^struct thread *thread_childprocess(const c
 thread_create	thread/thread.c	/^thread_create(const char *name)$/;"	f
 thread_destroy	thread/thread.c	/^thread_destroy(struct thread *thread)$/;"	f	file:
 thread_exit	thread/thread.c	/^thread_exit(void)$/;"	f
-thread_fork	thread/thread.c	/^thread_fork(const char *name,$/;"	f
+thread_fork	thread/thread.c	/^    thread_fork(const char *name,$/;"	f
 thread_hassleepers	thread/thread.c	/^thread_hassleepers(const void *addr)$/;"	f
 thread_killall	thread/thread.c	/^thread_killall(void)$/;"	f	file:
 thread_panic	thread/thread.c	/^thread_panic(void)$/;"	f
