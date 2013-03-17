@@ -46,8 +46,8 @@ void processtable_remove(int fd) {
 
 struct process * processtable_get(pid_t pid) {
     if (pid < 0 || pid >= processtable_getsize())
-        panic("PROCESSTABLE: Invalid pid\n");
-
+		return NULL;
+		
     struct process *p;
 
     lock_acquire(pt_lock);

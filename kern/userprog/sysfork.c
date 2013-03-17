@@ -40,6 +40,8 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     new_trapframe = kmalloc(sizeof(struct trapframe));
     *new_trapframe = *tf; // copy trapframe
 
+	int new_parentpid = curthread->pid;
+
     // create new process
     new_process = p_create();
     if (new_process == NULL) {
@@ -71,6 +73,8 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     // set thread of new process
     // (also sets the thread's reference OF process)
     p_assign_thread(new_process, new_thread);
+
+	new_process->parentpid = new_parentpid;
 
     // set the retval to new_process' pid
     retval = new_process->pid;
