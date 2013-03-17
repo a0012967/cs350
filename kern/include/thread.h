@@ -43,13 +43,9 @@ struct thread {
     // TODO: merge process with thread
     // refers to the pid of the process holding the thread
     // We do this so we can abstract process in another file
+    // and refer to curprocess through curthread
     #if OPT_A2
-	    int has_exited; // TODO init to 0
-    	int exitcode; // TODO init to 0
-    	pid_t parentpid; // TODO init on fork -> should we keep this?
 		pid_t pid;
-		struct cv* t_waitcv; // TODO malloc on create, free on destroy
-		struct lock* t_lock; // TODO malloc on create, free on destroy
     #endif // OPT_A2
 };
 

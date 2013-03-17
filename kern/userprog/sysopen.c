@@ -2,8 +2,9 @@
 #include <lib.h>
 #include <uio.h>
 #include <elf.h>
-#include <curprocess.h>
+#include <curthread.h>
 #include <process.h>
+#include <processtable.h>
 #include <thread.h>
 #include <vnode.h>
 #include <syscall.h>
@@ -15,6 +16,7 @@
 
 // returns -1 if error occured and changes content of err
 int sys_open(const char *filename, int flags, int *err) {
+    struct process *curprocess = processtable_get(curthread->pid);
     struct vnode *v;
     int ret;
 

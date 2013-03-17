@@ -27,6 +27,7 @@ main()
   int rc = 0;      /* return code */
   int save_errno = 0;
 
+  /*
   rc = fork();
   if (rc == 0) {
       printf("Parent: 0\n");
@@ -34,8 +35,8 @@ main()
   else {
       printf("Child: %d\n", rc);
   }
+  */
 
-  /*
   f1 = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
   TEST_POSITIVE(f1, "Unable to open FILE1");
 
@@ -79,7 +80,6 @@ main()
   TEST_EQUAL(intbuf, j, "read from f2 did not get correct value");
 
   TEST_STATS();
-  */
 
   exit(0);
 }

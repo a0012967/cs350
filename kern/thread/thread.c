@@ -60,35 +60,6 @@ thread_create(const char *name)
 
 	thread->t_cwd = NULL;
 	
-	// If you add things to the thread structure, be sure to initialize
-	// them here.
-	#if OPT_A2
-		// initiate condition variable for waitpid
-		thread->t_waitcv = cv_create("proc_cv");
-		if (thread->t_waitcv == NULL) {
-		    // free allocated process cause it failed
-		    kfree(thread);
-		    return NULL;
-		}
-
-		// initiate its lock
-		thread->t_lock = lock_create("proc_lock");
-		if (thread->t_lock == NULL) {
-		    // free allocated process cause it failed
-		    kfree(thread);
-		    return NULL;
-		}
-
-		// signify process hasn't exited yet
-		thread->has_exited = 0;
-		thread->exitcode = 0;
-
-		// set parent pid to 0 for now -> this value needs to be
-		// set explicitly when doing a fork
-		thread->parentpid = 0;
-
-	#endif // OPT_A2
-	
 	return thread;
 }
 
@@ -115,10 +86,6 @@ thread_destroy(struct thread *thread)
 		kfree(thread->t_stack);
 	}
 
-	#if OPT_A2
-		kfree(thread->t_waitcv);
-		kfree(thread->t_lock);
-	#endif // OPT_A2
 	kfree(thread->t_name);
 	kfree(thread);
 }

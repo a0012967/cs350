@@ -1,17 +1,21 @@
 #include <syscall.h>
 #include <vfs.h>
-#include <process.h>
-#include <curprocess.h>
 #include <file.h>
 #include <filetable.h>
-#include <kern/errno.h>
-#include <lib.h>
+#include <curthread.h>
+#include <thread.h>
+#include <process.h>
+#include <processtable.h>
 #include <systemfiletable.h>
+#include <lib.h>
+#include <types.h>
+#include <kern/errno.h>
 
 int sys_close(int fd, int *err) {
     assert(*err == 0);
     int result;
     struct file *f;
+    struct process *curprocess = processtable_get(curthread->pid);
 
     // get file
     f = ft_getfile(curprocess->file_table, fd, err);

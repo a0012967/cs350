@@ -1,11 +1,11 @@
 #include <syscall.h>
-#include <curprocess.h>
 #include <file.h>
 #include <filetable.h>
 #include <uio.h>
 #include <types.h>
 #include <lib.h>
 #include <process.h>
+#include <processtable.h>
 #include <thread.h>
 #include <curthread.h>
 #include <vnode.h>
@@ -21,13 +21,15 @@
 // TODO EIO	A hardware I/O error occurred writing the data.
 
 int sys_write(int fd, void *buf, size_t buflen, int *err) {
+    assert(err != NULL);
+    assert(*err == 0);
+
     int result;
     int file_status;
     struct uio u;
     struct file* fi;
 
-    assert(err != NULL);
-    assert(*err == 0);
+    struct process *curprocess = processtable_get(curthread->pid);
 
     // get file at the specified handle
     fi = ft_getfile(curprocess->file_table, fd, err);

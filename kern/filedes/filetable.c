@@ -5,8 +5,9 @@
 #include <kern/errno.h>
 #include <vnode.h>
 #include <lib.h>
-#include <curprocess.h>
 #include <process.h>
+#include <processtable.h>
+#include <curthread.h>
 #include <vfs.h>
 #include <kern/unistd.h>
 #include <systemfiletable.h>
@@ -191,6 +192,7 @@ void console_files_bootstrap() {
     int err, result;
     struct vnode *vn;
     struct file *stdinfile, *stdoutfile, *stderrfile;
+    struct process *curprocess = processtable_get(curthread->pid);
 
     char *console = NULL;
     console = kstrdup("con:");
@@ -253,7 +255,6 @@ void console_files_bootstrap() {
         panic("Could not add stdin file to filetable");
     }
 
-    inprocessbootstrap = 0;
     //increase vnode ref count for stdout and stderr
     vnode_incref(vn);
     vnode_incref(vn);

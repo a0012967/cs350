@@ -16,12 +16,6 @@ struct process {
     struct filetable* file_table; 
 };
 
-
-/* global flag needed for opening console files 
- * has value 1 when in process bootstrap
- *  set to 0 at end of process bootstrap */
-int inprocessbootstrap;
-
 // bootstraps initial process. calls thread bootstrap and processtable bootstrap
 void process_bootstrap();
 // creates process and inserts it to processtable. also assigns pid inside
