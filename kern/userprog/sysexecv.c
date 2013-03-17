@@ -9,13 +9,14 @@
 #include <addrspace.h>
 #include <vm.h>
 #include <vfs.h>
+
 int sys_execv(char * program, char **args, int *err) {
 
     int argc = 0;
     int padby = 0; // remember to reset to 0 each time
     int actual;
-    char **argv;    
-	int i, j;
+    char **argv;
+	int i;
     struct vnode *v;
     vaddr_t entrypoint, stackptr;
     int result;
@@ -29,23 +30,21 @@ int sys_execv(char * program, char **args, int *err) {
         return -1;
     }
 
- 
-    
    /*******************************
        COPY ARGS INTO KSPACE
     ******************************/
-    
+
     //get the number of arguments
     while (args[argc] != NULL){
-        argc++;    
+        argc++;
     }
 
     argv = kmalloc(sizeof(char *) * (argc + 2 )); // + 1 for the NULL terminating entry, +1 for program
-    
+
     // copy in program pointers
     // need to check valid program name!
     argv[0] = program;
-  
+
 /*  *err = copyin(program, argv, sizeof(char*));
      if (*err){ return -1;}*/
 
@@ -80,7 +79,7 @@ int sys_execv(char * program, char **args, int *err) {
             }
        //     argv[i] = kmalloc(sizeof(char)*(j+padby));
         
-            *err = copyinstr(args[i], argv[i+1], sizeof(char)*j, &actual);
+            *err = copyinstr((const_userptr_t)args[i], argv[i+1], sizeof(char)*j, (size_t*)&actual);
             //TODO: figure out of this is necessary           
              while (padby > 0) {
                //  j++;
@@ -184,13 +183,13 @@ int sys_execv(char * program, char **args, int *err) {
         stackptr_tracker = stackptr;
         
         // copy the number of arguments to user space
-        copyout(&argc, stackptr_tracker, argc_size);
+        copyout(&argc, (userptr_t)stackptr_tracker, argc_size);
         stackptr_tracker += argc_size;
         
         // copy all the argument pointers to user space
         for (i = 0; i < argc; i++) {
             kernel_source = stackptr + arg_pointer_offset[i] + argc_size;
-            copyout(&kernel_source, stackptr_tracker, sizeof(char*));
+            copyout(&kernel_source, (userptr_t)stackptr_tracker, sizeof(char*));
             stackptr_tracker += sizeof(char*);
         }
         
@@ -199,7 +198,7 @@ int sys_execv(char * program, char **args, int *err) {
         
         // copy all the argument strings to user space
         for (i = 0; i< argc; i++) {
-            copyout(argv[i], stackptr_tracker, strlen(argv[i]));
+            copyout(argv[i], (userptr_t)stackptr_tracker, strlen(argv[i]));
             stackptr_tracker += strlen(argv[i]) + ( 4 - strlen(argv[i]) % 4);
         }
         
@@ -207,7 +206,7 @@ int sys_execv(char * program, char **args, int *err) {
         kfree(arg_pointer_offset);
         
         // warp to user mode
-        md_usermode(argc, (stackptr +4), stackptr, entrypoint);
+        md_usermode(argc, (userptr_t)(stackptr +4), stackptr, entrypoint);
 
 
 		/* md_usermode does not return */

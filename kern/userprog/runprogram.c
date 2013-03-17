@@ -111,13 +111,13 @@ runprogram(char *progname, int argc, char ** argv)
         stackptr_tracker = stackptr;
         
         // copy the number of arguments to user space
-        copyout(&argc, stackptr_tracker, argc_size);
+        copyout(&argc, (userptr_t)stackptr_tracker, (size_t)argc_size);
         stackptr_tracker += argc_size;
         
         // copy all the argument pointers to user space
         for (i = 0; i < argc; i++) {
             kernel_source = stackptr + arg_pointer_offset[i] + argc_size;
-            copyout(&kernel_source, stackptr_tracker, sizeof(char*));
+            copyout(&kernel_source, (userptr_t)stackptr_tracker, sizeof(char*));
             stackptr_tracker += sizeof(char*);
         }
         
@@ -126,7 +126,7 @@ runprogram(char *progname, int argc, char ** argv)
         
         // copy all the argument strings to user space
         for (i = 0; i< argc; i++) {
-            copyout(argv[i], stackptr_tracker, strlen(argv[i]));
+            copyout(argv[i], (userptr_t)stackptr_tracker, strlen(argv[i]));
             stackptr_tracker += strlen(argv[i]) + ( 4 - strlen(argv[i]) % 4);
         }
         
@@ -134,7 +134,7 @@ runprogram(char *progname, int argc, char ** argv)
         kfree(arg_pointer_offset);
         
         // warp to user mode
-        md_usermode(argc, (stackptr +4), stackptr, entrypoint);
+        md_usermode(argc, (userptr_t)(stackptr +4), stackptr, entrypoint);
     #else
 	    /* Warp to user mode. */
 	    md_usermode(0 /*argc*/, NULL /*userspace addr of argv*/,
