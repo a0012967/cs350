@@ -73,7 +73,7 @@ main()
 	hog();
 	cat();
 
-//	waitall();
+    waitall();
 
 	return 0;
 }

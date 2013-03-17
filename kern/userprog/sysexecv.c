@@ -9,134 +9,157 @@
 #include <addrspace.h>
 #include <vm.h>
 #include <vfs.h>
+#include <kern/limits.h>
 
-int
-sys_execv(const char *progname, char **args, int *retval)
-{
-	struct vnode *v;
-	vaddr_t entrypoint, stackptr;
-	int result;
+int sys_execv(const char *program, char **args, int *err) {
+    struct vnode *v;
+    vaddr_t entrypoint, stackptr;
+    char **argv;
+    int argc;
+    int result, i;
+    char *prog_name;
 
-	if(progname == NULL)
-	{
-		*retval = -1;
-		return EFAULT;
-	}
+    if (program == NULL) {
+        *err = EFAULT;
+        return -1;
+    }
 
-	char *fname = (char *)kmalloc(1024);
-	size_t size;
-	copyinstr((userptr_t)progname,fname,1024,&size);	
+    /*******************************
+     * COPY STUFF INTO KERNEL SPACE
+     ******************************/
 
-	int i = 0;
-	while(args[i] != NULL)
-  		i++;
-  	int argc = i;
+    prog_name = kmalloc(PATH_MAX);
+    copyinstr((userptr_t)program, prog_name, PATH_MAX, NULL);
 
-	char **argv;
-	argv = (char **)kmalloc(sizeof(char*));
+    //get the number of arguments
+    for (argc=0 ;args[argc] != NULL; argc++);
 
-	// Copy in all the argumens in args
-	size_t arglen;
-	for(i = 0; i < argc; i++) {
-		int len = strlen(args[i]);
-		len++;
-		argv[i]=(char*)kmalloc(len);
-		copyinstr((userptr_t)args[i], argv[i], len, &arglen);
-  	}
-  	//Null terminate argv
-  	argv[argc] = NULL;
+    argv = kmalloc(sizeof(char*));
 
+    for(i=0; i<argc; i++) {
+        size_t len = strlen(args[i]);
+        len++; // add the NULL terminator
+        argv[i] = kmalloc(len);
+        // TODO: think about if an error occurs here
+        copyinstr((userptr_t)args[i], argv[i], len, NULL);
+    }
 
-	/* Open the file. */
-	result = vfs_open(fname, 0, &v);
-	if (result) {
-		*retval = -1;
-		return result;
-	}
-	//destroy the address space for a new loadelf
-	if(curthread->t_vmspace != NULL)
-	{
-		as_destroy(curthread->t_vmspace);
-		curthread->t_vmspace=NULL;
-	}
-	/* We should be a new thread. */
+    // Terminate argv with NULL
+    argv[argc] = NULL;
 
-	/* Create a new address space. */
-	curthread->t_vmspace = as_create();
-	if (curthread->t_vmspace==NULL) {
-		vfs_close(v);
-		*retval = -1;
-		return ENOMEM;
-	}
+    /*************************************
+     * LOAD ELF - COPIED FROM RUNPROGRAM
+     *************************************/
 
-	/* Activate it. */
-	as_activate(curthread->t_vmspace);
+    /* Open the file. */
+    result = vfs_open(prog_name, O_RDONLY, &v);
+    if (result) {
+        *err = result;
+        return -1;
+    }
 
-	/* Load the executable. */
-	result = load_elf(v, &entrypoint);
-	if (result) {
-		/* thread_exit destroys curthread->t_addrspace */
-		vfs_close(v);
-		*retval = -1;
-		return result;
-	}
+    // destroy the addrspace
+    if (curthread->t_vmspace != NULL) {
+        as_destroy(curthread->t_vmspace);
+        curthread->t_vmspace = NULL;
+    }
 
-	/* Done with the file now. */
-	vfs_close(v);
+    // Create a new addrspace
+    // copy the current addrspace
+    curthread->t_vmspace = as_create();
+    if (curthread->t_vmspace == NULL) {
+        vfs_close(v);
+        *err = ENOMEM;
+        return -1;
+    }
 
-	/* Define the user stack in the address space */
-	result = as_define_stack(curthread->t_vmspace, &stackptr);
-	if (result) {
-		/* thread_exit destroys curthread->t_addrspace */
-		*retval = -1;
-		return result;
-	}
+    /* Activate it. */
+    as_activate(curthread->t_vmspace);
 
-	//set up the arguments in the user stack
+    /* Load the executable. */
+    result = load_elf(v, &entrypoint);
+    if (result) {
+        /* thread_exit destroys curthread->t_vmspace */
+        vfs_close(v);
+        *err = result;
+        return -1;
+    }
 
+    /* Done with the file now. */
+    vfs_close(v);
 
-  		
-	//copy the contents to stack
-	unsigned int pstack[argc];
-	//size_t arglen;
-	for(i = argc-1; i >= 0; i--) {
-		int len = strlen(argv[i]);
-		int shift = (len%4);
-		if(shift == 0)
-			shift = 4;
-		stackptr = stackptr - (len + shift);
-		copyoutstr(argv[i], (userptr_t)stackptr, len, &arglen);
-		pstack[i] = stackptr;
-	}
+    /* Define the user stack in the address space */
+    result = as_define_stack(curthread->t_vmspace, &stackptr);
+    if (result) {
+        /* thread_exit destroys curthread->t_vmspace */
+        *err = result;
+        return -1;
+    }
 
-	pstack[argc] = (int)NULL;
-	for(i = argc-1; i >= 0; i--)
-	{
-		stackptr = stackptr - 4;
-		copyout(&pstack[i] ,(userptr_t)stackptr, sizeof(pstack[i]));
-	}
-	//kprintf("in execv: %s",(char *)stackptr_ptr+4);	
-	//null terminate stack
-	//int term = 0;
-	//memcpy((userptr_t)stackptr_trav, &term, sizeof(term));
-	//memcpy((userptr_t)stackptr_ptr, &term, sizeof(term));
-	DEBUG(DB_EXEC, "DEBUG EXEC %s", progname);
-	//args = pt;
-	//copyout(pt,(userptr_t)stackptr,sizeof(pt));
+    /******************************
+     * COPY ARGV ONTO USERSTACK
+     ******************************/
 
-	*retval = 0;	
-	kfree(argv);
-	/* Warp to user mode. */
-	md_usermode(argc /*argc*/, (userptr_t)stackptr /*userspace addr of argv*/,
-			  stackptr, entrypoint);
+    int prev_offset = 0;
+    int stack_offset = 0;
+    int* arg_pointer_offset;
+    vaddr_t stackptr_tracker;
+    vaddr_t kernel_source;
+    size_t argc_size = sizeof(int);
 
-	return EINVAL;
+    // - find the offset from the argument pointer for each argument
+    // - the offsets are aligned by 4, since that is the size of 
+    //   each char pointer
+    // - the total stack offset is kept track of
+    arg_pointer_offset = kmalloc(argc_size * (argc+1)); 
+    arg_pointer_offset[0] = argc_size*(argc+1);
+    for(i = 1; i <= argc; i++) {
+        prev_offset = arg_pointer_offset[i-1]; 
+        arg_pointer_offset[i] = prev_offset + 
+            (4 - strlen(argv[i-1])%4) + strlen(argv[i-1]);
+        stack_offset += arg_pointer_offset[i] - prev_offset;
+    }
+
+    // since the stack offset at the moment only contains the total number
+    // of characters in the argument strings, we need to add the argument 
+    // pointers, the argv null terminator, and argc to the stack offset
+    stack_offset += (argc+1)*sizeof(char*) + argc_size;
+
+    // move the stack pointer to the offseted location, then use the 
+    // stack pointer tracker to copy the stack from bottom up
+    stackptr -= stack_offset;
+    stackptr_tracker = stackptr;
+
+    // copy the number of arguments to user space
+    copyout(&argc, (userptr_t)stackptr_tracker, argc_size);
+    stackptr_tracker += argc_size;
+
+    // copy all the argument pointers to user space
+    for (i = 0; i < argc; i++) {
+        kernel_source = stackptr + arg_pointer_offset[i] + argc_size;
+        copyout(&kernel_source, (userptr_t)stackptr_tracker, sizeof(char*));
+        stackptr_tracker += sizeof(char*);
+    }
+
+    // account for the null terminated argv
+    stackptr_tracker += sizeof(char*);
+
+    // copy all the argument strings to user space
+    for (i = 0; i< argc; i++) {
+        copyout(argv[i], (userptr_t)stackptr_tracker, strlen(argv[i]));
+        stackptr_tracker += strlen(argv[i]) + ( 4 - strlen(argv[i]) % 4);
+    }
+
+    // free what we used
+    kfree(arg_pointer_offset);
+
+    // warp to user mode
+    md_usermode(argc, (userptr_t)(stackptr +4), stackptr, entrypoint);
+
+    /* md_usermode does not return */
+    panic("md_usermode returned\n");
+    *err = EINVAL;
+    return -1;
 }
-
-
-
-
-
-
 
 
