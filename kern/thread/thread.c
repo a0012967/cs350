@@ -318,7 +318,8 @@ thread_shutdown(void)
                 proc->parentpid = curthread->pid;
                 p_assign_thread(proc, newguy);
             }
-            //as_activate(newguy->t_vmspace);
+
+            as_activate(newguy->t_vmspace);
         }
     #endif // OPT_A2
 

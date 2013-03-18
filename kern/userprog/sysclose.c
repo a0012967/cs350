@@ -7,11 +7,13 @@
 #include <process.h>
 #include <processtable.h>
 #include <systemfiletable.h>
+#include <vnode.h>
 #include <lib.h>
 #include <types.h>
 #include <kern/errno.h>
 
 int sys_close(int fd, int *err) {
+    assert(err != NULL);
     assert(*err == 0);
     int result;
     struct file *f;
@@ -25,7 +27,10 @@ int sys_close(int fd, int *err) {
     }
 
     // close file
-    vfs_close(f->v);
+    if (f->count > 1)
+        VOP_DECOPEN(f->v);
+    else
+        vfs_close(f->v);
 
     // remove file from per-process filetable
     result = ft_removefile(curprocess->file_table, fd);
