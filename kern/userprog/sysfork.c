@@ -10,6 +10,7 @@
 #include <machine/trapframe.h>
 #include <addrspace.h>
 #include <filetable.h>
+#include <array.h>
 #include <kern/errno.h>
 
 
