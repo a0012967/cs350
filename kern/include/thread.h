@@ -43,7 +43,7 @@ struct thread {
 	struct vnode *t_cwd;
 
 
-    // TODO: merge process with thread
+    // TODO: merge process with thread? maybe not..
     // refers to the pid of the process holding the thread
     // We do this so we can abstract process in another file
     // and refer to curprocess through curthread
@@ -154,10 +154,5 @@ void mi_threadstart(void *data1, unsigned long data2,
 
 /* Machine dependent context switch. */
 void md_switch(struct pcb *old, struct pcb *nu);
-
-
-// creates a new thread. this is called in sysfork.c
-// TODO: remove this shit
-struct thread *thread_childprocess(const char *name, int *err);
 
 #endif /* _THREAD_H_ */

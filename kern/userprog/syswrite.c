@@ -19,7 +19,6 @@
 
 // TODO ENOSPC	There is no free space remaining on the filesystem containing the file.
 // TODO EIO	A hardware I/O error occurred writing the data.
-
 int sys_write(int fd, void *buf, size_t buflen, int *err) {
     assert(err != NULL);
     assert(*err == 0);

@@ -43,8 +43,6 @@ struct filetable* ft_create() {
 
 // destroys file table
 void ft_destroy(struct filetable *ft) {
-    assert(ft != NULL);
-
     // destroy all elements in table
     int i;
     for (i=0; i < tab_getsize(ft->files); i++) {
@@ -67,9 +65,6 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
-    assert(ft != NULL);
-    assert(*err == 0);
-
     int result;
     lock_acquire(ft->ft_lock);
         int numfiles = tab_getnum(ft->files);
@@ -87,22 +82,17 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
         if (result == -1) {
             goto fail;
         }
-
-        assert(result >= 0);
-        assert(*err == 0);
     lock_release(ft->ft_lock);
     return result;
 
 fail:
     lock_release(ft->ft_lock);
-    assert(*err);
     return -1;
 }
 
 // returns 0 if successful
 // frees memory used by the file
 int ft_removefile(struct filetable *ft, int fd) {
-    assert(ft != NULL);
     int result;
 
     lock_acquire(ft->ft_lock);
@@ -110,18 +100,7 @@ int ft_removefile(struct filetable *ft, int fd) {
             result = ENOENT;
             goto fail;
         } else {
-            // get file to be removed
-            void *file = tab_getguy(ft->files, fd);
-            // TODO: for now
-            assert(file != NULL);
-
-            // remove reference of file from array
             result = tab_remove(ft->files, fd);
-
-            // TODO: change how to handle failure on remove
-            assert(result == 0);
-
-            // success
             result = 0;
         }
     lock_release(ft->ft_lock);
@@ -135,7 +114,6 @@ fail:
 // SUCCESS: returns file stored at given fd
 // FAILURE: returns NULL and updates value of err
 struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
-    assert(ft != NULL);
     int size;
     struct file *ret;
 
@@ -161,12 +139,10 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
 
 fail:
     lock_release(ft->ft_lock);
-    assert(*err);
     return NULL;
 }
 
 int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
-    assert(ft != NULL);
     assert(*new_ft != NULL);
 
     struct filetable *nft;
@@ -175,24 +151,27 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
     lock_acquire(ft->ft_lock);
         nft = *new_ft;
         err = tab_duplicate(ft->files, &(nft->files));
+        assert(!err); // TODO:
 
         size = tab_getsize(nft->files);
-        assert(size == tab_getsize(ft->files));
 
+        /*
         // test validity
+        assert(size == tab_getsize(ft->files));
         for (i=0; i<size; i++) {
             void *ptr1, *ptr2;
             ptr1 = tab_getguy(ft->files, i);
             ptr2 = tab_getguy(nft->files, i);
             assert(ptr1 == ptr2);
         }
+        */
 
         for (i=0; i<size; i++) {
             struct file *f = (struct file*)tab_getguy(nft->files, i);
             if (f != NULL) {
                 err = systemft_update(f);
                 VOP_INCOPEN(f->v);
-                assert(!err);
+                assert(!err); // TODO:
             }
         }
     lock_release(ft->ft_lock);
