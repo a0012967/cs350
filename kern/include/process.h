@@ -6,15 +6,15 @@
 #define MAX_PROCESSES 10
 
 struct process {
-    int has_exited; // TODO init to 0
-    int exitcode; // TODO init to 0
-    pid_t parentpid; // TODO init on fork -> should we keep this?
+    int has_exited;
+    int exitcode; 
+    pid_t parentpid;
 	pid_t pid;
-	struct cv* p_waitcv; // TODO malloc on create, free on destroy
-	struct lock* p_lock; // TODO malloc on create, free on destroy
+	struct cv* p_waitcv; 
+	struct lock* p_lock; 
 	struct thread* p_thread;
     struct filetable* file_table; 
-    struct array * p_childrenpids; // TODO malloc on create, free on destroy
+    struct array * p_childrenpids; 
 };
 
 // bootstraps initial process. calls thread bootstrap and processtable bootstrap

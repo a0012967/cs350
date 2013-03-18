@@ -45,30 +45,6 @@ static const char harvard_copyright[] =
     "   President and Fellows of Harvard College.  All rights reserved.\n";
 
 
-
-void testfiletable() {
-    /*
-    int result = 0, err = 0;
-    struct filetable *ft = curprocess->file_table;
-    assert(ft != NULL);
-
-    struct vnode *v;
-
-    struct file *f1 = f_create(0, 0, v);
-    struct file *f2 = f_create(0, 0, v);
-    struct file *f3 = f_create(0, 0, v);
-
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-
-    ft_destroy(ft);
-    */
-}
-
 /*
  * Initial boot sequence.
  */
@@ -128,10 +104,6 @@ boot(void)
 	 */
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
-
-    #if OPT_A2
-        testfiletable();
-    #endif
 
     #if OPT_A0
         hello();

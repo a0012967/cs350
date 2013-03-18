@@ -66,12 +66,10 @@ int sys_execv(const char *program, char **args, int *err) {
     char *prog_name;
 
 	if (program_invalid(program, err)) {
-		//assert(*err);
         return -1;
 	}
 	
 	if (args_invalid(args, err)) {
-		//assert(*err);
         return -1;
 	}
 

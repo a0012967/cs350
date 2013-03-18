@@ -43,14 +43,12 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
         // check if file is open for writing
         file_status = fi->status & O_ACCMODE;
         if (file_status != O_WRONLY && file_status != O_RDWR) {
-            //assert(0);
             *err = EBADF;
             goto fail;
         }
 
         // check for valid buffer
         if (buf == NULL) {
-            //assert(0);
             *err = EFAULT;
             goto fail;
         }
@@ -75,7 +73,6 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
         // write to file
         result = VOP_WRITE(fi->v, &u);
         if (*err !=0) {
-            //assert(0);
             goto fail;
         }
 

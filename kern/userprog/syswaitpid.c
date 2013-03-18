@@ -9,9 +9,6 @@
 #include <kern/errno.h>
 #include <vm.h>
 
-// TODO status pointer not pointing to kernel?
-// TODO status pointer != 0x40000000 | 0x80000000
-
 int sys_waitpid(pid_t pid, int *status, int options, int* err) {
 	// make sure no options are passed
     if (options != 0) {
@@ -41,13 +38,13 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
     
     struct process * proc = processtable_get(pid);
     if (proc == NULL) {
-        *err = EINVAL; // TODO correct err val?
+        *err = EINVAL;
         return -1;
     }
 
     lock_acquire(proc->p_lock); 
 	    if (proc->parentpid != curthread->pid) {
-	        *err = EINVAL; // TODO correct err val?
+	        *err = EINVAL;
             lock_release(proc->p_lock);
             return -1;
 	    }
