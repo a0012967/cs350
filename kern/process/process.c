@@ -144,8 +144,7 @@ void kill_process(int exitcode) {
 		curprocess->has_exited = 1;
 	    cv_signal(curprocess->p_waitcv, curprocess->p_lock);
 
-		// TODO fix process children
-		/*// set all of the curprocess children to have a parent of pid 0
+		// set all of the curprocess children to have a parent of pid 0
 		// (signifies that the parent is dead)
 		int i;
 		pid_t childpid;
@@ -153,21 +152,21 @@ void kill_process(int exitcode) {
 		for (i = 0; i < array_getnum(curprocess->p_childrenpids); i++) {
 			childpid = array_getguy(curprocess->p_childrenpids, i);
 			curprocess_child = processtable_get(childpid);
-			curprocess_child->parentpid = 0;
-
-		}*/
+			if (curprocess_child != NULL &&  
+			curprocess_child->parentpid == curprocess->pid) {
+				curprocess_child->parentpid = 0;
+			}
+		}
     lock_release (curprocess->p_lock);
 	
-	// TODO fix process children
 	// if the parent is dead, free memory
 	// if not, the parent will take care of freeing memory
-	//if (curprocess->parentpid == 0) {
-	//	processtable_remove(curprocess->pid);
-	//	p_destroy();
-	//}
-	//else {
-		thread_exit();
-	//}
+	if (curprocess->parentpid == 0) {
+		processtable_remove(curprocess->pid);
+		p_destroy_at(curprocess);
+	}
+	
+	thread_exit();
 }
 
 void p_assign_thread(struct process *p, struct thread *t) {

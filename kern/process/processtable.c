@@ -53,7 +53,9 @@ struct process * processtable_get(pid_t pid) {
     lock_acquire(pt_lock);
         p = (struct process*)tab_getguy(process_table, pid);
         if (p == NULL) {
-            panic("PROCESSTABLE: Process does not exist in process table at the given pid: %d\n", pid);
+        	lock_release(pt_lock);
+            return NULL;
+            //panic("PROCESSTABLE: Process does not exist in process table at the given pid: %d\n", pid);
         }
     lock_release(pt_lock);
 
