@@ -2,6 +2,7 @@
 #include <types.h>
 #include <lib.h>
 #include <kern/errno.h>
+#include <kern/limits.h>
 #include <synch.h>
 #include <file.h>
 
@@ -35,7 +36,7 @@ int systemft_insert(struct file *f) {
     assert(f->prev == NULL && f->next == NULL && f->count == 0);
 
     lock_acquire(sft_lock);
-        if (sft->count >= MAX_SYSTEM_OPEN_FILES) {
+        if (sft->count >= OPEN_MAX) {
             assert(0); // assert for now
         }
 

@@ -2,14 +2,14 @@
 #define _FILE_H_
 
 struct file {
-    // PUBLIC
+    // public
     int status;
     int offset;
     struct vnode *v;
     struct lock *file_lock; // when doing operations on the file
 
-    // PRIVATE: don't touch this!
-    // INTERNALS to system-wide filetable
+    // private
+    // internals to system-wide filetable
     int count;
     struct file *prev;
     struct file *next;
