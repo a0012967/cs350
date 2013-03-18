@@ -111,6 +111,12 @@ void p_destroy() {
     lock_destroy(curprocess->p_lock);
     cv_destroy(curprocess->p_waitcv);
 
+	int i;
+	for (i = 0; i < array_getnum(curprocess->p_childrenpids); i++) {
+		pid_t * pid = (pid_t *) array_getguy(curprocess->p_childrenpids, i);
+		kfree(pid);
+	}
+
     // destroy array of children
     array_destroy(curprocess->p_childrenpids);
 
@@ -129,6 +135,12 @@ void p_destroy_at(struct process * p) {
     // destroy synch primitives
     lock_destroy(p->p_lock);
     cv_destroy(p->p_waitcv);
+
+	int i;
+	for (i = 0; i < array_getnum(p->p_childrenpids); i++) {
+		pid_t * pid = (pid_t *) array_getguy(p->p_childrenpids, i);
+		kfree(pid);
+	}
     
     // destroy array of children
     array_destroy(p->p_childrenpids);
@@ -147,11 +159,11 @@ void kill_process(int exitcode) {
 		// set all of the curprocess children to have a parent of pid 0
 		// (signifies that the parent is dead)
 		int i;
-		pid_t childpid;
+		pid_t *childpid;
 		struct process * curprocess_child;
 		for (i = 0; i < array_getnum(curprocess->p_childrenpids); i++) {
-			childpid = array_getguy(curprocess->p_childrenpids, i);
-			curprocess_child = processtable_get(childpid);
+			childpid = (pid_t *)array_getguy(curprocess->p_childrenpids, i);
+			curprocess_child = processtable_get(*childpid);
 			if (curprocess_child != NULL &&  
 			curprocess_child->parentpid == curprocess->pid) {
 				curprocess_child->parentpid = 0;
