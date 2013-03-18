@@ -39,7 +39,7 @@ int args_invalid(char **args, int *err) {
         *err = EFAULT;
         return 1;
     }
-    
+
     char foo[PATH_MAX];
 	*err = copyinstr((userptr_t)args, foo, sizeof(foo), NULL);
 	if (*err) {
@@ -54,6 +54,7 @@ int args_invalid(char **args, int *err) {
 		}
 		i++;
 	}
+    return 0;
 }
 
 int sys_execv(const char *program, char **args, int *err) {

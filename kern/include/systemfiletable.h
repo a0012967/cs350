@@ -1,9 +1,6 @@
 #ifndef _SYSTEMFILETABLE_H_
 #define _SYSTEMFILETABLE_H_
 
-
-#define MAX_SYSTEM_OPEN_FILES 1024
-
 struct file;
 
 // bootstrap the system file table
