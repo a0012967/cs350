@@ -48,9 +48,7 @@ void ft_destroy(struct filetable *ft) {
     for (i=0; i < tab_getsize(ft->files); i++) {
         struct file *f = tab_getguy(ft->files, i);
         if (f != NULL) {
-            if (f->count > 1)
-                VOP_DECOPEN(f->v);
-            else
+            if (f->count <= 1)
                 vfs_close(f->v);
             tab_remove(ft->files, i);
             int ret = systemft_remove(f);
@@ -170,7 +168,6 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
             struct file *f = (struct file*)tab_getguy(nft->files, i);
             if (f != NULL) {
                 err = systemft_update(f);
-                VOP_INCOPEN(f->v);
                 assert(!err); // TODO:
             }
         }

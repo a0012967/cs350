@@ -27,9 +27,7 @@ int sys_close(int fd, int *err) {
     }
 
     // close file
-    if (f->count > 1)
-        VOP_DECOPEN(f->v);
-    else
+    if (f->count <= 1)
         vfs_close(f->v);
 
     // remove file from per-process filetable
