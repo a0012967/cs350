@@ -193,7 +193,7 @@ wait_siblings(void)
 		return;
 	}
 	if (pids[0]==0) {
-		close(fd);
+		//close(fd);
 		wait_siblings_child();
 		_exit(0);
 	}
@@ -205,7 +205,7 @@ wait_siblings(void)
 		return;
 	}
 	if (pids[1]==0) {
-		close(fd);
+		//close(fd);
 		wait_siblings_child();
 		_exit(0);
 	}
@@ -231,7 +231,7 @@ wait_siblings(void)
 		warnx("UH-OH: error waiting for child 1 (pid %d)", pids[1]);
 	}
 	warnx("passed: siblings wait for each other");
-	close(fd);
+	//close(fd);
 	remove(TESTFILE);
 }
 

@@ -653,7 +653,6 @@ MAXPROCS	testbin/sty/sty.c	/^#define MAXPROCS /;"	d	file:
 MAXSTRING	testbin/tictac/tictac.c	/^#define MAXSTRING	/;"	d	file:
 MAXTHREADS	kern/include/synch.h	/^#define MAXTHREADS /;"	d
 MAX_PROCESSES	kern/include/process.h	/^#define MAX_PROCESSES /;"	d
-MAX_SYSTEM_OPEN_FILES	kern/include/systemfiletable.h	/^#define MAX_SYSTEM_OPEN_FILES /;"	d
 MAX_TYPES	lib/libc/random.c	/^#define	MAX_TYPES	/;"	d	file:
 MDHEADERS	kern/Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	kern/Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
@@ -748,6 +747,7 @@ OBJS	mk/prog.mk	/^OBJS=$(OBJS1:.S=.o)$/;"	m
 OBJS1	lib/hostcompat/Makefile	/^OBJS1=$(SRCS:.c=.ho)$/;"	m
 OBJS1	mk/lib.mk	/^OBJS1=$(SRCS:.c=.o)$/;"	m
 OBJS1	mk/prog.mk	/^OBJS1=$(SRCS:.c=.o)$/;"	m
+OPEN_MAX	kern/include/kern/limits.h	/^#define OPEN_MAX /;"	d
 OPT_A0	kern/compile/ASST0/opt-A0.h	/^#define OPT_A0 /;"	d
 OPT_A0	kern/compile/ASST1/opt-A0.h	/^#define OPT_A0 /;"	d
 OPT_A0	kern/compile/ASST2/opt-A0.h	/^#define OPT_A0 /;"	d
@@ -833,6 +833,7 @@ PF_W	kern/include/elf.h	/^#define	PF_W	/;"	d
 PF_X	kern/include/elf.h	/^#define	PF_X	/;"	d
 PLATFORM	defs.mk	/^PLATFORM=mips$/;"	m
 PROCS	uw-testbin/conc-io/conc-io.c	/^#define PROCS /;"	d	file:
+PROC_NFILES_MAX	kern/include/kern/limits.h	/^#define PROC_NFILES_MAX /;"	d
 PROG	bin/cat/Makefile	/^PROG=cat$/;"	m
 PROG	bin/cp/Makefile	/^PROG=cp$/;"	m
 PROG	bin/false/Makefile	/^PROG=false$/;"	m
@@ -1568,6 +1569,7 @@ any_ioctl_badbuf	testbin/badcall/bad_ioctl.c	/^any_ioctl_badbuf(int fd, int code
 aopt	bin/ls/ls.c	/^static int aopt=0;$/;"	v	file:
 ap	lib/libc/__printf.c	/^	va_list ap;$/;"	m	struct:__anon7	file:
 approachintersection	kern/asst1/stoplight.c	/^approachintersection(void * unusedpointer,$/;"	f	file:
+args_invalid	kern/userprog/sysexecv.c	/^int args_invalid(char **args, int *err) {$/;"	f
 argv	uw-testbin/vm-mix1-exec/vm-mix1-exec.c	/^static char *argv[2] = { (char *)"vm-mix1", NULL };$/;"	v	file:
 array	kern/lib/array.c	/^struct array {$/;"	s	file:
 array	kern/lib/table.c	/^    struct array *array;$/;"	m	struct:table	typeref:struct:table::array	file:
@@ -1715,7 +1717,6 @@ buffer	testbin/bigfile/bigfile.c	/^static char buffer[100];$/;"	v	file:
 buffer	testbin/f_test/f_read.c	/^static char buffer[SectorSize + 1];$/;"	v	file:
 buffer	testbin/f_test/f_write.c	/^static char buffer[SectorSize + 1];$/;"	v	file:
 buffer	testbin/tail/tail.c	/^char buffer[BUFSIZE];$/;"	v
-buffer_check	kern/userprog/sysread.c	/^int buffer_check(void *buf, size_t buflen){$/;"	f
 buflen	lib/libc/snprintf.c	/^	size_t buflen;$/;"	m	struct:__anon9	file:
 bufpos	lib/libc/snprintf.c	/^	size_t bufpos;$/;"	m	struct:__anon9	file:
 buftest	testbin/badcall/common_buf.c	/^struct buftest {$/;"	s	file:
@@ -1724,7 +1725,7 @@ buildconfig	kern/compile/ASST1/vers.c	/^const char buildconfig[] = "ASST1";$/;"	
 buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 311;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 387;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -2110,6 +2111,7 @@ fd_array	uw-testbin/files2/files2.c	/^static int fd_array[COUNT_LIMIT];$/;"	v	fi
 file	kern/include/file.h	/^struct file {$/;"	s
 file_lock	kern/include/file.h	/^    struct lock *file_lock; \/\/ when doing operations on the file$/;"	m	struct:file	typeref:struct:file::lock
 file_table	kern/include/process.h	/^    struct filetable* file_table; $/;"	m	struct:process	typeref:struct:process::filetable
+filename_invalid	kern/userprog/sysopen.c	/^int filename_invalid(const char *filename, int *err) {$/;"	f
 files	kern/filedes/filetable.c	/^    struct table *files;$/;"	m	struct:filetable	typeref:struct:filetable::table	file:
 filetable	kern/filedes/filetable.c	/^struct filetable {$/;"	s	file:
 fill_deadbeef	kern/lib/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
@@ -2295,6 +2297,7 @@ kfree	kern/lib/kheap.c	/^kfree(void *ptr)$/;"	f
 kgets	kern/lib/kgets.c	/^kgets(char *buf, size_t maxlen)$/;"	f
 kheap_printstats	kern/lib/kheap.c	/^kheap_printstats(void)$/;"	f
 kill_curthread	kern/arch/mips/mips/trap.c	/^kill_curthread(u_int32_t epc, unsigned code, u_int32_t vaddr)$/;"	f	file:
+kill_process	kern/process/process.c	/^void kill_process(int exitcode) {$/;"	f
 killdir	testbin/rmdirtest/rmdirtest.c	/^killdir(void)$/;"	f	file:
 kmain	kern/main/main.c	/^kmain(char *arguments)$/;"	f
 kmalloc	kern/lib/kheap.c	/^kmalloc(size_t sz)$/;"	f
@@ -2674,6 +2677,7 @@ opsmenu	kern/main/menu.c	/^static const char *opsmenu[] = {$/;"	v	file:
 option	bin/ls/ls.c	/^option(int ch)$/;"	f	file:
 p_align	kern/include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon2
 p_assign_thread	kern/process/process.c	/^void p_assign_thread(struct process *p, struct thread *t) {$/;"	f
+p_childrenpids	kern/include/process.h	/^    struct array * p_childrenpids; \/\/ TODO malloc on create, free on destroy$/;"	m	struct:process	typeref:struct:process::array
 p_create	kern/process/process.c	/^struct process * p_create() {$/;"	f
 p_destroy	kern/process/process.c	/^void p_destroy() {$/;"	f
 p_destroy_at	kern/process/process.c	/^void p_destroy_at(struct process * p) {$/;"	f
@@ -2762,8 +2766,9 @@ processtable_bootstrap	kern/process/processtable.c	/^void processtable_bootstrap
 processtable_get	kern/process/processtable.c	/^struct process * processtable_get(pid_t pid) {$/;"	f
 processtable_getnum	kern/process/processtable.c	/^int processtable_getnum() {$/;"	f
 processtable_getsize	kern/process/processtable.c	/^int processtable_getsize() {$/;"	f
-processtable_insert	kern/process/processtable.c	/^int processtable_insert(struct process *p) {$/;"	f
+processtable_insert	kern/process/processtable.c	/^int processtable_insert(struct process *p, int *err) {$/;"	f
 processtable_remove	kern/process/processtable.c	/^void processtable_remove(int fd) {$/;"	f
+program_invalid	kern/userprog/sysexecv.c	/^int program_invalid(const char *program, int *err) {$/;"	f
 ps_seed	kern/dev/generic/pseudorand.h	/^	u_int32_t ps_seed;$/;"	m	struct:pseudorand_softc
 pseudoattach_pseudorand	kern/dev/generic/pseudorand.c	/^pseudoattach_pseudorand(int unit)$/;"	f
 pseudoconfig	kern/compile/ASST0/autoconf.c	/^pseudoconfig(void)$/;"	f
@@ -3179,7 +3184,7 @@ symlink_empty2	testbin/badcall/bad_symlink.c	/^symlink_empty2(void)$/;"	f	file:
 sys__exit	kern/userprog/sysexit.c	/^void sys__exit(int exitcode) {$/;"	f
 sys_close	kern/userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	kern/include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
-sys_execv	kern/userprog/sysexecv.c	/^int sys_execv(char * program, char **args, int *err) {$/;"	f
+sys_execv	kern/userprog/sysexecv.c	/^int sys_execv(const char *program, char **args, int *err) {$/;"	f
 sys_fork	kern/userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
 sys_getpid	kern/userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_getpid	kern/userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
