@@ -40,22 +40,24 @@ struct filetable* ft_create() {
     return ft;
 }
 
-// destroys file table
+// destroys file table, decrementing refs to files
+// files are destroyed if number of refs becomes 0
 void ft_destroy(struct filetable *ft) {
-    // destroy all elements in table
+    struct file *f;
     int i;
-    for (i=0; i < tab_getsize(ft->files); i++) {
-        struct file *f = tab_getguy(ft->files, i);
+
+    for (i=0; i<tab_getsize(ft->files); i++) {
+        f = tab_getguy(ft->files, i);
         if (f != NULL) {
             tab_remove(ft->files, i);
             f->numrefs--;
-            // close and destroy the file if there are no more references
             if (f->numrefs == 0) {
                 vfs_close(f->v);
                 f_destroy(f);
             }
         }
     }
+
     tab_destroy(ft->files);
     lock_destroy(ft->ft_lock);
     kfree(ft);
@@ -64,41 +66,34 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
-    assert(err != NULL);
-    assert(*err == 0);
-    int result;
+    int result, numfiles;
+
     lock_acquire(ft->ft_lock);
-        int numfiles = tab_getnum(ft->files);
+        numfiles = tab_getnum(ft->files);
 
-        if (numfiles > PROC_NFILES_MAX)
-            panic("FILETABLE: filetable implementation broken\n");
-
-        if (numfiles == PROC_NFILES_MAX) {
+        if (numfiles >= PROC_NFILES_MAX) {
             *err = EMFILE;
-            goto fail;
+            result = -1;
+            goto finish;
         }
 
         result = tab_add(ft->files, f, err);
 
         if (result == -1) {
-            goto fail;
+            goto finish;
         }
 
-        assert(f->numrefs == 0);
-        f->numrefs = 1; // increase number of references
-    lock_release(ft->ft_lock);
-    kprintf("ref: %d\n", f->v->vn_refcount);
-    kprintf("open: %d\n", f->v->vn_refcount);
-    kprintf("numrefs: %d\n", f->numrefs);
-    return result;
+        // increase number of references
+        f->numrefs = 1; 
 
-fail:
+finish:
     lock_release(ft->ft_lock);
-    return -1;
+    return result;
 }
 
 // returns 0 if successful
 // decrements numrefs
+// files are destroyed if number of refs becomes 0
 int ft_removefile(struct filetable *ft, int fd) {
     int result = 0;
     struct file *f;
@@ -106,23 +101,26 @@ int ft_removefile(struct filetable *ft, int fd) {
     lock_acquire(ft->ft_lock);
         if (fd < 0 || fd >= tab_getsize(ft->files)) {
             result = ENOENT;
-            goto fail;
-        } else {
+            goto finish;
+        } 
+        else {
             f = tab_getguy(ft->files, fd);
+
             if (f != NULL) {
                 result = tab_remove(ft->files, fd);
                 assert(result == 0);
-                f->numrefs--; // decrement number of references
+
+                // decrement number of references
+                f->numrefs--; 
+
+                // if are no more references, close and destroy the file
                 if (f->numrefs == 0) {
                     vfs_close(f->v);
                     f_destroy(f);
                 }
             }
         }
-    lock_release(ft->ft_lock);
-    return result;
-
-fail:
+finish:
     lock_release(ft->ft_lock);
     return result;
 }
@@ -139,7 +137,8 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
         // out of bounds
         if (fd < 0 || fd >= size) {
             *err = EBADF; // no such file
-            goto fail;
+            ret = NULL;
+            goto finish;
         }
 
         ret = (struct file*)tab_getguy(ft->files, fd);
@@ -147,17 +146,16 @@ struct file* ft_getfile(struct filetable *ft, int fd, int *err) {
         // file has been removed
         if (ret == NULL) {
             *err = EBADF;
-            goto fail;
+            goto finish;
         }
-    lock_release(ft->ft_lock);
 
+finish:
+    lock_release(ft->ft_lock);
     return ret;
-
-fail:
-    lock_release(ft->ft_lock);
-    return NULL;
 }
 
+// copies contents (pointers) and increments file refs of ft to new_ft
+// returns error code
 int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
     assert(*new_ft != NULL);
 
@@ -167,8 +165,7 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
     lock_acquire(ft->ft_lock);
         nft = *new_ft;
         err = tab_duplicate(ft->files, &(nft->files));
-        assert(!err); // TODO:
-
+        if (err) goto finish;
         size = tab_getsize(nft->files);
 
         /*
@@ -185,12 +182,33 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
         for (i=0; i<size; i++) {
             struct file *f = (struct file*)tab_getguy(nft->files, i);
             if (f != NULL) {
-                f->numrefs++; // increase references
+                f->numrefs++;
             }
         }
-    lock_release(ft->ft_lock);
 
+finish:
+    lock_release(ft->ft_lock);
     return err;
+}
+
+// USE THE BELOW only for debugging purposes!
+// returns number of files in filetable
+// DON'T USE THIS TO ITERATE THROUGH THE TABLE. IT HAS HOLES INSIDE
+int ft_numfiles(struct filetable *ft) {
+    assert(ft != NULL);
+    lock_acquire(ft->ft_lock);
+        int ret = tab_getnum(ft->files);
+    lock_release(ft->ft_lock);
+    return ret;
+}
+
+// returns number of entries (including NULL) inside the filetable
+int ft_getsize(struct filetable *ft) {
+    assert(ft != NULL);
+    lock_acquire(ft->ft_lock);
+        int ret = tab_getsize(ft->files); 
+    lock_release(ft->ft_lock);
+    return ret;
 }
 
 /* CONSOLE DEVICES FILES 
@@ -230,23 +248,3 @@ void console_files_bootstrap() {
     kfree(console);
 }
 
-
-// USE THE BELOW only for debugging purposes!
-// returns number of files in filetable
-// DON'T USE THIS TO ITERATE THROUGH THE TABLE. IT HAS HOLES INSIDE
-int ft_numfiles(struct filetable *ft) {
-    assert(ft != NULL);
-    lock_acquire(ft->ft_lock);
-        int ret = tab_getnum(ft->files);
-    lock_release(ft->ft_lock);
-    return ret;
-}
-
-// returns number of entries (including NULL) inside the filetable
-int ft_getsize(struct filetable *ft) {
-    assert(ft != NULL);
-    lock_acquire(ft->ft_lock);
-        int ret = tab_getsize(ft->files); 
-    lock_release(ft->ft_lock);
-    return ret;
-}

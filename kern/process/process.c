@@ -61,7 +61,7 @@ struct process * p_create() {
         kfree(p);
         return NULL;
     }
-    
+
     // initiate its array of children
     p->p_childrenpids = array_create();
     if (p->p_childrenpids == NULL) {
@@ -137,7 +137,7 @@ void p_destroy_at(struct process * p) {
 		pid_t * pid = (pid_t *) array_getguy(p->p_childrenpids, i);
 		kfree(pid);
 	}
-    
+
     // destroy array of children
     array_destroy(p->p_childrenpids);
 

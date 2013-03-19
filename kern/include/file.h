@@ -9,12 +9,13 @@ struct file {
     struct lock *file_lock; // when doing operations on the file
 
     // private
-    int numrefs;
+    int numrefs; // number of refs to the file (not the same as refs to vnode)
 };
-
-#endif // _FILE_H_
 
 // creates an file. returns NULL on fail
 struct file* f_create(int status, int offset, struct vnode *v);
+
 // free memory used by file
 void f_destroy(struct file *f);
+
+#endif // _FILE_H_

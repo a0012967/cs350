@@ -65,20 +65,11 @@ int sys_execv(const char *program, char **args, int *err) {
     int result, i;
     char *prog_name;
 
-	if (program_invalid(program, err)) {
-		//assert(*err);
-        return -1;
-	}
-	
-	if (args_invalid(args, err)) {
-		//assert(*err);
-        return -1;
-	}
+    // check validity
+	if (program_invalid(program, err)) return -1;
+	if (args_invalid(args, err)) return -1;
 
-    /*******************************
-     * COPY STUFF INTO KERNEL SPACE
-     ******************************/
-
+    // copy stuff to kernel
     prog_name = kmalloc(PATH_MAX);
     copyinstr((userptr_t)program, prog_name, PATH_MAX, NULL);
 
@@ -98,10 +89,7 @@ int sys_execv(const char *program, char **args, int *err) {
     // Terminate argv with NULL
     argv[argc] = NULL;
 
-    /*************************************
-     * LOAD ELF - COPIED FROM RUNPROGRAM
-     *************************************/
-
+    // load - copied from rungprogram
     /* Open the file. */
     result = vfs_open(prog_name, O_RDONLY, &v);
     if (result) {
@@ -147,10 +135,7 @@ int sys_execv(const char *program, char **args, int *err) {
         return -1;
     }
 
-    /******************************
-     * COPY ARGV ONTO USERSTACK
-     ******************************/
-
+    // copy argv to userstack
     int prev_offset = 0;
     int stack_offset = 0;
     int* arg_pointer_offset;
