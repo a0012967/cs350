@@ -9,10 +9,7 @@ struct file {
     struct lock *file_lock; // when doing operations on the file
 
     // private
-    // internals to system-wide filetable
-    int count;
-    struct file *prev;
-    struct file *next;
+    int numrefs;
 };
 
 #endif // _FILE_H_

@@ -11,7 +11,6 @@
 #include <curthread.h>
 #include <vfs.h>
 #include <kern/unistd.h>
-#include <systemfiletable.h>
 
 struct filetable {
     struct table *files;
@@ -49,8 +48,12 @@ void ft_destroy(struct filetable *ft) {
         struct file *f = tab_getguy(ft->files, i);
         if (f != NULL) {
             tab_remove(ft->files, i);
-            int ret = systemft_remove(f);
-            assert(ret == 0);
+            f->numrefs--;
+            // close and destroy the file if there are no more references
+            if (f->numrefs == 0) {
+                vfs_close(f->v);
+                f_destroy(f);
+            }
         }
     }
     tab_destroy(ft->files);
@@ -61,6 +64,8 @@ void ft_destroy(struct filetable *ft) {
 // returns index of file in table on success
 // returns -1 if there was an error. changes value of error
 int ft_storefile(struct filetable *ft, struct file* f, int *err) {
+    assert(err != NULL);
+    assert(*err == 0);
     int result;
     lock_acquire(ft->ft_lock);
         int numfiles = tab_getnum(ft->files);
@@ -78,7 +83,13 @@ int ft_storefile(struct filetable *ft, struct file* f, int *err) {
         if (result == -1) {
             goto fail;
         }
+
+        assert(f->numrefs == 0);
+        f->numrefs = 1; // increase number of references
     lock_release(ft->ft_lock);
+    kprintf("ref: %d\n", f->v->vn_refcount);
+    kprintf("open: %d\n", f->v->vn_refcount);
+    kprintf("numrefs: %d\n", f->numrefs);
     return result;
 
 fail:
@@ -87,17 +98,26 @@ fail:
 }
 
 // returns 0 if successful
-// frees memory used by the file
+// decrements numrefs
 int ft_removefile(struct filetable *ft, int fd) {
-    int result;
+    int result = 0;
+    struct file *f;
 
     lock_acquire(ft->ft_lock);
         if (fd < 0 || fd >= tab_getsize(ft->files)) {
             result = ENOENT;
             goto fail;
         } else {
-            result = tab_remove(ft->files, fd);
-            result = 0;
+            f = tab_getguy(ft->files, fd);
+            if (f != NULL) {
+                result = tab_remove(ft->files, fd);
+                assert(result == 0);
+                f->numrefs--; // decrement number of references
+                if (f->numrefs == 0) {
+                    vfs_close(f->v);
+                    f_destroy(f);
+                }
+            }
         }
     lock_release(ft->ft_lock);
     return result;
@@ -165,8 +185,7 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
         for (i=0; i<size; i++) {
             struct file *f = (struct file*)tab_getguy(nft->files, i);
             if (f != NULL) {
-                err = systemft_update(f);
-                assert(!err); // TODO:
+                f->numrefs++; // increase references
             }
         }
     lock_release(ft->ft_lock);
@@ -179,79 +198,37 @@ int ft_duplicate(struct filetable *ft, struct filetable **new_ft) {
  * Files stored in file_table at index 0, 1, and 2 respectively
  */
 void console_files_bootstrap() {
-    // open the console
-    int err, result;
+    int err;
     struct vnode *vn;
-    struct file *stdinfile, *stdoutfile, *stderrfile;
+    struct file *f_stdin, *f_stdout, *f_stderr;
     struct process *curprocess = processtable_get(curthread->pid);
 
     char *console = NULL;
     console = kstrdup("con:");
 
     // open the console
-    err = vfs_open(console, O_RDONLY, &vn);
-    if(err){
-        panic("console files: Could not open console\n");
-    }
+    err = vfs_open(console, O_RDONLY, &vn); assert(!err);
 
-    /*
-    // set global vnode for console devices
-    vn_console = vn;
-    */
+    // create files
+    f_stdin  = f_create(O_RDONLY, 0, vn); assert(f_stdin );
+    f_stdout = f_create(O_WRONLY, 0, vn); assert(f_stdout);
+    f_stderr = f_create(O_WRONLY, 0, vn); assert(f_stderr);
 
-    // create and add stdin file to file_table[0]
-    stdinfile = f_create(O_RDONLY, 0, vn);
-    if (stdinfile == NULL) {
-        panic("Could not create an open file entry for stdin\n");
-    }
+    // store files in the filetable
+    ft_storefile(curprocess->file_table, f_stdin , &err); assert(!err);
+    ft_storefile(curprocess->file_table, f_stdout, &err); assert(!err);
+    ft_storefile(curprocess->file_table, f_stderr, &err); assert(!err);
 
-    // store stdinfile in systemwide filetable
-    result = systemft_insert(stdinfile);
-    assert(result == 0);
-
-    // store stdinfile at file_table[0]
-    result  = ft_storefile(curprocess->file_table, stdinfile, &err);
-    if (result == -1) {   
-      panic("Could not add stdin file to filetable");
-    }
-
-    // create and add stdout file to file_table[1]
-    stdoutfile = f_create(O_WRONLY, 0, vn);
-    if (stdoutfile == NULL) {
-        panic("Could not create an open file entry for stdout\n");
-    }
-
-    // store stdoutfile in systemwide filetable
-    result = systemft_insert(stdoutfile);
-    assert(result == 0);
-
-    result  = ft_storefile(curprocess->file_table, stdoutfile, &err);
-    if (result == -1) {
-        panic("Could not add stdout file to filetable");
-    }
-
-    // create and add stderr file to file_table
-    stderrfile = f_create(O_WRONLY, 0, vn);
-    if (stderrfile == NULL) {
-        panic("Could not create an open file entry for stderr\n");
-    }
-
-    // store stderrfile in systemwide filetable
-    result = systemft_insert(stderrfile);
-    assert(result == 0);
-
-    // store stderrfile at file_table[2]
-    result  = ft_storefile(curprocess->file_table, stderrfile, &err);
-    if (result == -1) {
-        panic("Could not add stdin file to filetable");
-    }
+    // TODO: might change this. looks ugly
+    f_stdin->numrefs  = 3;
+    f_stdout->numrefs = 3;
+    f_stderr->numrefs = 3;
 
     //increase vnode ref count for stdout and stderr
     vnode_incref(vn);
     vnode_incref(vn);
     kfree(console);
 }
-
 
 
 // USE THE BELOW only for debugging purposes!
