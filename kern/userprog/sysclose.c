@@ -6,12 +6,13 @@
 #include <thread.h>
 #include <process.h>
 #include <processtable.h>
-#include <systemfiletable.h>
+#include <vnode.h>
 #include <lib.h>
 #include <types.h>
 #include <kern/errno.h>
 
 int sys_close(int fd, int *err) {
+    assert(err != NULL);
     assert(*err == 0);
     int result;
     struct file *f;
@@ -24,19 +25,13 @@ int sys_close(int fd, int *err) {
         return -1;
     }
 
-    // close file
-    vfs_close(f->v);
-
-    // remove file from per-process filetable
+    // remove file from filetable
+    // filetable is responsible for properly closing the file
     result = ft_removefile(curprocess->file_table, fd);
     if (result) {
         *err = result;
         return -1;
     }
-
-    // calls remove on the file for the systemwide filetable
-    result = systemft_remove(f);
-    assert(result == 0);
 
     return 0;
 }

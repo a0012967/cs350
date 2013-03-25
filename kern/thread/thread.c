@@ -41,7 +41,7 @@ static int numthreads;
  * thread structure and to create subsequent threads.
  */
 
-//XXX static
+static
 struct thread *
 thread_create(const char *name)
 {
@@ -318,7 +318,8 @@ thread_shutdown(void)
                 proc->parentpid = curthread->pid;
                 p_assign_thread(proc, newguy);
             }
-            //as_activate(newguy->t_vmspace);
+
+            as_activate(newguy->t_vmspace);
         }
     #endif // OPT_A2
 
@@ -651,80 +652,3 @@ mi_threadstart(void *data1, unsigned long data2,
 	/* Done. */
 	thread_exit();
 }
-
-#if OPT_A2
-struct thread *thread_childprocess(const char *name, int *err) {
-    // assert arguments
-    assert(name != NULL);
-    assert(err != NULL);
-    assert(*err == 0);
-
-    struct thread *t;
-    int s;
-
-    t = thread_create(name);
-    if (t == NULL) {
-        *err = ENOMEM;
-        return NULL;
-    }
-
-    // TODO: not sure about what to do with stacks
-    t->t_stack = kmalloc(STACK_SIZE);
-    if (t->t_stack == NULL) {
-        kfree(t->t_name);
-        kfree(t);
-        *err = ENOMEM;
-        return NULL;
-    }
-
-	/* stick a magic number on the bottom end of the stack */
-	t->t_stack[0] = 0xae;
-	t->t_stack[1] = 0x11;
-	t->t_stack[2] = 0xda;
-	t->t_stack[3] = 0x33;
-
-    // inherit the current directory
-    if (curthread->t_cwd != NULL) {
-        VOP_INCREF(curthread->t_cwd);
-        t->t_cwd = curthread->t_cwd;
-    }
-
-    // interrupts off for atomicity
-    s = splhigh();
-
-    *err = array_preallocate(sleepers, numthreads+1);
-    if (*err) {
-        goto fail;
-    }
-    *err = array_preallocate(zombies, numthreads+1);
-    if (*err) {
-        goto fail;
-    }
-    *err = scheduler_preallocate(numthreads+1);
-    if (*err) {
-        goto fail;
-    }
-    *err = make_runnable(t);
-    if (*err) {
-        goto fail;
-    }
-
-    numthreads++;
-    splx(s);
-
-    return t;
-
-fail:
-    assert(*err);
-    splx(s);
-
-    if (t->t_cwd != NULL) {
-        VOP_DECREF(t->t_cwd);
-    }
-    kfree(t->t_stack);
-    kfree(t->t_name);
-    kfree(t);
-
-    return NULL;
-}
-#endif // OPT_A2

@@ -3,6 +3,7 @@
 #include <table.h>
 #include <synch.h>
 #include <kern/errno.h>
+#include <kern/limits.h>
 #include <lib.h>
 
 static struct table *process_table;
@@ -20,16 +21,15 @@ void processtable_bootstrap() {
     }
 }
 
-int processtable_insert(struct process *p) {
-    assert(p != NULL);
+int processtable_insert(struct process *p, int *err) {
+    assert(p != NULL && err != NULL);
+    assert(*err == 0);
     int result;
-    int err = 0;
+    int num_entries;
 
     lock_acquire(pt_lock);
-        result = tab_add(process_table, p, &err);
-        if (result == -1 || err != 0) {
-            panic("PROCESSTABLE: Cannot add process to processtable\n");
-        }
+        num_entries = tab_getnum(process_table);
+        result = tab_add(process_table, p, err);
     lock_release(pt_lock);
 
     return result;
@@ -53,7 +53,9 @@ struct process * processtable_get(pid_t pid) {
     lock_acquire(pt_lock);
         p = (struct process*)tab_getguy(process_table, pid);
         if (p == NULL) {
-            panic("PROCESSTABLE: Process does not exist in process table at the given pid: %d\n", pid);
+        	lock_release(pt_lock);
+            return NULL;
+            //panic("PROCESSTABLE: Process does not exist in process table at the given pid: %d\n", pid);
         }
     lock_release(pt_lock);
 

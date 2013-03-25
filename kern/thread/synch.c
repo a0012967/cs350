@@ -7,8 +7,10 @@
 #include <lib.h>
 #include <synch.h>
 #include <thread.h>
+#include <process.h>
 #include <curthread.h>
 #include <machine/spl.h>
+#include <syscall.h>
 
 ////////////////////////////////////////////////////////////
 //
@@ -98,7 +100,6 @@ V(struct semaphore *sem)
 //
 // Lock.
 
-// TODO: fix warnings due to discarding volatile qualifier
 struct lock *
 lock_create(const char *name)
 {
@@ -157,7 +158,10 @@ lock_acquire(struct lock *lock)
         spl = splhigh();
         if (lock->held != NULL) {
             int err = q_addtail((struct queue *)lock->wait_queue, curthread);
-            assert(err == 0);
+            if (err) {
+                splx(spl);
+                kill_process(0);
+            }
             thread_sleep(curthread);
         }
         lock->held = curthread;
@@ -213,7 +217,6 @@ lock_do_i_hold(struct lock *lock)
 // CV
 
 
-// TODO: fix warnings due to discarding volatile qualifier
 struct cv *
 cv_create(const char *name)
 {

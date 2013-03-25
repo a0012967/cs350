@@ -1,0 +1,814 @@
+RUNNING ./run-batch : Version 0.3
+---------------------------------------------------------------
+RUNNING test-files TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p uw-testbin/files1
+TEST STATS for files1.c : from function = main, line = 82
+    Number of failures = 0    Number of Tests = 15
+
+Operation took 0.966935297 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26630036 cycles (3612951 run, 23017085 global-idle)
+sys161:   cpu0: 3602412 kern, 10539 user, 0 idle)
+sys161: 883 irqs 179 exns 0r/0w disk 0r/786w console 10r/4w/11m emufs 0r/0w net
+sys161: Elapsed real time: 1.074446 seconds (24.7849 mhz)
+sys161: Elapsed virtual time: 1.065201457 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p uw-testbin/files2
+Number of files opened = 55
+TEST STATS for files2.c : from function = main, line = 174
+    Number of failures = 0    Number of Tests = 86
+
+Operation took 0.938038057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25910400 cycles (6682572 run, 19227828 global-idle)
+sys161:   cpu0: 6664055 kern, 18517 user, 0 idle)
+sys161: 1021 irqs 697 exns 0r/0w disk 0r/816w console 8r/2w/129m emufs 0r/0w net
+sys161: Elapsed real time: 1.045418 seconds (24.7847 mhz)
+sys161: Elapsed virtual time: 1.036416017 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p uw-testbin/writeread
+TEST STATS for writeread.c : from function = main, line = 54
+    Number of failures = 0    Number of Tests = 4100
+
+Operation took 0.969157137 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26695282 cycles (4014900 run, 22680382 global-idle)
+sys161:   cpu0: 3795798 kern, 219102 user, 0 idle)
+sys161: 883 irqs 188 exns 0r/0w disk 0r/794w console 9r/1w/7m emufs 0r/0w net
+sys161: Elapsed real time: 1.066841 seconds (25.0227 mhz)
+sys161: Elapsed virtual time: 1.067811297 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-read-file TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/hash hashfile
+Hash : 13995
+Operation took 0.968016137 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26673309 cycles (2952468 run, 23720841 global-idle)
+sys161:   cpu0: 2950821 kern, 1647 user, 0 idle)
+sys161: 789 irqs 56 exns 0r/0w disk 0r/691w console 18r/0w/5m emufs 0r/0w net
+sys161: Elapsed real time: 1.075951 seconds (24.7904 mhz)
+sys161: Elapsed virtual time: 1.066932377 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-write-file TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/bigfile bigfile.out 100
+Creating a file of size 100
+Operation took 0.967484457 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26693133 cycles (3123091 run, 23570042 global-idle)
+sys161:   cpu0: 3108766 kern, 14325 user, 0 idle)
+sys161: 814 irqs 94 exns 0r/0w disk 0r/716w console 9r/11w/5m emufs 0r/0w net
+sys161: Elapsed real time: 1.077071 seconds (24.7831 mhz)
+sys161: Elapsed virtual time: 1.067725337 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/bigfile bigfile.out 10240
+Creating a file of size 10240
+Operation took 6.068803377 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 154230523 cycles (17133976 run, 137096547 global-idle)
+sys161:   cpu0: 15951810 kern, 1182166 user, 0 idle)
+sys161: 2295 irqs 5219 exns 0r/0w disk 0r/720w console 9r/1025w/5m emufs 0r/0w net
+sys161: Elapsed real time: 6.178408 seconds (24.9628 mhz)
+sys161: Elapsed virtual time: 6.169220937 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-args TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/argtest 2 4
+argc: 3
+argv[0]: testbin/argtest
+argv[1]: 2
+argv[2]: 4
+argv[3]: [NULL]
+Operation took 0.969431777 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26700194 cycles (3174028 run, 23526166 global-idle)
+sys161:   cpu0: 3165840 kern, 8188 user, 0 idle)
+sys161: 835 irqs 91 exns 0r/0w disk 0r/751w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.077098 seconds (24.789 mhz)
+sys161: Elapsed virtual time: 1.068007777 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/argtest one two three four five
+argc: 6
+argv[0]: testbin/argtest
+argv[1]: one
+argv[2]: two
+argv[3]: three
+argv[4]: four
+argv[5]: five
+argv[6]: [NULL]
+Operation took 0.968143657 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26731677 cycles (3540189 run, 23191488 global-idle)
+sys161:   cpu0: 3526668 kern, 13521 user, 0 idle)
+sys161: 904 irqs 146 exns 0r/0w disk 0r/821w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.068232 seconds (25.0242 mhz)
+sys161: Elapsed virtual time: 1.069267097 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/add 2 4
+Answer: 6
+Operation took 0.974559897 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26815649 cycles (2784978 run, 24030671 global-idle)
+sys161:   cpu0: 2783611 kern, 1367 user, 0 idle)
+sys161: 766 irqs 21 exns 0r/0w disk 0r/682w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.071567 seconds (25.0247 mhz)
+sys161: Elapsed virtual time: 1.072625977 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/add 4 4
+Answer: 8
+Operation took 0.972003217 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26748392 cycles (2783310 run, 23965082 global-idle)
+sys161:   cpu0: 2781929 kern, 1381 user, 0 idle)
+sys161: 765 irqs 21 exns 0r/0w disk 0r/682w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.078989 seconds (24.7902 mhz)
+sys161: Elapsed virtual time: 1.069935697 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/add 10000 20000
+Answer: 30000
+Operation took 0.971377817 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26761050 cycles (2830461 run, 23930589 global-idle)
+sys161:   cpu0: 2828763 kern, 1698 user, 0 idle)
+sys161: 777 irqs 25 exns 0r/0w disk 0r/694w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.069525 seconds (25.0214 mhz)
+sys161: Elapsed virtual time: 1.070442017 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-execv TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/farm
+Execv passed
+Execv passed
+Execv passed
+Hello farmer
+
+Operation took 0.960484057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26453562 cycles (5603433 run, 20850129 global-idle)
+sys161:   cpu0: 5601625 kern, 1808 user, 0 idle)
+sys161: 852 irqs 147 exns 0r/0w disk 0r/726w console 44r/0w/13m emufs 0r/0w net
+sys161: Elapsed real time: 1.067384 seconds (24.7835 mhz)
+sys161: Elapsed virtual time: 1.058142497 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/farm
+Execv passed
+Execv passed
+Execv passed
+Hello farmer
+
+Operation took 0.957845257 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26387712 cycles (5596958 run, 20790754 global-idle)
+sys161:   cpu0: 5595151 kern, 1807 user, 0 idle)
+sys161: 852 irqs 145 exns 0r/0w disk 0r/726w console 44r/0w/13m emufs 0r/0w net
+sys161: Elapsed real time: 1.054545 seconds (25.0228 mhz)
+sys161: Elapsed virtual time: 1.055508497 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/farm
+Execv passed
+Execv passed
+Execv passed
+Hello farmer
+
+Operation took 0.961550337 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26478971 cycles (5606346 run, 20872625 global-idle)
+sys161:   cpu0: 5604538 kern, 1808 user, 0 idle)
+sys161: 851 irqs 148 exns 0r/0w disk 0r/726w console 44r/0w/13m emufs 0r/0w net
+sys161: Elapsed real time: 1.058106 seconds (25.0249 mhz)
+sys161: Elapsed virtual time: 1.059158857 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-fork TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/forktest
+testbin/forktest: Starting.
+00111122222222333333333
+testbin/forktest: Complete.
+3333333Operation took 0.935440857 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25839494 cycles (20818507 run, 5020987 global-idle)
+sys161:   cpu0: 20382249 kern, 436258 user, 0 idle)
+sys161: 843 irqs 24362 exns 0r/0w disk 0r/762w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.042573 seconds (24.7843 mhz)
+sys161: Elapsed virtual time: 1.033579777 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/forktest
+testbin/forktest: Starting.
+00111122222222333333333
+testbin/forktest: 3Complete.
+333333Operation took 0.934459897 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25817253 cycles (20837650 run, 4979603 global-idle)
+sys161:   cpu0: 20401390 kern, 436260 user, 0 idle)
+sys161: 847 irqs 24366 exns 0r/0w disk 0r/762w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.031991 seconds (25.0169 mhz)
+sys161: Elapsed virtual time: 1.032690137 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/forktest
+testbin/forktest: Starting.
+00111122222222333333333
+testbin/forktest3: Complete.
+333333Operation took 0.934777737 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25821008 cycles (20836854 run, 4984154 global-idle)
+sys161:   cpu0: 20400596 kern, 436258 user, 0 idle)
+sys161: 842 irqs 24366 exns 0r/0w disk 0r/762w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.041984 seconds (24.7806 mhz)
+sys161: Elapsed virtual time: 1.032840337 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/forktest
+testbin/forktest: Starting.
+00111122222222333333333
+testbin/forktest: 3Complete.
+333333Operation took 0.934497097 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25819035 cycles (20835807 run, 4983228 global-idle)
+sys161:   cpu0: 20399552 kern, 436255 user, 0 idle)
+sys161: 846 irqs 24363 exns 0r/0w disk 0r/762w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.042001 seconds (24.7783 mhz)
+sys161: Elapsed virtual time: 1.032761417 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-_exit TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/hog
+Execv passed
+Operation took 0.972139617 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26740256 cycles (2751700 run, 23988556 global-idle)
+sys161:   cpu0: 2751287 kern, 413 user, 0 idle)
+sys161: 765 irqs 21 exns 0r/0w disk 0r/681w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.068705 seconds (25.0212 mhz)
+sys161: Elapsed virtual time: 1.069610257 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-waitpid TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/sty
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Operation took 0.954938297 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26311560 cycles (7013221 run, 19298339 global-idle)
+sys161:   cpu0: 7010211 kern, 3010 user, 0 idle)
+sys161: 892 irqs 211 exns 0r/0w disk 0r/751w console 57r/0w/15m emufs 0r/0w net
+sys161: Elapsed real time: 1.061693 seconds (24.7826 mhz)
+sys161: Elapsed virtual time: 1.052462417 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/sty
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Operation took 0.956470737 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26351021 cycles (7011311 run, 19339710 global-idle)
+sys161:   cpu0: 7008304 kern, 3007 user, 0 idle)
+sys161: 895 irqs 211 exns 0r/0w disk 0r/751w console 57r/0w/15m emufs 0r/0w net
+sys161: Elapsed real time: 1.063074 seconds (24.7876 mhz)
+sys161: Elapsed virtual time: 1.054040857 seconds (25 mhz)
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/sty
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Execv passed
+Operation took 0.955266137 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26318831 cycles (7001620 run, 19317211 global-idle)
+sys161:   cpu0: 6998613 kern, 3007 user, 0 idle)
+sys161: 890 irqs 208 exns 0r/0w disk 0r/751w console 57r/0w/15m emufs 0r/0w net
+sys161: Elapsed real time: 1.062049 seconds (24.7812 mhz)
+sys161: Elapsed virtual time: 1.052753257 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-exceptions TESTS
+
+running crash running crash with option = a
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash a
+Fatal user mode trap 2 (TLB miss on load, epc 0x400050, vaddr 0x0)
+Operation took 0.973186297 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26781309 cycles (3053287 run, 23728022 global-idle)
+sys161:   cpu0: 3053249 kern, 38 user, 0 idle)
+sys161: 822 irqs 8 exns 0r/0w disk 0r/738w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.070470 seconds (25.0183 mhz)
+sys161: Elapsed virtual time: 1.071252377 seconds (25 mhz)
+
+running crash running crash with option = b
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash b
+Fatal user mode trap 2 (TLB miss on load, epc 0x400068, vaddr 0x40000000)
+Operation took 0.973479617 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26789394 cycles (3087638 run, 23701756 global-idle)
+sys161:   cpu0: 3087599 kern, 39 user, 0 idle)
+sys161: 828 irqs 8 exns 0r/0w disk 0r/745w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.070837 seconds (25.0172 mhz)
+sys161: Elapsed virtual time: 1.071575777 seconds (25 mhz)
+
+running crash running crash with option = c
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash c
+Fatal user mode trap 4 (Address error on load, epc 0x400080, vaddr 0x80000000)
+Operation took 0.970576497 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26713957 cycles (3105410 run, 23608547 global-idle)
+sys161:   cpu0: 3105371 kern, 39 user, 0 idle)
+sys161: 832 irqs 8 exns 0r/0w disk 0r/750w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.074776 seconds (24.8554 mhz)
+sys161: Elapsed virtual time: 1.068558297 seconds (25 mhz)
+
+running crash running crash with option = d
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash d
+Fatal user mode trap 3 (TLB miss on store, epc 0x400098, vaddr 0x0)
+Operation took 0.965005657 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26575848 cycles (3057335 run, 23518513 global-idle)
+sys161:   cpu0: 3057295 kern, 40 user, 0 idle)
+sys161: 823 irqs 8 exns 0r/0w disk 0r/739w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.061777 seconds (25.0296 mhz)
+sys161: Elapsed virtual time: 1.063033937 seconds (25 mhz)
+
+running crash running crash with option = e
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash e
+Fatal user mode trap 3 (TLB miss on store, epc 0x4000a8, vaddr 0x40000000)
+Operation took 0.970387737 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26711990 cycles (3097719 run, 23614271 global-idle)
+sys161:   cpu0: 3097678 kern, 41 user, 0 idle)
+sys161: 830 irqs 8 exns 0r/0w disk 0r/746w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.067372 seconds (25.0259 mhz)
+sys161: Elapsed virtual time: 1.068479617 seconds (25 mhz)
+
+running crash running crash with option = g
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash g
+Fatal user mode trap 5 (Address error on store, epc 0x4000c8, vaddr 0x80000000)
+Operation took 0.970036217 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26704558 cycles (3120344 run, 23584214 global-idle)
+sys161:   cpu0: 3120303 kern, 41 user, 0 idle)
+sys161: 837 irqs 8 exns 0r/0w disk 0r/751w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.067384 seconds (25.0187 mhz)
+sys161: Elapsed virtual time: 1.068182337 seconds (25 mhz)
+
+running crash running crash with option = h
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash h
+Fatal user mode trap 2 (TLB miss on load, epc 0x4000d4, vaddr 0x0)
+Operation took 0.969956257 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26701138 cycles (3051329 run, 23649809 global-idle)
+sys161:   cpu0: 3051290 kern, 39 user, 0 idle)
+sys161: 822 irqs 8 exns 0r/0w disk 0r/738w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.067132 seconds (25.0214 mhz)
+sys161: Elapsed virtual time: 1.068045537 seconds (25 mhz)
+
+running crash running crash with option = i
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash i
+Fatal user mode trap 2 (TLB miss on load, epc 0x4000e0, vaddr 0x40000000)
+Operation took 0.974141057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26801439 cycles (3081691 run, 23719748 global-idle)
+sys161:   cpu0: 3081652 kern, 39 user, 0 idle)
+sys161: 826 irqs 8 exns 0r/0w disk 0r/745w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.081072 seconds (24.7915 mhz)
+sys161: Elapsed virtual time: 1.072057577 seconds (25 mhz)
+
+running crash running crash with option = j
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash j
+Fatal user mode trap 4 (Address error on load, epc 0x4000ec, vaddr 0x80000000)
+Operation took 0.969137537 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26681250 cycles (3113410 run, 23567840 global-idle)
+sys161:   cpu0: 3113371 kern, 39 user, 0 idle)
+sys161: 834 irqs 8 exns 0r/0w disk 0r/750w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.066381 seconds (25.0204 mhz)
+sys161: Elapsed virtual time: 1.067250017 seconds (25 mhz)
+
+running crash running crash with option = k
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash k
+Fatal user mode trap 4 (Address error on load, epc 0x400104, vaddr 0x7fffff89)
+Operation took 0.974792097 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26820067 cycles (3111146 run, 23708921 global-idle)
+sys161:   cpu0: 3111107 kern, 39 user, 0 idle)
+sys161: 833 irqs 8 exns 0r/0w disk 0r/750w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.083046 seconds (24.7636 mhz)
+sys161: Elapsed virtual time: 1.072802697 seconds (25 mhz)
+
+running crash running crash with option = l
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash l
+Fatal user mode trap 10 (Illegal instruction, epc 0x4000f4, vaddr 0x0)
+Operation took 0.972326057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26758814 cycles (3068706 run, 23690108 global-idle)
+sys161:   cpu0: 3068668 kern, 38 user, 0 idle)
+sys161: 824 irqs 8 exns 0r/0w disk 0r/742w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.069539 seconds (25.019 mhz)
+sys161: Elapsed virtual time: 1.070352577 seconds (25 mhz)
+
+running crash running crash with option = m
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash m
+Fatal user mode trap 9 (Break instruction, epc 0x40013c, vaddr 0x0)
+Operation took 0.972229577 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26758339 cycles (3055289 run, 23703050 global-idle)
+sys161:   cpu0: 3055242 kern, 47 user, 0 idle)
+sys161: 823 irqs 8 exns 0r/0w disk 0r/739w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.076797 seconds (24.8499 mhz)
+sys161: Elapsed virtual time: 1.070333577 seconds (25 mhz)
+
+running crash running crash with option = n
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/crash n
+Fatal user mode trap 9 (Break instruction, epc 0x400174, vaddr 0x0)
+Operation took 0.973091537 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26780601 cycles (3058820 run, 23721781 global-idle)
+sys161:   cpu0: 3058773 kern, 47 user, 0 idle)
+sys161: 825 irqs 8 exns 0r/0w disk 0r/739w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.079792 seconds (24.8016 mhz)
+sys161: Elapsed virtual time: 1.071224057 seconds (25 mhz)
+
+RUNNING ALL BADCALLS TESTS NOW
+
+---------------------------------------------------------------
+RUNNING test-badcalls-read-file TESTS
+Ignore messages: Unknown syscall 17
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/badcall d
+[a-|, 1-4, *, ?=menu, !=quit]
+Choose: d
+testbin/badcall: passed: read using fd -1
+testbin/badcall: passed: read using fd -5
+testbin/badcall: passed: read using closed fd
+testbin/badcall: passed: read using impossible fd
+testbin/badcall: passed: read using fd OPEN_MAX
+Unknown syscall 13
+testbin/badcall: UH-OH: rewind of badcallfile failed: No such system call
+Unknown syscall 17
+testbin/badcall: passed: read with NULL buffer
+Unknown syscall 17
+Unknown syscall 13
+testbin/badcall: UH-OH: rewind of badcallfile failed: No such system call
+Unknown syscall 17
+testbin/badcall: passed: read with invalid buffer
+Unknown syscall 17
+Unknown syscall 13
+testbin/badcall: UH-OH: rewind of badcallfile failed: No such system call
+Unknown syscall 17
+testbin/badcall: passed: read with kernel-space buffer
+Unknown syscall 17
+Operation took 0.960925417 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26480645 cycles (6633741 run, 19846904 global-idle)
+sys161:   cpu0: 6599430 kern, 34311 user, 0 idle)
+sys161: 1592 irqs 512 exns 0r/0w disk 0r/1499w console 10r/6w/9m emufs 0r/0w net
+sys161: Elapsed real time: 1.068306 seconds (24.7875 mhz)
+sys161: Elapsed virtual time: 1.059225817 seconds (25 mhz)
+
+---------------------------------------------------------------
+RUNNING test-badcalls-write-file TESTS
+Ignore messages: Unknown syscall 17
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/badcall e
+[a-|, 1-4, *, ?=menu, !=quit]
+Choose: e
+testbin/badcall: passed: write using fd -1
+testbin/badcall: passed: write using fd -5
+testbin/badcall: passed: write using closed fd
+testbin/badcall: passed: write using impossible fd
+testbin/badcall: passed: write using fd OPEN_MAX
+testbin/badcall: passed: write with NULL buffer
+Unknown syscall 17
+testbin/badcall: passed: write with invalid buffer
+Unknown syscall 17
+testbin/badcall: passed: write with kernel-space buffer
+Unknown syscall 17
+Operation took 0.964515337 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26571794 cycles (5127645 run, 21444149 global-idle)
+sys161:   cpu0: 5096933 kern, 30712 user, 0 idle)
+sys161: 1261 irqs 351 exns 0r/0w disk 0r/1168w console 10r/3w/9m emufs 0r/0w net
+sys161: Elapsed real time: 1.061884 seconds (25.0233 mhz)
+sys161: Elapsed virtual time: 1.062871777 seconds (25 mhz)
+
+
+---------------------------------------------------------------
+RUNNING test-badcalls-execv TESTS
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/badcall a
+[a-|, 1-4, *, ?=menu, !=quit]
+Choose: a
+testbin/badcall: passed: exec NULL
+testbin/badcall: passed: exec invalid pointer
+testbin/badcall: passed: exec kernel pointer
+testbin/badcall: passed: exec the empty string
+testbin/badcall: passed: exec /bin/true with NULL arglist
+testbin/badcall: passed: exec /bin/true with invalid pointer arglist
+testbin/badcall: passed: exec /bin/true with kernel pointer arglist
+testbin/badcall: passed: exec /bin/true with invalid pointer arg
+testbin/badcall: passed: exec /bin/true with kernel pointer arg
+Operation took 0.953381857 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26294728 cycles (10463547 run, 15831181 global-idle)
+sys161:   cpu0: 10446422 kern, 17125 user, 0 idle)
+sys161: 1306 irqs 438 exns 0r/0w disk 0r/1221w console 10r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.051027 seconds (25.0181 mhz)
+sys161: Elapsed virtual time: 1.051789137 seconds (25 mhz)
+
+
+
+---------------------------------------------------------------
+RUNNING test-badcalls-waitpid TESTS
+Ignore messages: Unknown syscall 17
+
+
+Put-your-group-name-here's system version 0 (ASST2 #433)
+
+
+OS/161 kernel: p testbin/badcall b
+[a-|, 1-4, *, ?=menu, !=quit]
+Choose: b
+testbin/badcall: passed: wait for pid -8
+testbin/badcall: passed: wait for pid -1
+testbin/badcall: passed: pid zero
+testbin/badcall: passed: nonexistent pid
+testbin/badcall: passed: wait with NULL status
+testbin/badcall: passed: wait with invalid pointer status
+testbin/badcall: passed: wait with kernel pointer status
+testbin/badcall: passed: wait with unaligned status: Bad memory address
+testbin/badcall: passed: wait with bad flags
+testbin/badcall: passed: wait for self: Invalid argument
+testbin/badcall: passed: wait for parent (from child): Invalid argument
+testbin/badcall: passed: wait for parent test (from parent): Operation succeeded
+Unknown syscall 13
+testbin/badcall: UH-OH: child process (pid 2) lseek error: No such system call
+Unknown syscall 13
+testbin/badcall: UH-OH: child process (pid 3) lseek error: No such system call
+testbin/badcall: passed: siblings wait for each other
+Unknown syscall 17
+Operation took 0.953052297 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 26286473 cycles (11918875 run, 14367598 global-idle)
+sys161:   cpu0: 11891521 kern, 27354 user, 0 idle)
+sys161: 1733 irqs 733 exns 0r/0w disk 0r/1645w console 10r/2w/9m emufs 0r/0w net
+sys161: Elapsed real time: 1.050403 seconds (25.0251 mhz)
+sys161: Elapsed virtual time: 1.051458937 seconds (25 mhz)
+
+

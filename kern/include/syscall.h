@@ -23,7 +23,7 @@ int sys_reboot(int code);
     pid_t sys_fork(struct trapframe *tf, int *err); 
     int sys_waitpid(pid_t pid, int *status, int options, int *err);
     pid_t sys_getpid(void);
-    int sys_execv(char *program, char **args, int *err);
+    int sys_execv(const char *program, char **args, int *err);
     void sys__exit(int exitcode);
 
 

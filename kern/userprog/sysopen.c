@@ -13,15 +13,9 @@
 #include <vfs.h>
 #include <file.h>
 #include <filetable.h>
-#include <systemfiletable.h>
-
-int flags_invalid(int flags, int *err) {
-
-    return 0;
-}
 
 // returns 1 if INVALID, 0 otherwise
-int filename_invalid(char *filename, int *err) {
+int filename_invalid(const char *filename, int *err) {
     if (filename == NULL) {
         *err = EFAULT;
         return 1;
@@ -51,11 +45,6 @@ int sys_open(const char *filename, int flags, int *err) {
         return -1;
     }
 
-    if (flags_invalid(flags, err)) {
-        assert(*err);
-        return -1;
-    }
-
     ret = vfs_open((char*)filename, flags, &v);
     if (ret) {
         *err = ret;
@@ -70,20 +59,10 @@ int sys_open(const char *filename, int flags, int *err) {
         return -1;
     }
 
-    // add the file to systemwide filetable
-    ret = systemft_insert(f);
-    if (ret) {
-        vfs_close(v);
-        *err = ret;
-        return -1;
-    }
-
-    // add the file to ft_storefile as well
+    // add the file to ft_storefile
     ret = ft_storefile(curprocess->file_table, f, err);
     if (ret == -1) {
-        // remove from system file table
-        // systemfiletable will take care of destroying the file
-        systemft_remove(f);
+        f_destroy(f);
         vfs_close(v);
         return -1;
     }

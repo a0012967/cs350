@@ -8,9 +8,9 @@
 #define PATH_MAX   (1024)
 
 // Max number of files in per-process filetable
-#define PROC_FILES_MAX (60)
+#define PROC_NFILES_MAX (60)
 
 // Max number of files in system-wide filetable
-#define SYS_FILES_MAX (1024)
+#define OPEN_MAX 1024
 
 #endif /* _KERN_LIMITS_H_ */

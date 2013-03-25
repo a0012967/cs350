@@ -21,7 +21,6 @@
 // REMOVE
 #include <file.h>
 #include <filetable.h>
-#include <systemfiletable.h>
 #include "opt-A0.h"
 
 /*
@@ -113,7 +112,6 @@ boot(void)
 	vfs_bootstrap();
 	dev_bootstrap();
     #if OPT_A2
-        systemfiletable_bootstrap();
         console_files_bootstrap();
     #endif // OPT_A2
 	vm_bootstrap();
