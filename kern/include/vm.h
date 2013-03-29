@@ -2,6 +2,7 @@
 #define _VM_H_
 
 #include <machine/vm.h>
+#include "opt-A3.h"
 
 /*
  * VM system-related definitions.
@@ -25,5 +26,9 @@ int vm_fault(int faulttype, vaddr_t faultaddress);
 /* Allocate/free kernel heap pages (called by kmalloc/kfree) */
 vaddr_t alloc_kpages(int npages);
 void free_kpages(vaddr_t addr);
+
+#if OPT_A3
+    paddr_t getppages(unsigned long npages);
+#endif // OPT_A3
 
 #endif /* _VM_H_ */
