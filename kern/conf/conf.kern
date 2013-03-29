@@ -457,7 +457,6 @@ defoption A0
 file    main/hello.c
 defoption A1
 defoption A2
-file    filedes/systemfiletable.c
 file    filedes/filetable.c
 file    filedes/file.c
 file    userprog/sysopen.c

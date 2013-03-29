@@ -35,7 +35,7 @@ int sys_waitpid(pid_t pid, int *status, int options, int* err) {
 		*err = EFAULT;
 		return -1;
 	}
-    
+
     struct process * proc = processtable_get(pid);
     if (proc == NULL) {
         *err = EINVAL;
