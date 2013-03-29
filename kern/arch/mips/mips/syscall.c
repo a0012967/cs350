@@ -158,5 +158,7 @@ void md_forkentry(struct trapframe *tf)
         tf->tf_a3 = 0;
         tf->tf_epc += 4; // advance program counter
         mips_usermode(tf);
+    #else
+        (void)tf;
     #endif // OPT_A2
 }

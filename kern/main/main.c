@@ -18,10 +18,12 @@
 #include <syscall.h>
 #include <version.h>
 
-// REMOVE
-#include <file.h>
-#include <filetable.h>
 #include "opt-A0.h"
+#include "opt-A2.h"
+
+#if OPT_A2
+#include <filetable.h>
+#endif // OPT_A2
 
 /*
  * These two pieces of data are maintained by the makefiles and build system.
