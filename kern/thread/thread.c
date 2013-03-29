@@ -319,7 +319,8 @@ thread_shutdown(void)
                 p_assign_thread(proc, newguy);
             }
 
-            as_activate(newguy->t_vmspace);
+            // we dont as_activate() (invalidate tlb) the thread since 
+            // it copies the current address space
         }
     #endif // OPT_A2
 

@@ -181,7 +181,6 @@ int tab_duplicate(struct table *t, struct table **new_t) {
 
 fail:
     assert(err);
-    assert(0); // remove this
     return err;
 }
 

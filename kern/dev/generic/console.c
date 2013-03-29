@@ -31,6 +31,7 @@
 #include <vfs.h>
 #include <uio.h>
 #include "autoconf.h"
+#include "opt-A3.h"
 
 /*
  * The console device.
@@ -51,7 +52,13 @@ static struct lock *con_userlock_write = NULL;
  * console is set up. Upon console setup they are dumped 
  * to the actual console; thenceforth this space is unused.
  */
+#if OPT_A3
+// increase the size substantially
+#define DELAYBUFSIZE  10240
+#else
 #define DELAYBUFSIZE  1024
+#endif // OPT_A3
+
 static char delayed_outbuf[DELAYBUFSIZE];
 static size_t delayed_outbuf_pos=0;
 

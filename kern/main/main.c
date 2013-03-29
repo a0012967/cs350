@@ -18,10 +18,12 @@
 #include <syscall.h>
 #include <version.h>
 
-// REMOVE
-#include <file.h>
-#include <filetable.h>
 #include "opt-A0.h"
+#include "opt-A2.h"
+
+#if OPT_A2
+#include <filetable.h>
+#endif // OPT_A2
 
 /*
  * These two pieces of data are maintained by the makefiles and build system.
@@ -43,30 +45,6 @@ static const char harvard_copyright[] =
     "Copyright (c) 2000, 2001, 2002, 2003\n"
     "   President and Fellows of Harvard College.  All rights reserved.\n";
 
-
-
-void testfiletable() {
-    /*
-    int result = 0, err = 0;
-    struct filetable *ft = curprocess->file_table;
-    assert(ft != NULL);
-
-    struct vnode *v;
-
-    struct file *f1 = f_create(0, 0, v);
-    struct file *f2 = f_create(0, 0, v);
-    struct file *f3 = f_create(0, 0, v);
-
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-    systemft_insert(f1);
-    ft_storefile(ft, f1, &err);
-
-    ft_destroy(ft);
-    */
-}
 
 /*
  * Initial boot sequence.
@@ -126,10 +104,6 @@ boot(void)
 	 */
 	assert(sizeof(userptr_t)==sizeof(char *));
 	assert(sizeof(*(userptr_t)0)==sizeof(char));
-
-    #if OPT_A2
-        testfiletable();
-    #endif
 
     #if OPT_A0
         hello();
