@@ -14,9 +14,12 @@
 #include <vm.h>
 #include <vfs.h>
 #include <test.h>
+#include "opt-A2.h"
+
+#if OPT_A2
 #include <process.h>
 #include <filetable.h>
-#include "opt-A2.h"
+#endif // OPT_A2
 
 /*
  * Load program "progname" and start running it in usermode.
@@ -24,8 +27,11 @@
  *
  * Calls vfs_open on progname and thus may destroy it.
  */
-int
-runprogram(char *progname, int argc, char ** argv)
+#if OPT_A2
+int runprogram(char *progname, int argc, char ** argv)
+#else
+int runprogram(char *progname)
+#endif // OPT_A2
 {
 	struct vnode *v;
 	vaddr_t entrypoint, stackptr;
@@ -40,12 +46,11 @@ runprogram(char *progname, int argc, char ** argv)
 	/* We should be a new thread. */
 	assert(curthread->t_vmspace == NULL);
 
-    // TODO: remove this from here. let fork do its job properly
     #if OPT_A2
         struct process *p = p_create();
         p_assign_thread(p, curthread);
         console_files_bootstrap();
-    #endif /*OPT_A2*/
+    #endif // OPT_A2
 
 	/* Create a new address space. */
 	curthread->t_vmspace = as_create();

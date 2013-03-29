@@ -7,8 +7,10 @@
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
+#include "opt-A3.h"
 
-#define DUMBVM_STACKPAGES    12
+#if OPT_A3
+#define VM_STACKPAGES    12
 
 void
 vm_bootstrap(void)
@@ -26,6 +28,14 @@ paddr_t getppages(unsigned long npages) {
 	
 	splx(spl);
 	return addr;
+}
+
+static int tlb_get_rr_victim() {
+    int victim;
+    static unsigned int next_victim = 0;
+    victim = next_victim;
+    next_victim = (next_victim + 1) % NUM_TLB;
+    return victim;
 }
 
 int
@@ -84,7 +94,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 	vtop1 = vbase1 + as->as_npages1 * PAGE_SIZE;
 	vbase2 = as->as_vbase2;
 	vtop2 = vbase2 + as->as_npages2 * PAGE_SIZE;
-	stackbase = USERSTACK - DUMBVM_STACKPAGES * PAGE_SIZE;
+	stackbase = USERSTACK - VM_STACKPAGES * PAGE_SIZE;
 	stacktop = USERSTACK;
 
 	if (faultaddress >= vbase1 && faultaddress < vtop1) {
@@ -117,7 +127,19 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		return 0;
 	}
 
-	kprintf("dumbvm: Ran out of TLB entries - cannot handle page fault\n");
+
+    // TODO: more comment
+    // evict the victim
+    int victim = tlb_get_rr_victim();
+    ehi = faultaddress;
+    elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+    DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
+    TLB_Write(ehi, elo, victim);
+    splx(spl);
+    return 0;
+
+
+	// kprintf("dumbvm: Ran out of TLB entries - cannot handle page fault\n");
 	splx(spl);
 	return EFAULT;
 }
@@ -141,3 +163,5 @@ free_kpages(vaddr_t addr)
 
 	(void)addr;
 }
+
+#endif // OPT_A3
