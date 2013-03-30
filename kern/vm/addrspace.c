@@ -7,8 +7,9 @@
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
+#include <array.h>
 #include "opt-A3.h"
-
+#include "uw-vmstats.h"
 /*
  * Note! If OPT_DUMBVM is set, as is the case until you start the VM
  * assignment, this file is not compiled or linked or in any way
@@ -27,9 +28,11 @@ struct addrspace * as_create(void) {
 	as->as_vbase1 = 0;
 	as->as_pbase1 = 0;
 	as->as_npages1 = 0;
+    as->as_flags1 = 0;
 	as->as_vbase2 = 0;
 	as->as_pbase2 = 0;
 	as->as_npages2 = 0;
+    as->as_flags2 = 0;
 	as->as_stackpbase = 0;
 #endif // OPT_A3
 
@@ -100,6 +103,8 @@ as_activate(struct addrspace *as)
 
 	spl = splhigh();
 
+    _vmstats_inc(VMSTAT_TLB_INVALIDATE);
+    // invalidate TLB
 	for (i=0; i<NUM_TLB; i++) {
 		TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
 	}
@@ -125,8 +130,8 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 		 int readable, int writeable, int executable)
 {
 #if OPT_A3
+    u_int32_t flags = 0;
 	size_t npages; 
-
 	/* Align the region. First, the base... */
 	sz += vaddr & ~(vaddr_t)PAGE_FRAME;
 	vaddr &= PAGE_FRAME;
@@ -135,21 +140,22 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 	sz = (sz + PAGE_SIZE - 1) & PAGE_FRAME;
 
 	npages = sz / PAGE_SIZE;
-
-	/* We don't use these - all pages are read-write */
-	(void)readable;
-	(void)writeable;
-	(void)executable;
+    
+    if (readable)   flags |= AS_SEG_RD;
+    if (writeable)  flags |= AS_SEG_WR;
+    if (executable) flags |= AS_SEG_EX;
 
 	if (as->as_vbase1 == 0) {
 		as->as_vbase1 = vaddr;
 		as->as_npages1 = npages;
+        as->as_flags1 = flags;
 		return 0;
 	}
 
 	if (as->as_vbase2 == 0) {
 		as->as_vbase2 = vaddr;
 		as->as_npages2 = npages;
+        as->as_flags2 = flags;
 		return 0;
 	}
 
@@ -157,6 +163,7 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 	 * Support for more than two regions is not available.
 	 */
 	kprintf("dumbvm: Warning: too many regions\n");
+
 #else
 	(void)as;
 	(void)vaddr;
@@ -222,3 +229,28 @@ as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 	return 0;
 }
 
+#if OPT_A3
+int isWriteable(struct addrspace *as, vaddr_t vaddr) {
+    vaddr_t vbase1, vtop1, vbase2, vtop2;
+    u_int32_t flags;
+
+	vbase1 = as->as_vbase1;
+	vtop1 = vbase1 + as->as_npages1 * PAGE_SIZE;
+	vbase2 = as->as_vbase2;
+	vtop2 = vbase2 + as->as_npages2 * PAGE_SIZE;
+
+    if (vaddr >= vbase1 && vaddr < vtop1)
+        flags = as->as_flags1;
+    else if (vaddr >= vbase2 && vaddr < vtop2)
+        flags = as->as_flags2;
+    else
+        return 1;
+
+    return 1;
+
+    if (flags & AS_SEG_WR)
+        return 1;
+
+    return 0;
+}
+#endif // OPT_A3

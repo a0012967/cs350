@@ -1,0 +1,219 @@
+RUNNING ./run-batch-A3-option1 : Version 1.0
+---------------------------------------------------------------
+***************  RUNNING [test-vm-big-fork] TESTS  ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix1-fork
+PaCrheinltd  ppiidd  == 1 calling do_work
+ C2h eccakling uninitialized array1 pid = 1
+ling do_work
+Checking uninitialized array1 pid = 2
+Checking uniniChecking uninititialized array2 pid = 1
+alized array2 pid = 2
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user moddumbvm: Ran out of TLB entries - cannot handle page fault
+e trap 2 (TLB miss on load, epc 0x43fff8, vaddr 0x440000)
+Fatal user mode trap 2 (TLB miss on load, epc 0x457ff8, vaddr 0x458000)
+Operation took 5.952557017 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 151286930 cycles (142250596 run, 9036334 global-idle)
+sys161:   cpu0: 129824770 kern, 12425826 user, 0 idle)
+sys161: 1653 irqs 3984 exns 0r/0w disk 0r/1156w console 38r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 6.638108 seconds (22.7907 mhz)
+sys161: Elapsed virtual time: 6.051477217 seconds (25 mhz)
+-----------
+
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix1-fork
+ParCehnitl dp ipdi d = 2 calling do_work
+=C h1e ccking uninitialized array1 pid = 2
+alling do_work
+Checking uninitialized array1 pid = 1
+Checking unCihneictkiianlgi zuendi nairtrialized array2 pid = 1
+ay2 pid = 2
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user moddumbvm: Ran out of TLB entries - cannot handle page fault
+e trap 2 (TLB miss on load, epc 0x453ff8, vaddr 0x454000)
+Fatal user mode trap 2 (TLB miss on load, epc 0x458ff8, vaddr 0x459000)
+Operation took 5.952099617 seconds
+OS/161 kernel:  p uw-testbin/vm-mix1-fork
+Running program uw-testbin/vm-mix1-fork failed: Out of memory
+Operation took 0.995924760 seconds
+OS/161 kernel:  p uw-testbin/vm-mix1-fork 
+Running program uw-testbin/vm-mix1-fork failed: Out of memory
+Operation took 0.997962640 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 201614725 cycles (144080228 run, 57534497 global-idle)
+sys161:   cpu0: 131612505 kern, 12467723 user, 0 idle)
+sys161: 2144 irqs 4075 exns 0r/0w disk 0r/1435w console 46r/0w/7m emufs 0r/0w net
+sys161: Elapsed real time: 8.057878 seconds (25.0208 mhz)
+sys161: Elapsed virtual time: 8.064589017 seconds (25 mhz)
+-----------
+
+---------------------------------------------------------------
+***************  RUNNING [test-vm-big-fork-exec] TESTS  ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/parallelvm
+Job size approximately 58800 bytes
+Forking 24 jobs; total load 1378k
+Process 0 (pid 2) starting computation...
+Process 1 (pid 3) starting computation...
+Process 2 (pid 4) starting computation...
+Process 3 (pid 5) starting computation...
+Process 4 (pid 6) starting computation...
+Process 5 (pid 7) starting computation...
+Process 6 (pid 8) starting computation...
+Process 7 (pid 9) starting computation...
+Process 8 (pid 10) starting computation...
+Process 9 (pid 11) starting computation...
+Process 10 (pid 12) starting computation...
+Process 11 (pid 13) starting computation...
+Process 12 (pid 14) starting computation...
+Process 13 (pid 15) starting computation...
+Process 0 answer -1337312809: passed
+Process 14 (pid 16) starting computation...
+Process 1 answer 356204544: passed
+Process 15 (pid 17) starting computation...
+Process 2 answer -537881911: passed
+Process 16 (pid 18) starting computation...
+Process 3 answer -65406976: passed
+Process 17 (pid 19) starting computation...
+Process 4 answer 1952063315: passed
+Process 18 (pid 20) starting computation...
+Process 19 (pid 21) starting computation...
+Process 5 answer -843894784: passed
+Process 20 (pid 22) starting computation...
+Process 6 answer 1597000869: passed
+Process 21 (pid 23) starting computation...
+Process 7 answer -993925120: passed
+Process 22 (pid 24) starting computation...
+Process 8 answer 838840559: passed
+Process 23 (pid 25) starting computation...
+Process 9 answer -1616928768: passed
+Process 10 answer -182386335: passed
+Process 11 answer -364554240: passed
+Process 12 answer 251084843: passed
+Process 13 answer -61403136: passed
+Process 14 answer 295326333: passed
+Process 15 answer 1488013312: passed
+Process 16 answer 1901440647: passed
+Process 17 answer 0: passed
+Process 18 answer -1901440647: passed
+Process 19 answer -1488013312: passed
+Process 20 answer -295326333: passed
+Process 21 answer 61403136: passed
+Process 22 answer -251084843: passed
+Process 23 answer 364554240: passed
+Test complete
+Operation took 13.991872880 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 352256223 cycles (328032916 run, 24223307 global-idle)
+sys161:   cpu0: 43902414 kern, 284130502 user, 0 idle)
+sys161: 4091 irqs 9841 exns 0r/0w disk 0r/2709w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 16.153606 seconds (21.8067 mhz)
+sys161: Elapsed virtual time: 14.090248920 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/triplesort
+testbin/triplesort: Starting: running three copies of /testbin/sort...
+/testbin/sort: Passed.
+/testbin/sort: Passed.
+/testbin/sort: Passed.
+testbin/triplesort: Congratulations! You passed.
+Operation took 16.002936217 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 402530110 cycles (375199724 run, 27330386 global-idle)
+sys161:   cpu0: 130322339 kern, 244877385 user, 0 idle)
+sys161: 2484 irqs 16825 exns 0r/0w disk 0r/867w console 35r/0w/9m emufs 0r/0w net
+sys161: Elapsed real time: 17.673695 seconds (22.7757 mhz)
+sys161: Elapsed virtual time: 16.101204417 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/triplemat
+testbin/triplemat: Starting: running three copies of /testbin/matmult...
+matmult finished.
+answer is: 8772192 (should be 8772192)
+Passed.
+matmult finimsahtemdu.l
+ta nfsiwneirs hiesd:. 
+8a7n7s2w1e9r2  i(ss:h o8u7l7d2192 (should be 8772192)
+ Pbaes s8e7d7.2
+192)
+Passed.
+testbin/triplemat: Congratulations! You passed.
+Operation took 6.958491177 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 176414748 cycles (167432413 run, 8982335 global-idle)
+sys161:   cpu0: 147717164 kern, 19715249 user, 0 idle)
+sys161: 1713 irqs 5113 exns 0r/0w disk 0r/998w console 32r/0w/9m emufs 0r/0w net
+sys161: Elapsed real time: 7.859390 seconds (22.4464 mhz)
+sys161: Elapsed virtual time: 7.056589937 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/triplehuge
+testbin/triplehuge: Starting: running three copies of /testbin/huge...
+sleep: Dropping thread <boot/menu>
+sleep: Dropping thread testbin/triplehuge
+sleep: Dropping thread child_thread
+scheduler: Dropping thread child_thread.
+panic: Assertion failed: as->as_pbase2 != 0, at ../../arch/mips/mips/vm.c:74 (vm_fault)
+sys161: 6806127 cycles (4449532 run, 2356595 global-idle)
+sys161:   cpu0: 4447044 kern, 2488 user, 0 idle)
+sys161: 697 irqs 83 exns 0r/0w disk 0r/897w console 15r/0w/7m emufs 0r/0w net
+sys161: Elapsed real time: 0.325198 seconds (20.9292 mhz)
+sys161: Elapsed virtual time: 0.272245080 seconds (25 mhz)
+-----------
+
+---------------------------------------------------------------
+***************  RUNNING [test-vm-big-fork-paging] TESTS  ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix1-fork
+Running program uw-testbin/vm-mix1-fork failed: Out of memory
+Operation took 0.931446937 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25754804 cycles (2942243 run, 22812561 global-idle)
+sys161:   cpu0: 2942243 kern, 0 user, 0 idle)
+sys161: 818 irqs 0 exns 0r/0w disk 0r/739w console 4r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.033561 seconds (24.9185 mhz)
+sys161: Elapsed virtual time: 1.030192177 seconds (25 mhz)
+-----------
+

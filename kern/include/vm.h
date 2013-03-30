@@ -20,6 +20,11 @@
 /* Initialization function */
 void vm_bootstrap(void);
 
+
+/* Prints the vm stats. Gets called before kernel exits */
+void vm_shutdown(void);
+
+
 /* Fault handling function called by trap code */
 int vm_fault(int faulttype, vaddr_t faultaddress);
 
