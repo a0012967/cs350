@@ -7,6 +7,7 @@
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
+#include <coremap.h>
 #include "opt-A3.h"
 
 #if OPT_A3
@@ -15,19 +16,8 @@
 void
 vm_bootstrap(void)
 {
-	/* Do nothing. */
-}
-
-paddr_t getppages(unsigned long npages) {
-	int spl;
-	paddr_t addr;
-
-	spl = splhigh();
-
-	addr = ram_stealmem(npages);
-	
-	splx(spl);
-	return addr;
+    coremap_bootstrap();
+	// Do nothing. 
 }
 
 static int tlb_get_rr_victim() {
@@ -159,9 +149,8 @@ alloc_kpages(int npages)
 void 
 free_kpages(vaddr_t addr)
 {
-	/* nothing */
-
-	(void)addr;
+    // convert vaddr to paddr
+    ungetppages((addr - MIPS_KSEG0));
 }
 
 #endif // OPT_A3

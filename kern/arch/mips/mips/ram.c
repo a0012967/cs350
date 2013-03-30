@@ -2,6 +2,7 @@
 #include <lib.h>
 #include <vm.h>
 #include <machine/pcb.h>  /* for mips_ramsize */
+#include "opt-A3.h"
 
 u_int32_t firstfree;   /* first free virtual address; set by start.S */
 
@@ -86,5 +87,8 @@ ram_getsize(u_int32_t *lo, u_int32_t *hi)
 {
 	*lo = firstpaddr;
 	*hi = lastpaddr;
-	firstpaddr = lastpaddr = 0;
+	#if OPT_A3
+	#else
+	    firstpaddr = lastpaddr = 0;
+    #endif //OPT_A3
 }
