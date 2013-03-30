@@ -3,6 +3,7 @@
 
 #include <vm.h>
 #include "opt-dumbvm.h"
+#include "opt-A3.h"
 
 struct vnode;
 
@@ -12,6 +13,8 @@ struct vnode;
  *
  * You write this.
  */
+
+struct array;
 
 struct addrspace {
 #if OPT_DUMBVM
@@ -26,9 +29,11 @@ struct addrspace {
 	vaddr_t as_vbase1;
 	paddr_t as_pbase1;
 	size_t as_npages1;
+    u_int32_t as_flags1;
 	vaddr_t as_vbase2;
 	paddr_t as_pbase2;
 	size_t as_npages2;
+    u_int32_t as_flags2;
 	paddr_t as_stackpbase;
 #endif
 };
@@ -80,6 +85,16 @@ int               as_define_region(struct addrspace *as,
 int		  as_prepare_load(struct addrspace *as);
 int		  as_complete_load(struct addrspace *as);
 int               as_define_stack(struct addrspace *as, vaddr_t *initstackptr);
+
+
+
+#if OPT_A3
+#define AS_SEG_RD 0x1 // readable
+#define AS_SEG_WR 0x2 // writable
+#define AS_SEG_EX 0x4 // executable
+int isWriteable(struct addrspace *as, vaddr_t vaddr);
+#endif // OPT_A3
+
 
 /*
  * Functions in loadelf.c

@@ -88,10 +88,10 @@ int runprogram(char *progname)
         vaddr_t stackptr_tracker;
         vaddr_t kernel_source;
         size_t argc_size = sizeof(int);
-        
+
         // set argument array to be null terminated
         argv[argc] = NULL;
-        
+
         // - find the offset from the argument pointer for each argument
         // - the offsets are aligned by 4, since that is the size of 
         //   each char pointer
@@ -104,40 +104,40 @@ int runprogram(char *progname)
                 (4 - strlen(argv[i-1])%4) + strlen(argv[i-1]);
             stack_offset += arg_pointer_offset[i] - prev_offset;
         }
-        
+
         // since the stack offset at the moment only contains the total number
         // of characters in the argument strings, we need to add the argument 
         // pointers, the argv null terminator, and argc to the stack offset
         stack_offset += (argc+1)*sizeof(char*) + argc_size;
-        
+
         // move the stack pointer to the offseted location, then use the 
         // stack pointer tracker to copy the stack from bottom up
         stackptr -= stack_offset;
         stackptr_tracker = stackptr;
-        
+
         // copy the number of arguments to user space
         copyout(&argc, (userptr_t)stackptr_tracker, (size_t)argc_size);
         stackptr_tracker += argc_size;
-        
+
         // copy all the argument pointers to user space
         for (i = 0; i < argc; i++) {
             kernel_source = stackptr + arg_pointer_offset[i] + argc_size;
             copyout(&kernel_source, (userptr_t)stackptr_tracker, sizeof(char*));
             stackptr_tracker += sizeof(char*);
         }
-        
+
         // account for the null terminated argv
         stackptr_tracker += sizeof(char*);
-        
+
         // copy all the argument strings to user space
         for (i = 0; i< argc; i++) {
             copyout(argv[i], (userptr_t)stackptr_tracker, strlen(argv[i]));
             stackptr_tracker += strlen(argv[i]) + ( 4 - strlen(argv[i]) % 4);
         }
-        
+
         // free what we used
         kfree(arg_pointer_offset);
-        
+
         // warp to user mode
         md_usermode(argc, (userptr_t)(stackptr +4), stackptr, entrypoint);
     #else
