@@ -129,6 +129,9 @@ shutdown(void)
 
 	scheduler_shutdown();
 	thread_shutdown();
+    #if OPT_A3
+    vm_shutdown();
+    #endif /* OPT_A3 */
 }
 
 /*****************************************/
