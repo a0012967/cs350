@@ -3,6 +3,7 @@
 #include <kern/errno.h>
 #include <thread.h>
 #include <curthread.h>
+#include <process.h>
 #include <vm.h>
 #include <addrspace.h>
 #include <machine/spl.h>
@@ -52,6 +53,12 @@ static int tlb_get_rr_victim() {
     return victim;
 }
 
+/*
+static u_int32_t notdirtiable(u_int32_t x) {
+    return x & (0xffffff - TLBLO_DIRTY);
+}
+*/
+
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
@@ -68,12 +75,12 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 
 	faultaddress &= PAGE_FRAME;
 
-	DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
+	// DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
 
 	switch (faulttype) {
 	    case VM_FAULT_READONLY:
-		/* We always create pages read-write, so we can't get this */
-		panic("dumbvm: got VM_FAULT_READONLY\n");
+            splx(spl);
+            kill_process(-1);
 	    case VM_FAULT_READ:
 	    case VM_FAULT_WRITE:
 		break;
@@ -136,28 +143,37 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 			continue;
 		}
 		ehi = faultaddress;
-		elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
-		DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
+
+        if (isWriteable(as, faultaddress)) {
+            elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+        }
+        else {
+            elo = (paddr & (~TLBLO_DIRTY)) | TLBLO_VALID;
+        }
+
+		// DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
 		TLB_Write(ehi, elo, i);
 		splx(spl);
 		return 0;
 	}
 
+    assert(0);
 
-    // TODO: more comment
     // evict the victim
     int victim = tlb_get_rr_victim();
     ehi = faultaddress;
-    elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+    if (isWriteable(as, faultaddress)) {
+        elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+        kprintf("writeable\n");
+    }
+    else {
+        elo = (paddr & (~TLBLO_DIRTY)) | TLBLO_VALID;
+        kprintf("not writeable\n");
+    }
     DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
     TLB_Write(ehi, elo, victim);
     splx(spl);
     return 0;
-
-
-	// kprintf("dumbvm: Ran out of TLB entries - cannot handle page fault\n");
-	splx(spl);
-	return EFAULT;
 }
 
 /* Allocate/free some kernel-space virtual pages */
