@@ -1,0 +1,507 @@
+RUNNING ./run-batch-A3 : Version 1.0
+---------------------------------------------------------------
+************** RUNNING [test-vm-basic] TESTS ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-stack1
+SUCCEEDED
+Operation took 0.931731137 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25757055 cycles (2897497 run, 22859558 global-idle)
+sys161:   cpu0: 2795780 kern, 101717 user, 0 idle)
+sys161: 771 irqs 27 exns 0r/0w disk 0r/685w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 0.967354 seconds (26.6263 mhz)
+sys161: Elapsed virtual time: 1.030282217 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-stack2
+SUCCEEDED
+Operation took 0.931794657 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25755593 cycles (4159117 run, 21596476 global-idle)
+sys161:   cpu0: 3900269 kern, 258848 user, 0 idle)
+sys161: 770 irqs 61 exns 0r/0w disk 0r/685w console 9r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.023697 seconds (25.1594 mhz)
+sys161: Elapsed virtual time: 1.030223737 seconds (25 mhz)
+-----------
+
+---------------------------------------------------------------
+************** RUNNING [test-vm-replace] TESTS ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data1
+SUCCEEDED
+Operation took 0.927545280 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25645108 cycles (22545626 run, 3099482 global-idle)
+sys161:   cpu0: 19005665 kern, 3539961 user, 0 idle)
+sys161: 768 irqs 888 exns 0r/0w disk 0r/684w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.140070 seconds (22.4943 mhz)
+sys161: Elapsed virtual time: 1.025804320 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data2
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 3 (TLB miss on store, epc 0x400070, vaddr 0x1007a010)
+Operation took 9.974155800 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 251812531 cycles (249827079 run, 1985452 global-idle)
+sys161:   cpu0: 249826206 kern, 873 user, 0 idle)
+sys161: 1733 irqs 3153 exns 0r/0w disk 0r/806w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 11.702173 seconds (21.5184 mhz)
+sys161: Elapsed virtual time: 10.072501240 seconds (25 mhz)
+-----------
+
+---------------------------------------------------------------
+************** RUNNING [test-vm-crash] TESTS ******************
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-crash1
+IF THIS PRINTS THE TEST FAILED
+Operation took 0.931933857 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25761016 cycles (2885930 run, 22875086 global-idle)
+sys161:   cpu0: 2885015 kern, 915 user, 0 idle)
+sys161: 792 irqs 39 exns 0r/0w disk 0r/706w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.033401 seconds (24.9284 mhz)
+sys161: Elapsed virtual time: 1.030440657 seconds (25 mhz)
+-----------------------------------------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-crash2
+IF THIS PRINTS THE TEST FAILED
+Operation took 0.931337337 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25742677 cycles (2954282 run, 22788395 global-idle)
+sys161:   cpu0: 2928352 kern, 25930 user, 0 idle)
+sys161: 790 irqs 43 exns 0r/0w disk 0r/706w console 9r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.032918 seconds (24.9223 mhz)
+sys161: Elapsed virtual time: 1.029707097 seconds (25 mhz)
+-----------------------------------------
+
+---------------------------------------------------------------
+************** RUNNING [test-vm-big-no-fork] TESTS ******************
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/sort
+testbin/sort: Passed.
+Operation took 5.954304280 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 151289583 cycles (126009513 run, 25280070 global-idle)
+sys161:   cpu0: 44385053 kern, 81624460 user, 0 idle)
+sys161: 1272 irqs 5585 exns 0r/0w disk 0r/689w console 9r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 6.113838 seconds (24.7454 mhz)
+sys161: Elapsed virtual time: 6.051583320 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/matmult
+matmult finished.
+answer is: 8772192 (should be 8772192)
+Passed.
+Operation took 2.940316057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 75954371 cycles (56628684 run, 19325687 global-idle)
+sys161:   cpu0: 50058295 kern, 6570389 user, 0 idle)
+sys161: 1023 irqs 1606 exns 0r/0w disk 0r/737w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 3.041445 seconds (24.9731 mhz)
+sys161: Elapsed virtual time: 3.038174857 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/huge
+Running program testbin/huge failed: Out of memory
+Operation took 0.932653137 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25752408 cycles (2850588 run, 22901820 global-idle)
+sys161:   cpu0: 2850588 kern, 0 user, 0 idle)
+sys161: 797 irqs 0 exns 0r/0w disk 0r/717w console 4r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.032680 seconds (24.9375 mhz)
+sys161: Elapsed virtual time: 1.030096337 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x43fff8, vaddr 0x440000)
+Operation took 1.935983657 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 50860984 cycles (22584650 run, 28276334 global-idle)
+sys161:   cpu0: 22456992 kern, 127658 user, 0 idle)
+sys161: 960 irqs 380 exns 0r/0w disk 0r/803w console 37r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 2.037707 seconds (24.9599 mhz)
+sys161: Elapsed virtual time: 2.034439377 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-crash3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x443ff8, vaddr 0x444000)
+Operation took 1.935907857 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 50858736 cycles (22599017 run, 28259719 global-idle)
+sys161:   cpu0: 22463340 kern, 135677 user, 0 idle)
+sys161: 960 irqs 386 exns 0r/0w disk 0r/804w console 37r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 2.028134 seconds (25.0766 mhz)
+sys161: Elapsed virtual time: 2.034349457 seconds (25 mhz)
+-----------------------------------------
+
+---------------------------------------------------------------
+************** RUNNING [test-vm-consecutive] TESTS ******************
+Test vm-consecutive
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data1
+SUCCEEDED
+Operation took 0.928193857 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+SUCCEEDED
+Operation took 0.995843440 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+SUCCEEDED
+Operation took 0.995610120 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000478800 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 0.998945880 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000204680 seconds
+OS/161 kernel:   p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 0.998593040 seconds
+OS/161 kernel:   p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000708680 seconds
+OS/161 kernel:   p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 0.998759840 seconds
+OS/161 kernel:   p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000182240 seconds
+OS/161 kernel:   p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000233120 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000154200 seconds
+OS/161 kernel:  q
+Shutting down.
+The system is halted.
+sys161: 302970844 cycles (70115118 run, 232855726 global-idle)
+sys161:   cpu0: 59495231 kern, 10619887 user, 0 idle)
+sys161: 3291 irqs 2663 exns 0r/0w disk 0r/2037w console 60r/0w/25m emufs 0r/0w net
+sys161: Elapsed real time: 12.112279 seconds (25.0135 mhz)
+sys161: Elapsed virtual time: 12.118833777 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 0.931888497 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 1.000448200 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 1.000150080 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 1.000198440 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 1.000319600 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 1.000783840 seconds
+OS/161 kernel:  q
+Shutting down.
+The system is halted.
+sys161: 151964217 cycles (6674312 run, 145289905 global-idle)
+sys161:   cpu0: 6674312 kern, 0 user, 0 idle)
+sys161: 1997 irqs 0 exns 0r/0w disk 0r/1387w console 24r/0w/13m emufs 0r/0w net
+sys161: Elapsed real time: 6.082122 seconds (24.9854 mhz)
+sys161: Elapsed virtual time: 6.078568697 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x442ff8, vaddr 0x443000)
+Operation took 1.936902377 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x466ff8, vaddr 0x467000)
+Operation took 2.004275480 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x472ff8, vaddr 0x473000)
+Operation took 2.005634440 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x463ff8, vaddr 0x464000)
+Operation took 2.004160800 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x46cff8, vaddr 0x46d000)
+Operation took 2.004905560 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x46aff8, vaddr 0x46b000)
+Operation took 2.005786160 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 2 (TLB miss on load, epc 0x460ff8, vaddr 0x461000)
+Operation took 2.004959800 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 0.999681920 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000172760 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000083440 seconds
+OS/161 kernel:  p uw-testbin/vm-stack1
+SUCCEEDED
+Operation took 1.000634920 seconds
+OS/161 kernel:  p uw-testbin/vm-stack2
+SUCCEEDED
+Operation took 0.999759480 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 1.000792360 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+thread_fork failed: Out of memory
+Operation took 0.004394840 seconds
+Menu command failed: Out of memory
+panic: Failure processing kernel arguments
+sys161: 504813361 cycles (152233514 run, 352579847 global-idle)
+sys161:   cpu0: 150479809 kern, 1753705 user, 0 idle)
+sys161: 4709 irqs 3053 exns 0r/0w disk 0r/2846w console 292r/0w/27m emufs 0r/0w net
+sys161: Elapsed real time: 20.188188 seconds (25.0054 mhz)
+sys161: Elapsed virtual time: 20.192534457 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-data2
+dumbvm: Ran out of TLB entries - cannot handle page fault
+Fatal user mode trap 3 (TLB miss on store, epc 0x400070, vaddr 0x10072010)
+Operation took 9.973512017 seconds
+OS/161 kernel:  p uw-testbin/vm-data2
+Running program uw-testbin/vm-data2 failed: Out of memory
+Operation took 0.995520520 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+SUCCEEDED
+Operation took 0.995614280 seconds
+OS/161 kernel:  p uw-testbin/vm-data1
+Running program uw-testbin/vm-data1 failed: Out of memory
+Operation took 0.998698760 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000170280 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000926200 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000469360 seconds
+OS/161 kernel:  p uw-testbin/vm-data3
+Running program uw-testbin/vm-data3 failed: Out of memory
+Operation took 1.000651280 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 428218608 cycles (274718858 run, 153499750 global-idle)
+sys161:   cpu0: 271178079 kern, 3540779 user, 0 idle)
+sys161: 3348 irqs 4034 exns 0r/0w disk 0r/1676w console 40r/0w/17m emufs 0r/0w net
+sys161: Elapsed real time: 17.131504 seconds (24.996 mhz)
+sys161: Elapsed virtual time: 17.128744337 seconds (25 mhz)
+-----------------------------------------
+
+---------------------------------------------------------------
+************** RUNNING [test-vm-paging] TESTS ******************
+-----------------------------------------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix1
+Running program uw-testbin/vm-mix1 failed: Out of memory
+Operation took 0.931544057 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25742262 cycles (2903260 run, 22839002 global-idle)
+sys161:   cpu0: 2903260 kern, 0 user, 0 idle)
+sys161: 809 irqs 0 exns 0r/0w disk 0r/729w console 4r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.022408 seconds (25.1781 mhz)
+sys161: Elapsed virtual time: 1.029690497 seconds (25 mhz)
+-----------------------------------------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix2
+Running program uw-testbin/vm-mix2 failed: Out of memory
+Operation took 0.931692257 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25746433 cycles (2903521 run, 22842912 global-idle)
+sys161:   cpu0: 2903521 kern, 0 user, 0 idle)
+sys161: 810 irqs 0 exns 0r/0w disk 0r/729w console 4r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.023202 seconds (25.1626 mhz)
+sys161: Elapsed virtual time: 1.029857337 seconds (25 mhz)
+-----------------------------------------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/sort
+testbin/sort: Passed.
+Operation took 5.953841417 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 151282300 cycles (126024624 run, 25257676 global-idle)
+sys161:   cpu0: 44400161 kern, 81624463 user, 0 idle)
+sys161: 1275 irqs 5593 exns 0r/0w disk 0r/689w console 9r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 6.044651 seconds (25.0275 mhz)
+sys161: Elapsed virtual time: 6.051292017 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/matmult
+matmult finished.
+answer is: 8772192 (should be 8772192)
+Passed.
+Operation took 2.939772377 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 75936475 cycles (56629233 run, 19307242 global-idle)
+sys161:   cpu0: 50058841 kern, 6570392 user, 0 idle)
+sys161: 1020 irqs 1608 exns 0r/0w disk 0r/737w console 8r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 3.030684 seconds (25.0559 mhz)
+sys161: Elapsed virtual time: 3.037459017 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p testbin/huge
+Running program testbin/huge failed: Out of memory
+Operation took 0.933088977 seconds
+OS/161 kernel: q
+Shutting down.
+The system is halted.
+sys161: 25760174 cycles (2851317 run, 22908857 global-idle)
+sys161:   cpu0: 2851317 kern, 0 user, 0 idle)
+sys161: 795 irqs 0 exns 0r/0w disk 0r/717w console 4r/0w/3m emufs 0r/0w net
+sys161: Elapsed real time: 1.033965 seconds (24.914 mhz)
+sys161: Elapsed virtual time: 1.030406977 seconds (25 mhz)
+-----------
+
+
+Put-your-group-name-here's system version 0 (ASST3 #5)
+
+
+OS/161 kernel: p uw-testbin/vm-mix1
+Running program uw-testbin/vm-mix1 failed: Out of memory
+Operation took 0.932306697 seconds
+OS/161 kernel:  p uw-testbin/vm-mix1
+Running program uw-testbin/vm-mix1 failed: Out of memory
+Operation took 1.000193240 seconds
+OS/161 kernel:  p uw-testbin/vm-mix1
+Running program uw-testbin/vm-mix1 failed: Out of memory
+Operation took 1.000634640 seconds
+OS/161 kernel:  q
+Shutting down.
+The system is halted.
+sys161: 76245743 cycles (4391988 run, 71853755 global-idle)
+sys161:   cpu0: 4391988 kern, 0 user, 0 idle)
+sys161: 1282 irqs 0 exns 0r/0w disk 0r/988w console 12r/0w/7m emufs 0r/0w net
+sys161: Elapsed real time: 3.053395 seconds (24.9708 mhz)
+sys161: Elapsed virtual time: 3.049829737 seconds (25 mhz)
+-----------
+

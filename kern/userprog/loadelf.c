@@ -32,6 +32,11 @@
  * change this code to not use uiomove, be sure to check for this case
  * explicitly.
  */
+
+
+#define RODATABOTTOM (0x00400000)
+#define RODATATOP (0x00401a0c)
+
 static
 int
 load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, 
@@ -174,12 +179,19 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 				ph.p_type);
 			return ENOEXEC;
 		}
-
+    if (ph.p_vaddr >= RODATABOTTOM && ph.p_vaddr <= RODATATOP){
 		result = as_define_region(curthread->t_vmspace,
 					  ph.p_vaddr, ph.p_memsz,
 					  ph.p_flags & PF_R,
-					  ph.p_flags & PF_W,
-					  ph.p_flags & PF_X);
+	                  0,
+    				  ph.p_flags & PF_X);
+    }else {
+        result = as_define_region(curthread->t_vmspace,
+                        ph.p_vaddr, ph.p_memsz,
+                        ph.p_flags & PF_R,
+                        ph.p_flags & PF_W,
+                        ph.p_flags & PF_X);
+     }
 		if (result) {
 			return result;
 		}

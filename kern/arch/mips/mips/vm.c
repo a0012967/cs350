@@ -8,14 +8,20 @@
 #include <machine/spl.h>
 #include <machine/tlb.h>
 #include "opt-A3.h"
-
+#include "uw-vmstats.h"
 #if OPT_A3
 #define VM_STACKPAGES    12
 
 void
 vm_bootstrap(void)
 {
-	/* Do nothing. */
+    vmstats_init();
+}
+
+
+void
+vm_shutdown(void){
+    _vmstats_print();
 }
 
 paddr_t getppages(unsigned long npages) {
@@ -34,13 +40,23 @@ static int tlb_get_rr_victim() {
     int victim;
     static unsigned int next_victim = 0;
     victim = next_victim;
+
+    if (victim < NUM_TLB) {
+        _vmstats_inc(VMSTAT_TLB_FAULT_FREE);
+    } else {
+        _vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
+    }
+
     next_victim = (next_victim + 1) % NUM_TLB;
+    
     return victim;
 }
 
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
+    _vmstats_inc(VMSTAT_TLB_FAULT);
+
 	vaddr_t vbase1, vtop1, vbase2, vtop2, stackbase, stacktop;
 	paddr_t paddr;
 	int i;

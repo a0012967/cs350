@@ -100,6 +100,8 @@ as_activate(struct addrspace *as)
 
 	spl = splhigh();
 
+    _vmstats_inc(VMSTAT_TLB_INVALIDATE);
+    // invalidate TLB
 	for (i=0; i<NUM_TLB; i++) {
 		TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
 	}
@@ -126,7 +128,6 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 {
 #if OPT_A3
 	size_t npages; 
-
 	/* Align the region. First, the base... */
 	sz += vaddr & ~(vaddr_t)PAGE_FRAME;
 	vaddr &= PAGE_FRAME;
@@ -135,11 +136,8 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 	sz = (sz + PAGE_SIZE - 1) & PAGE_FRAME;
 
 	npages = sz / PAGE_SIZE;
-
-	/* We don't use these - all pages are read-write */
-	(void)readable;
-	(void)writeable;
-	(void)executable;
+    
+    
 
 	if (as->as_vbase1 == 0) {
 		as->as_vbase1 = vaddr;
