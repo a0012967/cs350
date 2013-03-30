@@ -146,7 +146,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		return 0;
 	}
 
-    assert(0);
+    //assert(0);
 
     // evict the victim
     int victim = tlb_get_rr_victim();
