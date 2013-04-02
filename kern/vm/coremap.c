@@ -21,23 +21,23 @@ static struct coremap_entry ** cm;
 void coremap_bootstrap() {
     int i = 0;
     struct coremap_entry *cm_entry;
-    
+
     // figure out how much RAM we have to work with
     ram_getsize(&firstaddr, &lastaddr);
     cm_size = (lastaddr - firstaddr) / PAGE_SIZE;
 
-    // create core map    
+    // create core map
     cm = kmalloc(sizeof (struct coremap_entry*) * cm_size);
     if (cm == NULL) {
-        panic("Coremap could not be allocated");
+        panic("Coremap could not be allocated\n");
         return;
     }
-    
+
     // instantiate all possible entries on the coremap
     for (i = 0; i < cm_size; i++) {
         cm_entry = kmalloc(sizeof ( struct coremap_entry ));
         if (cm_entry == NULL) {
-            panic("Coremap entry could not be allocated");
+            panic("Coremap entry could not be allocated\n");
             return;
         }
         cm_entry->size = 0;
@@ -45,10 +45,10 @@ void coremap_bootstrap() {
         cm_entry->paddr = (PAGE_SIZE * i) + firstaddr;
         cm[i] = cm_entry;
     }
-    
+
     // update our addresses to figure out 
     ram_getsize(&freeaddr, &lastaddr);
-    
+
     // make all phys addr before our free addr fixed so that 
     // structures needed for the OS are ensured not to be removed
     for (i = 0; i < cm_size; i++) {
@@ -58,7 +58,7 @@ void coremap_bootstrap() {
         cm[i]->size = -1;
         cm[i]->use = 1;
     }
-    
+
     cm_bootstrapped = 1;
 }
 
@@ -67,7 +67,7 @@ paddr_t getppages(unsigned long npages) {
 	paddr_t addr;
 
 	spl = splhigh();
-    
+
     // do this only if the coremap hasnt been initialized yet
     // ======================================================
 	if (cm_bootstrapped == 0) {
@@ -76,12 +76,12 @@ paddr_t getppages(unsigned long npages) {
 	    return addr;
 	}
     // ======================================================
-    
+
     int cont_count = npages; // counts contiguous pages
     int cont_block_index; // index of the contiguous block
     int i = 0;
-    
-    
+
+
     // iterate through the coremap to find a contiguous block
     // to hold npages
     for (i = 0; i < cm_size; i++) {
@@ -104,7 +104,7 @@ paddr_t getppages(unsigned long npages) {
     addr = cm[cont_block_index]->paddr;
     cm[cont_block_index]->use = 1;
     cm[cont_block_index]->size = npages;
-    	
+
 	// set the "tail" of the block of pages to be in use
 	for (i = cont_block_index+1; i < cont_block_index + npages; i++) {
 	    cm[i]->use = 1;
@@ -115,21 +115,21 @@ paddr_t getppages(unsigned long npages) {
 	return addr;
 }
 
-
 void ungetppages(paddr_t paddr) {
     int spl;
     int i = 0;
-    
+
     spl = splhigh();
-    
+
     // calculate index of the addr
     int index = (paddr - firstaddr) / PAGE_SIZE;
-    
+
     // make the phys addr available on the coremap
     for (i = index + cm[index]->size -1; i >= index; i--) {
         cm[i]->use = 0;
         cm[i]->size = 0;
     }
- 
+
     splx(spl);
 }
+

@@ -10,6 +10,7 @@
 #include <array.h>
 #include "opt-A3.h"
 #include "uw-vmstats.h"
+
 /*
  * Note! If OPT_DUMBVM is set, as is the case until you start the VM
  * assignment, this file is not compiled or linked or in any way
@@ -140,7 +141,7 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 	sz = (sz + PAGE_SIZE - 1) & PAGE_FRAME;
 
 	npages = sz / PAGE_SIZE;
-    
+
     if (readable)   flags |= AS_SEG_RD;
     if (writeable)  flags |= AS_SEG_WR;
     if (executable) flags |= AS_SEG_EX;
@@ -254,3 +255,4 @@ int isWriteable(struct addrspace *as, vaddr_t vaddr) {
     return 0;
 }
 #endif // OPT_A3
+

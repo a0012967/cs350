@@ -33,10 +33,6 @@
  * explicitly.
  */
 
-
-#define RODATABOTTOM (0x00400000)
-#define RODATATOP (0x00401a0c)
-
 static
 int
 load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, 
@@ -170,30 +166,24 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 		}
 
 		switch (ph.p_type) {
-		    case PT_NULL: /* skip */ continue;
-		    case PT_PHDR: /* skip */ continue;
-		    case PT_MIPS_REGINFO: /* skip */ continue;
-		    case PT_LOAD: break;
-		    default:
-			kprintf("loadelf: unknown segment type %d\n", 
-				ph.p_type);
-			return ENOEXEC;
-		}
-    if (ph.p_vaddr >= RODATABOTTOM && ph.p_vaddr <= RODATATOP){
-		result = as_define_region(curthread->t_vmspace,
-					  ph.p_vaddr, ph.p_memsz,
-					  ph.p_flags & PF_R,
-	                  0,
-    				  ph.p_flags & PF_X);
-    }else {
+            case PT_NULL: /* skip */ continue;
+            case PT_PHDR: /* skip */ continue;
+            case PT_MIPS_REGINFO: /* skip */ continue;
+            case PT_LOAD: break;
+            default:
+                          kprintf("loadelf: unknown segment type %d\n", 
+                                  ph.p_type);
+                          return ENOEXEC;
+        }
+
         result = as_define_region(curthread->t_vmspace,
-                        ph.p_vaddr, ph.p_memsz,
-                        ph.p_flags & PF_R,
-                        ph.p_flags & PF_W,
-                        ph.p_flags & PF_X);
-     }
-		if (result) {
-			return result;
+                ph.p_vaddr, ph.p_memsz,
+                ph.p_flags & PF_R,
+                ph.p_flags & PF_W,
+                ph.p_flags & PF_X);
+
+        if (result) {
+            return result;
 		}
 	}
 
@@ -235,6 +225,7 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 		result = load_segment(v, ph.p_offset, ph.p_vaddr, 
 				      ph.p_memsz, ph.p_filesz,
 				      ph.p_flags & PF_X);
+
 		if (result) {
 			return result;
 		}

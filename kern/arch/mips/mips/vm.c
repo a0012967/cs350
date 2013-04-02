@@ -70,8 +70,8 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 	    case VM_FAULT_READONLY:
             splx(spl);
             kill_process(-1);
-	    case VM_FAULT_READ:
-	    case VM_FAULT_WRITE:
+	    case VM_FAULT_READ: // TLB miss on load
+	    case VM_FAULT_WRITE: // TLB miss on store
 		break;
 	    default:
 		splx(spl);

@@ -15,6 +15,10 @@ ARCH	kern/compile/ASST2/defs.mk	/^ARCH=mips$/;"	m
 ARCH	kern/compile/ASST3/defs.mk	/^ARCH=mips$/;"	m
 AS	defs.mk	/^AS=cs350-as$/;"	m
 ASST	a2-test-scripts/Makefile	/^ASST = -ASST2$/;"	m
+ASST	a3-test-scripts/Makefile	/^ASST = -ASST3$/;"	m
+AS_SEG_EX	kern/include/addrspace.h	/^#define AS_SEG_EX /;"	d
+AS_SEG_RD	kern/include/addrspace.h	/^#define AS_SEG_RD /;"	d
+AS_SEG_WR	kern/include/addrspace.h	/^#define AS_SEG_WR /;"	d
 AT	kern/arch/mips/include/asmdefs.h	/^#define AT /;"	d
 AT	kern/compile/ASST0/machine/asmdefs.h	/^#define AT /;"	d
 AT	kern/compile/ASST1/machine/asmdefs.h	/^#define AT /;"	d
@@ -103,6 +107,11 @@ BUF_SIZE	uw-testbin/conc-io/conc-io.c	/^#define BUF_SIZE /;"	d	file:
 BladeRunner	testbin/userthreads/userthreads.c	/^BladeRunner()$/;"	f
 C	testbin/matmult/matmult-orig.c	/^int C[Dim][Dim];$/;"	v
 C	testbin/matmult/matmult.c	/^int C[Dim][Dim];$/;"	v
+CALLFUNC	a3-test-scripts/vm-crash3/funcs.c	/^#define CALLFUNC(/;"	d	file:
+CALLFUNC	a3-test-scripts/vm-data3/funcs.c	/^#define CALLFUNC(/;"	d	file:
+CALLFUNC	a3-test-scripts/vm-mix1-fork/funcs.c	/^#define CALLFUNC(/;"	d	file:
+CALLFUNC	a3-test-scripts/vm-mix1/funcs.c	/^#define CALLFUNC(/;"	d	file:
+CALLFUNC	a3-test-scripts/vm-mix2/funcs.c	/^#define CALLFUNC(/;"	d	file:
 CALLFUNC	uw-testbin/common/funcs.c	/^#define CALLFUNC(/;"	d	file:
 CALLNO_H	lib/libc/Makefile	/^CALLNO_H=..\/..\/kern\/include\/kern\/callno.h$/;"	m
 CATEATINGTIME	kern/asst1/bowls.c	/^#define CATEATINGTIME /;"	d	file:
@@ -246,6 +255,9 @@ CTLREG_IRQS	kern/dev/lamebus/lamebus.c	/^#define CTLREG_IRQS /;"	d	file:
 CTLREG_PWR	kern/dev/lamebus/lamebus.c	/^#define CTLREG_PWR /;"	d	file:
 CTLREG_RAMSZ	kern/dev/lamebus/lamebus.c	/^#define CTLREG_RAMSZ /;"	d	file:
 CatMouseWait	kern/asst1/catmouse.c	/^struct semaphore *CatMouseWait;$/;"	v	typeref:struct:semaphore
+DATA_BYTES	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define DATA_BYTES /;"	d	file:
+DATA_BYTES	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define DATA_BYTES /;"	d	file:
+DATA_BYTES	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define DATA_BYTES /;"	d	file:
 DATA_BYTES	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define DATA_BYTES /;"	d	file:
 DATA_BYTES	uw-testbin/vm-mix1/vm-mix1.c	/^#define DATA_BYTES /;"	d	file:
 DATA_BYTES	uw-testbin/vm-mix2/vm-mix2.c	/^#define DATA_BYTES /;"	d	file:
@@ -309,12 +321,21 @@ EI_MAG3	kern/include/elf.h	/^#define	EI_MAG3	/;"	d
 EI_OSABI	kern/include/elf.h	/^#define	EI_OSABI	/;"	d
 EI_PAD	kern/include/elf.h	/^#define	EI_PAD	/;"	d
 EI_VERSION	kern/include/elf.h	/^#define	EI_VERSION	/;"	d
+ELEMS	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEMS /;"	d	file:
+ELEMS	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define ELEMS /;"	d	file:
+ELEMS	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define ELEMS /;"	d	file:
 ELEMS	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEMS /;"	d	file:
 ELEMS	uw-testbin/vm-mix1/vm-mix1.c	/^#define ELEMS /;"	d	file:
 ELEMS	uw-testbin/vm-mix2/vm-mix2.c	/^#define ELEMS /;"	d	file:
+ELEMS_PER_PAGE	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEMS_PER_PAGE /;"	d	file:
+ELEMS_PER_PAGE	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define ELEMS_PER_PAGE /;"	d	file:
+ELEMS_PER_PAGE	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define ELEMS_PER_PAGE /;"	d	file:
 ELEMS_PER_PAGE	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEMS_PER_PAGE /;"	d	file:
 ELEMS_PER_PAGE	uw-testbin/vm-mix1/vm-mix1.c	/^#define ELEMS_PER_PAGE /;"	d	file:
 ELEMS_PER_PAGE	uw-testbin/vm-mix2/vm-mix2.c	/^#define ELEMS_PER_PAGE /;"	d	file:
+ELEM_SIZE	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEM_SIZE /;"	d	file:
+ELEM_SIZE	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define ELEM_SIZE /;"	d	file:
+ELEM_SIZE	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define ELEM_SIZE /;"	d	file:
 ELEM_SIZE	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define ELEM_SIZE /;"	d	file:
 ELEM_SIZE	uw-testbin/vm-mix1/vm-mix1.c	/^#define ELEM_SIZE /;"	d	file:
 ELEM_SIZE	uw-testbin/vm-mix2/vm-mix2.c	/^#define ELEM_SIZE /;"	d	file:
@@ -510,9 +531,20 @@ FSOP_GETROOT	kern/include/fs.h	/^#define FSOP_GETROOT(/;"	d
 FSOP_GETVOLNAME	kern/include/fs.h	/^#define FSOP_GETVOLNAME(/;"	d
 FSOP_SYNC	kern/include/fs.h	/^#define FSOP_SYNC(/;"	d
 FSOP_UNMOUNT	kern/include/fs.h	/^#define FSOP_UNMOUNT(/;"	d
+FUNC	a3-test-scripts/vm-crash3/funcs.c	/^#define FUNC(/;"	d	file:
+FUNC	a3-test-scripts/vm-data3/funcs.c	/^#define FUNC(/;"	d	file:
+FUNC	a3-test-scripts/vm-mix1-fork/funcs.c	/^#define FUNC(/;"	d	file:
+FUNC	a3-test-scripts/vm-mix1/funcs.c	/^#define FUNC(/;"	d	file:
+FUNC	a3-test-scripts/vm-mix2/funcs.c	/^#define FUNC(/;"	d	file:
 FUNC	uw-testbin/common/funcs.c	/^#define FUNC(/;"	d	file:
+FUNCTION_LOOP	a3-test-scripts/vm-crash3/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
+FUNCTION_LOOP	a3-test-scripts/vm-data3/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
+FUNCTION_LOOP	a3-test-scripts/vm-mix1-fork/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
+FUNCTION_LOOP	a3-test-scripts/vm-mix1/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
+FUNCTION_LOOP	a3-test-scripts/vm-mix2/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
 FUNCTION_LOOP	uw-testbin/common/funcs.c	/^#define FUNCTION_LOOP /;"	d	file:
 GENERATED	a2-test-scripts/Makefile	/^GENERATED = bigfile.out tailfile catfile hashfile badcallfile FILE1 FILE2 WRITE_READ_FILE$/;"	m
+GENERATED	a3-test-scripts/Makefile	/^GENERATED = bigfile.out tailfile catfile hashfile badcallfile$/;"	m
 GROUP_VERSION	kern/include/version.h	/^#define GROUP_VERSION /;"	d
 HASHP	testbin/hash/hash.c	/^#define HASHP /;"	d	file:
 HAS_NO_SIZED_TYPES	sbin/dumpsfs/support.h	/^#define HAS_NO_SIZED_TYPES$/;"	d
@@ -553,10 +585,16 @@ INCLUDES	kern/compile/ASST0/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/de
 INCLUDES	kern/compile/ASST1/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INCLUDES	kern/compile/ASST2/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INCLUDES	kern/compile/ASST3/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
+INIT_ARRAY_ELEMS	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
+INIT_ARRAY_ELEMS	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
+INIT_ARRAY_ELEMS	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
+INIT_ARRAY_ELEMS	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix1/vm-mix1.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-mix2/vm-mix2.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
 INIT_ARRAY_ELEMS	uw-testbin/vm-stack2/vm-stack2.c	/^#define INIT_ARRAY_ELEMS /;"	d	file:
+INSN_TYPE	a3-test-scripts/vm-crash1/vm-crash1.c	/^#define INSN_TYPE /;"	d	file:
+INSN_TYPE	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define INSN_TYPE /;"	d	file:
 INSN_TYPE	testbin/crash/crash.c	/^#define INSN_TYPE	/;"	d	file:
 INSN_TYPE	testbin/romemwrite/romemwrite.c	/^#define INSN_TYPE /;"	d	file:
 INSN_TYPE	uw-testbin/vm-crash1/vm-crash1.c	/^#define INSN_TYPE /;"	d	file:
@@ -566,6 +604,8 @@ INTTYPE	lib/libc/__printf.c	/^#define INTTYPE /;"	d	file:
 INUSE_WORDS	kern/lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
 INVALID_OFFSET	kern/lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
 INVAL_ADDR	testbin/crash/crash.c	/^#define INVAL_ADDR	/;"	d	file:
+INVAL_INSN	a3-test-scripts/vm-crash1/vm-crash1.c	/^#define INVAL_INSN /;"	d	file:
+INVAL_INSN	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define INVAL_INSN /;"	d	file:
 INVAL_INSN	testbin/crash/crash.c	/^#define INVAL_INSN	/;"	d	file:
 INVAL_INSN	testbin/romemwrite/romemwrite.c	/^#define INVAL_INSN /;"	d	file:
 INVAL_INSN	uw-testbin/vm-crash1/vm-crash1.c	/^#define INVAL_INSN /;"	d	file:
@@ -643,6 +683,7 @@ LOAD_ADDRESS	kern/compile/ASST0/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
 LOAD_ADDRESS	kern/compile/ASST1/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
 LOAD_ADDRESS	kern/compile/ASST2/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
 LOAD_ADDRESS	kern/compile/ASST3/Makefile	/^LOAD_ADDRESS=0x80001000$/;"	m
+LOCAL_REFS	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define LOCAL_REFS /;"	d	file:
 LOCAL_REFS	uw-testbin/vm-mix2/vm-mix2.c	/^#define LOCAL_REFS /;"	d	file:
 LOCKME	lib/libc/random.c	/^#define LOCKME(/;"	d	file:
 LONGSZ	lib/libc/__printf.c	/^		LONGSZ, $/;"	e	enum:__anon7::__anon8	file:
@@ -707,6 +748,7 @@ MAX_TYPES	lib/libc/random.c	/^#define	MAX_TYPES	/;"	d	file:
 MDHEADERS	kern/Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	kern/Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
 MEDIUMSIZE	testbin/malloctest/malloctest.c	/^#define MEDIUMSIZE /;"	d	file:
+MIN	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define MIN(/;"	d	file:
 MIN	uw-testbin/vm-mix2/vm-mix2.c	/^#define MIN(/;"	d	file:
 MIPS_KSEG0	kern/arch/mips/include/vm.h	/^#define MIPS_KSEG0 /;"	d
 MIPS_KSEG0	kern/compile/ASST0/machine/vm.h	/^#define MIPS_KSEG0 /;"	d
@@ -778,6 +820,12 @@ NULL	kern/compile/ASST3/machine/types.h	/^#define NULL /;"	d
 NULL	kern/compile/ASST3/machine/types.h	/^#undef NULL$/;"	d
 NUMBER_BUF_SIZE	lib/libc/__printf.c	/^#define NUMBER_BUF_SIZE /;"	d	file:
 NUM_INTS	uw-testbin/writeread/writeread.c	/^#define NUM_INTS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define NUM_REFS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-data1/vm-data1.c	/^#define NUM_REFS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-data2/vm-data2.c	/^#define NUM_REFS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-data3/vm-data3.c	/^#define NUM_REFS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define NUM_REFS /;"	d	file:
+NUM_REFS	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define NUM_REFS /;"	d	file:
 NUM_REFS	uw-testbin/vm-crash3/vm-crash3.c	/^#define NUM_REFS /;"	d	file:
 NUM_REFS	uw-testbin/vm-data1/vm-data1.c	/^#define NUM_REFS /;"	d	file:
 NUM_REFS	uw-testbin/vm-data2/vm-data2.c	/^#define NUM_REFS /;"	d	file:
@@ -851,7 +899,7 @@ OPT_SYNCHPROBS	kern/compile/ASST2/opt-synchprobs.h	/^#define OPT_SYNCHPROBS /;"	
 OPT_SYNCHPROBS	kern/compile/ASST3/opt-synchprobs.h	/^#define OPT_SYNCHPROBS /;"	d
 OS161DIR	my-testbin/my-prog.mk	/^OS161DIR = ..\/..$/;"	m
 OS161DIR	uw-testbin/uw-prog.mk	/^OS161DIR = ..\/..$/;"	m
-OSTREE	defs.mk	/^OSTREE=\/Users\/potatoqueue\/Developer\/cs350-os161\/root$/;"	m
+OSTREE	defs.mk	/^OSTREE=\/u1\/jsilcher\/cs350-os161\/root$/;"	m
 OVERHEAD	testbin/malloctest/malloctest.c	/^#define OVERHEAD /;"	d	file:
 O_ACCMODE	kern/include/kern/unistd.h	/^#define O_ACCMODE /;"	d
 O_APPEND	kern/include/kern/unistd.h	/^#define O_APPEND /;"	d
@@ -869,6 +917,14 @@ PADDR_TO_KVADDR	kern/compile/ASST0/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
 PADDR_TO_KVADDR	kern/compile/ASST1/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
 PADDR_TO_KVADDR	kern/compile/ASST2/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
 PADDR_TO_KVADDR	kern/compile/ASST3/machine/vm.h	/^#define PADDR_TO_KVADDR(/;"	d
+PAGES	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-data1/vm-data1.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-data2/vm-data2.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-data3/vm-data3.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define PAGES /;"	d	file:
+PAGES	a3-test-scripts/vm-stack1/vm-stack1.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-crash3/vm-crash3.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-data1/vm-data1.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-data2/vm-data2.c	/^#define PAGES /;"	d	file:
@@ -877,12 +933,22 @@ PAGES	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-mix1/vm-mix1.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-mix2/vm-mix2.c	/^#define PAGES /;"	d	file:
 PAGES	uw-testbin/vm-stack1/vm-stack1.c	/^#define PAGES /;"	d	file:
+PAGES_TO_TOUCH	a3-test-scripts/vm-data2/vm-data2.c	/^#define PAGES_TO_TOUCH /;"	d	file:
 PAGES_TO_TOUCH	uw-testbin/vm-data2/vm-data2.c	/^#define PAGES_TO_TOUCH /;"	d	file:
 PAGE_FRAME	kern/arch/mips/include/vm.h	/^#define PAGE_FRAME /;"	d
 PAGE_FRAME	kern/compile/ASST0/machine/vm.h	/^#define PAGE_FRAME /;"	d
 PAGE_FRAME	kern/compile/ASST1/machine/vm.h	/^#define PAGE_FRAME /;"	d
 PAGE_FRAME	kern/compile/ASST2/machine/vm.h	/^#define PAGE_FRAME /;"	d
 PAGE_FRAME	kern/compile/ASST3/machine/vm.h	/^#define PAGE_FRAME /;"	d
+PAGE_SIZE	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-data1/vm-data1.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-data2/vm-data2.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-data3/vm-data3.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-stack1/vm-stack1.c	/^#define PAGE_SIZE /;"	d	file:
+PAGE_SIZE	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define PAGE_SIZE /;"	d	file:
 PAGE_SIZE	kern/arch/mips/include/vm.h	/^#define PAGE_SIZE /;"	d
 PAGE_SIZE	kern/compile/ASST0/machine/vm.h	/^#define PAGE_SIZE /;"	d
 PAGE_SIZE	kern/compile/ASST1/machine/vm.h	/^#define PAGE_SIZE /;"	d
@@ -905,6 +971,17 @@ PF_X	kern/include/elf.h	/^#define	PF_X	/;"	d
 PLATFORM	defs.mk	/^PLATFORM=mips$/;"	m
 PROCS	uw-testbin/conc-io/conc-io.c	/^#define PROCS /;"	d	file:
 PROC_NFILES_MAX	kern/include/kern/limits.h	/^#define PROC_NFILES_MAX /;"	d
+PROG	a3-test-scripts/vm-crash1/Makefile	/^PROG=vm-crash1$/;"	m
+PROG	a3-test-scripts/vm-crash2/Makefile	/^PROG=vm-crash2$/;"	m
+PROG	a3-test-scripts/vm-crash3/Makefile	/^PROG=vm-crash3$/;"	m
+PROG	a3-test-scripts/vm-data1/Makefile	/^PROG=vm-data1$/;"	m
+PROG	a3-test-scripts/vm-data2/Makefile	/^PROG=vm-data2$/;"	m
+PROG	a3-test-scripts/vm-data3/Makefile	/^PROG=vm-data3$/;"	m
+PROG	a3-test-scripts/vm-mix1-fork/Makefile	/^PROG=vm-mix1-fork$/;"	m
+PROG	a3-test-scripts/vm-mix1/Makefile	/^PROG=vm-mix1$/;"	m
+PROG	a3-test-scripts/vm-mix2/Makefile	/^PROG=vm-mix2$/;"	m
+PROG	a3-test-scripts/vm-stack1/Makefile	/^PROG=vm-stack1$/;"	m
+PROG	a3-test-scripts/vm-stack2/Makefile	/^PROG=vm-stack2$/;"	m
 PROG	bin/cat/Makefile	/^PROG=cat$/;"	m
 PROG	bin/cp/Makefile	/^PROG=cp$/;"	m
 PROG	bin/false/Makefile	/^PROG=false$/;"	m
@@ -996,6 +1073,8 @@ PT_NULL	kern/include/elf.h	/^#define	PT_NULL	/;"	d
 PT_NUM	kern/include/elf.h	/^#define	PT_NUM	/;"	d
 PT_PHDR	kern/include/elf.h	/^#define	PT_PHDR	/;"	d
 PT_SHLIB	kern/include/elf.h	/^#define	PT_SHLIB	/;"	d
+PT_SIZE	kern/vm/pt.c	/^#define PT_SIZE /;"	d	file:
+PT_VALID	kern/include/pt.h	/^#define PT_VALID /;"	d
 PageSize	testbin/huge/huge.c	/^#define PageSize	/;"	d	file:
 PageSize	testbin/sparse/sparse.c	/^#define PageSize	/;"	d	file:
 PageSize	testbin/tlbfaulter/tlbfaulter.c	/^#define PageSize	/;"	d	file:
@@ -1016,7 +1095,10 @@ REG_OPER	kern/dev/lamebus/emu.c	/^#define REG_OPER /;"	d	file:
 REG_RESULT	kern/dev/lamebus/emu.c	/^#define REG_RESULT /;"	d	file:
 RIGHT	testbin/matmult/matmult-orig.c	/^#define RIGHT /;"	d	file:
 RIGHT	testbin/matmult/matmult.c	/^#define RIGHT /;"	d	file:
+RODATABOTTOM	kern/userprog/loadelf.c	/^#define RODATABOTTOM /;"	d	file:
+RODATATOP	kern/userprog/loadelf.c	/^#define RODATATOP /;"	d	file:
 ROOT	a2-test-scripts/Makefile	/^ROOT=..\/..\/root$/;"	m
+ROOT	a3-test-scripts/Makefile	/^ROOT=..\/..\/root$/;"	m
 ROUNDUP	kern/include/lib.h	/^#define ROUNDUP(/;"	d
 RUNBIGFILE	testbin/f_test/f_test.c	/^#define   RUNBIGFILE /;"	d	file:
 RUNCONCUR	testbin/f_test/f_test.c	/^#define   RUNCONCUR /;"	d	file:
@@ -1062,6 +1144,11 @@ SFS_TYPE_FILE	kern/include/kern/sfs.h	/^#define SFS_TYPE_FILE /;"	d
 SFS_TYPE_INVAL	kern/include/kern/sfs.h	/^#define SFS_TYPE_INVAL /;"	d
 SFS_VOLNAME_SIZE	kern/include/kern/sfs.h	/^#define SFS_VOLNAME_SIZE /;"	d
 SHELL	my-testbin/Makefile	/^SHELL:=\/bin\/bash$/;"	m
+SIZE	a3-test-scripts/vm-crash3/vm-crash3.c	/^#define SIZE /;"	d	file:
+SIZE	a3-test-scripts/vm-data1/vm-data1.c	/^#define SIZE /;"	d	file:
+SIZE	a3-test-scripts/vm-data2/vm-data2.c	/^#define SIZE /;"	d	file:
+SIZE	a3-test-scripts/vm-data3/vm-data3.c	/^#define SIZE /;"	d	file:
+SIZE	a3-test-scripts/vm-stack1/vm-stack1.c	/^#define SIZE /;"	d	file:
 SIZE	defs.mk	/^SIZE=cs350-size$/;"	m
 SIZE	testbin/ctest/ctest.c	/^#define SIZE /;"	d	file:
 SIZE	testbin/sort/sort.c	/^#define SIZE /;"	d	file:
@@ -1084,6 +1171,17 @@ SPL_HIGH	kern/compile/ASST0/machine/spl.h	/^#define SPL_HIGH /;"	d
 SPL_HIGH	kern/compile/ASST1/machine/spl.h	/^#define SPL_HIGH /;"	d
 SPL_HIGH	kern/compile/ASST2/machine/spl.h	/^#define SPL_HIGH /;"	d
 SPL_HIGH	kern/compile/ASST3/machine/spl.h	/^#define SPL_HIGH /;"	d
+SRCS	a3-test-scripts/vm-crash1/Makefile	/^SRCS=$(PROG).c$/;"	m
+SRCS	a3-test-scripts/vm-crash2/Makefile	/^SRCS=$(PROG).c$/;"	m
+SRCS	a3-test-scripts/vm-crash3/Makefile	/^SRCS=$(PROG).c funcs.c$/;"	m
+SRCS	a3-test-scripts/vm-data1/Makefile	/^SRCS=$(PROG).c$/;"	m
+SRCS	a3-test-scripts/vm-data2/Makefile	/^SRCS=$(PROG).c$/;"	m
+SRCS	a3-test-scripts/vm-data3/Makefile	/^SRCS=$(PROG).c funcs.c$/;"	m
+SRCS	a3-test-scripts/vm-mix1-fork/Makefile	/^SRCS=$(PROG).c funcs.c$/;"	m
+SRCS	a3-test-scripts/vm-mix1/Makefile	/^SRCS=$(PROG).c funcs.c$/;"	m
+SRCS	a3-test-scripts/vm-mix2/Makefile	/^SRCS=$(PROG).c funcs.c$/;"	m
+SRCS	a3-test-scripts/vm-stack1/Makefile	/^SRCS=$(PROG).c$/;"	m
+SRCS	a3-test-scripts/vm-stack2/Makefile	/^SRCS=$(PROG).c$/;"	m
 SRCS	bin/cat/Makefile	/^SRCS=cat.c$/;"	m
 SRCS	bin/cp/Makefile	/^SRCS=cp.c$/;"	m
 SRCS	bin/false/Makefile	/^SRCS=false.c$/;"	m
@@ -1165,6 +1263,10 @@ SRCS	uw-testbin/vm-mix2/Makefile	/^SRCS=$(PROG).c$/;"	m
 SRCS	uw-testbin/vm-stack1/Makefile	/^SRCS=$(PROG).c$/;"	m
 SRCS	uw-testbin/vm-stack2/Makefile	/^SRCS=$(PROG).c$/;"	m
 SRCS	uw-testbin/writeread/Makefile	/^SRCS=$(PROG).c$/;"	m
+STACK_ARRAY_ELEMS	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
+STACK_ARRAY_ELEMS	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
+STACK_ARRAY_ELEMS	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
+STACK_ARRAY_ELEMS	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
 STACK_ARRAY_ELEMS	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
 STACK_ARRAY_ELEMS	uw-testbin/vm-mix1/vm-mix1.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
 STACK_ARRAY_ELEMS	uw-testbin/vm-mix2/vm-mix2.c	/^#define STACK_ARRAY_ELEMS /;"	d	file:
@@ -1174,6 +1276,10 @@ STACK_MASK	kern/compile/ASST0/machine/pcb.h	/^#define STACK_MASK /;"	d
 STACK_MASK	kern/compile/ASST1/machine/pcb.h	/^#define STACK_MASK /;"	d
 STACK_MASK	kern/compile/ASST2/machine/pcb.h	/^#define STACK_MASK /;"	d
 STACK_MASK	kern/compile/ASST3/machine/pcb.h	/^#define STACK_MASK /;"	d
+STACK_PAGES_USED	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^#define STACK_PAGES_USED /;"	d	file:
+STACK_PAGES_USED	a3-test-scripts/vm-mix1/vm-mix1.c	/^#define STACK_PAGES_USED /;"	d	file:
+STACK_PAGES_USED	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define STACK_PAGES_USED /;"	d	file:
+STACK_PAGES_USED	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define STACK_PAGES_USED /;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^#define STACK_PAGES_USED /;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-mix1/vm-mix1.c	/^#define STACK_PAGES_USED /;"	d	file:
 STACK_PAGES_USED	uw-testbin/vm-mix2/vm-mix2.c	/^#define STACK_PAGES_USED /;"	d	file:
@@ -1195,6 +1301,7 @@ SWAPL	sbin/mksfs/mksfs.c	/^#define SWAPL(/;"	d	file:
 SWAPS	sbin/dumpsfs/dumpsfs.c	/^#define SWAPS(/;"	d	file:
 SWAPS	sbin/mksfs/mksfs.c	/^#define SWAPS(/;"	d	file:
 SYMLINKS	a2-test-scripts/Makefile	/^SYMLINKS = testbin bin kernel uw-testbin$/;"	m
+SYMLINKS	a3-test-scripts/Makefile	/^SYMLINKS = testbin uw-testbin bin kernel$/;"	m
 SYSCALL	lib/libc/syscalls-mips.S	/^#define SYSCALL(sym, num) \\$/;"	d
 SYSCALL	lib/libc/syscalls.S	/^#define SYSCALL(sym, num) \\$/;"	d
 SYS___getcwd	kern/include/kern/callno.h	/^#define SYS___getcwd /;"	d
@@ -1270,6 +1377,7 @@ TESTLEN	testbin/rmtest/rmtest.c	/^#define TESTLEN /;"	d	file:
 TESTLINK	my-testbin/badopen/test.h	/^#define TESTLINK /;"	d
 TESTLINK	testbin/badcall/test.h	/^#define TESTLINK /;"	d
 TESTOUTPUT	a2-test-scripts/Makefile	/^TESTOUTPUT = out.1 out.2 out.3$/;"	m
+TESTOUTPUT	a3-test-scripts/Makefile	/^TESTOUTPUT = out.A3 out.A3-option1 out.A3-option2$/;"	m
 TESTSIZE	kern/test/arraytest.c	/^#define TESTSIZE /;"	d	file:
 TESTSIZE	kern/test/bitmaptest.c	/^#define TESTSIZE /;"	d	file:
 TESTUTILS_H	my-testbin/lib/testutils.h	/^#define TESTUTILS_H$/;"	d
@@ -1328,6 +1436,7 @@ TLB_Probe	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Probe:$/;"	l
 TLB_Random	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Random:$/;"	l
 TLB_Read	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Read:$/;"	l
 TLB_Reset	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Reset:$/;"	l
+TLB_SIZE	a3-test-scripts/vm-mix2/vm-mix2.c	/^#define TLB_SIZE /;"	d	file:
 TLB_SIZE	uw-testbin/vm-mix2/vm-mix2.c	/^#define TLB_SIZE /;"	d	file:
 TLB_Write	kern/arch/mips/mips/tlb_mips1.S	/^TLB_Write:$/;"	l
 TMULT	testbin/f_test/f_read.c	/^#define TMULT /;"	d	file:
@@ -1352,7 +1461,9 @@ UIO_USERSPACE	kern/include/uio.h	/^	UIO_USERSPACE,$/;"	e	enum:uio_seg
 UIO_WRITE	kern/include/uio.h	/^	UIO_WRITE,$/;"	e	enum:uio_rw
 UNIMP	kern/dev/lamebus/emu.c	/^#define UNIMP /;"	d	file:
 UNIMP	kern/fs/sfs/sfs_vnode.c	/^#define UNIMP /;"	d	file:
+UNINIT_ARRAY_ELEMS	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define UNINIT_ARRAY_ELEMS /;"	d	file:
 UNINIT_ARRAY_ELEMS	uw-testbin/vm-stack2/vm-stack2.c	/^#define UNINIT_ARRAY_ELEMS /;"	d	file:
+UNINIT_PAGES	a3-test-scripts/vm-stack2/vm-stack2.c	/^#define UNINIT_PAGES /;"	d	file:
 UNINIT_PAGES	uw-testbin/vm-stack2/vm-stack2.c	/^#define UNINIT_PAGES /;"	d	file:
 UNLOCKME	lib/libc/random.c	/^#define UNLOCKME(/;"	d	file:
 USERSTACK	kern/arch/mips/include/vm.h	/^#define USERSTACK /;"	d
@@ -1382,6 +1493,7 @@ VMSTAT_TLB_RELOAD	kern/include/uw-vmstats.h	/^#define VMSTAT_TLB_RELOAD /;"	d
 VM_FAULT_READ	kern/include/vm.h	/^#define VM_FAULT_READ /;"	d
 VM_FAULT_READONLY	kern/include/vm.h	/^#define VM_FAULT_READONLY /;"	d
 VM_FAULT_WRITE	kern/include/vm.h	/^#define VM_FAULT_WRITE /;"	d
+VM_STACKPAGES	kern/arch/mips/mips/vm.c	/^#define VM_STACKPAGES /;"	d	file:
 VM_STATS_H	kern/include/uw-vmstats.h	/^#define VM_STATS_H$/;"	d
 VOP_CLOSE	kern/include/vnode.h	/^#define VOP_CLOSE(/;"	d
 VOP_CREAT	kern/include/vnode.h	/^#define VOP_CREAT(/;"	d
@@ -1440,6 +1552,7 @@ _BIG_ENDIAN	kern/compile/ASST2/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BIG_ENDIAN	kern/compile/ASST3/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BITMAP_H_	kern/include/bitmap.h	/^#define _BITMAP_H_$/;"	d
 _CLOCK_H_	kern/include/clock.h	/^#define _CLOCK_H_$/;"	d
+_COREMAP_H_	kern/include/coremap.h	/^#define _COREMAP_H_$/;"	d
 _CURTHREAD_H_	kern/include/curthread.h	/^#define _CURTHREAD_H_$/;"	d
 _DEV_H_	kern/include/dev.h	/^#define _DEV_H_$/;"	d
 _ELF_H_	kern/include/elf.h	/^#define _ELF_H_$/;"	d
@@ -1586,6 +1699,7 @@ _PATH_RANDOM	testbin/malloctest/malloctest.c	/^#define _PATH_RANDOM /;"	d	file:
 _PATH_SHELL	kern/main/menu.c	/^#define _PATH_SHELL /;"	d	file:
 _PROCESSTABLE_H_	kern/include/processtable.h	/^#define _PROCESSTABLE_H_$/;"	d
 _PROCESS_H_	kern/include/process.h	/^#define _PROCESS_H_$/;"	d
+_PT_H_	kern/include/pt.h	/^#define _PT_H_$/;"	d
 _QUEUE_H_	kern/include/queue.h	/^#define _QUEUE_H_$/;"	d
 _SCHEDULER_H_	kern/include/scheduler.h	/^#define _SCHEDULER_H_$/;"	d
 _SETJMP_H_	include/setjmp.h	/^#define _SETJMP_H_$/;"	d
@@ -1597,6 +1711,7 @@ _STDLIB_H_	include/stdlib.h	/^#define _STDLIB_H_$/;"	d
 _STRING_H_	include/string.h	/^#define _STRING_H_$/;"	d
 _SYNCH_H_	kern/include/synch.h	/^#define _SYNCH_H_$/;"	d
 _SYSCALL_H_	kern/include/syscall.h	/^#define _SYSCALL_H_$/;"	d
+_SYSTEMFILETABLE_H_	kern/include/systemfiletable.h	/^#define _SYSTEMFILETABLE_H_$/;"	d
 _SYS_STAT_H_	include/sys/stat.h	/^#define _SYS_STAT_H_$/;"	d
 _SYS_TYPES_H_	include/sys/types.h	/^#define _SYS_TYPES_H_$/;"	d
 _TABLE_H_	kern/include/table.h	/^#define _TABLE_H_$/;"	d
@@ -1677,7 +1792,7 @@ addrspace	kern/include/addrspace.h	/^struct addrspace {$/;"	s
 alignment_error	testbin/crash/crash.c	/^alignment_error(void)$/;"	f	file:
 allbase	kern/lib/kheap.c	/^static struct pageref *allbase;$/;"	v	typeref:struct:pageref	file:
 alloc_kpages	kern/arch/mips/mips/dumbvm.c	/^alloc_kpages(int npages)$/;"	f
-alloc_kpages	kern/vm/addrspace.c	/^    vaddr_t alloc_kpages(int npages) {$/;"	f
+alloc_kpages	kern/arch/mips/mips/vm.c	/^alloc_kpages(int npages)$/;"	f
 allocpageref	kern/lib/kheap.c	/^allocpageref(void)$/;"	f	file:
 altformat	lib/libc/__printf.c	/^	int altformat;$/;"	m	struct:__anon7	file:
 answer	testbin/parallelvm/parallelvm.c	/^answer(void)$/;"	f	file:
@@ -1692,6 +1807,10 @@ ap	lib/libc/__printf.c	/^	va_list ap;$/;"	m	struct:__anon7	file:
 approachintersection	kern/asst1/stoplight.c	/^approachintersection(void * unusedpointer,$/;"	f	file:
 args_invalid	kern/userprog/sysexecv.c	/^int args_invalid(char **args, int *err) {$/;"	f
 argv	uw-testbin/vm-mix1-exec/vm-mix1-exec.c	/^static char *argv[2] = { (char *)"vm-mix1", NULL };$/;"	v	file:
+array	a3-test-scripts/vm-crash3/vm-crash3.c	/^unsigned int array[SIZE];$/;"	v
+array	a3-test-scripts/vm-data1/vm-data1.c	/^unsigned int array[SIZE];$/;"	v
+array	a3-test-scripts/vm-data2/vm-data2.c	/^unsigned int array[SIZE];$/;"	v
+array	a3-test-scripts/vm-data3/vm-data3.c	/^unsigned int array[SIZE];$/;"	v
 array	kern/lib/array.c	/^struct array {$/;"	s	file:
 array	kern/lib/table.c	/^    struct array *array;$/;"	m	struct:table	typeref:struct:table::array	file:
 array	testbin/ctest/ctest.c	/^struct entry array[SIZE];$/;"	v	typeref:struct:entry
@@ -1700,9 +1819,15 @@ array	uw-testbin/vm-crash3/vm-crash3.c	/^unsigned int array[SIZE];$/;"	v
 array	uw-testbin/vm-data1/vm-data1.c	/^unsigned int array[SIZE];$/;"	v
 array	uw-testbin/vm-data2/vm-data2.c	/^unsigned int array[SIZE];$/;"	v
 array	uw-testbin/vm-data3/vm-data3.c	/^unsigned int array[SIZE];$/;"	v
+array1	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int array1[ELEMS];$/;"	v
+array1	a3-test-scripts/vm-mix1/vm-mix1.c	/^unsigned int array1[ELEMS];$/;"	v
+array1	a3-test-scripts/vm-mix2/vm-mix2.c	/^unsigned int array1[ELEMS];$/;"	v
 array1	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int array1[ELEMS];$/;"	v
 array1	uw-testbin/vm-mix1/vm-mix1.c	/^unsigned int array1[ELEMS];$/;"	v
 array1	uw-testbin/vm-mix2/vm-mix2.c	/^unsigned int array1[ELEMS];$/;"	v
+array2	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int array2[ELEMS];$/;"	v
+array2	a3-test-scripts/vm-mix1/vm-mix1.c	/^unsigned int array2[ELEMS];$/;"	v
+array2	a3-test-scripts/vm-mix2/vm-mix2.c	/^unsigned int array2[ELEMS];$/;"	v
 array2	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int array2[ELEMS];$/;"	v
 array2	uw-testbin/vm-mix1/vm-mix1.c	/^unsigned int array2[ELEMS];$/;"	v
 array2	uw-testbin/vm-mix2/vm-mix2.c	/^unsigned int array2[ELEMS];$/;"	v
@@ -1721,9 +1846,9 @@ as_activate	kern/vm/addrspace.c	/^as_activate(struct addrspace *as)$/;"	f
 as_complete_load	kern/arch/mips/mips/dumbvm.c	/^as_complete_load(struct addrspace *as)$/;"	f
 as_complete_load	kern/vm/addrspace.c	/^as_complete_load(struct addrspace *as)$/;"	f
 as_copy	kern/arch/mips/mips/dumbvm.c	/^as_copy(struct addrspace *old, struct addrspace **ret)$/;"	f
-as_copy	kern/vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret)$/;"	f
+as_copy	kern/vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret) {$/;"	f
 as_create	kern/arch/mips/mips/dumbvm.c	/^as_create(void)$/;"	f
-as_create	kern/vm/addrspace.c	/^as_create(void)$/;"	f
+as_create	kern/vm/addrspace.c	/^struct addrspace * as_create(void) {$/;"	f
 as_define_region	kern/arch/mips/mips/dumbvm.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
 as_define_region	kern/vm/addrspace.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
 as_define_stack	kern/arch/mips/mips/dumbvm.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
@@ -1859,8 +1984,8 @@ buildconfig	kern/compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	
 buildconfig	kern/compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	kern/compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	kern/compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 438;$/;"	v
-buildversion	kern/compile/ASST3/vers.c	/^const int buildversion = 9;$/;"	v
+buildversion	kern/compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
+buildversion	kern/compile/ASST3/vers.c	/^const int buildversion = 120;$/;"	v
 bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	kern/compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1927,6 +2052,11 @@ c0_vaddr	kern/compile/ASST0/machine/asmdefs.h	/^#define c0_vaddr /;"	d
 c0_vaddr	kern/compile/ASST1/machine/asmdefs.h	/^#define c0_vaddr /;"	d
 c0_vaddr	kern/compile/ASST2/machine/asmdefs.h	/^#define c0_vaddr /;"	d
 c0_vaddr	kern/compile/ASST3/machine/asmdefs.h	/^#define c0_vaddr /;"	d
+call_all	a3-test-scripts/vm-crash3/funcs.c	/^call_all()$/;"	f
+call_all	a3-test-scripts/vm-data3/funcs.c	/^call_all()$/;"	f
+call_all	a3-test-scripts/vm-mix1-fork/funcs.c	/^call_all()$/;"	f
+call_all	a3-test-scripts/vm-mix1/funcs.c	/^call_all()$/;"	f
+call_all	a3-test-scripts/vm-mix2/funcs.c	/^call_all(int count)$/;"	f
 call_all	uw-testbin/common/funcs.c	/^call_all()$/;"	f
 call_all_loop	uw-testbin/common/funcs.c	/^call_all_loop(int count)$/;"	f
 cargv	testbin/farm/farm.c	/^static char *cargv[3] = { (char *)"cat", (char *)"catfile", NULL };$/;"	v	file:
@@ -1968,6 +2098,9 @@ close_badfd	testbin/badcall/common_fds.c	/^close_badfd(int fd)$/;"	f	file:
 closedisk	sbin/dumpsfs/disk.c	/^closedisk(void)$/;"	f
 closedisk	sbin/mksfs/disk.c	/^closedisk(void)$/;"	f
 closeit	testbin/dirseek/dirseek.c	/^closeit(void)$/;"	f	file:
+cm	kern/vm/coremap.c	/^static struct coremap_entry ** cm;$/;"	v	typeref:struct:coremap_entry	file:
+cm_bootstrapped	kern/vm/coremap.c	/^static cm_bootstrapped = 0;$/;"	v	file:
+cm_size	kern/vm/coremap.c	/^static int cm_size;$/;"	v	file:
 cmd_bootfs	kern/main/menu.c	/^cmd_bootfs(int nargs, char **args)$/;"	f	file:
 cmd_chdir	kern/main/menu.c	/^cmd_chdir(int nargs, char **args)$/;"	f	file:
 cmd_dispatch	kern/main/menu.c	/^cmd_dispatch(char *cmd)$/;"	f	file:
@@ -2026,6 +2159,9 @@ copyinstr	kern/lib/copyinout.c	/^copyinstr(const_userptr_t usersrc, char *dest, 
 copyout	kern/lib/copyinout.c	/^copyout(const void *src, userptr_t userdest, size_t len)$/;"	f
 copyoutstr	kern/lib/copyinout.c	/^copyoutstr(const char *src, userptr_t userdest, size_t len, size_t *actual)$/;"	f
 copystr	kern/lib/copyinout.c	/^copystr(char *dest, const char *src, size_t maxlen, size_t stoplen,$/;"	f	file:
+coremap_bootstrap	kern/vm/coremap.c	/^void coremap_bootstrap() {$/;"	f
+coremap_entry	kern/include/coremap.h	/^struct coremap_entry {$/;"	s
+count	kern/filedes/systemfiletable.c	/^    int count;$/;"	m	struct:systemfiletable	file:
 count	kern/include/synch.h	/^	volatile int count;$/;"	m	struct:semaphore
 count	testbin/userthreads/userthreads.c	/^volatile int count = 0;$/;"	v
 counter	kern/asst1/catmouse.c	/^    volatile int counter = 0;$/;"	v
@@ -2104,6 +2240,9 @@ diskwrite	sbin/dumpsfs/disk.c	/^diskwrite(const void *data, u_int32_t block)$/;"
 diskwrite	sbin/mksfs/disk.c	/^diskwrite(const void *data, u_int32_t block)$/;"	f
 divide_by_zero	testbin/crash/crash.c	/^divide_by_zero(void)$/;"	f	file:
 do_move	testbin/tictac/tictac.c	/^do_move(int player)$/;"	f
+do_work	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^do_work(unsigned int start)$/;"	f
+do_work	a3-test-scripts/vm-mix1/vm-mix1.c	/^do_work(unsigned int start)$/;"	f
+do_work	a3-test-scripts/vm-mix2/vm-mix2.c	/^do_work(unsigned int start)$/;"	f
 do_work	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^do_work(unsigned int start)$/;"	f
 do_work	uw-testbin/vm-mix1/vm-mix1.c	/^do_work(unsigned int start)$/;"	f
 do_work	uw-testbin/vm-mix2/vm-mix2.c	/^do_work(unsigned int start)$/;"	f
@@ -2268,14 +2407,17 @@ finderror	testbin/badcall/driver.c	/^finderror(int rv, int error)$/;"	f	file:
 findmount	kern/fs/vfs/vfslist.c	/^findmount(const char *devname, struct knowndev **result)$/;"	f	file:
 finish	kern/test/tt3.c	/^finish(int howmanytotal)$/;"	f	file:
 finish	testbin/rmdirtest/rmdirtest.c	/^finish(void)$/;"	f	file:
+firstaddr	kern/vm/coremap.c	/^static paddr_t firstaddr;$/;"	v	file:
 firstfree	kern/arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual address; set by start.S *\/$/;"	v
 firstpaddr	kern/arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
 firstread	testbin/dirseek/dirseek.c	/^firstread(void)$/;"	f	file:
+flags	kern/include/pt.h	/^    u_int32_t flags;$/;"	m	struct:pt_entry
 flush_delay_buf	kern/dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
 forkoff	testbin/f_test/f_test.c	/^forkoff(void (*func)(void))$/;"	f	file:
 fptr	lib/libc/random.c	/^static long *fptr = &randtbl[SEP_3 + 1];$/;"	v	file:
 free_kpages	kern/arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
-free_kpages	kern/vm/addrspace.c	/^    void free_kpages(vaddr_t addr) {$/;"	f
+free_kpages	kern/arch/mips/mips/vm.c	/^free_kpages(vaddr_t addr)$/;"	f
+freeaddr	kern/vm/coremap.c	/^static paddr_t freeaddr; $/;"	v	file:
 freed_pids	kern/process/process.c	/^	struct linkedlist* freed_pids;$/;"	m	struct:process_table	typeref:struct:process_table::linkedlist	file:
 freelist	kern/lib/kheap.c	/^struct freelist {$/;"	s	file:
 freelist_offset	kern/lib/kheap.c	/^	u_int16_t freelist_offset;$/;"	m	struct:pageref	file:
@@ -2338,7 +2480,7 @@ getdirentry_setup	testbin/badcall/common_buf.c	/^getdirentry_setup(void)$/;"	f	f
 geti	testbin/malloctest/malloctest.c	/^geti(void)$/;"	f	file:
 getinterval	kern/main/menu.c	/^getinterval(time_t s1, u_int32_t ns1, time_t s2, u_int32_t ns2,$/;"	f
 getppages	kern/arch/mips/mips/dumbvm.c	/^getppages(unsigned long npages)$/;"	f	file:
-getppages	kern/vm/addrspace.c	/^    static paddr_t getppages(unsigned long npages) {$/;"	f	file:
+getppages	kern/vm/coremap.c	/^paddr_t getppages(unsigned long npages) {$/;"	f
 gettime	kern/dev/generic/rtclock.c	/^gettime(time_t *secs, u_int32_t *nsecs)$/;"	f
 getunit	kern/conf/config	/^    function getunit(invalmsg, d,       u, tmp) {$/;"	f
 go	testbin/parallelvm/parallelvm.c	/^go(int mynum)$/;"	f	file:
@@ -2354,6 +2496,7 @@ hargv	testbin/sty/sty.c	/^static char *hargv[2] = { (char *)"hog", NULL };$/;"	v
 harvard_copyright	kern/main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
 has_exited	kern/include/process.h	/^    int has_exited; \/\/ 1 if this process has exited, 0 if not$/;"	m	struct:process
 haveclock	kern/dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
+head	kern/filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 head	kern/lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 held	kern/include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	kern/main/hello.c	/^void hello() {$/;"	f
@@ -2374,6 +2517,10 @@ ibuffer	testbin/f_test/f_test.c	/^char ibuffer[32];$/;"	v
 illegal_instruction	testbin/crash/crash.c	/^illegal_instruction(void)$/;"	f	file:
 in_interrupt	kern/arch/mips/mips/interrupt.c	/^int in_interrupt;$/;"	v
 in_pct	lib/libc/__printf.c	/^	int in_pct;$/;"	m	struct:__anon7	file:
+init	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int init[] = {$/;"	v
+init	a3-test-scripts/vm-mix1/vm-mix1.c	/^unsigned int init[] = {$/;"	v
+init	a3-test-scripts/vm-mix2/vm-mix2.c	/^unsigned int init[] = {$/;"	v
+init	a3-test-scripts/vm-stack2/vm-stack2.c	/^unsigned int init[] = {$/;"	v
 init	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^unsigned int init[] = {$/;"	v
 init	uw-testbin/vm-mix1/vm-mix1.c	/^unsigned int init[] = {$/;"	v
 init	uw-testbin/vm-mix2/vm-mix2.c	/^unsigned int init[] = {$/;"	v
@@ -2385,6 +2532,7 @@ initialize_board	testbin/tictac/tictac.c	/^initialize_board(void)$/;"	f
 initialize_bowls	kern/asst1/bowls.c	/^initialize_bowls(unsigned int bowlcount)$/;"	f
 inititems	kern/test/synchtest.c	/^inititems(void)$/;"	f	file:
 initstate	lib/libc/random.c	/^initstate($/;"	f
+insert	kern/vm/pt.c	/^void insert(vaddr_t vaddr) {$/;"	f
 int16_t	kern/arch/mips/include/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	kern/compile/ASST0/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
 int16_t	kern/compile/ASST1/machine/types.h	/^typedef short     int16_t;		\/* 16-bit signed integer *\/$/;"	t
@@ -2423,6 +2571,7 @@ iov_len	kern/include/uio.h	/^	size_t iov_len;                \/* Length of data 
 iov_ubase	kern/include/uio.h	/^#define iov_ubase /;"	d
 iov_un	kern/include/uio.h	/^	} iov_un;$/;"	m	struct:iovec	typeref:union:iovec::__anon3
 iovec	kern/include/uio.h	/^struct iovec {$/;"	s
+isWriteable	kern/vm/addrspace.c	/^int isWriteable(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 is_win	testbin/tictac/tictac.c	/^is_win(int x, int y)$/;"	f
 isdir	bin/ls/ls.c	/^isdir(const char *path)$/;"	f	file:
 jmp_buf	kern/arch/mips/include/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
@@ -2478,6 +2627,7 @@ lamebus_read_register	kern/arch/mips/mips/lamebus_mips.c	/^lamebus_read_register
 lamebus_softc	kern/dev/lamebus/lamebus.h	/^struct lamebus_softc {$/;"	s
 lamebus_unmark	kern/dev/lamebus/lamebus.c	/^lamebus_unmark(struct lamebus_softc *sc, int slot)$/;"	f
 lamebus_write_register	kern/arch/mips/mips/lamebus_mips.c	/^lamebus_write_register(struct lamebus_softc *bus, int slot,$/;"	f
+lastaddr	kern/vm/coremap.c	/^static paddr_t lastaddr;$/;"	v	file:
 lastpaddr	kern/arch/mips/mips/ram.c	/^static u_int32_t lastpaddr;   \/* one past end of last free physical page *\/$/;"	v	file:
 lb_irqfunc	kern/dev/lamebus/lamebus.h	/^typedef void (*lb_irqfunc)(void *devdata);$/;"	t
 lbolt	kern/thread/hardclock.c	/^int lbolt;$/;"	v
@@ -2593,6 +2743,17 @@ ltrace_on	kern/dev/lamebus/ltrace.c	/^ltrace_on(u_int32_t code)$/;"	f
 ltrace_softc	kern/dev/lamebus/ltrace.h	/^struct ltrace_softc {$/;"	s
 m_data	testbin/parallelvm/parallelvm.c	/^	int m_data[DIM][DIM];$/;"	m	struct:matrix	file:
 machdep_dev_bootstrap	kern/arch/mips/mips/lamebus_mips.c	/^machdep_dev_bootstrap(void)$/;"	f
+main	a3-test-scripts/vm-crash1/vm-crash1.c	/^main()$/;"	f
+main	a3-test-scripts/vm-crash2/vm-crash2.c	/^main()$/;"	f
+main	a3-test-scripts/vm-crash3/vm-crash3.c	/^main()$/;"	f
+main	a3-test-scripts/vm-data1/vm-data1.c	/^main()$/;"	f
+main	a3-test-scripts/vm-data2/vm-data2.c	/^main()$/;"	f
+main	a3-test-scripts/vm-data3/vm-data3.c	/^main()$/;"	f
+main	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^main()$/;"	f
+main	a3-test-scripts/vm-mix1/vm-mix1.c	/^main()$/;"	f
+main	a3-test-scripts/vm-mix2/vm-mix2.c	/^main()$/;"	f
+main	a3-test-scripts/vm-stack1/vm-stack1.c	/^main()$/;"	f
+main	a3-test-scripts/vm-stack2/vm-stack2.c	/^main()$/;"	f
 main	bin/cat/cat.c	/^main(int argc, char *argv[])$/;"	f
 main	bin/cp/cp.c	/^main(int argc, char *argv[])$/;"	f
 main	bin/false/false.c	/^main()$/;"	f
@@ -2857,6 +3018,7 @@ p_thread	kern/include/process.h	/^    struct thread* p_thread; \/\/ the thread t
 p_type	kern/include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
 p_vaddr	kern/include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
 p_waitcv	kern/include/process.h	/^    struct cv* p_waitcv; \/\/ condition variable in which to wait on$/;"	m	struct:process	typeref:struct:process::cv
+paddr	kern/include/coremap.h	/^    paddr_t paddr;$/;"	m	struct:coremap_entry
 paddr_t	kern/arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	kern/compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	kern/compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
@@ -2866,6 +3028,7 @@ pageaddr_and_blocktype	kern/lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m
 pageref	kern/lib/kheap.c	/^struct pageref {$/;"	s	file:
 pagerefs	kern/lib/kheap.c	/^static struct pageref pagerefs[NPAGEREFS];$/;"	v	typeref:struct:pageref	file:
 pagerefs_inuse	kern/lib/kheap.c	/^static u_int32_t pagerefs_inuse[INUSE_WORDS];$/;"	v	file:
+pagetable_bootstrap	kern/vm/pt.c	/^void pagetable_bootstrap() {$/;"	f
 palindrome	testbin/palin/palin.c	/^char palindrome[8000] = $/;"	v
 panic	kern/lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	kern/arch/mips/mips/start.S	/^panicstr:$/;"	l
@@ -2906,6 +3069,7 @@ pcb_switchstack	kern/compile/ASST1/machine/pcb.h	/^	u_int32_t pcb_switchstack;  
 pcb_switchstack	kern/compile/ASST2/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pcb_switchstack	kern/compile/ASST3/machine/pcb.h	/^	u_int32_t pcb_switchstack;  \/\/ stack saved during context switch$/;"	m	struct:pcb
 pid	kern/include/process.h	/^    pid_t pid; \/\/ the pid of this process$/;"	m	struct:process
+pid	kern/include/pt.h	/^    pid_t pid;$/;"	m	struct:pt_entry
 pid	kern/include/thread.h	/^		pid_t pid;$/;"	m	struct:thread
 pid	testbin/forkbomb/forkbomb.c	/^static volatile int pid;$/;"	v	file:
 pid_t	kern/include/kern/types.h	/^typedef int32_t pid_t;   \/* Process ID *\/$/;"	t
@@ -2918,6 +3082,9 @@ populate_initial_matrixes	testbin/parallelvm/parallelvm.c	/^populate_initial_mat
 pos	testbin/dirseek/dirseek.c	/^	off_t pos;$/;"	m	struct:__anon12	file:
 print	bin/ls/ls.c	/^print(const char *path)$/;"	f	file:
 print_board	testbin/tictac/tictac.c	/^print_board(void)$/;"	f
+print_data	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^print_data(unsigned int array[])$/;"	f
+print_data	a3-test-scripts/vm-mix1/vm-mix1.c	/^print_data(unsigned int array[])$/;"	f
+print_data	a3-test-scripts/vm-mix2/vm-mix2.c	/^print_data(unsigned int array[])$/;"	f
 print_data	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^print_data(unsigned int array[])$/;"	f
 print_data	uw-testbin/vm-mix1/vm-mix1.c	/^print_data(unsigned int array[])$/;"	f
 print_data	uw-testbin/vm-mix2/vm-mix2.c	/^print_data(unsigned int array[])$/;"	f
@@ -2952,7 +3119,11 @@ pseudorand_randmax	kern/dev/generic/pseudorand.c	/^pseudorand_randmax(void *devd
 pseudorand_random	kern/dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/;"	f
 pseudorand_read	kern/dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/;"	f
 pseudorand_softc	kern/dev/generic/pseudorand.h	/^struct pseudorand_softc {$/;"	s
+pt_entries	kern/vm/pt.c	/^static struct array *pt_entries;$/;"	v	typeref:struct:array	file:
+pt_entry	kern/include/pt.h	/^struct pt_entry {$/;"	s
 pt_lock	kern/process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
+pt_lock	kern/vm/pt.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
+pt_order	kern/vm/pt.c	/^static struct queue *pt_order;$/;"	v	typeref:struct:queue	file:
 putch	kern/dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	kern/dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	kern/dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:
@@ -3006,6 +3177,11 @@ read_badfd	testbin/badcall/common_fds.c	/^read_badfd(int fd)$/;"	f	file:
 read_cfg_register	kern/dev/lamebus/lamebus.c	/^read_cfg_register(struct lamebus_softc *lb, int slot, u_int32_t offset)$/;"	f	file:
 read_cleanup	testbin/badcall/common_buf.c	/^read_cleanup(void)$/;"	f	file:
 read_ctl_register	kern/dev/lamebus/lamebus.c	/^read_ctl_register(struct lamebus_softc *lb, u_int32_t offset)$/;"	f	file:
+read_data	a3-test-scripts/vm-crash3/vm-crash3.c	/^read_data()$/;"	f
+read_data	a3-test-scripts/vm-data3/vm-data3.c	/^read_data()$/;"	f
+read_data	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^read_data(unsigned int array[], unsigned int start, const char *array_name)$/;"	f
+read_data	a3-test-scripts/vm-mix1/vm-mix1.c	/^read_data(unsigned int array[], unsigned int start, const char *array_name)$/;"	f
+read_data	a3-test-scripts/vm-mix2/vm-mix2.c	/^read_data(unsigned int array[], unsigned int start, const char *array_name)$/;"	f
 read_data	uw-testbin/vm-crash3/vm-crash3.c	/^read_data()$/;"	f
 read_data	uw-testbin/vm-data3/vm-data3.c	/^read_data()$/;"	f
 read_data	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^read_data(unsigned int array[], unsigned int start, const char *array_name)$/;"	f
@@ -3076,7 +3252,7 @@ rtc_gettime	kern/dev/generic/rtclock.h	/^	void (*rtc_gettime)(void *devdata, tim
 rtclock_softc	kern/dev/generic/rtclock.h	/^struct rtclock_softc {$/;"	s
 run	testbin/dirconc/dirconc.c	/^run(void)$/;"	f	file:
 runit	testbin/badcall/driver.c	/^runit(int op)$/;"	f	file:
-runprogram	kern/userprog/runprogram.c	/^runprogram(char *progname, int argc, char ** argv)$/;"	f
+runprogram	kern/userprog/runprogram.c	/^int runprogram(char *progname, int argc, char ** argv)$/;"	f
 runqueue	kern/thread/scheduler.c	/^static struct queue *runqueue;$/;"	v	typeref:struct:queue	file:
 runtest	testbin/badcall/common_fds.c	/^runtest(int (*func)(int fd), void (*cleanup)(void), const char *callname)$/;"	f	file:
 runtest3	kern/test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
@@ -3285,10 +3461,13 @@ sfs_vnodes	kern/include/sfs.h	/^	struct array *sfs_vnodes;       \/* vnodes load
 sfs_wblock	kern/fs/sfs/sfs_io.c	/^sfs_wblock(struct sfs_fs *sfs, void *data, u_int32_t block)$/;"	f
 sfs_write	kern/fs/sfs/sfs_vnode.c	/^sfs_write(struct vnode *v, struct uio *uio)$/;"	f	file:
 sfs_writedir	kern/fs/sfs/sfs_vnode.c	/^sfs_writedir(struct sfs_vnode *sv, struct sfs_dir *sd, int slot)$/;"	f	file:
+sft	kern/filedes/systemfiletable.c	/^static struct systemfiletable *sft;$/;"	v	typeref:struct:systemfiletable	file:
+sft_lock	kern/filedes/systemfiletable.c	/^static struct lock *sft_lock;$/;"	v	typeref:struct:lock	file:
 showmenu	kern/main/menu.c	/^showmenu(const char *name, const char *x[])$/;"	f	file:
 shutdown	kern/main/main.c	/^shutdown(void)$/;"	f	file:
 sign	lib/libc/__printf.c	/^	int sign;$/;"	m	struct:__anon7	file:
 sink	testbin/kitchen/kitchen.c	/^sink(void)$/;"	f	file:
+size	kern/include/coremap.h	/^    int size;$/;"	m	struct:coremap_entry
 size	kern/lib/linkedlist.c	/^    int size;$/;"	m	struct:linkedlist	file:
 size	kern/lib/queue.c	/^	int size;$/;"	m	struct:queue	file:
 size	lib/libc/__printf.c	/^	} size;$/;"	m	struct:__anon7	typeref:enum:__anon7::__anon8	file:
@@ -3346,6 +3525,7 @@ stats_lock	kern/vm/uw-vmstats.c	/^static struct lock *stats_lock = 0;$/;"	v	type
 stats_names	kern/vm/uw-vmstats.c	/^static const char *stats_names[] = {$/;"	v	file:
 status	kern/include/file.h	/^    int status;$/;"	m	struct:file
 status_is_failure	testbin/parallelvm/parallelvm.c	/^status_is_failure(int status)$/;"	f	file:
+str	a3-test-scripts/vm-crash2/vm-crash2.c	/^const char *str = $/;"	v
 str	uw-testbin/segments/segments.c	/^char const *str = "Hello World\\n";$/;"	v
 str	uw-testbin/vm-crash2/vm-crash2.c	/^const char *str = $/;"	v
 strcat	lib/libc/strcat.c	/^strcat(char *dest, const char *src)$/;"	f
@@ -3383,17 +3563,21 @@ sys_close	kern/userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	kern/include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
 sys_execv	kern/userprog/sysexecv.c	/^int sys_execv(const char *program, char **args, int *err) {$/;"	f
 sys_fork	kern/userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
-sys_getpid	kern/userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_getpid	kern/userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
 sys_nerr	kern/include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
 sys_open	kern/userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
 sys_read	kern/userprog/sysread.c	/^int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {$/;"	f
 sys_reboot	kern/main/main.c	/^sys_reboot(int code)$/;"	f
-sys_waitpid	kern/userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
 sys_waitpid	kern/userprog/syswaitpid.c	/^int sys_waitpid(pid_t pid, int *status, int options, int* err) {$/;"	f
-sys_write	kern/userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
 sys_write	kern/userprog/syswrite.c	/^int sys_write(int fd, void *buf, size_t buflen, int *err) {$/;"	f
 system	lib/libc/system.c	/^system(const char *cmd)$/;"	f
+systemfiletable	kern/filedes/systemfiletable.c	/^struct systemfiletable {$/;"	s	file:
+systemfiletable_bootstrap	kern/filedes/systemfiletable.c	/^void systemfiletable_bootstrap() {$/;"	f
+systemft_getcount	kern/filedes/systemfiletable.c	/^int systemft_getcount() {$/;"	f
+systemft_insert	kern/filedes/systemfiletable.c	/^int systemft_insert(struct file *f) {$/;"	f
+systemft_iter_ct	kern/filedes/systemfiletable.c	/^int systemft_iter_ct() {$/;"	f
+systemft_remove	kern/filedes/systemfiletable.c	/^int systemft_remove(struct file *f) {$/;"	f
+systemft_update	kern/filedes/systemfiletable.c	/^int systemft_update(struct file *f) {$/;"	f
 t0	kern/arch/mips/include/asmdefs.h	/^#define t0 /;"	d
 t0	kern/compile/ASST0/machine/asmdefs.h	/^#define t0 /;"	d
 t0	kern/compile/ASST1/machine/asmdefs.h	/^#define t0 /;"	d
@@ -3463,6 +3647,7 @@ tab_getsize	kern/lib/table.c	/^int tab_getsize(struct table *t) {$/;"	f
 tab_remove	kern/lib/table.c	/^int tab_remove(struct table *t, int index) {$/;"	f
 table	kern/lib/table.c	/^struct table {$/;"	s	file:
 tables	testbin/randcall/calls.c	/^static tryfunc *tables[4] = {$/;"	v	file:
+tail	kern/filedes/systemfiletable.c	/^    struct file *tail;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 tail	kern/lib/linkedlist.c	/^    struct node *tail;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 tail	testbin/tail/tail.c	/^tail(int file, off_t where, const char *filename)$/;"	f	file:
 test	testbin/forktest/forktest.c	/^test(int nowait)$/;"	f	file:
@@ -3534,7 +3719,6 @@ testa	kern/test/arraytest.c	/^testa(struct array *a)$/;"	f	file:
 testcv	kern/test/synchtest.c	/^static struct cv *testcv;$/;"	v	typeref:struct:cv	file:
 testdir	testbin/rmdirtest/rmdirtest.c	/^static const char testdir[] = "testdir";$/;"	v	file:
 testfiles	testbin/dirseek/dirseek.c	/^} testfiles[] = {$/;"	v	typeref:struct:__anon12	file:
-testfiletable	kern/main/main.c	/^void testfiletable() {$/;"	f
 testlock	kern/test/synchtest.c	/^static struct lock *testlock;$/;"	v	typeref:struct:lock	file:
 testmenu	kern/main/menu.c	/^static const char *testmenu[] = {$/;"	v	file:
 testq	kern/test/queuetest.c	/^testq(struct queue *q, int n)$/;"	f	file:
@@ -3755,6 +3939,7 @@ time	lib/libc/time.c	/^time(time_t *t)$/;"	f
 time_badnsecs	testbin/badcall/bad_time.c	/^time_badnsecs(void *ptr, const char *desc)$/;"	f	file:
 time_badsecs	testbin/badcall/bad_time.c	/^time_badsecs(void *ptr, const char *desc)$/;"	f	file:
 time_t	kern/include/kern/types.h	/^typedef int32_t time_t;  \/* Time in seconds *\/$/;"	t
+tlb_get_rr_victim	kern/arch/mips/mips/vm.c	/^static int tlb_get_rr_victim() {$/;"	f	file:
 tlbtest	testbin/tlbfaulter/tlbfaulter.c	/^char tlbtest[ArraySize];$/;"	v
 to_write	uw-testbin/conc-io/conc-io.c	/^char const *to_write = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";$/;"	v
 trace	testbin/parallelvm/parallelvm.c	/^trace(const struct matrix *m1)$/;"	f	file:
@@ -3889,8 +4074,11 @@ uiomove	kern/userprog/uio.c	/^uiomove(void *ptr, size_t n, struct uio *uio)$/;"	
 uiomovezeros	kern/userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/;"	f
 un_kbase	kern/include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon3
 un_ubase	kern/include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon3
+ungetppages	kern/vm/coremap.c	/^void ungetppages(paddr_t paddr) {$/;"	f
+uninit	a3-test-scripts/vm-stack2/vm-stack2.c	/^unsigned int uninit[UNINIT_ARRAY_ELEMS];$/;"	v
 uninit	uw-testbin/vm-stack2/vm-stack2.c	/^unsigned int uninit[UNINIT_ARRAY_ELEMS];$/;"	v
 usage	testbin/randcall/main.c	/^usage(void)$/;"	f	file:
+use	kern/include/coremap.h	/^    int use;$/;"	m	struct:coremap_entry
 userptr_t	kern/include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	kern/arch/mips/mips/exception.S	/^utlb_exception:$/;"	l
 utlb_exception_end	kern/arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
@@ -3917,6 +4105,7 @@ va_list	include/stdarg.h	/^typedef __va_list va_list;$/;"	t
 va_list	kern/include/stdarg.h	/^typedef __va_list va_list;$/;"	t
 va_start	include/stdarg.h	/^#define va_start(/;"	d
 va_start	kern/include/stdarg.h	/^#define va_start(/;"	d
+vaddr	kern/include/pt.h	/^    vaddr_t vaddr;$/;"	m	struct:pt_entry
 vaddr_t	kern/arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	kern/compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	kern/compile/ASST1/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
@@ -3958,9 +4147,10 @@ vfs_sync	kern/fs/vfs/vfslist.c	/^vfs_sync(void)$/;"	f
 vfs_unmount	kern/fs/vfs/vfslist.c	/^vfs_unmount(const char *devname)$/;"	f
 vfs_unmountall	kern/fs/vfs/vfslist.c	/^vfs_unmountall(void)$/;"	f
 vm_bootstrap	kern/arch/mips/mips/dumbvm.c	/^vm_bootstrap(void)$/;"	f
-vm_bootstrap	kern/vm/addrspace.c	/^    void vm_bootstrap(void) {}$/;"	f
+vm_bootstrap	kern/arch/mips/mips/vm.c	/^vm_bootstrap(void)$/;"	f
 vm_fault	kern/arch/mips/mips/dumbvm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
-vm_fault	kern/vm/addrspace.c	/^    vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
+vm_fault	kern/arch/mips/mips/vm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
+vm_shutdown	kern/arch/mips/mips/vm.c	/^vm_shutdown(void){$/;"	f
 vmstats_inc	kern/vm/uw-vmstats.c	/^vmstats_inc(unsigned int index)$/;"	f
 vmstats_init	kern/vm/uw-vmstats.c	/^vmstats_init()$/;"	f
 vmstats_print	kern/vm/uw-vmstats.c	/^vmstats_print()$/;"	f
@@ -4042,12 +4232,18 @@ write_badfd	testbin/badcall/common_fds.c	/^write_badfd(int fd)$/;"	f	file:
 write_cfg_register	kern/dev/lamebus/lamebus.c	/^write_cfg_register(struct lamebus_softc *lb, int slot, u_int32_t offset,$/;"	f	file:
 write_cleanup	testbin/badcall/common_buf.c	/^write_cleanup(void)$/;"	f	file:
 write_ctl_register	kern/dev/lamebus/lamebus.c	/^write_ctl_register(struct lamebus_softc *lb, u_int32_t offset, u_int32_t val)$/;"	f	file:
+write_data	a3-test-scripts/vm-crash3/vm-crash3.c	/^write_data()$/;"	f
+write_data	a3-test-scripts/vm-data3/vm-data3.c	/^write_data()$/;"	f
+write_data	a3-test-scripts/vm-mix1-fork/vm-mix1-fork.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
+write_data	a3-test-scripts/vm-mix1/vm-mix1.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
+write_data	a3-test-scripts/vm-mix2/vm-mix2.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
 write_data	uw-testbin/vm-crash3/vm-crash3.c	/^write_data()$/;"	f
 write_data	uw-testbin/vm-data3/vm-data3.c	/^write_data()$/;"	f
 write_data	uw-testbin/vm-mix1-fork/vm-mix1-fork.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
 write_data	uw-testbin/vm-mix1/vm-mix1.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
 write_data	uw-testbin/vm-mix2/vm-mix2.c	/^write_data(unsigned int array[], unsigned int start)$/;"	f
 write_setup	testbin/badcall/common_buf.c	/^write_setup(void)$/;"	f	file:
+write_to_code	a3-test-scripts/vm-crash3/vm-crash3.c	/^write_to_code()$/;"	f
 write_to_code	testbin/crash/crash.c	/^write_to_code(void)$/;"	f	file:
 write_to_code	uw-testbin/vm-crash3/vm-crash3.c	/^write_to_code()$/;"	f
 write_to_inval	testbin/crash/crash.c	/^write_to_inval(void)$/;"	f	file:

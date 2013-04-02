@@ -15,6 +15,8 @@ struct process {
     struct thread* p_thread; // the thread that this process holds
     struct filetable* file_table; // table of files currently opened in the process
     struct array * p_childrenpids; // a list of all of this process’s children
+
+    struct pagetable* pagetable;
 };
 
 // bootstraps initial process. calls thread bootstrap and processtable bootstrap
