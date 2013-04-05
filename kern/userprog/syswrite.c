@@ -28,7 +28,7 @@ int sys_write(int fd, void *buf, size_t buflen, int *err) {
     struct uio u;
     struct file* fi;
 
-    struct process *curprocess = processtable_get(curthread->pid);
+    struct process *curprocess = get_curprocess();
 
     // get file at the specified handle
     fi = ft_getfile(curprocess->file_table, fd, err);

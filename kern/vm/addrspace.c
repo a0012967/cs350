@@ -3,11 +3,15 @@
 #include <lib.h>
 #include <thread.h>
 #include <curthread.h>
+#include <process.h>
+#include <processtable.h>
+#include <pt.h>
 #include <vm.h>
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
 #include <array.h>
+#include <coremap.h>
 #include "opt-A3.h"
 #include "uw-vmstats.h"
 /*
@@ -15,8 +19,6 @@
  * assignment, this file is not compiled or linked or in any way
  * used. The cheesy hack versions in dumbvm.c are used instead.
  */
-
-#define TEMPSTACKPAGES    12
 
 struct addrspace * as_create(void) {
 	struct addrspace *as = kmalloc(sizeof(struct addrspace));
@@ -26,14 +28,11 @@ struct addrspace * as_create(void) {
 
 #if OPT_A3
 	as->as_vbase1 = 0;
-	as->as_pbase1 = 0;
 	as->as_npages1 = 0;
     as->as_flags1 = 0;
 	as->as_vbase2 = 0;
-	as->as_pbase2 = 0;
 	as->as_npages2 = 0;
     as->as_flags2 = 0;
-	as->as_stackpbase = 0;
 #endif // OPT_A3
 
 	return as;
@@ -50,31 +49,8 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 
 
 #if OPT_A3
-	newas->as_vbase1 = old->as_vbase1;
-	newas->as_npages1 = old->as_npages1;
-	newas->as_vbase2 = old->as_vbase2;
-	newas->as_npages2 = old->as_npages2;
-
-	if (as_prepare_load(newas)) {
-		as_destroy(newas);
-		return ENOMEM;
-	}
-
-	assert(newas->as_pbase1 != 0);
-	assert(newas->as_pbase2 != 0);
-	assert(newas->as_stackpbase != 0);
-
-	memmove((void *)PADDR_TO_KVADDR(newas->as_pbase1),
-		(const void *)PADDR_TO_KVADDR(old->as_pbase1),
-		old->as_npages1*PAGE_SIZE);
-
-	memmove((void *)PADDR_TO_KVADDR(newas->as_pbase2),
-		(const void *)PADDR_TO_KVADDR(old->as_pbase2),
-		old->as_npages2*PAGE_SIZE);
-
-	memmove((void *)PADDR_TO_KVADDR(newas->as_stackpbase),
-		(const void *)PADDR_TO_KVADDR(old->as_stackpbase),
-		TEMPSTACKPAGES*PAGE_SIZE);
+    (void)old;
+    assert(0);
 #else
 	(void)old;
 #endif // OPT_A3
@@ -140,7 +116,7 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 	sz = (sz + PAGE_SIZE - 1) & PAGE_FRAME;
 
 	npages = sz / PAGE_SIZE;
-    
+
     if (readable)   flags |= AS_SEG_RD;
     if (writeable)  flags |= AS_SEG_WR;
     if (executable) flags |= AS_SEG_EX;
@@ -179,24 +155,7 @@ int
 as_prepare_load(struct addrspace *as)
 {
 #if OPT_A3
-	assert(as->as_pbase1 == 0);
-	assert(as->as_pbase2 == 0);
-	assert(as->as_stackpbase == 0);
-
-	as->as_pbase1 = getppages(as->as_npages1);
-	if (as->as_pbase1 == 0) {
-		return ENOMEM;
-	}
-
-	as->as_pbase2 = getppages(as->as_npages2);
-	if (as->as_pbase2 == 0) {
-		return ENOMEM;
-	}
-
-	as->as_stackpbase = getppages(TEMPSTACKPAGES);
-	if (as->as_stackpbase == 0) {
-		return ENOMEM;
-	}
+    (void)as;
 #else
 	(void)as;
 #endif // OPT_A3
@@ -218,7 +177,7 @@ int
 as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 {
 #if OPT_A3
-	assert(as->as_stackpbase != 0);
+	(void)as;
 #else
 	(void)as;
 #endif // OPT_A3
@@ -246,7 +205,7 @@ int isWriteable(struct addrspace *as, vaddr_t vaddr) {
     else
         return 1;
 
-    return 1;
+    // return 1;
 
     if (flags & AS_SEG_WR)
         return 1;

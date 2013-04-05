@@ -1,5 +1,7 @@
 #include <processtable.h>
 #include <process.h>
+#include <thread.h>
+#include <curthread.h>
 #include <table.h>
 #include <synch.h>
 #include <kern/errno.h>
@@ -77,4 +79,3 @@ int processtable_getsize() {
     lock_release(pt_lock);
     return ret;
 }
-

@@ -10,6 +10,7 @@
 struct coremap_entry {
     paddr_t paddr;
     //vaddr_t vaddr; // not in use.. yet?
+    // todo: need pid
     int use;
     int size;
 };
@@ -17,6 +18,6 @@ struct coremap_entry {
 void coremap_bootstrap();
 paddr_t getppages(unsigned long npages);
 void ungetppages(paddr_t paddr);
-    
+
 #endif // _COREMAP_H_
 

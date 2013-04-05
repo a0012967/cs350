@@ -10,11 +10,12 @@ struct process {
     int exitcode; // the exit code of the process
     pid_t parentpid; // the pid of this process’s parent
     pid_t pid; // the pid of this process
+    struct filetable* file_table; // table of files currently opened in the process
+    struct pagetable* page_table;
+    struct array * p_childrenpids; // a list of all of this process’s children
     struct cv* p_waitcv; // condition variable in which to wait on
     struct lock* p_lock; // lock to be used for synchronization during wait
-    struct thread* p_thread; // the thread that this process holds
-    struct filetable* file_table; // table of files currently opened in the process
-    struct array * p_childrenpids; // a list of all of this process’s children
+    struct thread* p_thread; // reference to the thread that this process holds
 };
 
 // bootstraps initial process. calls thread bootstrap and processtable bootstrap
@@ -26,6 +27,8 @@ void kill_process(int exitcode);
 void p_destroy();
 void p_destroy_at(struct process *p);
 void p_assign_thread(struct process *p, struct thread *thread);
+
+struct process* get_curprocess();
 
 #endif // _PROCESS_H_
 

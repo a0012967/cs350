@@ -32,7 +32,7 @@ pid_t sys_fork(struct trapframe *tf, int *err) {
     assert(*err == 0);
 
     int retval;
-    struct process *curprocess = processtable_get(curthread->pid);
+    struct process *curprocess = get_curprocess();
     struct process *new_process;
     struct thread *new_thread;
     struct trapframe *new_trapframe;
