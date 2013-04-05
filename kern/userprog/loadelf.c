@@ -222,9 +222,15 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 			return ENOEXEC;
 		}
 
+        /*
+        kprintf("memsize: %u\n", ph.p_memsz);
+        kprintf("filesize: %u\n", ph.p_filesz);
+        */
+
 		result = load_segment(v, ph.p_offset, ph.p_vaddr, 
 				      ph.p_memsz, ph.p_filesz,
 				      ph.p_flags & PF_X);
+
 		if (result) {
 			return result;
 		}

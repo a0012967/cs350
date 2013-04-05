@@ -42,9 +42,10 @@ struct pagetable* pt_create() {
 void pt_destroy(struct pagetable *pt) {
     int i;
     for (i=0; i<array_getnum(pt->entries); i++) {
-        void *ptr = array_getguy(pt->entries, i);
-        if (ptr != NULL) {
-            kfree(ptr);
+        struct pt_entry *pte = (struct pt_entry*)array_getguy(pt->entries, i);
+        if (pte != NULL) {
+            ungetppages(ALIGN(pte->paddr));
+            kfree(pte);
         }
     }
     kfree(pt);
