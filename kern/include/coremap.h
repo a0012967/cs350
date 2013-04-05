@@ -11,7 +11,7 @@ struct coremap_entry {
     paddr_t paddr;
     //vaddr_t vaddr; // not in use.. yet?
     // todo: need pid
-    int use;
+    u_int32_t use;
     int size;
 };
 

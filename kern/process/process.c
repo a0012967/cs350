@@ -99,6 +99,7 @@ struct process * p_create() {
         array_destroy(p->p_childrenpids);
         cv_destroy(p->p_waitcv);
         lock_destroy(p->p_lock);
+        array_destroy(p->p_childrenpids);
         kfree(p);
         return NULL;
     }
@@ -188,6 +189,7 @@ void kill_process(int exitcode) {
 	// if the parent is dead, free memory
 	// if not, the parent will take care of freeing memory
 	if (curprocess->parentpid == 0) {
+	    //assert(0);
 		processtable_remove(curprocess->pid);
 		p_destroy_at(curprocess);
 	}
