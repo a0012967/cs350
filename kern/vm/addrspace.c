@@ -4,6 +4,7 @@
 #include <thread.h>
 #include <curthread.h>
 #include <vm.h>
+#include <coremap.h>
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
@@ -26,7 +27,7 @@ struct addrspace * as_create(void) {
 	}
 
 #if OPT_A3
-	as->as_vbase1 = 0;
+    as->as_vbase1 = 0;
 	as->as_pbase1 = 0;
 	as->as_npages1 = 0;
     as->as_flags1 = 0;
@@ -49,8 +50,8 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 		return ENOMEM;
 	}
 
-
 #if OPT_A3
+    (void)old;
 	newas->as_vbase1 = old->as_vbase1;
 	newas->as_npages1 = old->as_npages1;
 	newas->as_vbase2 = old->as_vbase2;
@@ -180,20 +181,7 @@ int
 as_prepare_load(struct addrspace *as)
 {
 #if OPT_A3
-	assert(as->as_pbase1 == 0);
-	assert(as->as_pbase2 == 0);
 	assert(as->as_stackpbase == 0);
-
-	as->as_pbase1 = getppages(as->as_npages1);
-	if (as->as_pbase1 == 0) {
-		return ENOMEM;
-	}
-
-	as->as_pbase2 = getppages(as->as_npages2);
-	if (as->as_pbase2 == 0) {
-		return ENOMEM;
-	}
-
 	as->as_stackpbase = getppages(TEMPSTACKPAGES);
 	if (as->as_stackpbase == 0) {
 		return ENOMEM;
@@ -254,5 +242,6 @@ int isWriteable(struct addrspace *as, vaddr_t vaddr) {
 
     return 0;
 }
+
 #endif // OPT_A3
 

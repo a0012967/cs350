@@ -7,6 +7,7 @@
 #include <curthread.h>
 #include <filetable.h>
 #include <synch.h>
+#include <pt.h>
 
 struct process_table {
 	struct array *process_list;
@@ -43,11 +44,19 @@ struct process * p_create() {
         return NULL;
     }
 
+    // initialize pagetable
+    p->page_table = pt_create();
+    if (p->page_table == NULL) {
+        ft_destroy(p->file_table);
+        kfree(p);
+        return NULL;
+    }
+
     // initiate condition variable for waitpid
     p->p_waitcv = cv_create("proc_cv");
     if (p->p_waitcv == NULL) {
-        // free allocated process cause it failed
         ft_destroy(p->file_table);
+        pt_destroy(p->page_table);
         kfree(p);
         return NULL;
     }
@@ -55,8 +64,8 @@ struct process * p_create() {
     // initiate its lock
     p->p_lock = lock_create("proc_lock");
     if (p->p_lock == NULL) {
-        // free allocated process cause it failed
         ft_destroy(p->file_table);
+        pt_destroy(p->page_table);
         cv_destroy(p->p_waitcv);
         kfree(p);
         return NULL;
@@ -65,8 +74,8 @@ struct process * p_create() {
     // initiate its array of children
     p->p_childrenpids = array_create();
     if (p->p_childrenpids == NULL) {
-        // free allocated process cause it failed
         ft_destroy(p->file_table);
+        pt_destroy(p->page_table);
         cv_destroy(p->p_waitcv);
         lock_destroy(p->p_lock);
         kfree(p);
@@ -86,11 +95,14 @@ struct process * p_create() {
     int index = processtable_insert(p, &err);
     if (index == -1) {
         ft_destroy(p->file_table);
+        pt_destroy(p->page_table);
+        array_destroy(p->p_childrenpids);
         cv_destroy(p->p_waitcv);
         lock_destroy(p->p_lock);
         kfree(p);
         return NULL;
     }
+
     p->pid = (pid_t)index;
 
 	return p;
@@ -102,6 +114,9 @@ void p_destroy() {
 
     // destroy filetable
     ft_destroy(curprocess->file_table);
+
+    // destroy pagetable
+    pt_destroy(curprocess->page_table);
 
     // destroy synch primitives
     lock_destroy(curprocess->p_lock);
@@ -127,6 +142,9 @@ void p_destroy() {
 void p_destroy_at(struct process * p) {
     // destroy filetable
     ft_destroy(p->file_table);
+
+    // destroy pagetable
+    pt_destroy(p->page_table);
 
     // destroy synch primitives
     lock_destroy(p->p_lock);

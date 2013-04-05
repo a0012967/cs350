@@ -20,6 +20,7 @@
 
 #include "opt-A0.h"
 #include "opt-A2.h"
+#include "opt-A3.h"
 
 #if OPT_A2
 #include <filetable.h>

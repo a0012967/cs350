@@ -18,6 +18,8 @@
 #include <curthread.h>
 #include <vnode.h>
 
+#include "opt-A3.h"
+
 /*
  * Load a segment at virtual address VADDR. The segment in memory
  * extends from VADDR up to (but not including) VADDR+MEMSIZE. The
@@ -32,7 +34,6 @@
  * change this code to not use uiomove, be sure to check for this case
  * explicitly.
  */
-
 static
 int
 load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, 
@@ -166,24 +167,23 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 		}
 
 		switch (ph.p_type) {
-            case PT_NULL: /* skip */ continue;
-            case PT_PHDR: /* skip */ continue;
-            case PT_MIPS_REGINFO: /* skip */ continue;
-            case PT_LOAD: break;
-            default:
-                          kprintf("loadelf: unknown segment type %d\n", 
-                                  ph.p_type);
-                          return ENOEXEC;
-        }
+		    case PT_NULL: /* skip */ continue;
+		    case PT_PHDR: /* skip */ continue;
+		    case PT_MIPS_REGINFO: /* skip */ continue;
+		    case PT_LOAD: break;
+		    default:
+			kprintf("loadelf: unknown segment type %d\n", 
+				ph.p_type);
+			return ENOEXEC;
+		}
 
-        result = as_define_region(curthread->t_vmspace,
-                ph.p_vaddr, ph.p_memsz,
-                ph.p_flags & PF_R,
-                ph.p_flags & PF_W,
-                ph.p_flags & PF_X);
-
-        if (result) {
-            return result;
+		result = as_define_region(curthread->t_vmspace,
+					  ph.p_vaddr, ph.p_memsz,
+					  ph.p_flags & PF_R,
+					  ph.p_flags & PF_W,
+					  ph.p_flags & PF_X);
+		if (result) {
+			return result;
 		}
 	}
 
@@ -225,7 +225,6 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 		result = load_segment(v, ph.p_offset, ph.p_vaddr, 
 				      ph.p_memsz, ph.p_filesz,
 				      ph.p_flags & PF_X);
-
 		if (result) {
 			return result;
 		}

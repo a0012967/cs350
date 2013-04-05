@@ -7,6 +7,7 @@
  * First 10 bit is the outer page table
  */
 
+// HAVE TO CHANGE THESE WHEN YOU CHANGE PAGE_SIZE
 
 #define PTE_VALID       (0x1)
 #define OUT_MASK        (0xffc00000)    // top 10 bits
@@ -19,9 +20,9 @@
 
 struct pagetable;
 struct pagetable* pt_create();
-
-
-
+void pt_destroy(struct pagetable* pt);
+// handles page faults
+paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr);
 
 
 #endif // _PT_H_

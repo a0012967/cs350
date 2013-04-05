@@ -4,13 +4,16 @@
 #include <thread.h>
 #include <curthread.h>
 #include <process.h>
+#include <processtable.h>
+#include <coremap.h>
+#include <pt.h>
 #include <vm.h>
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
-#include <coremap.h>
 #include "opt-A3.h"
 #include "uw-vmstats.h"
+
 #if OPT_A3
 #define VM_STACKPAGES    12
 
@@ -38,15 +41,9 @@ static int tlb_get_rr_victim() {
     }
 
     next_victim = (next_victim + 1) % NUM_TLB;
-    
     return victim;
 }
 
-/*
-static u_int32_t notdirtiable(u_int32_t x) {
-    return x & (0xffffff - TLBLO_DIRTY);
-}
-*/
 
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
@@ -64,14 +61,14 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 
 	faultaddress &= PAGE_FRAME;
 
-	// DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
+	DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
 
 	switch (faulttype) {
 	    case VM_FAULT_READONLY:
             splx(spl);
             kill_process(-1);
-	    case VM_FAULT_READ: // TLB miss on load
-	    case VM_FAULT_WRITE: // TLB miss on store
+	    case VM_FAULT_READ:
+	    case VM_FAULT_WRITE:
 		break;
 	    default:
 		splx(spl);
@@ -132,33 +129,19 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 			continue;
 		}
 		ehi = faultaddress;
+        elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
 
-        if (isWriteable(as, faultaddress)) {
-            elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
-        }
-        else {
-            elo = (paddr & (~TLBLO_DIRTY)) | TLBLO_VALID;
-        }
-
-		// DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
+		DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
 		TLB_Write(ehi, elo, i);
 		splx(spl);
 		return 0;
 	}
 
-    //assert(0);
 
     // evict the victim
     int victim = tlb_get_rr_victim();
     ehi = faultaddress;
-    if (isWriteable(as, faultaddress)) {
-        elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
-        kprintf("writeable\n");
-    }
-    else {
-        elo = (paddr & (~TLBLO_DIRTY)) | TLBLO_VALID;
-        kprintf("not writeable\n");
-    }
+    elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
     DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
     TLB_Write(ehi, elo, victim);
     splx(spl);

@@ -3,7 +3,9 @@
 #include <kern/errno.h>
 
 #include <vm.h>
+#include <elf.h>
 #include <pt.h>
+#include <coremap.h>
 
 #include <array.h>
 #include <queue.h>
@@ -16,8 +18,11 @@ typedef u_int32_t pte_t; // page table entry
 typedef u_int32_t page_t;
 
 struct pagetable {
+    // TODO: set these values somewhere
+	Elf_Ehdr eh;   /* Executable header */
+	Elf_Phdr ph;   /* "Program header" = segment header */
     struct array *pt_out;
-}
+};
 
 struct pagetable* pt_create() {
     int i, rc=0;
@@ -56,28 +61,18 @@ void pt_destroy(struct pagetable *pt) {
             kfree(ptr);
         }
     }
-    array_destroy(pt->pt_entries);
+    array_destroy(pt->pt_out);
     kfree(pt);
 }
 
-pte_t pt_loadpage(page_t* pt_in, vaddr_t vaddr) {
-    u_int32_t in_i;
-    pte_t pte;
-
-    // TODO: load page to physical memory;
-    // we know how to translate virtual addresses to virtual addresses
-    // pte = getPaddr(vaddr);
-
-    in_i = in_index(vaddr);
-    *(pt_in + in_i) = pte;
-
-    return pte;
+// copies vpn from elf to memory
+paddr_t pt_pagefault_handler(vaddr_t vaddr) {
+    (void)vaddr;
+    paddr_t paddr = getppages(1);
+    return paddr;
 }
 
 paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {
-    // TODO: vpn not in PT? would fail in addrspace functions
-    // TODO: a bunch of other stuff as well
-
     u_int32_t i, out_i, in_i;
     pte_t pte;
     page_t* pt_in;
@@ -100,11 +95,12 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {
         }
     }
 
-    pte = *(pt_in+in_i);
+    pte = *(pt_in + in_i);
 
     // PAGE FAULT
     if ((pte & PTE_VALID) == 0) {
-        pte = pt_loadpage(pt_in, vaddr);
+        pte = pt_pagefault_handler(vaddr);
+        *(pt_in + in_i) = pte;
     }
 
     return pte;
@@ -117,5 +113,5 @@ u_int32_t out_index(vaddr_t vaddr) {
 
 u_int32_t in_index(vaddr_t vaddr) {
     // 0 out other bits and do a shift
-    return (ret & IN_MASK) >> 12;
+    return (vaddr & IN_MASK) >> 12;
 }
