@@ -1103,7 +1103,7 @@ as_copy	vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret) 
 as_create	arch/mips/mips/dumbvm.c	/^as_create(void)$/;"	f
 as_create	vm/addrspace.c	/^struct addrspace * as_create(void) {$/;"	f
 as_define_region	arch/mips/mips/dumbvm.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
-as_define_region	vm/addrspace.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
+as_define_region	vm/addrspace.c	/^int as_define_region(struct addrspace *as, $/;"	f
 as_define_stack	arch/mips/mips/dumbvm.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_define_stack	vm/addrspace.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_destroy	arch/mips/mips/dumbvm.c	/^as_destroy(struct addrspace *as)$/;"	f
@@ -1115,7 +1115,6 @@ as_pbase2	include/addrspace.h	/^	paddr_t as_pbase2;$/;"	m	struct:addrspace
 as_prepare_load	arch/mips/mips/dumbvm.c	/^as_prepare_load(struct addrspace *as)$/;"	f
 as_prepare_load	vm/addrspace.c	/^as_prepare_load(struct addrspace *as)$/;"	f
 as_stackpbase	include/addrspace.h	/^	paddr_t as_stackpbase;$/;"	m	struct:addrspace
-as_update_seginfo	vm/addrspace.c	/^int as_update_seginfo(struct addrspace *as,$/;"	f
 as_vbase1	include/addrspace.h	/^	vaddr_t as_vbase1;$/;"	m	struct:addrspace
 as_vbase2	include/addrspace.h	/^	vaddr_t as_vbase2;$/;"	m	struct:addrspace
 as_writeable	vm/addrspace.c	/^int as_writeable(struct addrspace *as, vaddr_t vaddr) {$/;"	f
@@ -1216,7 +1215,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 202;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 248;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1506,7 +1505,6 @@ file_lock	include/file.h	/^    struct lock *file_lock; \/\/ when doing operation
 file_table	include/process.h	/^    struct filetable* file_table; \/\/ table of files currently opened in the process$/;"	m	struct:process	typeref:struct:process::filetable
 filename_invalid	userprog/sysopen.c	/^int filename_invalid(const char *filename, int *err) {$/;"	f
 files	filedes/filetable.c	/^    struct table *files;$/;"	m	struct:filetable	typeref:struct:filetable::table	file:
-filesz	vm/addrspace.c	/^    u_int32_t filesz;$/;"	m	struct:seg_info	file:
 filetable	filedes/filetable.c	/^struct filetable {$/;"	s	file:
 fill_deadbeef	lib/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
 findmount	fs/vfs/vfslist.c	/^findmount(const char *devname, struct knowndev **result)$/;"	f	file:
@@ -1514,7 +1512,6 @@ finish	test/tt3.c	/^finish(int howmanytotal)$/;"	f	file:
 firstaddr	vm/coremap.c	/^static paddr_t firstaddr;$/;"	v	file:
 firstfree	arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual address; set by start.S *\/$/;"	v
 firstpaddr	arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
-flags	vm/addrspace.c	/^    u_int32_t flags;$/;"	m	struct:seg_info	file:
 flush_delay_buf	dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
 free_kpages	arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
 free_kpages	arch/mips/mips/vm.c	/^free_kpages(vaddr_t addr)$/;"	f
@@ -1694,8 +1691,7 @@ ll_push_back	lib/linkedlist.c	/^int ll_push_back(struct linkedlist *ll, void *pt
 ll_push_front	lib/linkedlist.c	/^int ll_push_front(struct linkedlist *ll, void *ptr) {$/;"	f
 ll_size	lib/linkedlist.c	/^int ll_size(struct linkedlist *ll) {$/;"	f
 load_elf	userprog/loadelf.c	/^load_elf(struct vnode *v, vaddr_t *entrypoint)$/;"	f
-load_segment	vm/addrspace.c	/^load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, $/;"	f	file:
-loadpage	vm/addrspace.c	/^int loadpage(struct addrspace *as, vaddr_t vaddr) {$/;"	f
+loadpage	vm/pt.c	/^static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {$/;"	f	file:
 lock	include/synch.h	/^struct lock {$/;"	s
 lock_acquire	thread/synch.c	/^lock_acquire(struct lock *lock)$/;"	f
 lock_create	thread/synch.c	/^lock_create(const char *name)$/;"	f
@@ -1772,7 +1768,6 @@ md_poweroff	arch/mips/mips/lamebus_mips.c	/^md_poweroff(void)$/;"	f
 md_reboot	arch/mips/mips/lamebus_mips.c	/^md_reboot(void)$/;"	f
 md_switch	arch/mips/mips/pcb.c	/^md_switch(struct pcb *old, struct pcb *nu)$/;"	f
 md_usermode	arch/mips/mips/trap.c	/^md_usermode(int argc, userptr_t argv, vaddr_t stack, vaddr_t entry)$/;"	f
-memsz	vm/addrspace.c	/^    u_int32_t memsz;$/;"	m	struct:seg_info	file:
 menu	main/menu.c	/^menu(char *args)$/;"	f
 menu_execute	main/menu.c	/^menu_execute(char *line, int isargs)$/;"	f	file:
 mergexy	dev/lamebus/lscreen.c	/^mergexy(unsigned x, unsigned y)$/;"	f	file:
@@ -1872,7 +1867,6 @@ numrefs	include/file.h	/^    int numrefs; \/\/ number of refs to the file (not t
 numthreads	thread/thread.c	/^static int numthreads;$/;"	v	file:
 off_t	include/kern/types.h	/^typedef int32_t off_t;   \/* Offset within file *\/$/;"	t
 offset	include/file.h	/^    int offset;$/;"	m	struct:file
-offset	vm/addrspace.c	/^    u_int32_t offset;$/;"	m	struct:seg_info	file:
 one_thread_only	thread/thread.c	/^one_thread_only() {$/;"	f
 opsmenu	main/menu.c	/^static const char *opsmenu[] = {$/;"	v	file:
 p_align	include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon2
@@ -1898,6 +1892,7 @@ paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type f
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST3/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+page_read	vm/pt.c	/^static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,$/;"	f	file:
 page_table	include/process.h	/^    struct pagetable* page_table;$/;"	m	struct:process	typeref:struct:process::pagetable
 pageaddr_and_blocktype	lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
 pageref	lib/kheap.c	/^struct pageref {$/;"	s	file:
@@ -2081,7 +2076,6 @@ scheduler_bootstrap	thread/scheduler.c	/^scheduler_bootstrap(void)$/;"	f
 scheduler_killall	thread/scheduler.c	/^scheduler_killall(void)$/;"	f
 scheduler_preallocate	thread/scheduler.c	/^scheduler_preallocate(int nthreads)$/;"	f
 scheduler_shutdown	thread/scheduler.c	/^scheduler_shutdown(void)$/;"	f
-seg_info	vm/addrspace.c	/^struct seg_info {$/;"	s	file:
 sem_create	thread/synch.c	/^sem_create(const char *namearg, int initial_count)$/;"	f
 sem_destroy	thread/synch.c	/^sem_destroy(struct semaphore *sem)$/;"	f
 semaphore	include/synch.h	/^struct semaphore {$/;"	s
@@ -2679,7 +2673,6 @@ utlb_exception_end	arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
 v	include/file.h	/^    struct vnode *v;$/;"	m	struct:file	typeref:struct:file::vnode
 v	lib/array.c	/^	void **v;$/;"	m	struct:array	file:
 v	lib/bitmap.c	/^	WORD_TYPE *v;$/;"	m	struct:bitmap	file:
-v	vm/addrspace.c	/^    struct vnode *v;$/;"	m	struct:seg_info	typeref:struct:seg_info::vnode	file:
 v0	arch/mips/include/asmdefs.h	/^#define v0 /;"	d
 v0	compile/ASST0/machine/asmdefs.h	/^#define v0 /;"	d
 v0	compile/ASST1/machine/asmdefs.h	/^#define v0 /;"	d
@@ -2695,7 +2688,6 @@ va_copy	include/stdarg.h	/^#define va_copy(/;"	d
 va_end	include/stdarg.h	/^#define va_end(/;"	d
 va_list	include/stdarg.h	/^typedef __va_list va_list;$/;"	t
 va_start	include/stdarg.h	/^#define va_start(/;"	d
-vaddr	vm/addrspace.c	/^    u_int32_t vaddr;$/;"	m	struct:seg_info	file:
 vaddr	vm/pt.c	/^    vaddr_t vaddr;$/;"	m	struct:pt_entry	file:
 vaddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t

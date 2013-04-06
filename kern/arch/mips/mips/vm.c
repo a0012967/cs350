@@ -101,7 +101,11 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 			continue;
 		}
 		ehi = faultaddress;
-        elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+
+        if (as_writeable(as, faultaddress))
+            elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+        else
+            elo = paddr | TLBLO_VALID;
 
 		DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
 		TLB_Write(ehi, elo, i);
@@ -109,11 +113,13 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		return 0;
 	}
 
-
     // evict the victim
     int victim = tlb_get_rr_victim();
     ehi = faultaddress;
-    elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+    if (as_writeable(as, faultaddress))
+        elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
+    else
+        elo = paddr | TLBLO_VALID;
     DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
     TLB_Write(ehi, elo, victim);
     splx(spl);

@@ -222,9 +222,6 @@ int as_contains(struct addrspace *as, vaddr_t vaddr) {
 }
 
 int as_writeable(struct addrspace *as, vaddr_t vaddr) {
-    // everything is writeable for now
-    return 1;
-
     u_int32_t seg;
     u_int32_t flags;
 
