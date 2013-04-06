@@ -8,6 +8,6 @@
 struct pagetable;
 struct pagetable* pt_create();
 void pt_destroy(struct pagetable* pt);
-paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr);
+paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err);
 
 #endif // _PT_H_

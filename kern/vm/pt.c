@@ -56,6 +56,8 @@ void pt_destroy(struct pagetable *pt) {
 static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
         size_t memsize, size_t filesize) 
 {
+    // kprintf("pageread: %u, %u, %u, %u\n", offset, vaddr, memsize, filesize);
+
     struct uio ku;
     int result;
     size_t fillamt;
@@ -64,8 +66,7 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
 		filesize = memsize;
 	}
 
-	DEBUG(DB_EXEC, "ELF: Loading %lu bytes to 0x%lx\n", 
-	      (unsigned long) filesize, (unsigned long) vaddr);
+	DEBUG(DB_EXEC, "ELF: Loading %lu bytes to 0x%lx\n", (unsigned long) filesize, (unsigned long) vaddr);
 
     mk_kuio(&ku, (void*)vaddr, memsize, offset, UIO_READ);
     ku.uio_resid = filesize;
@@ -76,16 +77,15 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
     }
 
     if (ku.uio_resid != 0) {
-		/* short read; problem with executable? */
+		// short read; problem with executable?
 		kprintf("ELF: short read on segment - file truncated?\n");
 		return ENOEXEC;
     }
 
-	/* Fill the rest of the memory space (if any) with zeros */
+	// Fill the rest of the memory space (if any) with zeros
 	fillamt = memsize - filesize;
 	if (fillamt > 0) {
-		DEBUG(DB_EXEC, "ELF: Zero-filling %lu more bytes\n", 
-		      (unsigned long) fillamt);
+		DEBUG(DB_EXEC, "ELF: Zero-filling %lu more bytes\n", (unsigned long) fillamt);
 		ku.uio_resid += fillamt;
 		result = uiomovezeros(fillamt, &ku);
 	}
@@ -118,30 +118,32 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
         assert(0);
     }
 
-    if (filesz <= 0) {
-        return 0;
+    int ret = 0;
+    if (filesz != 0) {
+        ret = page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
     }
 
-    return page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
+    return ret;
+
 }
 
 
 // copies vpn from elf to memory
-paddr_t pt_pagefault_handler(vaddr_t vaddr) {
-    int ret;
-    paddr_t paddr;
+paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {
+    assert(*err == 0);
 
-    paddr = ALIGN(getppages(1));
-    ret = loadpage(curthread->t_vmspace, vaddr, paddr);
-    assert(ret == 0);
+    paddr_t paddr = ALIGN(getppages(1));
+    *err = loadpage(curthread->t_vmspace, vaddr, paddr);
 
-    if (ret)
+    if (*err)
         return 0;
 
     return SET_VALID(paddr);
 }
 
-paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {
+paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
+    assert(*err == 0);
+
     struct pt_entry *pte;
     int i, found = 0;
 
@@ -168,7 +170,11 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {
         pte = kmalloc(sizeof(struct pt_entry));
         assert(pte != NULL);
         pte->vaddr = vaddr;
-        pte->paddr = pt_pagefault_handler(vaddr);
+        pte->paddr = pt_pagefault_handler(vaddr, err);
+        if (*err) {
+            kfree(pte);
+            return 0;
+        }
         array_add(pt->entries, pte);
     }
 

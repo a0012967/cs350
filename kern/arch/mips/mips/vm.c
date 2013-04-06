@@ -78,6 +78,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		 * fault early in boot. Return EFAULT so as to panic
 		 * instead of getting into an infinite faulting loop.
 		 */
+        splx(spl);
 		return EFAULT;
 	}
 
@@ -89,8 +90,13 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 	assert((as->as_vbase1 & PAGE_FRAME) == as->as_vbase1);
 	assert((as->as_vbase2 & PAGE_FRAME) == as->as_vbase2);
 
+    int err = 0;
     struct process *curprocess = get_curprocess();
-    paddr = pt_lookup(curprocess->page_table, faultaddress);
+    paddr = pt_lookup(curprocess->page_table, faultaddress, &err);
+    if (err) {
+        splx(spl);
+        return err;
+    }
 
 	// make sure it's page-aligned 
 	assert((paddr & PAGE_FRAME)==paddr);

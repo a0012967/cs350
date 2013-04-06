@@ -10,16 +10,16 @@
 #include <machine/tlb.h>
 
 
-static int cm_size;
+static u_int32_t cm_size;
 static paddr_t firstaddr;
 static paddr_t lastaddr;
 static paddr_t freeaddr; 
-static cm_bootstrapped = 0;
+static int cm_bootstrapped = 0;
 static struct coremap_entry ** cm;
 
 
 void coremap_bootstrap() {
-    int i = 0;
+    u_int32_t i = 0;
     struct coremap_entry *cm_entry;
 
     // figure out how much RAM we have to work with
@@ -77,9 +77,9 @@ paddr_t getppages(unsigned long npages) {
 	}
     // ======================================================
 
-    int cont_count = npages; // counts contiguous pages
-    int cont_block_index; // index of the contiguous block
-    int i = 0;
+    u_int32_t cont_count = npages; // counts contiguous pages
+    u_int32_t cont_block_index; // index of the contiguous block
+    u_int32_t i = 0;
 
 
     // iterate through the coremap to find a contiguous block

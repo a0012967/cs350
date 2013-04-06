@@ -1215,7 +1215,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 248;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 268;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1295,8 +1295,8 @@ cleanup_bowls	asst1/bowls.c	/^cleanup_bowls()$/;"	f
 cleanupitems	test/synchtest.c	/^cleanupitems( void )$/;"	f	file:
 clocksleep	thread/hardclock.c	/^clocksleep(int num_secs)$/;"	f
 cm	vm/coremap.c	/^static struct coremap_entry ** cm;$/;"	v	typeref:struct:coremap_entry	file:
-cm_bootstrapped	vm/coremap.c	/^static cm_bootstrapped = 0;$/;"	v	file:
-cm_size	vm/coremap.c	/^static int cm_size;$/;"	v	file:
+cm_bootstrapped	vm/coremap.c	/^static int cm_bootstrapped = 0;$/;"	v	file:
+cm_size	vm/coremap.c	/^static u_int32_t cm_size;$/;"	v	file:
 cmd_bootfs	main/menu.c	/^cmd_bootfs(int nargs, char **args)$/;"	f	file:
 cmd_chdir	main/menu.c	/^cmd_chdir(int nargs, char **args)$/;"	f	file:
 cmd_dispatch	main/menu.c	/^cmd_dispatch(char *cmd)$/;"	f	file:
@@ -1970,8 +1970,8 @@ pt_create	vm/pt.c	/^struct pagetable* pt_create() {$/;"	f
 pt_destroy	vm/pt.c	/^void pt_destroy(struct pagetable *pt) {$/;"	f
 pt_entry	vm/pt.c	/^struct pt_entry {$/;"	s	file:
 pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
-pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {$/;"	f
-pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr) {$/;"	f
+pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
+pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {$/;"	f
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:
