@@ -477,6 +477,7 @@ defoption A3
 file    vm/uw-vmstats.c
 file    arch/mips/mips/vm.c
 file    vm/coremap.c
+file    vm/swapfile.c
 defoption A4
 defoption A5
 
