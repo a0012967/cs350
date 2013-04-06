@@ -33,7 +33,7 @@ int filename_invalid(const char *filename, int *err) {
 
 // returns -1 if error occured and changes content of err
 int sys_open(const char *filename, int flags, int *err) {
-    struct process *curprocess = processtable_get(curthread->pid);
+    struct process *curprocess = get_curprocess();
     struct vnode *v;
     int ret;
 

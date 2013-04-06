@@ -33,9 +33,7 @@ vaddr_t alloc_kpages(int npages);
 void free_kpages(vaddr_t addr);
 
 #if OPT_A3
-    // these have been moved to coremap.h
-    //paddr_t getppages(unsigned long npages);
-    //void ungetppages(paddr_t paddr);
+#define VM_STACKPAGES    12
 #endif // OPT_A3
 
 #endif /* _VM_H_ */

@@ -14,8 +14,6 @@ struct vnode;
  * You write this.
  */
 
-struct array;
-
 struct addrspace {
 #if OPT_DUMBVM
 	vaddr_t as_vbase1;
@@ -26,15 +24,19 @@ struct addrspace {
 	size_t as_npages2;
 	paddr_t as_stackpbase;
 #else
+    struct vnode *as_vnode;
+
 	vaddr_t as_vbase1;
-	paddr_t as_pbase1;
 	size_t as_npages1;
+    u_int32_t as_filesz1;
+    u_int32_t as_offset1;
     u_int32_t as_flags1;
+
 	vaddr_t as_vbase2;
-	paddr_t as_pbase2;
 	size_t as_npages2;
+    u_int32_t as_filesz2;
+    u_int32_t as_offset2;
     u_int32_t as_flags2;
-	paddr_t as_stackpbase;
 #endif
 };
 
@@ -78,11 +80,25 @@ int               as_copy(struct addrspace *src, struct addrspace **ret);
 void              as_activate(struct addrspace *);
 void              as_destroy(struct addrspace *);
 
+#if OPT_A3
+int               as_define_region(
+                        struct addrspace *as, 
+                        struct vnode *v,
+				        vaddr_t vaddr, 
+                        u_int32_t filesz,
+                        u_int32_t offset,
+                        size_t sz,
+                        int readable, 
+                        int writeable,
+                        int executable);
+
+#else
 int               as_define_region(struct addrspace *as, 
 				   vaddr_t vaddr, size_t sz,
 				   int readable, 
 				   int writeable,
 				   int executable);
+#endif // OPT_A3
 int		  as_prepare_load(struct addrspace *as);
 int		  as_complete_load(struct addrspace *as);
 int               as_define_stack(struct addrspace *as, vaddr_t *initstackptr);
@@ -90,10 +106,24 @@ int               as_define_stack(struct addrspace *as, vaddr_t *initstackptr);
 
 
 #if OPT_A3
-#define AS_SEG_RD 0x1 // readable
-#define AS_SEG_WR 0x2 // writable
-#define AS_SEG_EX 0x4 // executable
-int isWriteable(struct addrspace *as, vaddr_t vaddr);
+
+// segment identifiers
+#define SEG_TEXT 0x1
+#define SEG_DATA 0x2
+#define SEG_STCK 0x3
+
+// segment flags
+#define SEG_RD 0x1 // segment readable
+#define SEG_WR 0x2 // segment writable
+#define SEG_EX 0x4 // segment executable
+
+// returns segment identifier 
+// returns 0 if it does not belong in addrspace
+int as_contains(struct addrspace *as, vaddr_t vaddr);
+
+// returns true if writeable else returns 0
+int as_writeable(struct addrspace *as, vaddr_t vaddr);
+
 #endif // OPT_A3
 
 

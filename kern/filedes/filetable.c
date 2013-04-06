@@ -219,7 +219,7 @@ void console_files_bootstrap() {
     int err;
     struct vnode *vn;
     struct file *f_stdin, *f_stdout, *f_stderr;
-    struct process *curprocess = processtable_get(curthread->pid);
+    struct process *curprocess = get_curprocess();
 
     char *console = NULL;
     console = kstrdup("con:");

@@ -5,7 +5,6 @@
 #include <curthread.h>
 #include <thread.h>
 #include <process.h>
-#include <processtable.h>
 #include <vnode.h>
 #include <lib.h>
 #include <types.h>
@@ -16,7 +15,7 @@ int sys_close(int fd, int *err) {
     assert(*err == 0);
     int result;
     struct file *f;
-    struct process *curprocess = processtable_get(curthread->pid);
+    struct process *curprocess = get_curprocess();
 
     // get file
     f = ft_getfile(curprocess->file_table, fd, err);

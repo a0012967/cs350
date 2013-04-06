@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+ALIGN	include/pt.h	/^#define ALIGN(/;"	d
 ARCH	compile/ASST0/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST1/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST2/defs.mk	/^ARCH=mips$/;"	m
@@ -390,6 +391,7 @@ INUSE_WORDS	lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
 INVALID_OFFSET	lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
 ISDIR	dev/lamebus/emu.c	/^#define ISDIR /;"	d	file:
 ISDIR	fs/sfs/sfs_vnode.c	/^#define ISDIR /;"	d	file:
+IS_VALID	include/pt.h	/^#define IS_VALID(/;"	d
 ITEMSIZE	test/malloctest.c	/^#define ITEMSIZE /;"	d	file:
 K1	dev/generic/pseudorand.c	/^#define K1 /;"	d	file:
 K2	dev/generic/pseudorand.c	/^#define K2 /;"	d	file:
@@ -649,6 +651,13 @@ SAME_STACK	compile/ASST3/machine/pcb.h	/^#define SAME_STACK(/;"	d
 SEEK_CUR	include/kern/unistd.h	/^#define SEEK_CUR /;"	d
 SEEK_END	include/kern/unistd.h	/^#define SEEK_END /;"	d
 SEEK_SET	include/kern/unistd.h	/^#define SEEK_SET /;"	d
+SEG_DATA	include/addrspace.h	/^#define SEG_DATA /;"	d
+SEG_EX	include/addrspace.h	/^#define SEG_EX /;"	d
+SEG_RD	include/addrspace.h	/^#define SEG_RD /;"	d
+SEG_STCK	include/addrspace.h	/^#define SEG_STCK /;"	d
+SEG_TEXT	include/addrspace.h	/^#define SEG_TEXT /;"	d
+SEG_WR	include/addrspace.h	/^#define SEG_WR /;"	d
+SET_VALID	include/pt.h	/^#define SET_VALID(/;"	d
 SFSUIO	include/sfs.h	/^#define SFSUIO(/;"	d
 SFS_BITBLOCKS	include/kern/sfs.h	/^#define SFS_BITBLOCKS(/;"	d
 SFS_BITMAPSIZE	include/kern/sfs.h	/^#define SFS_BITMAPSIZE(/;"	d
@@ -746,7 +755,6 @@ TAGS_HEADERS	compile/ASST0/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\
 TAGS_HEADERS	compile/ASST1/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
 TAGS_HEADERS	compile/ASST2/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
 TAGS_HEADERS	compile/ASST3/Makefile	/^TAGS_HEADERS=$S\/include\/*.h $S\/include\/kern\/*.h $S\/arch\/$(ARCH)\/include\/*.h$/;"	m
-TEMPSTACKPAGES	vm/addrspace.c	/^#define TEMPSTACKPAGES /;"	d	file:
 TESTSIZE	test/arraytest.c	/^#define TESTSIZE /;"	d	file:
 TESTSIZE	test/bitmaptest.c	/^#define TESTSIZE /;"	d	file:
 TLBHI_INVALID	arch/mips/include/tlb.h	/^#define TLBHI_INVALID(/;"	d
@@ -821,6 +829,7 @@ VMSTAT_TLB_RELOAD	include/uw-vmstats.h	/^#define VMSTAT_TLB_RELOAD /;"	d
 VM_FAULT_READ	include/vm.h	/^#define VM_FAULT_READ /;"	d
 VM_FAULT_READONLY	include/vm.h	/^#define VM_FAULT_READONLY /;"	d
 VM_FAULT_WRITE	include/vm.h	/^#define VM_FAULT_WRITE /;"	d
+VM_STACKPAGES	include/vm.h	/^#define VM_STACKPAGES /;"	d
 VM_STATS_H	include/uw-vmstats.h	/^#define VM_STATS_H$/;"	d
 VOP_CLOSE	include/vnode.h	/^#define VOP_CLOSE(/;"	d
 VOP_CREAT	include/vnode.h	/^#define VOP_CREAT(/;"	d
@@ -869,6 +878,7 @@ _BIG_ENDIAN	compile/ASST2/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BIG_ENDIAN	compile/ASST3/machine/types.h	/^#define _BIG_ENDIAN$/;"	d
 _BITMAP_H_	include/bitmap.h	/^#define _BITMAP_H_$/;"	d
 _CLOCK_H_	include/clock.h	/^#define _CLOCK_H_$/;"	d
+_COREMAP_H_	include/coremap.h	/^#define _COREMAP_H_$/;"	d
 _CURTHREAD_H_	include/curthread.h	/^#define _CURTHREAD_H_$/;"	d
 _DEV_H_	include/dev.h	/^#define _DEV_H_$/;"	d
 _ELF_H_	include/elf.h	/^#define _ELF_H_$/;"	d
@@ -1012,12 +1022,14 @@ _OPT_SYNCHPROBS_H_	compile/ASST3/opt-synchprobs.h	/^#define _OPT_SYNCHPROBS_H_$/
 _PATH_SHELL	main/menu.c	/^#define _PATH_SHELL /;"	d	file:
 _PROCESSTABLE_H_	include/processtable.h	/^#define _PROCESSTABLE_H_$/;"	d
 _PROCESS_H_	include/process.h	/^#define _PROCESS_H_$/;"	d
+_PT_H_	include/pt.h	/^#define _PT_H_$/;"	d
 _QUEUE_H_	include/queue.h	/^#define _QUEUE_H_$/;"	d
 _SCHEDULER_H_	include/scheduler.h	/^#define _SCHEDULER_H_$/;"	d
 _SFS_H_	include/sfs.h	/^#define _SFS_H_$/;"	d
 _STDARG_H_	include/stdarg.h	/^#define _STDARG_H_$/;"	d
 _SYNCH_H_	include/synch.h	/^#define _SYNCH_H_$/;"	d
 _SYSCALL_H_	include/syscall.h	/^#define _SYSCALL_H_$/;"	d
+_SYSTEMFILETABLE_H_	include/systemfiletable.h	/^#define _SYSTEMFILETABLE_H_$/;"	d
 _TABLE_H_	include/table.h	/^#define _TABLE_H_$/;"	d
 _TEST_H_	include/test.h	/^#define _TEST_H_$/;"	d
 _THREAD_H_	include/thread.h	/^#define _THREAD_H_$/;"	d
@@ -1065,7 +1077,7 @@ a3	compile/ASST3/machine/asmdefs.h	/^#define a3 /;"	d
 addrspace	include/addrspace.h	/^struct addrspace {$/;"	s
 allbase	lib/kheap.c	/^static struct pageref *allbase;$/;"	v	typeref:struct:pageref	file:
 alloc_kpages	arch/mips/mips/dumbvm.c	/^alloc_kpages(int npages)$/;"	f
-alloc_kpages	vm/addrspace.c	/^    vaddr_t alloc_kpages(int npages) {$/;"	f
+alloc_kpages	arch/mips/mips/vm.c	/^alloc_kpages(int npages)$/;"	f
 allocpageref	lib/kheap.c	/^allocpageref(void)$/;"	f	file:
 approachintersection	asst1/stoplight.c	/^approachintersection(void * unusedpointer,$/;"	f	file:
 args_invalid	userprog/sysexecv.c	/^int args_invalid(char **args, int *err) {$/;"	f
@@ -1085,12 +1097,13 @@ as_activate	arch/mips/mips/dumbvm.c	/^as_activate(struct addrspace *as)$/;"	f
 as_activate	vm/addrspace.c	/^as_activate(struct addrspace *as)$/;"	f
 as_complete_load	arch/mips/mips/dumbvm.c	/^as_complete_load(struct addrspace *as)$/;"	f
 as_complete_load	vm/addrspace.c	/^as_complete_load(struct addrspace *as)$/;"	f
+as_contains	vm/addrspace.c	/^int as_contains(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 as_copy	arch/mips/mips/dumbvm.c	/^as_copy(struct addrspace *old, struct addrspace **ret)$/;"	f
-as_copy	vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret)$/;"	f
+as_copy	vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret) {$/;"	f
 as_create	arch/mips/mips/dumbvm.c	/^as_create(void)$/;"	f
-as_create	vm/addrspace.c	/^as_create(void)$/;"	f
+as_create	vm/addrspace.c	/^struct addrspace * as_create(void) {$/;"	f
 as_define_region	arch/mips/mips/dumbvm.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
-as_define_region	vm/addrspace.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
+as_define_region	vm/addrspace.c	/^int as_define_region(struct addrspace *as, $/;"	f
 as_define_stack	arch/mips/mips/dumbvm.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_define_stack	vm/addrspace.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_destroy	arch/mips/mips/dumbvm.c	/^as_destroy(struct addrspace *as)$/;"	f
@@ -1104,6 +1117,7 @@ as_prepare_load	vm/addrspace.c	/^as_prepare_load(struct addrspace *as)$/;"	f
 as_stackpbase	include/addrspace.h	/^	paddr_t as_stackpbase;$/;"	m	struct:addrspace
 as_vbase1	include/addrspace.h	/^	vaddr_t as_vbase1;$/;"	m	struct:addrspace
 as_vbase2	include/addrspace.h	/^	vaddr_t as_vbase2;$/;"	m	struct:addrspace
+as_writeable	vm/addrspace.c	/^int as_writeable(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 asm_usermode	arch/mips/mips/exception.S	/^asm_usermode:$/;"	l
 assert	include/lib.h	/^#define assert(/;"	d
 attach_beep_to_ltimer	dev/lamebus/beep_ltimer.c	/^attach_beep_to_ltimer(int beepno, struct ltimer_softc *ls)$/;"	f
@@ -1200,8 +1214,8 @@ buildconfig	compile/ASST2/vers.c	/^const char buildconfig[] = "ASST2";$/;"	v
 buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
-buildversion	compile/ASST2/vers.c	/^const int buildversion = 438;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 9;$/;"	v
+buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 268;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1280,6 +1294,9 @@ checksubpages	lib/kheap.c	/^checksubpages(void)$/;"	f	file:
 cleanup_bowls	asst1/bowls.c	/^cleanup_bowls()$/;"	f
 cleanupitems	test/synchtest.c	/^cleanupitems( void )$/;"	f	file:
 clocksleep	thread/hardclock.c	/^clocksleep(int num_secs)$/;"	f
+cm	vm/coremap.c	/^static struct coremap_entry ** cm;$/;"	v	typeref:struct:coremap_entry	file:
+cm_bootstrapped	vm/coremap.c	/^static int cm_bootstrapped = 0;$/;"	v	file:
+cm_size	vm/coremap.c	/^static u_int32_t cm_size;$/;"	v	file:
 cmd_bootfs	main/menu.c	/^cmd_bootfs(int nargs, char **args)$/;"	f	file:
 cmd_chdir	main/menu.c	/^cmd_chdir(int nargs, char **args)$/;"	f	file:
 cmd_dispatch	main/menu.c	/^cmd_dispatch(char *cmd)$/;"	f	file:
@@ -1331,6 +1348,9 @@ copyinstr	lib/copyinout.c	/^copyinstr(const_userptr_t usersrc, char *dest, size_
 copyout	lib/copyinout.c	/^copyout(const void *src, userptr_t userdest, size_t len)$/;"	f
 copyoutstr	lib/copyinout.c	/^copyoutstr(const char *src, userptr_t userdest, size_t len, size_t *actual)$/;"	f
 copystr	lib/copyinout.c	/^copystr(char *dest, const char *src, size_t maxlen, size_t stoplen,$/;"	f	file:
+coremap_bootstrap	vm/coremap.c	/^void coremap_bootstrap() {$/;"	f
+coremap_entry	include/coremap.h	/^struct coremap_entry {$/;"	s
+count	filedes/systemfiletable.c	/^    int count;$/;"	m	struct:systemfiletable	file:
 count	include/synch.h	/^	volatile int count;$/;"	m	struct:semaphore
 counter	asst1/catmouse.c	/^    volatile int counter = 0;$/;"	v
 cpu_halt	arch/mips/mips/spl.c	/^cpu_halt(void)$/;"	f
@@ -1468,6 +1488,7 @@ emufs_unimp	dev/lamebus/emu.c	/^emufs_unimp(void)$/;"	f	file:
 emufs_unmount	dev/lamebus/emu.c	/^emufs_unmount(struct fs *fs)$/;"	f	file:
 emufs_vnode	include/emufs.h	/^struct emufs_vnode {$/;"	s
 emufs_write	dev/lamebus/emu.c	/^emufs_write(struct vnode *v, struct uio *uio)$/;"	f	file:
+entries	vm/pt.c	/^    struct array *entries;$/;"	m	struct:pagetable	typeref:struct:pagetable::array	file:
 ev_emu	include/emufs.h	/^	struct emu_softc *ev_emu;	\/* device *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::emu_softc
 ev_handle	include/emufs.h	/^	u_int32_t ev_handle;		\/* file handle *\/$/;"	m	struct:emufs_vnode
 ev_v	include/emufs.h	/^	struct vnode ev_v;		\/* abstract vnode structure *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::vnode
@@ -1488,11 +1509,13 @@ filetable	filedes/filetable.c	/^struct filetable {$/;"	s	file:
 fill_deadbeef	lib/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/;"	f	file:
 findmount	fs/vfs/vfslist.c	/^findmount(const char *devname, struct knowndev **result)$/;"	f	file:
 finish	test/tt3.c	/^finish(int howmanytotal)$/;"	f	file:
+firstaddr	vm/coremap.c	/^static paddr_t firstaddr;$/;"	v	file:
 firstfree	arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual address; set by start.S *\/$/;"	v
 firstpaddr	arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
 flush_delay_buf	dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
 free_kpages	arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
-free_kpages	vm/addrspace.c	/^    void free_kpages(vaddr_t addr) {$/;"	f
+free_kpages	arch/mips/mips/vm.c	/^free_kpages(vaddr_t addr)$/;"	f
+freeaddr	vm/coremap.c	/^static paddr_t freeaddr; $/;"	v	file:
 freed_pids	process/process.c	/^	struct linkedlist* freed_pids;$/;"	m	struct:process_table	typeref:struct:process_table::linkedlist	file:
 freelist	lib/kheap.c	/^struct freelist {$/;"	s	file:
 freelist_offset	lib/kheap.c	/^	u_int16_t freelist_offset;$/;"	m	struct:pageref	file:
@@ -1520,6 +1543,7 @@ ft_storefile	filedes/filetable.c	/^int ft_storefile(struct filetable *ft, struct
 func	main/menu.c	/^	int (*func)(const char *device);$/;"	m	struct:__anon4	file:
 func	main/menu.c	/^	int (*func)(int nargs, char **args);$/;"	m	struct:__anon5	file:
 genprobe	conf/config	/^    function genprobe(dev, devunit, bus, busunit) {$/;"	f
+get_curprocess	process/process.c	/^struct process* get_curprocess() {$/;"	f
 get_first_slot	lib/table.c	/^int get_first_slot(struct table *t) {$/;"	f
 get_status	arch/mips/mips/spl.c	/^#define get_status(/;"	d	file:
 getbase	conf/config	/^    function getbase(invalmsg, d,       base) {$/;"	f
@@ -1528,7 +1552,7 @@ getch_intr	dev/generic/console.c	/^getch_intr(struct con_softc *cs)$/;"	f	file:
 getdevice	fs/vfs/vfslookup.c	/^getdevice(char *path, char **subpath, struct vnode **startvn)$/;"	f	file:
 getinterval	main/menu.c	/^getinterval(time_t s1, u_int32_t ns1, time_t s2, u_int32_t ns2,$/;"	f
 getppages	arch/mips/mips/dumbvm.c	/^getppages(unsigned long npages)$/;"	f	file:
-getppages	vm/addrspace.c	/^    static paddr_t getppages(unsigned long npages) {$/;"	f	file:
+getppages	vm/coremap.c	/^paddr_t getppages(unsigned long npages) {$/;"	f
 gettime	dev/generic/rtclock.c	/^gettime(time_t *secs, u_int32_t *nsecs)$/;"	f
 getunit	conf/config	/^    function getunit(invalmsg, d,       u, tmp) {$/;"	f
 gostraight	asst1/stoplight.c	/^gostraight(unsigned long cardirection,$/;"	f	file:
@@ -1541,6 +1565,7 @@ hardclock	thread/hardclock.c	/^hardclock(void)$/;"	f
 harvard_copyright	main/main.c	/^static const char harvard_copyright[] =$/;"	v	file:
 has_exited	include/process.h	/^    int has_exited; \/\/ 1 if this process has exited, 0 if not$/;"	m	struct:process
 haveclock	dev/lamebus/ltimer.c	/^static int haveclock=0;$/;"	v	file:
+head	filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 head	lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 held	include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	main/hello.c	/^void hello() {$/;"	f
@@ -1630,6 +1655,7 @@ lamebus_read_register	arch/mips/mips/lamebus_mips.c	/^lamebus_read_register(stru
 lamebus_softc	dev/lamebus/lamebus.h	/^struct lamebus_softc {$/;"	s
 lamebus_unmark	dev/lamebus/lamebus.c	/^lamebus_unmark(struct lamebus_softc *sc, int slot)$/;"	f
 lamebus_write_register	arch/mips/mips/lamebus_mips.c	/^lamebus_write_register(struct lamebus_softc *bus, int slot,$/;"	f
+lastaddr	vm/coremap.c	/^static paddr_t lastaddr;$/;"	v	file:
 lastpaddr	arch/mips/mips/ram.c	/^static u_int32_t lastpaddr;   \/* one past end of last free physical page *\/$/;"	v	file:
 lb_irqfunc	dev/lamebus/lamebus.h	/^typedef void (*lb_irqfunc)(void *devdata);$/;"	t
 lbolt	thread/hardclock.c	/^int lbolt;$/;"	v
@@ -1665,7 +1691,7 @@ ll_push_back	lib/linkedlist.c	/^int ll_push_back(struct linkedlist *ll, void *pt
 ll_push_front	lib/linkedlist.c	/^int ll_push_front(struct linkedlist *ll, void *ptr) {$/;"	f
 ll_size	lib/linkedlist.c	/^int ll_size(struct linkedlist *ll) {$/;"	f
 load_elf	userprog/loadelf.c	/^load_elf(struct vnode *v, vaddr_t *entrypoint)$/;"	f
-load_segment	userprog/loadelf.c	/^load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, $/;"	f	file:
+loadpage	vm/pt.c	/^static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {$/;"	f	file:
 lock	include/synch.h	/^struct lock {$/;"	s
 lock_acquire	thread/synch.c	/^lock_acquire(struct lock *lock)$/;"	f
 lock_create	thread/synch.c	/^lock_create(const char *name)$/;"	f
@@ -1855,19 +1881,24 @@ p_lock	include/process.h	/^    struct lock* p_lock; \/\/ lock to be used for syn
 p_memsz	include/elf.h	/^	u_int32_t	p_memsz;     \/* Size of data to be loaded into memory*\/$/;"	m	struct:__anon2
 p_offset	include/elf.h	/^	u_int32_t	p_offset;    \/* Location of data within file *\/$/;"	m	struct:__anon2
 p_paddr	include/elf.h	/^	u_int32_t	p_paddr;     \/* Ignore *\/$/;"	m	struct:__anon2
-p_thread	include/process.h	/^    struct thread* p_thread; \/\/ the thread that this process holds$/;"	m	struct:process	typeref:struct:process::thread
+p_thread	include/process.h	/^    struct thread* p_thread; \/\/ reference to the thread that this process holds$/;"	m	struct:process	typeref:struct:process::thread
 p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	struct:__anon2
 p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
 p_waitcv	include/process.h	/^    struct cv* p_waitcv; \/\/ condition variable in which to wait on$/;"	m	struct:process	typeref:struct:process::cv
+paddr	include/coremap.h	/^    paddr_t paddr;$/;"	m	struct:coremap_entry
+paddr	vm/pt.c	/^    paddr_t paddr;$/;"	m	struct:pt_entry	file:
 paddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST3/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+page_read	vm/pt.c	/^static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,$/;"	f	file:
+page_table	include/process.h	/^    struct pagetable* page_table;$/;"	m	struct:process	typeref:struct:process::pagetable
 pageaddr_and_blocktype	lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
 pageref	lib/kheap.c	/^struct pageref {$/;"	s	file:
 pagerefs	lib/kheap.c	/^static struct pageref pagerefs[NPAGEREFS];$/;"	v	typeref:struct:pageref	file:
 pagerefs_inuse	lib/kheap.c	/^static u_int32_t pagerefs_inuse[INUSE_WORDS];$/;"	v	file:
+pagetable	vm/pt.c	/^struct pagetable {$/;"	s	file:
 panic	lib/kprintf.c	/^panic(const char *fmt, ...)$/;"	f
 panicstr	arch/mips/mips/start.S	/^panicstr:$/;"	l
 parentpid	include/process.h	/^    pid_t parentpid; \/\/ the pid of this process’s parent$/;"	m	struct:process
@@ -1935,7 +1966,12 @@ pseudorand_randmax	dev/generic/pseudorand.c	/^pseudorand_randmax(void *devdata)$
 pseudorand_random	dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/;"	f
 pseudorand_read	dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/;"	f
 pseudorand_softc	dev/generic/pseudorand.h	/^struct pseudorand_softc {$/;"	s
+pt_create	vm/pt.c	/^struct pagetable* pt_create() {$/;"	f
+pt_destroy	vm/pt.c	/^void pt_destroy(struct pagetable *pt) {$/;"	f
+pt_entry	vm/pt.c	/^struct pt_entry {$/;"	s	file:
 pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
+pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
+pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {$/;"	f
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:
@@ -1984,7 +2020,7 @@ rs_read	dev/generic/random.h	/^	int (*rs_read)(void *devdata, struct uio *uio);$
 rtc_devdata	dev/generic/rtclock.h	/^	void *rtc_devdata;$/;"	m	struct:rtclock_softc
 rtc_gettime	dev/generic/rtclock.h	/^	void (*rtc_gettime)(void *devdata, time_t *secs, u_int32_t *nsecs);$/;"	m	struct:rtclock_softc
 rtclock_softc	dev/generic/rtclock.h	/^struct rtclock_softc {$/;"	s
-runprogram	userprog/runprogram.c	/^runprogram(char *progname, int argc, char ** argv)$/;"	f
+runprogram	userprog/runprogram.c	/^int runprogram(char *progname, int argc, char ** argv)$/;"	f
 runqueue	thread/scheduler.c	/^static struct queue *runqueue;$/;"	v	typeref:struct:queue	file:
 runtest3	test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/;"	f	file:
 runthreads	test/threadtest.c	/^runthreads(int doloud)$/;"	f	file:
@@ -2176,8 +2212,11 @@ sfs_vnodes	include/sfs.h	/^	struct array *sfs_vnodes;       \/* vnodes loaded in
 sfs_wblock	fs/sfs/sfs_io.c	/^sfs_wblock(struct sfs_fs *sfs, void *data, u_int32_t block)$/;"	f
 sfs_write	fs/sfs/sfs_vnode.c	/^sfs_write(struct vnode *v, struct uio *uio)$/;"	f	file:
 sfs_writedir	fs/sfs/sfs_vnode.c	/^sfs_writedir(struct sfs_vnode *sv, struct sfs_dir *sd, int slot)$/;"	f	file:
+sft	filedes/systemfiletable.c	/^static struct systemfiletable *sft;$/;"	v	typeref:struct:systemfiletable	file:
+sft_lock	filedes/systemfiletable.c	/^static struct lock *sft_lock;$/;"	v	typeref:struct:lock	file:
 showmenu	main/menu.c	/^showmenu(const char *name, const char *x[])$/;"	f	file:
 shutdown	main/main.c	/^shutdown(void)$/;"	f	file:
+size	include/coremap.h	/^    int size;$/;"	m	struct:coremap_entry
 size	lib/linkedlist.c	/^    int size;$/;"	m	struct:linkedlist	file:
 size	lib/queue.c	/^	int size;$/;"	m	struct:queue	file:
 size_t	arch/mips/include/types.h	/^typedef unsigned long size_t;		\/* Size of a memory region *\/$/;"	t
@@ -2233,16 +2272,20 @@ sys_close	userprog/sysclose.c	/^int sys_close(int fd, int *err) {$/;"	f
 sys_errlist	include/kern/errmsg.h	/^const char *const sys_errlist[] = {$/;"	v
 sys_execv	userprog/sysexecv.c	/^int sys_execv(const char *program, char **args, int *err) {$/;"	f
 sys_fork	userprog/sysfork.c	/^pid_t sys_fork(struct trapframe *tf, int *err) {$/;"	f
-sys_getpid	userprog/process_syscalls.c	/^int sys_getpid(void) {$/;"	f
 sys_getpid	userprog/sysgetpid.c	/^pid_t sys_getpid() {$/;"	f
 sys_nerr	include/kern/errmsg.h	/^const int sys_nerr = sizeof(sys_errlist)\/sizeof(const char *);$/;"	v
 sys_open	userprog/sysopen.c	/^int sys_open(const char *filename, int flags, int *err) {$/;"	f
 sys_read	userprog/sysread.c	/^int sys_read(int fd, userptr_t buf, size_t buflen,  int *err) {$/;"	f
 sys_reboot	main/main.c	/^sys_reboot(int code)$/;"	f
-sys_waitpid	userprog/process_syscalls.c	/^int sys_waitpid(pid_t pid, int *returncode, int flags) {$/;"	f
 sys_waitpid	userprog/syswaitpid.c	/^int sys_waitpid(pid_t pid, int *status, int options, int* err) {$/;"	f
-sys_write	userprog/process_syscalls.c	/^int sys_write(int filehandle, const void *buf, size_t size) {$/;"	f
 sys_write	userprog/syswrite.c	/^int sys_write(int fd, void *buf, size_t buflen, int *err) {$/;"	f
+systemfiletable	filedes/systemfiletable.c	/^struct systemfiletable {$/;"	s	file:
+systemfiletable_bootstrap	filedes/systemfiletable.c	/^void systemfiletable_bootstrap() {$/;"	f
+systemft_getcount	filedes/systemfiletable.c	/^int systemft_getcount() {$/;"	f
+systemft_insert	filedes/systemfiletable.c	/^int systemft_insert(struct file *f) {$/;"	f
+systemft_iter_ct	filedes/systemfiletable.c	/^int systemft_iter_ct() {$/;"	f
+systemft_remove	filedes/systemfiletable.c	/^int systemft_remove(struct file *f) {$/;"	f
+systemft_update	filedes/systemfiletable.c	/^int systemft_update(struct file *f) {$/;"	f
 t0	arch/mips/include/asmdefs.h	/^#define t0 /;"	d
 t0	compile/ASST0/machine/asmdefs.h	/^#define t0 /;"	d
 t0	compile/ASST1/machine/asmdefs.h	/^#define t0 /;"	d
@@ -2308,10 +2351,10 @@ tab_getnum	lib/table.c	/^int tab_getnum(struct table *t) {$/;"	f
 tab_getsize	lib/table.c	/^int tab_getsize(struct table *t) {$/;"	f
 tab_remove	lib/table.c	/^int tab_remove(struct table *t, int index) {$/;"	f
 table	lib/table.c	/^struct table {$/;"	s	file:
+tail	filedes/systemfiletable.c	/^    struct file *tail;$/;"	m	struct:systemfiletable	typeref:struct:systemfiletable::file	file:
 tail	lib/linkedlist.c	/^    struct node *tail;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 testa	test/arraytest.c	/^testa(struct array *a)$/;"	f	file:
 testcv	test/synchtest.c	/^static struct cv *testcv;$/;"	v	typeref:struct:cv	file:
-testfiletable	main/main.c	/^void testfiletable() {$/;"	f
 testlock	test/synchtest.c	/^static struct lock *testlock;$/;"	v	typeref:struct:lock	file:
 testmenu	main/menu.c	/^static const char *testmenu[] = {$/;"	v	file:
 testq	test/queuetest.c	/^testq(struct queue *q, int n)$/;"	f	file:
@@ -2528,6 +2571,7 @@ threadtest	test/threadtest.c	/^threadtest(int nargs, char **args)$/;"	f
 threadtest2	test/threadtest.c	/^threadtest2(int nargs, char **args)$/;"	f
 threadtest3	test/tt3.c	/^threadtest3(int nargs, char **args)$/;"	f
 time_t	include/kern/types.h	/^typedef int32_t time_t;  \/* Time in seconds *\/$/;"	t
+tlb_get_rr_victim	arch/mips/mips/vm.c	/^static int tlb_get_rr_victim() {$/;"	f	file:
 translate_err	dev/lamebus/emu.c	/^translate_err(struct emu_softc *sc, u_int32_t code)$/;"	f	file:
 trapcodenames	arch/mips/mips/trap.c	/^static const char *const trapcodenames[NTRAPCODES] = {$/;"	v	file:
 trapframe	arch/mips/include/trapframe.h	/^struct trapframe {$/;"	s
@@ -2621,6 +2665,8 @@ uiomove	userprog/uio.c	/^uiomove(void *ptr, size_t n, struct uio *uio)$/;"	f
 uiomovezeros	userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/;"	f
 un_kbase	include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon3
 un_ubase	include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon3
+ungetppages	vm/coremap.c	/^void ungetppages(paddr_t paddr) {$/;"	f
+use	include/coremap.h	/^    int use;$/;"	m	struct:coremap_entry
 userptr_t	include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	arch/mips/mips/exception.S	/^utlb_exception:$/;"	l
 utlb_exception_end	arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
@@ -2642,6 +2688,7 @@ va_copy	include/stdarg.h	/^#define va_copy(/;"	d
 va_end	include/stdarg.h	/^#define va_end(/;"	d
 va_list	include/stdarg.h	/^typedef __va_list va_list;$/;"	t
 va_start	include/stdarg.h	/^#define va_start(/;"	d
+vaddr	vm/pt.c	/^    vaddr_t vaddr;$/;"	m	struct:pt_entry	file:
 vaddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
@@ -2677,9 +2724,10 @@ vfs_sync	fs/vfs/vfslist.c	/^vfs_sync(void)$/;"	f
 vfs_unmount	fs/vfs/vfslist.c	/^vfs_unmount(const char *devname)$/;"	f
 vfs_unmountall	fs/vfs/vfslist.c	/^vfs_unmountall(void)$/;"	f
 vm_bootstrap	arch/mips/mips/dumbvm.c	/^vm_bootstrap(void)$/;"	f
-vm_bootstrap	vm/addrspace.c	/^    void vm_bootstrap(void) {}$/;"	f
+vm_bootstrap	arch/mips/mips/vm.c	/^vm_bootstrap(void)$/;"	f
 vm_fault	arch/mips/mips/dumbvm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
-vm_fault	vm/addrspace.c	/^    vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
+vm_fault	arch/mips/mips/vm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
+vm_shutdown	arch/mips/mips/vm.c	/^vm_shutdown(void){$/;"	f
 vmstats_inc	vm/uw-vmstats.c	/^vmstats_inc(unsigned int index)$/;"	f
 vmstats_init	vm/uw-vmstats.c	/^vmstats_init()$/;"	f
 vmstats_print	vm/uw-vmstats.c	/^vmstats_print()$/;"	f

@@ -51,7 +51,7 @@ kill_curthread(u_int32_t epc, unsigned code, u_int32_t vaddr)
 	 * You will probably want to change this.
 	 */
 	#if OPT_A2
-        kill_process(0);
+        kill_process(-1);
 	#else
 		panic("I don't know how to handle this\n");
 	#endif //OPT_A2

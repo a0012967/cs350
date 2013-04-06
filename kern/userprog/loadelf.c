@@ -18,73 +18,6 @@
 #include <curthread.h>
 #include <vnode.h>
 
-/*
- * Load a segment at virtual address VADDR. The segment in memory
- * extends from VADDR up to (but not including) VADDR+MEMSIZE. The
- * segment on disk is located at file offset OFFSET and has length
- * FILESIZE.
- *
- * FILESIZE may be less than MEMSIZE; if so the remaining portion of
- * the in-memory segment should be zero-filled.
- *
- * Note that uiomove will catch it if someone tries to load an
- * executable whose load address is in kernel space. If you should
- * change this code to not use uiomove, be sure to check for this case
- * explicitly.
- */
-
-
-#define RODATABOTTOM (0x00400000)
-#define RODATATOP (0x00401a0c)
-
-static
-int
-load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, 
-	     size_t memsize, size_t filesize,
-	     int is_executable)
-{
-	struct uio u;
-	int result;
-	size_t fillamt;
-
-	if (filesize > memsize) {
-		kprintf("ELF: warning: segment filesize > segment memsize\n");
-		filesize = memsize;
-	}
-
-	DEBUG(DB_EXEC, "ELF: Loading %lu bytes to 0x%lx\n", 
-	      (unsigned long) filesize, (unsigned long) vaddr);
-
-	u.uio_iovec.iov_ubase = (userptr_t)vaddr;
-	u.uio_iovec.iov_len = memsize;   // length of the memory space
-	u.uio_resid = filesize;          // amount to actually read
-	u.uio_offset = offset;
-	u.uio_segflg = is_executable ? UIO_USERISPACE : UIO_USERSPACE;
-	u.uio_rw = UIO_READ;
-	u.uio_space = curthread->t_vmspace;
-
-	result = VOP_READ(v, &u);
-	if (result) {
-		return result;
-	}
-
-	if (u.uio_resid != 0) {
-		/* short read; problem with executable? */
-		kprintf("ELF: short read on segment - file truncated?\n");
-		return ENOEXEC;
-	}
-
-	/* Fill the rest of the memory space (if any) with zeros */
-	fillamt = memsize - filesize;
-	if (fillamt > 0) {
-		DEBUG(DB_EXEC, "ELF: Zero-filling %lu more bytes\n", 
-		      (unsigned long) fillamt);
-		u.uio_resid += fillamt;
-		result = uiomovezeros(fillamt, &u);
-	}
-	
-	return result;
-}
 
 /*
  * Load an ELF executable user program into the current address space.
@@ -179,70 +112,20 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 				ph.p_type);
 			return ENOEXEC;
 		}
-    if (ph.p_vaddr >= RODATABOTTOM && ph.p_vaddr <= RODATATOP){
-		result = as_define_region(curthread->t_vmspace,
-					  ph.p_vaddr, ph.p_memsz,
-					  ph.p_flags & PF_R,
-	                  0,
-    				  ph.p_flags & PF_X);
-    }else {
+
         result = as_define_region(curthread->t_vmspace,
-                        ph.p_vaddr, ph.p_memsz,
+                        v,
+                        ph.p_vaddr, 
+                        ph.p_filesz,
+                        ph.p_offset,
+                        ph.p_memsz,
                         ph.p_flags & PF_R,
                         ph.p_flags & PF_W,
                         ph.p_flags & PF_X);
-     }
-		if (result) {
-			return result;
-		}
-	}
 
-	result = as_prepare_load(curthread->t_vmspace);
-	if (result) {
-		return result;
-	}
-
-	/*
-	 * Now actually load each segment.
-	 */
-
-	for (i=0; i<eh.e_phnum; i++) {
-		off_t offset = eh.e_phoff + i*eh.e_phentsize;
-		mk_kuio(&ku, &ph, sizeof(ph), offset, UIO_READ);
-
-		result = VOP_READ(v, &ku);
-		if (result) {
-			return result;
-		}
-
-		if (ku.uio_resid != 0) {
-			/* short read; problem with executable? */
-			kprintf("ELF: short read on phdr - file truncated?\n");
-			return ENOEXEC;
-		}
-
-		switch (ph.p_type) {
-		    case PT_NULL: /* skip */ continue;
-		    case PT_PHDR: /* skip */ continue;
-		    case PT_MIPS_REGINFO: /* skip */ continue;
-		    case PT_LOAD: break;
-		    default:
-			kprintf("loadelf: unknown segment type %d\n", 
-				ph.p_type);
-			return ENOEXEC;
-		}
-
-		result = load_segment(v, ph.p_offset, ph.p_vaddr, 
-				      ph.p_memsz, ph.p_filesz,
-				      ph.p_flags & PF_X);
-		if (result) {
-			return result;
-		}
-	}
-
-	result = as_complete_load(curthread->t_vmspace);
-	if (result) {
-		return result;
+        if (result) {
+            return result;
+        }
 	}
 
 	*entrypoint = eh.e_entry;
