@@ -1,139 +1,133 @@
-#include "swapfile.h"
-#include "vfs.h"
-#include "vm.h"
-#include "vnode.h"
-#include "uio.h"
-#include "lib.h"
-#include "types.h"
-#include "uw-vmstats.h"
-#include "array.h"
-#include "machine/spl.h"
-#include "kern/unistd.h"
-#include "thread.h"
-#include "curthread.h"
-#include "pt.h"
+#include <swapfile.h>
+#include <types.h>
+#include <lib.h>
+#include <vfs.h>
+#include <vm.h>
+#include <vnode.h>
+#include <uio.h>
+#include <uw-vmstats.h>
+#include <array.h>
+#include <machine/spl.h>
+#include <kern/unistd.h>
+#include <thread.h>
+#include <curthread.h>
+#include <pt.h>
 
 
-void swap_bootstrap(){
+static paddr_t *swappedpages_map;
+static u_int32_t count;
 
-    /* create the swapfile	*/
-    char sf[] = "swapfile";
-	int err = vfs_open(sf, O_RDWR | O_CREAT | O_TRUNC, &swapfile);
+void swap_bootstrap() {
+    int err = 0;
+    char *sf = NULL;
 
-    if (err) {
-        panic("swapfile_bootstrap: error creating swapfile");
-    }
+    sf = kstrdup("swapfile");
+	err = vfs_open(sf, O_RDWR | O_CREAT | O_TRUNC, &swapfile);
+    assert(!err);
 	
-	/* create swapped pages map */
-	swappedpages_map = array_create();
-    if (swappedpages_map == NULL) {
-        panic("swapfile_bootstrap: error creating swapped pages map");
-	}	
+	swappedpages_map = kmalloc(MAX_SWAPPED_PAGES * sizeof(paddr_t));
+    assert(swappedpages_map);
+
+    count = 0;
 }
 
-
-
 int swapout(struct pt_entry *pte) {
-	
-	assert(pte->dirty == 1); 
+    assert(IS_DIRTY(pte->paddr));
 
-	int i, spl, found = 0;	
+    u_int32_t i, spl, offset, err = 0, found = 0;
 	spl = splhigh();
 	
+    paddr_t pfn = ALIGN(pte->paddr);
+
 	/* get offset of the page in the swapfile (if its been swapped before) */
-	for(i=0; i < array_getnum(swappedpages_map); i++){
-		if(pte == array_getguy(swappedpages_map, i)){
+	for (i=0; i<count; i++) {
+		if (pfn == swappedpages_map[i]) {
 			found = 1;
 			break;
 		}
 	}	
 	
 	/* check if we are trying to swap to a full swapfile */
-	if(i > MAX_SWAPPED_PAGES && !found) {
+	if (count == MAX_SWAPPED_PAGES && !found) {
 		panic("swapout: out of swapfile space");
 	}
 	
-	/* write page to the swapfile */
-	int offset = i * PAGE_SIZE;
-	int err = write_to_swapfile(pte->vaddr, offset);
+    if (found) {
+        offset = i * PAGE_SIZE;
+    }
+    else {
+        swappedpages_map[count] = pfn;
+        offset = count * PAGE_SIZE;
+        count++;
+    }
 
-	if(err) {
-		return -1;
-	}	
-	
-	/* update the page entry */	
-	pte->valid = 0;
-	pte->swapped = 1;
-	pte->dirty = 0;
-	// TODO: figure out what to do with pte->paddr
+	err = write_to_swapfile(PADDR_TO_KVADDR(pfn), offset);
+    assert(!err);
+
+	// update page table entry
+    // turn off all other bits and set it as swapped
+    pte->paddr = SET_SWAPPED(ALIGN(pte->paddr));
 	
 	//TODO: increment swapped out stats count
 	
-	splx(spl);    
-	return 0;
+	splx(spl);
+	return err;
 }
 
 
-void swapin( struct pt_entry *pte ) {
-	
-    int i, spl, offset, found = 0;
-    
+int swapin(struct pt_entry *pte) {
+    assert(IS_SWAPPED(pte->paddr));
+
+    u_int32_t i, spl, offset, err = 0, found = 0;
     spl = splhigh();
 	
-    /* find offset of page in swapfile */
-    for(i=0; i<array_getnum(swappedpages_map); i++){
-        if(pte == array_getguy(swappedpages_map, i)){
+    paddr_t pfn = ALIGN(pte->paddr);
+
+    // find offset of page in swapfile
+    for (i=0; i<count; i++) {
+        if (pfn == swappedpages_map[i]) {
             found = 1;
             break;
         }
     }
 
     assert(found);
-    
+
 	/* read page from swapfie */
     offset = i * PAGE_SIZE;
-    int err = read_from_swapfile(pte->vaddr, offset);
-	if(err) {}
-    
-	/* update pte */
-    pte->dirty = 0;
-    pte->swapped = 0;
-    pte->valid = 1;
+    err = read_from_swapfile(PADDR_TO_KVADDR(pfn), offset);
+    assert(!err);
+
+	// update page table entry
+    // turn off all other bits and set it as valid
+    pte->paddr = SET_VALID(ALIGN(pte->paddr));
 
     splx(spl);
+    return err;
 }
 
-
-
-/* read one page from swapfile at the offset into address vaddr */
 int read_from_swapfile(vaddr_t vaddr, u_int32_t offset) {
-
     struct uio u;
     u.uio_iovec.iov_ubase = (void *)vaddr;
     u.uio_iovec.iov_len = PAGE_SIZE;
     u.uio_resid = PAGE_SIZE;
     u.uio_offset = offset;
-    u.uio_segflg = UIO_SYSSPACE; //not sure about this
+    u.uio_segflg = UIO_SYSSPACE;
     u.uio_rw = UIO_READ;
-    u.uio_space = NULL; //TODO: not sure about this
-    int result = VOP_READ(swapfile, &u);
-    return result;
-
+    u.uio_space = NULL;
+    return VOP_READ(swapfile, &u);
 }
 
-
-int write_to_swapfile(vaddr_t vaddr, u_int32_t offset){
-
+int write_to_swapfile(vaddr_t vaddr, u_int32_t offset) {
     struct uio u;
     u.uio_iovec.iov_ubase = (void *)vaddr;
     u.uio_iovec.iov_len = PAGE_SIZE;
     u.uio_resid = PAGE_SIZE;
     u.uio_offset = offset;
-    u.uio_segflg = UIO_SYSSPACE; //not sure about this
+    u.uio_segflg = UIO_SYSSPACE;
     u.uio_rw = UIO_WRITE;
-    u.uio_space = NULL; //TODO: not sure about this
-    int result = VOP_WRITE(swapfile, &u);
-	return result;
+    u.uio_space = NULL;
+    return VOP_WRITE(swapfile, &u);
 }
 
 int evict() {

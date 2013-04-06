@@ -480,6 +480,8 @@ MAKENAME	test/fstest.c	/^#define MAKENAME(/;"	d	file:
 MAXMENUARGS	main/menu.c	/^#define MAXMENUARGS /;"	d	file:
 MAXTHREADS	include/synch.h	/^#define MAXTHREADS /;"	d
 MAX_PROCESSES	include/process.h	/^#define MAX_PROCESSES /;"	d
+MAX_SWAPFILE_SIZE	include/swapfile.h	/^#define MAX_SWAPFILE_SIZE /;"	d
+MAX_SWAPPED_PAGES	include/swapfile.h	/^#define MAX_SWAPPED_PAGES /;"	d
 MDHEADERS	Makefile	/^MDHEADERS=asmdefs.h setjmp.h types.h$/;"	m
 MDINCDIR	Makefile	/^MDINCDIR=$(OSTREE)\/include\/$(PLATFORM)$/;"	m
 MIPS_KSEG0	arch/mips/include/vm.h	/^#define MIPS_KSEG0 /;"	d
@@ -1027,6 +1029,7 @@ _QUEUE_H_	include/queue.h	/^#define _QUEUE_H_$/;"	d
 _SCHEDULER_H_	include/scheduler.h	/^#define _SCHEDULER_H_$/;"	d
 _SFS_H_	include/sfs.h	/^#define _SFS_H_$/;"	d
 _STDARG_H_	include/stdarg.h	/^#define _STDARG_H_$/;"	d
+_SWAPFILE_H_	include/swapfile.h	/^#define _SWAPFILE_H_$/;"	d
 _SYNCH_H_	include/synch.h	/^#define _SYNCH_H_$/;"	d
 _SYSCALL_H_	include/syscall.h	/^#define _SYSCALL_H_$/;"	d
 _SYSTEMFILETABLE_H_	include/systemfiletable.h	/^#define _SYSTEMFILETABLE_H_$/;"	d
@@ -1215,7 +1218,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 287;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 297;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1408,6 +1411,7 @@ dev_vnode_ops	fs/vfs/device.c	/^static const struct vnode_ops dev_vnode_ops = {$
 dev_write	fs/vfs/device.c	/^dev_write(struct vnode *v, struct uio *uio)$/;"	f	file:
 device	include/dev.h	/^struct device {$/;"	s
 devnull_create	fs/vfs/devnull.c	/^devnull_create(void)$/;"	f
+dirty	include/pt.h	/^    int dirty;$/;"	m	struct:pt_entry
 docreatestress	test/fstest.c	/^docreatestress(const char *filesys)$/;"	f	file:
 dofstest	test/fstest.c	/^dofstest(const char *filesys)$/;"	f	file:
 doinclude	conf/config	/^    function doinclude(file,     lineno) {$/;"	f
@@ -1492,6 +1496,7 @@ entries	vm/pt.c	/^    struct array *entries;$/;"	m	struct:pagetable	typeref:stru
 ev_emu	include/emufs.h	/^	struct emu_softc *ev_emu;	\/* device *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::emu_softc
 ev_handle	include/emufs.h	/^	u_int32_t ev_handle;		\/* file handle *\/$/;"	m	struct:emufs_vnode
 ev_v	include/emufs.h	/^	struct vnode ev_v;		\/* abstract vnode structure *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::vnode
+evict	vm/swapfile.c	/^int evict() {$/;"	f
 exception	arch/mips/mips/exception.S	/^exception:$/;"	l
 exception_end	arch/mips/mips/exception.S	/^exception_end:$/;"	l
 exception_return	arch/mips/mips/exception.S	/^exception_return:$/;"	l
@@ -1886,7 +1891,7 @@ p_type	include/elf.h	/^	u_int32_t	p_type;      \/* Type of segment *\/$/;"	m	str
 p_vaddr	include/elf.h	/^	u_int32_t	p_vaddr;     \/* Virtual address *\/$/;"	m	struct:__anon2
 p_waitcv	include/process.h	/^    struct cv* p_waitcv; \/\/ condition variable in which to wait on$/;"	m	struct:process	typeref:struct:process::cv
 paddr	include/coremap.h	/^    paddr_t paddr;$/;"	m	struct:coremap_entry
-paddr	vm/pt.c	/^    paddr_t paddr;$/;"	m	struct:pt_entry	file:
+paddr	include/pt.h	/^    paddr_t paddr;$/;"	m	struct:pt_entry
 paddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
@@ -1968,7 +1973,7 @@ pseudorand_read	dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct
 pseudorand_softc	dev/generic/pseudorand.h	/^struct pseudorand_softc {$/;"	s
 pt_create	vm/pt.c	/^struct pagetable* pt_create() {$/;"	f
 pt_destroy	vm/pt.c	/^void pt_destroy(struct pagetable *pt) {$/;"	f
-pt_entry	vm/pt.c	/^struct pt_entry {$/;"	s	file:
+pt_entry	include/pt.h	/^struct pt_entry {$/;"	s
 pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
 pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
 pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {$/;"	f
@@ -2007,6 +2012,7 @@ random_softc	dev/generic/random.h	/^struct random_softc {$/;"	s
 randopen	dev/generic/random.c	/^randopen(struct device *dev, int openflags)$/;"	f	file:
 read_cfg_register	dev/lamebus/lamebus.c	/^read_cfg_register(struct lamebus_softc *lb, int slot, u_int32_t offset)$/;"	f	file:
 read_ctl_register	dev/lamebus/lamebus.c	/^read_ctl_register(struct lamebus_softc *lb, u_int32_t offset)$/;"	f	file:
+read_from_swapfile	vm/swapfile.c	/^int read_from_swapfile(vaddr_t vaddr, u_int32_t offset) {$/;"	f
 readstress	test/fstest.c	/^DEFTEST(readstress);$/;"	v
 readstress_thread	test/fstest.c	/^readstress_thread(void *fs, unsigned long num)$/;"	f	file:
 remove_lists	lib/kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/;"	f	file:
@@ -2262,6 +2268,12 @@ sv_dirty	include/sfs.h	/^	int sv_dirty;                   \/* true if sv_i modif
 sv_i	include/sfs.h	/^	struct sfs_inode sv_i;		\/* on-disk inode *\/$/;"	m	struct:sfs_vnode	typeref:struct:sfs_vnode::sfs_inode
 sv_ino	include/sfs.h	/^	u_int32_t sv_ino;               \/* inode number *\/$/;"	m	struct:sfs_vnode
 sv_v	include/sfs.h	/^	struct vnode sv_v;              \/* abstract vnode structure *\/$/;"	m	struct:sfs_vnode	typeref:struct:sfs_vnode::vnode
+swap_bootstrap	vm/swapfile.c	/^void swap_bootstrap(){$/;"	f
+swapfile	include/swapfile.h	/^struct vnode *swapfile;$/;"	v	typeref:struct:vnode
+swapin	vm/swapfile.c	/^void swapin( struct pt_entry *pte ) {$/;"	f
+swapout	vm/swapfile.c	/^int swapout(struct pt_entry *pte) {$/;"	f
+swapped	include/pt.h	/^    int swapped;$/;"	m	struct:pt_entry
+swappedpages_map	include/swapfile.h	/^struct array *swappedpages_map;$/;"	v	typeref:struct:array
 switchframe	arch/mips/include/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST0/machine/switchframe.h	/^struct switchframe {$/;"	s
 switchframe	compile/ASST1/machine/switchframe.h	/^struct switchframe {$/;"	s
@@ -2572,6 +2584,7 @@ threadtest2	test/threadtest.c	/^threadtest2(int nargs, char **args)$/;"	f
 threadtest3	test/tt3.c	/^threadtest3(int nargs, char **args)$/;"	f
 time_t	include/kern/types.h	/^typedef int32_t time_t;  \/* Time in seconds *\/$/;"	t
 tlb_get_rr_victim	vm/vm_tlb.c	/^static int tlb_get_rr_victim() {$/;"	f	file:
+tlb_replace	vm/vm_tlb.c	/^tlb_replace(struct addrspace *as, vaddr_t faultaddress, paddr_t paddr) {$/;"	f	file:
 translate_err	dev/lamebus/emu.c	/^translate_err(struct emu_softc *sc, u_int32_t code)$/;"	f	file:
 trapcodenames	arch/mips/mips/trap.c	/^static const char *const trapcodenames[NTRAPCODES] = {$/;"	v	file:
 trapframe	arch/mips/include/trapframe.h	/^struct trapframe {$/;"	s
@@ -2688,12 +2701,13 @@ va_copy	include/stdarg.h	/^#define va_copy(/;"	d
 va_end	include/stdarg.h	/^#define va_end(/;"	d
 va_list	include/stdarg.h	/^typedef __va_list va_list;$/;"	t
 va_start	include/stdarg.h	/^#define va_start(/;"	d
-vaddr	vm/pt.c	/^    vaddr_t vaddr;$/;"	m	struct:pt_entry	file:
+vaddr	include/pt.h	/^    vaddr_t vaddr;$/;"	m	struct:pt_entry
 vaddr_t	arch/mips/include/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
 vaddr_t	compile/ASST3/machine/ktypes.h	/^typedef u_int32_t vaddr_t;   \/* type for a virtual address *\/$/;"	t
+valid	include/pt.h	/^    int valid;$/;"	m	struct:pt_entry
 vfs_adddev	fs/vfs/vfslist.c	/^vfs_adddev(const char *devname, struct device *dev, int mountable)$/;"	f
 vfs_addfs	fs/vfs/vfslist.c	/^vfs_addfs(const char *devname, struct fs *fs)$/;"	f
 vfs_bootstrap	fs/vfs/vfslist.c	/^vfs_bootstrap(void)$/;"	f
@@ -2779,6 +2793,7 @@ wakerdone	test/tt3.c	/^static volatile int wakerdone;$/;"	v	file:
 wakersem	test/tt3.c	/^static struct semaphore *wakersem;$/;"	v	typeref:struct:semaphore	file:
 write_cfg_register	dev/lamebus/lamebus.c	/^write_cfg_register(struct lamebus_softc *lb, int slot, u_int32_t offset,$/;"	f	file:
 write_ctl_register	dev/lamebus/lamebus.c	/^write_ctl_register(struct lamebus_softc *lb, u_int32_t offset, u_int32_t val)$/;"	f	file:
+write_to_swapfile	vm/swapfile.c	/^int write_to_swapfile(vaddr_t vaddr, u_int32_t offset){$/;"	f
 writestress	test/fstest.c	/^DEFTEST(writestress);$/;"	v
 writestress2	test/fstest.c	/^DEFTEST(writestress2);$/;"	v
 writestress2_thread	test/fstest.c	/^writestress2_thread(void *fs, unsigned long num)$/;"	f	file:
