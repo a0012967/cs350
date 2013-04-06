@@ -126,6 +126,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
         elo = paddr | TLBLO_DIRTY | TLBLO_VALID;
     else
         elo = paddr | TLBLO_VALID;
+
     DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
     TLB_Write(ehi, elo, victim);
     splx(spl);

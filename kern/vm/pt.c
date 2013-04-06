@@ -108,11 +108,11 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
 
     if (reg == SEG_TEXT) {
         diff = vaddr - as->as_vbase1;
-        filesz = as->as_filesz1 - diff;
+        filesz = as->as_filesz1 > diff ? as->as_filesz1 - diff : 0;
         offset = as->as_offset1 + diff;
     } else if (reg == SEG_DATA) {
         diff = vaddr - as->as_vbase2;
-        filesz = as->as_filesz2 - diff;
+        filesz = as->as_filesz2 > diff ? as->as_filesz2 - diff : 0;
         offset = as->as_offset2 + diff;
     } else if (reg == SEG_STCK) {
         // ignore stack segment since it doesn't live on file
@@ -122,13 +122,7 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
         assert(0);
     }
 
-    int ret = 0;
-    if (filesz != 0) {
-        ret = page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
-    }
-
-    return ret;
-
+    return page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
 }
 
 

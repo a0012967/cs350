@@ -14,7 +14,7 @@ static u_int32_t cm_size;
 static paddr_t firstaddr;
 static paddr_t lastaddr;
 static paddr_t freeaddr; 
-static int cm_bootstrapped = 0;
+static u_int32_t cm_bootstrapped = 0;
 static struct coremap_entry ** cm;
 
 
@@ -81,7 +81,6 @@ paddr_t getppages(unsigned long npages) {
     u_int32_t cont_block_index; // index of the contiguous block
     u_int32_t i = 0;
 
-
     // iterate through the coremap to find a contiguous block
     // to hold npages
     for (i = 0; i < cm_size; i++) {
@@ -92,12 +91,14 @@ paddr_t getppages(unsigned long npages) {
         else if (cm[i]->use == 0) {
             cont_count--;
         }
+        else if (i == cm_size -1) {
+        	// TODO what if we dont find a block big enough?
+            assert(0);
+        }
         else {
             cont_count = npages;
         }
     }
-	
-	// TODO what if we dont find a block big enough?
 	
 	
 	// set the first page of the block
@@ -118,13 +119,13 @@ paddr_t getppages(unsigned long npages) {
 
 void ungetppages(paddr_t paddr) {
     int spl;
-    int i = 0;
-
+    u_int32_t i = 0;
+    
     spl = splhigh();
 
     // calculate index of the addr
-    int index = (paddr - firstaddr) / PAGE_SIZE;
-
+    u_int32_t index = (paddr - firstaddr) / PAGE_SIZE;
+    
     // make the phys addr available on the coremap
     for (i = index + cm[index]->size -1; i >= index; i--) {
         cm[i]->use = 0;
