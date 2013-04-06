@@ -16,10 +16,14 @@
 #include <array.h>
 #include <queue.h>
 
+/*
 struct pt_entry {
     vaddr_t vaddr;
     paddr_t paddr;
-};
+    int valid;
+    int dirty;
+    int swapped;
+};*/
 
 struct pagetable {
     struct array *entries;
