@@ -55,10 +55,20 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 		return ENOMEM;
 	}
 
-
 #if OPT_A3
-    (void)old;
-//    assert(0);
+    newas->as_vnode = old->as_vnode;
+	newas->as_vbase1 = old->as_vbase1;
+	newas->as_npages1 = old->as_npages1;
+    newas->as_filesz1 = old->as_filesz1;
+    newas->as_offset1 = old->as_offset1;
+    newas->as_flags1 = old->as_flags1;
+	newas->as_vbase2 = old->as_vbase2;
+	newas->as_npages2 = old->as_npages2;
+    newas->as_filesz2 = old->as_filesz2;
+    newas->as_offset2 = old->as_offset2;
+    newas->as_flags2 = old->as_flags2;
+
+    VOP_INCREF(newas->as_vnode);
 #else
 	(void)old;
 #endif // OPT_A3

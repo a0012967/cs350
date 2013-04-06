@@ -83,7 +83,7 @@ paddr_t getppages(unsigned long npages) {
 
     // iterate through the coremap to find a contiguous block
     // to hold npages
-    for (i = 0; i < cm_size; i++) {
+    for (i = 0; i <= cm_size; i++) {
         if (cont_count == 0) {
             cont_block_index = i - npages;
             break;

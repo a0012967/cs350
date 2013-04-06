@@ -165,10 +165,15 @@ paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
     paddr_t paddr = ALIGN(getppages(1));
-    if (paddr == 0) // no memory
+    if (paddr == 0) {
+        kprintf("no memory\n");
         paddr = page_replace(pt);
-    else // load from elf
+    }
+    else  {
+        // load from elf
+        kprintf("load from elf\n");
         *err = loadpage(curthread->t_vmspace, vaddr, paddr);
+    }
 
     if (*err)
         return 0;
