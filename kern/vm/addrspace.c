@@ -7,13 +7,15 @@
 #include <processtable.h>
 #include <pt.h>
 #include <vm.h>
+#include <uio.h>
 #include <addrspace.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
-#include <array.h>
+#include <vnode.h>
 #include <coremap.h>
 #include "opt-A3.h"
 #include "uw-vmstats.h"
+
 /*
  * Note! If OPT_DUMBVM is set, as is the case until you start the VM
  * assignment, this file is not compiled or linked or in any way
@@ -27,11 +29,17 @@ struct addrspace * as_create(void) {
 	}
 
 #if OPT_A3
+    as->as_vnode = NULL;
 	as->as_vbase1 = 0;
 	as->as_npages1 = 0;
+    as->as_filesz1 = 0;
+    as->as_offset1 = 0;
     as->as_flags1 = 0;
+
 	as->as_vbase2 = 0;
 	as->as_npages2 = 0;
+    as->as_filesz2 = 0;
+    as->as_offset2 = 0;
     as->as_flags2 = 0;
 #endif // OPT_A3
 
@@ -62,10 +70,7 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 void
 as_destroy(struct addrspace *as)
 {
-	/*
-	 * Clean up as needed.
-	 */
-	
+    VOP_DECREF(as->as_vnode);
 	kfree(as);
 }
 
@@ -101,13 +106,20 @@ as_activate(struct addrspace *as)
  * moment, these are ignored. When you write the VM system, you may
  * want to implement them.
  */
-int
-as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
-		 int readable, int writeable, int executable)
+int as_define_region(struct addrspace *as, 
+                     struct vnode *v,
+				     vaddr_t vaddr, 
+                     u_int32_t filesz,
+                     u_int32_t offset,
+                     size_t sz,
+                     int readable, 
+                     int writeable,
+                     int executable)
 {
 #if OPT_A3
     u_int32_t flags = 0;
 	size_t npages; 
+
 	/* Align the region. First, the base... */
 	sz += vaddr & ~(vaddr_t)PAGE_FRAME;
 	vaddr &= PAGE_FRAME;
@@ -117,20 +129,30 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 
 	npages = sz / PAGE_SIZE;
 
-    if (readable)   flags |= AS_SEG_RD;
-    if (writeable)  flags |= AS_SEG_WR;
-    if (executable) flags |= AS_SEG_EX;
+    // set flags
+    if (readable)   flags |= SEG_RD;
+    if (writeable)  flags |= SEG_WR;
+    if (executable) flags |= SEG_EX;
+
+    // increment references to file
+    VOP_INCREF(v);
 
 	if (as->as_vbase1 == 0) {
+        as->as_vnode = v;
 		as->as_vbase1 = vaddr;
 		as->as_npages1 = npages;
+        as->as_filesz1 = filesz;
+        as->as_offset1 = offset;
         as->as_flags1 = flags;
 		return 0;
 	}
 
 	if (as->as_vbase2 == 0) {
+        as->as_vnode = v;
 		as->as_vbase2 = vaddr;
 		as->as_npages2 = npages;
+        as->as_filesz2 = filesz;
+        as->as_offset2 = offset;
         as->as_flags2 = flags;
 		return 0;
 	}
@@ -165,22 +187,14 @@ as_prepare_load(struct addrspace *as)
 int
 as_complete_load(struct addrspace *as)
 {
-#if OPT_A3
-	(void)as;
-#else
-	(void)as;
-#endif // OPT_A3
+    (void)as;
 	return 0;
 }
 
 int
 as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 {
-#if OPT_A3
 	(void)as;
-#else
-	(void)as;
-#endif // OPT_A3
 
 	/* Initial user-level stack pointer */
 	*stackptr = USERSTACK;
@@ -189,9 +203,8 @@ as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 }
 
 #if OPT_A3
-int isWriteable(struct addrspace *as, vaddr_t vaddr) {
+int as_contains(struct addrspace *as, vaddr_t vaddr) {
     vaddr_t vbase1, vtop1, vbase2, vtop2;
-    u_int32_t flags;
 
 	vbase1 = as->as_vbase1;
 	vtop1 = vbase1 + as->as_npages1 * PAGE_SIZE;
@@ -199,17 +212,33 @@ int isWriteable(struct addrspace *as, vaddr_t vaddr) {
 	vtop2 = vbase2 + as->as_npages2 * PAGE_SIZE;
 
     if (vaddr >= vbase1 && vaddr < vtop1)
-        flags = as->as_flags1;
+        return SEG_TEXT;
     else if (vaddr >= vbase2 && vaddr < vtop2)
-        flags = as->as_flags2;
-    else
-        return 1;
-
-    // return 1;
-
-    if (flags & AS_SEG_WR)
-        return 1;
+        return SEG_DATA;
+    else // TODO: properly determine stack segment
+        return SEG_STCK;
 
     return 0;
+}
+
+int as_writeable(struct addrspace *as, vaddr_t vaddr) {
+    // everything is writeable for now
+    return 1;
+
+    u_int32_t seg;
+    u_int32_t flags;
+
+    seg = as_contains(as, vaddr);
+
+    if (seg == SEG_TEXT)
+        flags = as->as_flags1;
+    else if (seg == SEG_DATA)
+        flags = as->as_flags2;
+    else if (seg == SEG_STCK)
+        flags = SEG_WR;
+    else
+        return 0;
+
+    return flags & SEG_WR;
 }
 #endif // OPT_A3
