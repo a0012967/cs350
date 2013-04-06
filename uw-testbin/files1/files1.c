@@ -20,8 +20,6 @@
 int
 main()
 {
-    int x = 392132;
-    /*
   int f1, f2;
   int i = 42;
   int j = -999;
@@ -73,6 +71,5 @@ main()
 
   TEST_STATS();
 
-  */
   exit(0);
 }
