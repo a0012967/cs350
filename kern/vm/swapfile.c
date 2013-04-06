@@ -139,3 +139,4 @@ int write_to_swapfile(vaddr_t vaddr, u_int32_t offset){
 int evict() {
 	return 0;
 }
+

@@ -474,11 +474,11 @@ file    process/process.c
 file    process/processtable.c
 # UW For A3 use the stats tracking code provided
 defoption A3
-file    vm/uw-vmstats.c
-file    arch/mips/mips/vm.c
 file    vm/coremap.c
-file    vm/swapfile.c
 file    vm/pt.c
+file    vm/vm_tlb.c
+file    vm/swapfile.c
+file    vm/uw-vmstats.c
 defoption A4
 defoption A5
 

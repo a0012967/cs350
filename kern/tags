@@ -1077,7 +1077,7 @@ a3	compile/ASST3/machine/asmdefs.h	/^#define a3 /;"	d
 addrspace	include/addrspace.h	/^struct addrspace {$/;"	s
 allbase	lib/kheap.c	/^static struct pageref *allbase;$/;"	v	typeref:struct:pageref	file:
 alloc_kpages	arch/mips/mips/dumbvm.c	/^alloc_kpages(int npages)$/;"	f
-alloc_kpages	arch/mips/mips/vm.c	/^alloc_kpages(int npages)$/;"	f
+alloc_kpages	vm/vm_tlb.c	/^alloc_kpages(int npages)$/;"	f
 allocpageref	lib/kheap.c	/^allocpageref(void)$/;"	f	file:
 approachintersection	asst1/stoplight.c	/^approachintersection(void * unusedpointer,$/;"	f	file:
 args_invalid	userprog/sysexecv.c	/^int args_invalid(char **args, int *err) {$/;"	f
@@ -1215,7 +1215,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 268;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 287;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1295,7 +1295,7 @@ cleanup_bowls	asst1/bowls.c	/^cleanup_bowls()$/;"	f
 cleanupitems	test/synchtest.c	/^cleanupitems( void )$/;"	f	file:
 clocksleep	thread/hardclock.c	/^clocksleep(int num_secs)$/;"	f
 cm	vm/coremap.c	/^static struct coremap_entry ** cm;$/;"	v	typeref:struct:coremap_entry	file:
-cm_bootstrapped	vm/coremap.c	/^static int cm_bootstrapped = 0;$/;"	v	file:
+cm_bootstrapped	vm/coremap.c	/^static u_int32_t cm_bootstrapped = 0;$/;"	v	file:
 cm_size	vm/coremap.c	/^static u_int32_t cm_size;$/;"	v	file:
 cmd_bootfs	main/menu.c	/^cmd_bootfs(int nargs, char **args)$/;"	f	file:
 cmd_chdir	main/menu.c	/^cmd_chdir(int nargs, char **args)$/;"	f	file:
@@ -1514,7 +1514,7 @@ firstfree	arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual a
 firstpaddr	arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
 flush_delay_buf	dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
 free_kpages	arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
-free_kpages	arch/mips/mips/vm.c	/^free_kpages(vaddr_t addr)$/;"	f
+free_kpages	vm/vm_tlb.c	/^free_kpages(vaddr_t addr)$/;"	f
 freeaddr	vm/coremap.c	/^static paddr_t freeaddr; $/;"	v	file:
 freed_pids	process/process.c	/^	struct linkedlist* freed_pids;$/;"	m	struct:process_table	typeref:struct:process_table::linkedlist	file:
 freelist	lib/kheap.c	/^struct freelist {$/;"	s	file:
@@ -2571,7 +2571,7 @@ threadtest	test/threadtest.c	/^threadtest(int nargs, char **args)$/;"	f
 threadtest2	test/threadtest.c	/^threadtest2(int nargs, char **args)$/;"	f
 threadtest3	test/tt3.c	/^threadtest3(int nargs, char **args)$/;"	f
 time_t	include/kern/types.h	/^typedef int32_t time_t;  \/* Time in seconds *\/$/;"	t
-tlb_get_rr_victim	arch/mips/mips/vm.c	/^static int tlb_get_rr_victim() {$/;"	f	file:
+tlb_get_rr_victim	vm/vm_tlb.c	/^static int tlb_get_rr_victim() {$/;"	f	file:
 translate_err	dev/lamebus/emu.c	/^translate_err(struct emu_softc *sc, u_int32_t code)$/;"	f	file:
 trapcodenames	arch/mips/mips/trap.c	/^static const char *const trapcodenames[NTRAPCODES] = {$/;"	v	file:
 trapframe	arch/mips/include/trapframe.h	/^struct trapframe {$/;"	s
@@ -2666,7 +2666,7 @@ uiomovezeros	userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/;"	f
 un_kbase	include/uio.h	/^		void      *un_kbase;   \/* kernel address (UIO_SYSSPACE) *\/$/;"	m	union:iovec::__anon3
 un_ubase	include/uio.h	/^		userptr_t  un_ubase;   \/* user address (UIO_USER{,I}SPACE *\/$/;"	m	union:iovec::__anon3
 ungetppages	vm/coremap.c	/^void ungetppages(paddr_t paddr) {$/;"	f
-use	include/coremap.h	/^    int use;$/;"	m	struct:coremap_entry
+use	include/coremap.h	/^    u_int32_t use;$/;"	m	struct:coremap_entry
 userptr_t	include/types.h	/^typedef struct __userptr *userptr_t;$/;"	t	typeref:struct:__userptr
 utlb_exception	arch/mips/mips/exception.S	/^utlb_exception:$/;"	l
 utlb_exception_end	arch/mips/mips/exception.S	/^utlb_exception_end:$/;"	l
@@ -2724,10 +2724,10 @@ vfs_sync	fs/vfs/vfslist.c	/^vfs_sync(void)$/;"	f
 vfs_unmount	fs/vfs/vfslist.c	/^vfs_unmount(const char *devname)$/;"	f
 vfs_unmountall	fs/vfs/vfslist.c	/^vfs_unmountall(void)$/;"	f
 vm_bootstrap	arch/mips/mips/dumbvm.c	/^vm_bootstrap(void)$/;"	f
-vm_bootstrap	arch/mips/mips/vm.c	/^vm_bootstrap(void)$/;"	f
+vm_bootstrap	vm/vm_tlb.c	/^vm_bootstrap(void)$/;"	f
 vm_fault	arch/mips/mips/dumbvm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
-vm_fault	arch/mips/mips/vm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
-vm_shutdown	arch/mips/mips/vm.c	/^vm_shutdown(void){$/;"	f
+vm_fault	vm/vm_tlb.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/;"	f
+vm_shutdown	vm/vm_tlb.c	/^vm_shutdown(void){$/;"	f
 vmstats_inc	vm/uw-vmstats.c	/^vmstats_inc(unsigned int index)$/;"	f
 vmstats_init	vm/uw-vmstats.c	/^vmstats_init()$/;"	f
 vmstats_print	vm/uw-vmstats.c	/^vmstats_print()$/;"	f
