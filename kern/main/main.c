@@ -17,7 +17,7 @@
 #include <vm.h>
 #include <syscall.h>
 #include <version.h>
-#include "swapfile.h"
+#include <swapfile.h>
 #include "opt-A0.h"
 #include "opt-A2.h"
 
@@ -97,7 +97,6 @@ boot(void)
 
 	/* Default bootfs - but ignore failure, in case emu0 doesn't exist */
 	vfs_setbootfs("emu0");
-    swap_bootstrap();
 	/*
 	 * Make sure various things aren't screwed up.
 	 */

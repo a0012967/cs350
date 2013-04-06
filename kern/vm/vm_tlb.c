@@ -6,25 +6,25 @@
 #include <process.h>
 #include <vm.h>
 #include <addrspace.h>
+#include <swapfile.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
 #include <coremap.h>
 #include <pt.h>
 #include <vm.h>
+#include <swapfile.h>
 #include "opt-A3.h"
 #include "uw-vmstats.h"
 
 #if OPT_A3
 
-void
-vm_bootstrap(void)
-{
+void vm_bootstrap(void) {
     coremap_bootstrap();
+    swapfile_bootstrap();
     vmstats_init();
 }
 
-void
-vm_shutdown(void){
+void vm_shutdown(void) {
     _vmstats_print();
 }
 

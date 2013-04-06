@@ -40,7 +40,7 @@ void          q_destroy(struct queue *);
  * To iterate over the queue, do something like
  *      struct queue *q;
  *      int i;
- *      
+ *
  *      for (i=q_getstart(q); i!=q_getend(q); i=(i+1)%q_getsize(q)) {
  *              void *ptr = q_getguy(q, i);
  *                :

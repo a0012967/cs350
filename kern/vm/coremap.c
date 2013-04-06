@@ -99,7 +99,11 @@ paddr_t getppages(unsigned long npages) {
             cont_count = npages;
         }
     }
-	
+
+    if (cont_count != 0) {
+        splx(spl);
+        return 0;
+    }
 	
 	// set the first page of the block
     addr = cm[cont_block_index]->paddr;
