@@ -15,6 +15,7 @@
 #include <vnode.h>
 #include <synch.h>
 #include "opt-synchprobs.h"
+#include "opt-A3.h"
 
 /* States a thread can be in. */
 typedef enum {
@@ -318,9 +319,6 @@ thread_shutdown(void)
                 proc->parentpid = curthread->pid;
                 p_assign_thread(proc, newguy);
             }
-
-            // we dont as_activate() (invalidate tlb) the thread since 
-            // it copies the current address space
         }
     #endif // OPT_A2
 
@@ -474,9 +472,12 @@ mi_switch(threadstate_t nextstate)
 
 	exorcise();
 
+#if OPT_A3
+#else
 	if (curthread->t_vmspace) {
 		as_activate(curthread->t_vmspace);
 	}
+#endif // OPT_A3
 }
 
 /*

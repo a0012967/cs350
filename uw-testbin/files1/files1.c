@@ -20,22 +20,14 @@
 int
 main()
 {
+    int x = 392132;
+    /*
   int f1, f2;
   int i = 42;
   int j = -999;
   int intbuf = 0;
-  int rc = 0;      /* return code */
+  int rc = 0;      
   int save_errno = 0;
-
-  /*
-  rc = fork();
-  if (rc == 0) {
-      printf("Parent: 0\n");
-  }
-  else {
-      printf("Child: %d\n", rc);
-  }
-  */
 
   f1 = open("FILE1", O_RDWR | O_CREAT | O_TRUNC);
   TEST_POSITIVE(f1, "Unable to open FILE1");
@@ -81,5 +73,6 @@ main()
 
   TEST_STATS();
 
+  */
   exit(0);
 }

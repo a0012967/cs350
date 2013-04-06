@@ -4,14 +4,11 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ALIGN	vm/pt.c	/^#define ALIGN(/;"	d	file:
+ALIGN	include/pt.h	/^#define ALIGN(/;"	d
 ARCH	compile/ASST0/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST1/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST2/defs.mk	/^ARCH=mips$/;"	m
 ARCH	compile/ASST3/defs.mk	/^ARCH=mips$/;"	m
-AS_SEG_EX	include/addrspace.h	/^#define AS_SEG_EX /;"	d
-AS_SEG_RD	include/addrspace.h	/^#define AS_SEG_RD /;"	d
-AS_SEG_WR	include/addrspace.h	/^#define AS_SEG_WR /;"	d
 AT	arch/mips/include/asmdefs.h	/^#define AT /;"	d
 AT	compile/ASST0/machine/asmdefs.h	/^#define AT /;"	d
 AT	compile/ASST1/machine/asmdefs.h	/^#define AT /;"	d
@@ -394,7 +391,7 @@ INUSE_WORDS	lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
 INVALID_OFFSET	lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
 ISDIR	dev/lamebus/emu.c	/^#define ISDIR /;"	d	file:
 ISDIR	fs/sfs/sfs_vnode.c	/^#define ISDIR /;"	d	file:
-IS_VALID	vm/pt.c	/^#define IS_VALID(/;"	d	file:
+IS_VALID	include/pt.h	/^#define IS_VALID(/;"	d
 ITEMSIZE	test/malloctest.c	/^#define ITEMSIZE /;"	d	file:
 K1	dev/generic/pseudorand.c	/^#define K1 /;"	d	file:
 K2	dev/generic/pseudorand.c	/^#define K2 /;"	d	file:
@@ -654,7 +651,13 @@ SAME_STACK	compile/ASST3/machine/pcb.h	/^#define SAME_STACK(/;"	d
 SEEK_CUR	include/kern/unistd.h	/^#define SEEK_CUR /;"	d
 SEEK_END	include/kern/unistd.h	/^#define SEEK_END /;"	d
 SEEK_SET	include/kern/unistd.h	/^#define SEEK_SET /;"	d
-SET_VALID	vm/pt.c	/^#define SET_VALID(/;"	d	file:
+SEG_DATA	include/addrspace.h	/^#define SEG_DATA /;"	d
+SEG_EX	include/addrspace.h	/^#define SEG_EX /;"	d
+SEG_RD	include/addrspace.h	/^#define SEG_RD /;"	d
+SEG_STCK	include/addrspace.h	/^#define SEG_STCK /;"	d
+SEG_TEXT	include/addrspace.h	/^#define SEG_TEXT /;"	d
+SEG_WR	include/addrspace.h	/^#define SEG_WR /;"	d
+SET_VALID	include/pt.h	/^#define SET_VALID(/;"	d
 SFSUIO	include/sfs.h	/^#define SFSUIO(/;"	d
 SFS_BITBLOCKS	include/kern/sfs.h	/^#define SFS_BITBLOCKS(/;"	d
 SFS_BITMAPSIZE	include/kern/sfs.h	/^#define SFS_BITMAPSIZE(/;"	d
@@ -1094,12 +1097,13 @@ as_activate	arch/mips/mips/dumbvm.c	/^as_activate(struct addrspace *as)$/;"	f
 as_activate	vm/addrspace.c	/^as_activate(struct addrspace *as)$/;"	f
 as_complete_load	arch/mips/mips/dumbvm.c	/^as_complete_load(struct addrspace *as)$/;"	f
 as_complete_load	vm/addrspace.c	/^as_complete_load(struct addrspace *as)$/;"	f
+as_contains	vm/addrspace.c	/^int as_contains(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 as_copy	arch/mips/mips/dumbvm.c	/^as_copy(struct addrspace *old, struct addrspace **ret)$/;"	f
 as_copy	vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **ret) {$/;"	f
 as_create	arch/mips/mips/dumbvm.c	/^as_create(void)$/;"	f
 as_create	vm/addrspace.c	/^struct addrspace * as_create(void) {$/;"	f
 as_define_region	arch/mips/mips/dumbvm.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
-as_define_region	vm/addrspace.c	/^as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,$/;"	f
+as_define_region	vm/addrspace.c	/^int as_define_region(struct addrspace *as, $/;"	f
 as_define_stack	arch/mips/mips/dumbvm.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_define_stack	vm/addrspace.c	/^as_define_stack(struct addrspace *as, vaddr_t *stackptr)$/;"	f
 as_destroy	arch/mips/mips/dumbvm.c	/^as_destroy(struct addrspace *as)$/;"	f
@@ -1113,6 +1117,7 @@ as_prepare_load	vm/addrspace.c	/^as_prepare_load(struct addrspace *as)$/;"	f
 as_stackpbase	include/addrspace.h	/^	paddr_t as_stackpbase;$/;"	m	struct:addrspace
 as_vbase1	include/addrspace.h	/^	vaddr_t as_vbase1;$/;"	m	struct:addrspace
 as_vbase2	include/addrspace.h	/^	vaddr_t as_vbase2;$/;"	m	struct:addrspace
+as_writeable	vm/addrspace.c	/^int as_writeable(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 asm_usermode	arch/mips/mips/exception.S	/^asm_usermode:$/;"	l
 assert	include/lib.h	/^#define assert(/;"	d
 attach_beep_to_ltimer	dev/lamebus/beep_ltimer.c	/^attach_beep_to_ltimer(int beepno, struct ltimer_softc *ls)$/;"	f
@@ -1210,7 +1215,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 184;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 268;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1290,8 +1295,8 @@ cleanup_bowls	asst1/bowls.c	/^cleanup_bowls()$/;"	f
 cleanupitems	test/synchtest.c	/^cleanupitems( void )$/;"	f	file:
 clocksleep	thread/hardclock.c	/^clocksleep(int num_secs)$/;"	f
 cm	vm/coremap.c	/^static struct coremap_entry ** cm;$/;"	v	typeref:struct:coremap_entry	file:
-cm_bootstrapped	vm/coremap.c	/^static cm_bootstrapped = 0;$/;"	v	file:
-cm_size	vm/coremap.c	/^static int cm_size;$/;"	v	file:
+cm_bootstrapped	vm/coremap.c	/^static int cm_bootstrapped = 0;$/;"	v	file:
+cm_size	vm/coremap.c	/^static u_int32_t cm_size;$/;"	v	file:
 cmd_bootfs	main/menu.c	/^cmd_bootfs(int nargs, char **args)$/;"	f	file:
 cmd_chdir	main/menu.c	/^cmd_chdir(int nargs, char **args)$/;"	f	file:
 cmd_dispatch	main/menu.c	/^cmd_dispatch(char *cmd)$/;"	f	file:
@@ -1538,6 +1543,7 @@ ft_storefile	filedes/filetable.c	/^int ft_storefile(struct filetable *ft, struct
 func	main/menu.c	/^	int (*func)(const char *device);$/;"	m	struct:__anon4	file:
 func	main/menu.c	/^	int (*func)(int nargs, char **args);$/;"	m	struct:__anon5	file:
 genprobe	conf/config	/^    function genprobe(dev, devunit, bus, busunit) {$/;"	f
+get_curprocess	process/process.c	/^struct process* get_curprocess() {$/;"	f
 get_first_slot	lib/table.c	/^int get_first_slot(struct table *t) {$/;"	f
 get_status	arch/mips/mips/spl.c	/^#define get_status(/;"	d	file:
 getbase	conf/config	/^    function getbase(invalmsg, d,       base) {$/;"	f
@@ -1601,7 +1607,6 @@ iov_len	include/uio.h	/^	size_t iov_len;                \/* Length of data *\/$/
 iov_ubase	include/uio.h	/^#define iov_ubase /;"	d
 iov_un	include/uio.h	/^	} iov_un;$/;"	m	struct:iovec	typeref:union:iovec::__anon3
 iovec	include/uio.h	/^struct iovec {$/;"	s
-isWriteable	vm/addrspace.c	/^int isWriteable(struct addrspace *as, vaddr_t vaddr) {$/;"	f
 jmp_buf	arch/mips/include/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jmp_buf	compile/ASST0/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
 jmp_buf	compile/ASST1/machine/setjmp.h	/^typedef u_int32_t jmp_buf[__JB_REGS];$/;"	t
@@ -1686,7 +1691,7 @@ ll_push_back	lib/linkedlist.c	/^int ll_push_back(struct linkedlist *ll, void *pt
 ll_push_front	lib/linkedlist.c	/^int ll_push_front(struct linkedlist *ll, void *ptr) {$/;"	f
 ll_size	lib/linkedlist.c	/^int ll_size(struct linkedlist *ll) {$/;"	f
 load_elf	userprog/loadelf.c	/^load_elf(struct vnode *v, vaddr_t *entrypoint)$/;"	f
-load_segment	userprog/loadelf.c	/^load_segment(struct vnode *v, off_t offset, vaddr_t vaddr, $/;"	f	file:
+loadpage	vm/pt.c	/^static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {$/;"	f	file:
 lock	include/synch.h	/^struct lock {$/;"	s
 lock_acquire	thread/synch.c	/^lock_acquire(struct lock *lock)$/;"	f
 lock_create	thread/synch.c	/^lock_create(const char *name)$/;"	f
@@ -1887,6 +1892,7 @@ paddr_t	compile/ASST0/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type f
 paddr_t	compile/ASST1/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST2/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
 paddr_t	compile/ASST3/machine/ktypes.h	/^typedef u_int32_t paddr_t;   \/* type for a physical address *\/$/;"	t
+page_read	vm/pt.c	/^static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,$/;"	f	file:
 page_table	include/process.h	/^    struct pagetable* page_table;$/;"	m	struct:process	typeref:struct:process::pagetable
 pageaddr_and_blocktype	lib/kheap.c	/^	vaddr_t pageaddr_and_blocktype;$/;"	m	struct:pageref	file:
 pageref	lib/kheap.c	/^struct pageref {$/;"	s	file:
@@ -1964,8 +1970,8 @@ pt_create	vm/pt.c	/^struct pagetable* pt_create() {$/;"	f
 pt_destroy	vm/pt.c	/^void pt_destroy(struct pagetable *pt) {$/;"	f
 pt_entry	vm/pt.c	/^struct pt_entry {$/;"	s	file:
 pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
-pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr) {$/;"	f
-pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr) {$/;"	f
+pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
+pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {$/;"	f
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
 putch_intr	dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/;"	f	file:

@@ -48,7 +48,7 @@ void coremap_bootstrap() {
     
     // update our addresses to figure out 
     ram_getsize(&freeaddr, &lastaddr);
-    
+
     // make all phys addr before our free addr fixed so that 
     // structures needed for the OS are ensured not to be removed
     for (i = 0; i < cm_size; i++) {
@@ -58,7 +58,7 @@ void coremap_bootstrap() {
         cm[i]->size = -1;
         cm[i]->use = 1;
     }
-    
+
     cm_bootstrapped = 1;
 }
 
@@ -76,11 +76,11 @@ paddr_t getppages(unsigned long npages) {
 	    return addr;
 	}
     // ======================================================
-    
+
     u_int32_t cont_count = npages; // counts contiguous pages
     u_int32_t cont_block_index; // index of the contiguous block
     u_int32_t i = 0;
-    
+
     // iterate through the coremap to find a contiguous block
     // to hold npages
     for (i = 0; i < cm_size; i++) {
