@@ -12,18 +12,10 @@
 #include <curthread.h>
 #include <addrspace.h>
 #include <process.h>
-
+#include "uw-vmstats.h"
 #include <array.h>
 #include <queue.h>
 
-/*
-struct pt_entry {
-    vaddr_t vaddr;
-    paddr_t paddr;
-    int valid;
-    int dirty;
-    int swapped;
-};*/
 
 struct pagetable {
     struct array *entries;
@@ -78,6 +70,7 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
         return result;
     }
 
+	vmstats_inc(VMSTAT_ELF_FILE_READ);
     if (ku.uio_resid != 0) {
 		// short read; problem with executable?
 		kprintf("ELF: short read on segment - file truncated?\n");
@@ -89,7 +82,7 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
 	if (fillamt > 0) {
 		DEBUG(DB_EXEC, "ELF: Zero-filling %lu more bytes\n", (unsigned long) fillamt);
 		ku.uio_resid += fillamt;
-		result = uiomovezeros(fillamt, &ku);
+		result = uiomovezeros(fillamt, &ku);		
 	}
 	
 	return result;
@@ -160,6 +153,24 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
             break;
         }
     }
+
+	/* ---- VM STATS incrementing ------------- */
+	// if found but invalid
+	if(found && !IS_VALID(pte->paddr)){
+		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
+	}
+
+	// TLB miss for a page in memory
+	if(found && IS_VALID(pte->paddr)) {
+		vmstats_inc(VMSTAT_TLB_RELOAD);
+	}
+
+	// page not in page table
+	if(!found){
+		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
+	}
+
+	/* ---------------------------------------- */
 
     // if not found or valid bit is not set
     if (!found || !IS_VALID(pte->paddr)) {

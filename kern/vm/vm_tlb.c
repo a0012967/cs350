@@ -32,13 +32,6 @@ static int tlb_get_rr_victim() {
     int victim;
     static unsigned int next_victim = 0;
     victim = next_victim;
-/*
-    if (victim < NUM_TLB) {
-        _vmstats_inc(VMSTAT_TLB_FAULT_FREE);
-    } else {
-        _vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
-    }*/
-
     next_victim = (next_victim + 1) % NUM_TLB;
     return victim;
 }
@@ -66,7 +59,7 @@ tlb_replace(struct addrspace *as, vaddr_t faultaddress, paddr_t paddr) {
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
-    _vmstats_inc(VMSTAT_TLB_FAULT);
+    vmstats_inc(VMSTAT_TLB_FAULT);
 
 	struct addrspace *as;
 	paddr_t paddr;
@@ -136,7 +129,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 
 		DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
 
-		_vmstats_inc(VMSTAT_TLB_FAULT_FREE);
+		vmstats_inc(VMSTAT_TLB_FAULT_FREE);
 		TLB_Write(ehi, elo, i);		
 		splx(spl);
 		return 0;

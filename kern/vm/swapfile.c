@@ -48,8 +48,8 @@ int swapout(struct pt_entry *pte) {
 	}	
 	
 	/* check if we are trying to swap to a full swapfile */
-	if(i > MAX_SWAPPED_PAGES && !found) {
-		panic("Out of swap space");
+	if (count == MAX_SWAPPED_PAGES && !found) {
+		panic("swapout: out of swapfile space");
 	}
 	
     if (found) {
@@ -63,7 +63,7 @@ int swapout(struct pt_entry *pte) {
 
 	err = write_to_swapfile(PADDR_TO_KVADDR(pfn), offset);
     assert(!err);
-
+	vmstats_inc(VMSTAT_SWAP_FILE_WRITE);
 	// update page table entry
     // turn off all other bits and set it as swapped
     pte->paddr = SET_SWAPPED(ALIGN(pte->paddr));
@@ -97,7 +97,7 @@ int swapin(struct pt_entry *pte) {
     offset = i * PAGE_SIZE;
     err = read_from_swapfile(PADDR_TO_KVADDR(pfn), offset);
     assert(!err);
-
+	vmstats_inc(VMSTAT_SWAP_FILE_READ);
 	// update page table entry
     // turn off all other bits and set it as valid
     pte->paddr = SET_VALID(ALIGN(pte->paddr));
