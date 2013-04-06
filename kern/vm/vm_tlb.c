@@ -20,7 +20,6 @@
 
 void vm_bootstrap(void) {
     coremap_bootstrap();
-    swapfile_bootstrap();
     vmstats_init();
 }
 
@@ -60,7 +59,6 @@ int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
     vmstats_inc(VMSTAT_TLB_FAULT);
-
 	struct addrspace *as;
 	paddr_t paddr;
 	u_int32_t ehi, elo;
