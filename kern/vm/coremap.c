@@ -48,7 +48,7 @@ void coremap_bootstrap() {
     
     // update our addresses to figure out 
     ram_getsize(&freeaddr, &lastaddr);
-    
+
     // make all phys addr before our free addr fixed so that 
     // structures needed for the OS are ensured not to be removed
     for (i = 0; i < cm_size; i++) {
@@ -58,7 +58,7 @@ void coremap_bootstrap() {
         cm[i]->size = -1;
         cm[i]->use = 1;
     }
-    
+
     cm_bootstrapped = 1;
 }
 
