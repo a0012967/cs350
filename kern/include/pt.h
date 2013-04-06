@@ -3,18 +3,21 @@
 
 #include "types.h"
 
-#define IS_VALID(x) ((x) & 0x00000001)
-#define SET_VALID(x) ((x) | 0x00000001)
-#define ALIGN(x) ((x) & PAGE_FRAME)
+#define ALIGN(x)         ((x) & PAGE_FRAME)
+#define IS_VALID(x)      ((x) & 0x00000001)
+#define IS_DIRTY(x)      ((x) & 0x00000002)
+#define IS_SWAPPED(x)    ((x) & 0x00000004)
+#define SET_VALID(x)     ((x) | 0x00000001)
+#define SET_DIRTY(x)     ((x) | 0x00000002)
+#define SET_SWAPPED(x)   ((x) | 0x00000004)
 
 struct pagetable;
+
 struct pt_entry {
     vaddr_t vaddr;
     paddr_t paddr;
-    int valid;
-    int dirty;
-    int swapped;
 };
+
 struct pagetable* pt_create();
 void pt_destroy(struct pagetable* pt);
 paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err);
