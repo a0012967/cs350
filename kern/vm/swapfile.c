@@ -17,13 +17,11 @@
 static paddr_t *swappedpages_map;
 static u_int32_t count;
 
-void swap_bootstrap() {
-    int err = 0;
+void swapfile_bootstrap() {
     char *sf = NULL;
 
     sf = kstrdup("swapfile");
-	err = vfs_open(sf, O_RDWR | O_CREAT | O_TRUNC, &swapfile);
-    assert(!err);
+	vfs_open(sf, O_RDWR | O_CREAT | O_TRUNC, &swapfile);
 	
 	swappedpages_map = kmalloc(MAX_SWAPPED_PAGES * sizeof(paddr_t));
     assert(swappedpages_map);

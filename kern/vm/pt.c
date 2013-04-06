@@ -8,6 +8,8 @@
 #include <uio.h>
 #include <pt.h>
 #include <coremap.h>
+#include <swapfile.h>
+#include <machine/tlb.h>
 #include <thread.h>
 #include <curthread.h>
 #include <addrspace.h>
@@ -16,17 +18,10 @@
 #include <array.h>
 #include <queue.h>
 
-/*
-struct pt_entry {
-    vaddr_t vaddr;
-    paddr_t paddr;
-    int valid;
-    int dirty;
-    int swapped;
-};*/
 
 struct pagetable {
     struct array *entries;
+    struct queue *fifo;
 };
 
 struct pagetable* pt_create() {
@@ -41,11 +36,20 @@ struct pagetable* pt_create() {
         return NULL;
     }
 
+    pt->fifo = q_create(1);
+    if (pt->fifo == NULL) {
+        array_destroy(pt->entries);
+        kfree(pt);
+        return NULL;
+    }
+
     return pt;
 }
 
 void pt_destroy(struct pagetable *pt) {
     int i;
+
+    // free page table entries inside array
     for (i=0; i<array_getnum(pt->entries); i++) {
         struct pt_entry *pte = (struct pt_entry*)array_getguy(pt->entries, i);
         if (pte != NULL) {
@@ -53,6 +57,14 @@ void pt_destroy(struct pagetable *pt) {
             kfree(pte);
         }
     }
+
+    // empty queue
+    while (!q_empty(pt->fifo)) {
+        q_remhead(pt->fifo);
+    }
+
+    array_destroy(pt->entries);
+    q_destroy(pt->fifo);
     kfree(pt);
 }
 
@@ -108,14 +120,17 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
         diff = vaddr - as->as_vbase1;
         filesz = as->as_filesz1 > diff ? as->as_filesz1 - diff : 0;
         offset = as->as_offset1 + diff;
-    } else if (reg == SEG_DATA) {
+    }
+    else if (reg == SEG_DATA) {
         diff = vaddr - as->as_vbase2;
         filesz = as->as_filesz2 > diff ? as->as_filesz2 - diff : 0;
         offset = as->as_offset2 + diff;
-    } else if (reg == SEG_STCK) {
-        // ignore stack segment since it doesn't live on file
+    }
+    else if (reg == SEG_STCK) {
+        // ignore stack segment since it doesn't live in elf file
         return 0;
-    } else {
+    }
+    else {
         // we already checked for the validity of the address before calling loadpage
         assert(0);
     }
@@ -123,13 +138,36 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
     return page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
 }
 
+static struct pt_entry* pt_get_fifo_victim(struct pagetable *pt) {
+    return (struct pt_entry*)q_remhead(pt->fifo);
+}
+
+static paddr_t page_replace(struct pagetable *pt) {
+    int i;
+
+    struct pt_entry *pte = pt_get_fifo_victim(pt);
+
+    if (IS_DIRTY(pte->paddr))
+        swapout(pte);
+    else
+        pte->paddr = SET_INVALID(pte->paddr);
+
+    // invalidate tlb entry
+    i = TLB_Probe(pte->vaddr, pte->paddr); assert(i >= 0);
+    TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
+
+    return ALIGN(pte->paddr);
+}
 
 // copies vpn from elf to memory
-paddr_t pt_pagefault_handler(vaddr_t vaddr, int *err) {
+paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
     paddr_t paddr = ALIGN(getppages(1));
-    *err = loadpage(curthread->t_vmspace, vaddr, paddr);
+    if (paddr == 0) // no memory
+        paddr = page_replace(pt);
+    else // load from elf
+        *err = loadpage(curthread->t_vmspace, vaddr, paddr);
 
     if (*err)
         return 0;
@@ -161,17 +199,32 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
         }
     }
 
-    // if not found or valid bit is not set
-    if (!found || !IS_VALID(pte->paddr)) {
+    if (found) {
+        if (!IS_VALID(pte->paddr)) {
+            assert(IS_SWAPPED(pte->paddr));
+            swapin(pte);
+        }
+    } else {
         pte = kmalloc(sizeof(struct pt_entry));
         assert(pte != NULL);
         pte->vaddr = vaddr;
-        pte->paddr = pt_pagefault_handler(vaddr, err);
+        pte->paddr = pt_pagefault_handler(pt, vaddr, err);
         if (*err) {
             kfree(pte);
             return 0;
         }
-        array_add(pt->entries, pte);
+
+        *err = array_add(pt->entries, pte);
+        if (*err) {
+            kfree(pte);
+            return 0;
+        }
+
+        *err = q_addtail(pt->fifo, pte);
+        if (*err) {
+            kfree(pte);
+            return 0;
+        }
     }
 
     return ALIGN(pte->paddr);

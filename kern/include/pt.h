@@ -10,6 +10,7 @@
 #define SET_VALID(x)     ((x) | 0x00000001)
 #define SET_DIRTY(x)     ((x) | 0x00000002)
 #define SET_SWAPPED(x)   ((x) | 0x00000004)
+#define SET_INVALID(x)   ((x) & 0xfffffffe)
 
 struct pagetable;
 
