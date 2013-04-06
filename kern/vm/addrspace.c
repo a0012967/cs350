@@ -58,7 +58,7 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 
 #if OPT_A3
     (void)old;
-    assert(0);
+//    assert(0);
 #else
 	(void)old;
 #endif // OPT_A3

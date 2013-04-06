@@ -11,12 +11,12 @@
 #include "kern/unistd.h"
 #include "thread.h"
 #include "curthread.h"
-
+#include "pt.h"
 
 
 void swap_bootstrap(){
-    // create the swapfile
-	
+
+    // create the swapfile	
     char sf[] = "swapfile";
 	int err = vfs_open(sf, O_RDWR | O_CREAT | O_TRUNC, &swapfile);
     if (err) {

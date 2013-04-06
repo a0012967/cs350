@@ -2,6 +2,7 @@
 #define _SWAPFILE_H_
 
 #include "types.h"
+#include "pt.h"
 #define MAX_SWAPFILE_SIZE (9*1024*1024) // 9MB
 #define MAX_SWAPPED_PAGES (MAX_SWAPFILE_SIZE / PAGE_SIZE)
 
@@ -10,7 +11,7 @@ struct vnode *swapfile;
 // maps a swapped page to its Location/offset in the swapfile
 // based on it's index in the array
 struct array *swappedpages_map;
-
+/*
 struct pt_entry {
 	paddr_t paddr;
 	vaddr_t vaddr;
@@ -18,7 +19,7 @@ struct pt_entry {
 	int swapped;
 	int dirty;	
 };
-
+*/
 void swapin();  
 int swapout(struct pt_entry *pte);   // swaps the page pte to disk/swapfile
 int evict();
