@@ -20,7 +20,6 @@
 
 void vm_bootstrap(void) {
     coremap_bootstrap();
-    swapfile_bootstrap();
     vmstats_init();
 }
 

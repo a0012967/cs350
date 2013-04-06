@@ -82,21 +82,27 @@ boot(void)
 	ram_bootstrap();
 	scheduler_bootstrap();
 	
-	#if OPT_A2
+#if OPT_A2
 		process_bootstrap();
-	#else
+#else
 		thread_bootstrap();
-	#endif // OPT_A2
+#endif // OPT_A2
 	vfs_bootstrap();
 	dev_bootstrap();
-    #if OPT_A2
+
+#if OPT_A2
         console_files_bootstrap();
-    #endif // OPT_A2
+#endif // OPT_A2
 	vm_bootstrap();
 	kprintf_bootstrap();
 
 	/* Default bootfs - but ignore failure, in case emu0 doesn't exist */
 	vfs_setbootfs("emu0");
+
+#if OPT_A3
+    swapfile_bootstrap();
+#endif // OPT_A3
+
 	/*
 	 * Make sure various things aren't screwed up.
 	 */
