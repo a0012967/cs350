@@ -45,7 +45,7 @@ void coremap_bootstrap() {
         cm_entry->paddr = (PAGE_SIZE * i) + firstaddr;
         cm[i] = cm_entry;
     }
-    
+
     // update our addresses to figure out 
     ram_getsize(&freeaddr, &lastaddr);
 
@@ -120,12 +120,12 @@ paddr_t getppages(unsigned long npages) {
 void ungetppages(paddr_t paddr) {
     int spl;
     u_int32_t i = 0;
-    
+
     spl = splhigh();
 
     // calculate index of the addr
     u_int32_t index = (paddr - firstaddr) / PAGE_SIZE;
-    
+
     // make the phys addr available on the coremap
     for (i = index + cm[index]->size -1; i >= index; i--) {
         cm[i]->use = 0;

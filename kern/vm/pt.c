@@ -56,8 +56,6 @@ void pt_destroy(struct pagetable *pt) {
 static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
         size_t memsize, size_t filesize) 
 {
-    // kprintf("pageread: %u, %u, %u, %u\n", offset, vaddr, memsize, filesize);
-
     struct uio ku;
     int result;
     size_t fillamt;
