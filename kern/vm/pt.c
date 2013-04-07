@@ -16,12 +16,12 @@
 #include <process.h>
 
 #include <array.h>
-#include <queue.h>
+#include <linkedlist.h>
 
 
 struct pagetable {
     struct array *entries;
-    struct queue *fifo;
+    struct linkedlist *fifo;
 };
 
 struct pagetable* pt_create() {
@@ -36,7 +36,7 @@ struct pagetable* pt_create() {
         return NULL;
     }
 
-    pt->fifo = q_create(1);
+    pt->fifo = ll_create();
     if (pt->fifo == NULL) {
         array_destroy(pt->entries);
         kfree(pt);
@@ -59,12 +59,12 @@ void pt_destroy(struct pagetable *pt) {
     }
 
     // empty queue
-    while (!q_empty(pt->fifo)) {
-        q_remhead(pt->fifo);
+    while (!ll_empty(pt->fifo)) {
+        ll_pop_front(pt->fifo);
     }
 
     array_destroy(pt->entries);
-    q_destroy(pt->fifo);
+    ll_destroy(pt->fifo);
     kfree(pt);
 }
 
@@ -139,7 +139,7 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
 }
 
 static struct pt_entry* pt_get_fifo_victim(struct pagetable *pt) {
-    return (struct pt_entry*)q_remhead(pt->fifo);
+    return (struct pt_entry*)ll_pop_front(pt->fifo);
 }
 
 static paddr_t page_replace(struct pagetable *pt) {
@@ -234,7 +234,7 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
             return 0;
         }
 
-        *err = q_addtail(pt->fifo, pte);
+        *err = ll_push_back(pt->fifo, pte);
         if (*err) {
             kfree(pte);
             return 0;

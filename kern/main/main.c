@@ -93,7 +93,7 @@ boot(void)
 #if OPT_A2
         console_files_bootstrap();
 #endif // OPT_A2
-	vm_bootstrap();
+	
 	kprintf_bootstrap();
 
 	/* Default bootfs - but ignore failure, in case emu0 doesn't exist */
@@ -101,6 +101,7 @@ boot(void)
 
 #if OPT_A3
     swapfile_bootstrap();
+    vm_bootstrap();
 #endif // OPT_A3
 
 	/*
