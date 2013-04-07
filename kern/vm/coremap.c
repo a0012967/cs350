@@ -93,7 +93,8 @@ paddr_t getppages(unsigned long npages) {
         }
         else if (i == cm_size -1) {
         	// TODO what if we dont find a block big enough?
-            assert(0);
+            splx(spl);
+            return 0;        
         }
         else {
             cont_count = npages;
