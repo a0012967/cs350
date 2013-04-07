@@ -214,11 +214,6 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
         }
     }
 
-	/* ---- VM STATS incrementing ------------- */
-	/* if found but invalid
-	if(found && !IS_VALID(pte->paddr)){
-		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
-	}*/
 
 	// TLB miss for a page in memory
 	if(found && IS_VALID(pte->paddr)) {
@@ -226,12 +221,6 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
 		//vmstats_inc(VMSTAT_TLB_FAULT);
 	}
 
-	/* page not in page table
-	if(!found){
-		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
-	}
-	*/
-	/* ---------------------------------------- */
 
     if (found) {
         if (!IS_VALID(pte->paddr)) {
