@@ -41,6 +41,8 @@ struct addrspace * as_create(void) {
     as->as_filesz2 = 0;
     as->as_offset2 = 0;
     as->as_flags2 = 0;
+
+    as->as_stackpbase = 0;
 #endif // OPT_A3
 
 	return as;
@@ -56,19 +58,7 @@ as_copy(struct addrspace *old, struct addrspace **ret) {
 	}
 
 #if OPT_A3
-    newas->as_vnode = old->as_vnode;
-	newas->as_vbase1 = old->as_vbase1;
-	newas->as_npages1 = old->as_npages1;
-    newas->as_filesz1 = old->as_filesz1;
-    newas->as_offset1 = old->as_offset1;
-    newas->as_flags1 = old->as_flags1;
-	newas->as_vbase2 = old->as_vbase2;
-	newas->as_npages2 = old->as_npages2;
-    newas->as_filesz2 = old->as_filesz2;
-    newas->as_offset2 = old->as_offset2;
-    newas->as_flags2 = old->as_flags2;
-
-    VOP_INCREF(newas->as_vnode);
+    (void)old;
 #else
 	(void)old;
 #endif // OPT_A3
@@ -81,6 +71,7 @@ void
 as_destroy(struct addrspace *as)
 {
     VOP_DECREF(as->as_vnode);
+    ungetppages(as->as_stackpbase);
 	kfree(as);
 }
 
@@ -187,7 +178,10 @@ int
 as_prepare_load(struct addrspace *as)
 {
 #if OPT_A3
-    (void)as;
+    as->as_stackpbase = getppages(VM_STACKPAGES);
+    if (as->as_stackpbase == 0) {
+        return ENOMEM;
+    }
 #else
 	(void)as;
 #endif // OPT_A3
@@ -204,7 +198,11 @@ as_complete_load(struct addrspace *as)
 int
 as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 {
+#if OPT_A3
+    assert(as->as_stackpbase != 0);
+#else
 	(void)as;
+#endif
 
 	/* Initial user-level stack pointer */
 	*stackptr = USERSTACK;
@@ -214,18 +212,20 @@ as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 
 #if OPT_A3
 int as_contains(struct addrspace *as, vaddr_t vaddr) {
-    vaddr_t vbase1, vtop1, vbase2, vtop2;
+    vaddr_t vbase1, vtop1, vbase2, vtop2, stackbase, stacktop;
 
 	vbase1 = as->as_vbase1;
 	vtop1 = vbase1 + as->as_npages1 * PAGE_SIZE;
 	vbase2 = as->as_vbase2;
 	vtop2 = vbase2 + as->as_npages2 * PAGE_SIZE;
+    stackbase = USERSTACK - VM_STACKPAGES * PAGE_SIZE;
+    stacktop = USERSTACK;
 
     if (vaddr >= vbase1 && vaddr < vtop1)
         return SEG_TEXT;
     else if (vaddr >= vbase2 && vaddr < vtop2)
         return SEG_DATA;
-    else // TODO: properly determine stack segment
+    else if (vaddr >= stackbase && vaddr < stacktop)
         return SEG_STCK;
 
     return 0;

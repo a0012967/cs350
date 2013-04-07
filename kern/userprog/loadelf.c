@@ -72,20 +72,10 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
 		return ENOEXEC;
 	}
 
-	/*
-	 * Go through the list of segments and set up the address space.
-	 *
-	 * Ordinarily there will be one code segment, one read-only
-	 * data segment, and one data/bss segment, but there might
-	 * conceivably be more. You don't need to support such files
-	 * if it's unduly awkward to do so.
-	 *
-	 * Note that the expression eh.e_phoff + i*eh.e_phentsize is 
-	 * mandated by the ELF standard - we use sizeof(ph) to load,
-	 * because that's the structure we know, but the file on disk
-	 * might have a larger structure, so we must use e_phentsize
-	 * to find where the phdr starts.
-	 */
+    result = as_prepare_load(curthread->t_vmspace);
+	if (result) {
+		return result;
+	}
 
 	for (i=0; i<eh.e_phnum; i++) {
 		off_t offset = eh.e_phoff + i*eh.e_phentsize;
@@ -123,9 +113,14 @@ load_elf(struct vnode *v, vaddr_t *entrypoint)
                         ph.p_flags & PF_W,
                         ph.p_flags & PF_X);
 
-        if (result) {
-            return result;
-        }
+		if (result) {
+			return result;
+		}
+	}
+
+	result = as_complete_load(curthread->t_vmspace);
+	if (result) {
+		return result;
 	}
 
 	*entrypoint = eh.e_entry;

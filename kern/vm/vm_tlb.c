@@ -38,6 +38,8 @@ static int tlb_get_rr_victim() {
 static 
 void 
 tlb_replace(struct addrspace *as, vaddr_t faultaddress, paddr_t paddr) {
+	vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
+
     // find victim to replace
     u_int32_t victim = tlb_get_rr_victim();
     u_int32_t ehi = faultaddress;
@@ -97,14 +99,31 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 	assert(as->as_npages1 != 0);
 	assert(as->as_vbase2 != 0);
 	assert(as->as_npages2 != 0);
+    assert(as->as_stackpbase != 0);
 	assert((as->as_vbase1 & PAGE_FRAME) == as->as_vbase1);
 	assert((as->as_vbase2 & PAGE_FRAME) == as->as_vbase2);
+    assert((as->as_stackpbase & PAGE_FRAME) == as->as_stackpbase);
 
-    // look in current process page table for frame number
-    paddr = pt_lookup(get_curprocess()->page_table, faultaddress, &err);
-    if (err) {
-        splx(spl);
-        return err;
+
+    // address exception. kill process
+    int seg = as_contains(curthread->t_vmspace, faultaddress);
+    if (!seg) {
+        kprintf("address exception. killing process");
+        kill_process(-1);
+    }
+
+    if (seg == SEG_STCK) {
+		vmstats_inc(VMSTAT_PAGE_FAULT_ZERO);		
+        vaddr_t stackbase = USERSTACK - VM_STACKPAGES * PAGE_SIZE;
+        paddr = (faultaddress - stackbase) + as->as_stackpbase;
+    }
+    else {
+        // look in current process page table for frame number
+        paddr = pt_lookup(get_curprocess()->page_table, faultaddress, &err);
+        if (err) {
+            splx(spl);
+            return err;
+        }
     }
 
 	// make sure it's page-aligned 
@@ -134,9 +153,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		return 0;
 	}
 
-	
-    // TLB full
-	vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
+    // TLB FULL
 	vmstats_inc(VMSTAT_TLB_FAULT);
     tlb_replace(as, faultaddress, paddr);
 	

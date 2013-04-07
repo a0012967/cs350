@@ -16,12 +16,12 @@
 #include <process.h>
 #include "uw-vmstats.h"
 #include <array.h>
-#include <queue.h>
+#include <linkedlist.h>
 
 
 struct pagetable {
     struct array *entries;
-    struct queue *fifo;
+    struct linkedlist *fifo;
 };
 
 struct pagetable* pt_create() {
@@ -36,7 +36,7 @@ struct pagetable* pt_create() {
         return NULL;
     }
 
-    pt->fifo = q_create(1);
+    pt->fifo = ll_create();
     if (pt->fifo == NULL) {
         array_destroy(pt->entries);
         kfree(pt);
@@ -59,12 +59,12 @@ void pt_destroy(struct pagetable *pt) {
     }
 
     // empty queue
-    while (!q_empty(pt->fifo)) {
-        q_remhead(pt->fifo);
+    while (!ll_empty(pt->fifo)) {
+        ll_pop_front(pt->fifo);
     }
 
     array_destroy(pt->entries);
-    q_destroy(pt->fifo);
+    ll_destroy(pt->fifo);
     kfree(pt);
 }
 
@@ -126,29 +126,24 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
         filesz = as->as_filesz2 > diff ? as->as_filesz2 - diff : 0;
         offset = as->as_offset2 + diff;
     }
-    else if (reg == SEG_STCK) {
-        // ignore stack segment since it doesn't live in elf file
-		vmstats_inc(VMSTAT_PAGE_FAULT_ZERO);		
-        return 0;
-    }
     else {
         // we already checked for the validity of the address before calling loadpage
         assert(0);
     }
+
 	vmstats_inc(VMSTAT_ELF_FILE_READ);
 	vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
     return page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
 }
 
 static struct pt_entry* pt_get_fifo_victim(struct pagetable *pt) {
-    return (struct pt_entry*)q_remhead(pt->fifo);
+    return (struct pt_entry*)ll_pop_front(pt->fifo);
 }
 
 static paddr_t page_replace(struct pagetable *pt) {
     int i;
 
     struct pt_entry *pte = pt_get_fifo_victim(pt);
-
     swapout(pte);
     /*if (IS_DIRTY(pte->paddr)) {
         kprintf("swapout(pte)\n");
@@ -159,12 +154,8 @@ static paddr_t page_replace(struct pagetable *pt) {
         pte->paddr = SET_INVALID(pte->paddr);
     }*/
 
-    
-    //kprintf("vaddr: %d\npaddr: %d\n", pte->vaddr, pte->paddr);
     // invalidate tlb entry
     i = TLB_Probe(pte->vaddr, pte->paddr);
-    //kprintf("%d\n", i);
-    //assert(i >= 0);
     if (i >= 0)
         TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
 
@@ -176,14 +167,13 @@ paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
     paddr_t paddr = ALIGN(getppages(1));
+    // no memory
     if (paddr == 0) {
-        kprintf("no memory\n");
         paddr = page_replace(pt);
     }
     else  {
         // load from elf
         *err = loadpage(curthread->t_vmspace, vaddr, paddr);
-		//vmstats_inc(VMSTAT_ELF_FILE_READ);
     }
 
     if (*err)
@@ -201,12 +191,6 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
     // align the virtual address
     vaddr = ALIGN(vaddr);
 
-    // address exception. kill process
-    if (!as_contains(curthread->t_vmspace, vaddr)) {
-        kprintf("PAGETABLE: address exception. killing process");
-        kill_process(-1);
-    }
-
     // look for it in the pagetable
     for (i=0; i<array_getnum(pt->entries); i++) {
         pte = (struct pt_entry*)array_getguy(pt->entries, i);
@@ -216,43 +200,48 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
         }
     }
 
-
-	// TLB miss for a page in memory
-	if(found && IS_VALID(pte->paddr)) {
-		vmstats_inc(VMSTAT_TLB_RELOAD);
-		//vmstats_inc(VMSTAT_TLB_FAULT);
-	}
-
-
     if (found) {
         if (!IS_VALID(pte->paddr)) {
             assert(IS_SWAPPED(pte->paddr));
             swapin(pte);	
 			vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
+
+            while (ll_push_back(pt->fifo, pte)) {
+                paddr_t p = page_replace(pt);
+                ungetppages(p);
+            }
         }
+        else {
+            // TLB miss for a page in memory
+            vmstats_inc(VMSTAT_TLB_RELOAD);
+        }
+
     } else {
         pte = kmalloc(sizeof(struct pt_entry));
-        assert(pte != NULL);
+        while (pte == NULL) {
+            paddr_t p = page_replace(pt);
+            ungetppages(p);
+            pte = kmalloc(sizeof(struct pt_entry));
+        }
+
         pte->vaddr = vaddr;
         pte->paddr = pt_pagefault_handler(pt, vaddr, err);
+
         if (*err) {
+            assert(0);
             kfree(pte);
             return 0;
         }
 
-        *err = array_add(pt->entries, pte);
-        if (*err) {
-            kfree(pte);
-            return 0;
+        while (array_add(pt->entries, pte)) {
+            paddr_t p = page_replace(pt);
+            ungetppages(p);
         }
 
-        *err = q_addtail(pt->fifo, pte);
-        if (*err) {
-            kfree(pte);
-            return 0;
+        while (ll_push_back(pt->fifo, pte)) {
+            paddr_t p = page_replace(pt);
+            ungetppages(p);
         }
-
-		
     }
 
     return ALIGN(pte->paddr);

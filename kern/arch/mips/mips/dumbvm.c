@@ -226,6 +226,8 @@ as_define_region(struct addrspace *as, vaddr_t vaddr, size_t sz,
 		return 0;
 	}
 
+    assert(0);
+
 	/*
 	 * Support for more than two regions is not available.
 	 */

@@ -37,6 +37,8 @@ struct addrspace {
     u_int32_t as_filesz2;
     u_int32_t as_offset2;
     u_int32_t as_flags2;
+
+	paddr_t as_stackpbase;
 #endif
 };
 
