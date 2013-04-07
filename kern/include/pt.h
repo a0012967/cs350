@@ -12,6 +12,10 @@
 #define SET_SWAPPED(x)   ((x) | 0x00000004)
 #define SET_INVALID(x)   ((x) & 0xfffffffe)
 
+#define N_OUT (1024)
+#define N_IN (1024)
+#define IN_MASK (0x003FF000)
+
 struct pagetable;
 
 struct pt_entry {

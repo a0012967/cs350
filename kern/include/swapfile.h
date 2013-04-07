@@ -7,8 +7,6 @@
 #define MAX_SWAPFILE_SIZE (9*1024*1024) // 9MB
 #define MAX_SWAPPED_PAGES (MAX_SWAPFILE_SIZE / PAGE_SIZE)
 
-struct vnode *swapfile;
-
 // maps a swapped page to its Location/offset in the swapfile
 // based on it's index in the array
 

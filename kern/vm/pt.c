@@ -20,25 +20,38 @@
 
 
 struct pagetable {
-    struct array *entries;
+    struct array *pt_out;
     struct queue *fifo;
 };
 
 struct pagetable* pt_create() {
+    int i, err = 0;
+
     struct pagetable *pt = kmalloc(sizeof(struct pagetable));
     if (pt == NULL) {
         return NULL;
     }
 
-    pt->entries = array_create();
-    if (pt->entries == NULL) {
+    pt->pt_out = array_create();
+    if (pt->pt_out == NULL) {
         kfree(pt);
         return NULL;
     }
 
+    err = array_setsize(pt->pt_out, N_OUT);
+    if (err) {
+        array_destroy(pt->pt_out);
+        kfree(pt);
+        return NULL;
+    }
+
+    for (i=0; i<N_OUT; i++) {
+        array_setguy(pt->pt_out, i, NULL);
+    }
+
     pt->fifo = q_create(1);
     if (pt->fifo == NULL) {
-        array_destroy(pt->entries);
+        array_destroy(pt->pt_out);
         kfree(pt);
         return NULL;
     }
@@ -47,14 +60,19 @@ struct pagetable* pt_create() {
 }
 
 void pt_destroy(struct pagetable *pt) {
-    int i;
+    int i, j;
 
-    // free page table entries inside array
-    for (i=0; i<array_getnum(pt->entries); i++) {
-        struct pt_entry *pte = (struct pt_entry*)array_getguy(pt->entries, i);
-        if (pte != NULL) {
-            ungetppages(ALIGN(pte->paddr));
-            kfree(pte);
+    for (i=0; i<N_OUT; i++) {
+        struct array *in_arr = (struct array*)array_getguy(pt->pt_out, i);
+        if (in_arr != NULL) {
+            for (j=0; j<N_IN; j++) {
+                struct pt_entry *pte = (struct pt_entry*)array_getguy(in_arr, i);
+                if (pte != NULL) {
+                    ungetppages(ALIGN(pte->paddr));
+                    kfree(pte);
+                }
+            }
+            array_destroy(in_arr);
         }
     }
 
@@ -63,11 +81,18 @@ void pt_destroy(struct pagetable *pt) {
         q_remhead(pt->fifo);
     }
 
-    array_destroy(pt->entries);
+    array_destroy(pt->pt_out);
     q_destroy(pt->fifo);
     kfree(pt);
 }
 
+static u_int32_t out_index(vaddr_t vaddr) {
+    return vaddr >> 22;
+}
+
+static u_int32_t in_index(vaddr_t vaddr) {
+    return (vaddr & IN_MASK) >> 12;
+}
 
 static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
         size_t memsize, size_t filesize) 
@@ -146,28 +171,27 @@ static paddr_t page_replace(struct pagetable *pt) {
     int i;
 
     struct pt_entry *pte = pt_get_fifo_victim(pt);
+    kprintf("swapping out\n");
+    swapout(pte);
 
+    /*
     if (IS_DIRTY(pte->paddr)) {
-        kprintf("swapout(pte)\n");
+        kprintf("swapping out\n");
         swapout(pte);
     }
-    else {
-        kprintf("pte->paddr = SET_INVALID(pte->paddr)\n");
+    else
         pte->paddr = SET_INVALID(pte->paddr);
-    }
+        */
 
-    
-    kprintf("vaddr: %d\npaddr: %d\n", pte->vaddr, pte->paddr);
     // invalidate tlb entry
-    i = TLB_Probe(pte->vaddr, pte->paddr);
-    kprintf("%d\n", i);
-    assert(i >= 0);
-    TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
+    i = TLB_Probe(pte->vaddr, 0);
+    if (i >= 0) {
+        TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
+    }
 
     return ALIGN(pte->paddr);
 }
 
-// copies vpn from elf to memory
 paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
@@ -191,7 +215,12 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
     struct pt_entry *pte;
-    int i, found = 0;
+    struct array *in_arr;
+    int i;
+
+    // calculate indices
+    u_int32_t out_i = out_index(vaddr);
+    u_int32_t in_i = in_index(vaddr);
 
     // align the virtual address
     vaddr = ALIGN(vaddr);
@@ -203,37 +232,78 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
     }
 
     // look for it in the pagetable
-    for (i=0; i<array_getnum(pt->entries); i++) {
-        pte = (struct pt_entry*)array_getguy(pt->entries, i);
-        if (ALIGN(pte->vaddr) == vaddr) {
-            found = 1;
-            break;
+    in_arr = (struct array*)array_getguy(pt->pt_out, out_i);
+
+    int tmp_err = 0;
+    paddr_t tmp_paddr;
+    while (in_arr == NULL) {
+        in_arr = array_create();
+        if (in_arr == NULL) {
+            tmp_paddr = page_replace(pt);
+            ungetppages(tmp_paddr);
         }
     }
 
-    if (found) {
+    do {
+        tmp_err = array_setsize(in_arr, N_IN);
+        if (tmp_err) {
+            tmp_paddr = page_replace(pt);
+            ungetppages(tmp_paddr);
+        }
+    } while (tmp_err);
+
+    if (in_arr == NULL) {
+
+        redo:
+        in_arr = array_create(); 
+
+        if (in_arr == NULL) {
+            foo_paddr = page_replace(pt);
+            ungetppages(foo_paddr);
+            goto redo;
+        }
+
+        if (in_arr != NULL) {
+            foo = array_setsize(in_arr, N_IN);
+            if (foo) {
+                page_replace(pt);
+            }
+        }
+
+        *err = array_setsize(in_arr, N_IN); assert(*err == 0);
+        for (i=0; i<N_IN; i++) {
+            array_setguy(in_arr, i, NULL);
+        }
+        array_setguy(pt->pt_out, out_i, in_arr);
+    }
+    pte = (struct pt_entry*)array_getguy(in_arr, in_i);
+
+    // already in the array
+    if (pte != NULL) {
         if (!IS_VALID(pte->paddr)) {
+            // it should've been swapped out
             assert(IS_SWAPPED(pte->paddr));
+            kprintf("swapping in\n");
             swapin(pte);
         }
-    } else {
+    }
+    // valid address but not yet in the array
+    else {
         pte = kmalloc(sizeof(struct pt_entry));
         assert(pte != NULL);
         pte->vaddr = vaddr;
         pte->paddr = pt_pagefault_handler(pt, vaddr, err);
         if (*err) {
+            assert(0);
             kfree(pte);
             return 0;
         }
 
-        *err = array_add(pt->entries, pte);
-        if (*err) {
-            kfree(pte);
-            return 0;
-        }
+        array_setguy(in_arr, in_i, pte);
 
         *err = q_addtail(pt->fifo, pte);
         if (*err) {
+            assert(0);
             kfree(pte);
             return 0;
         }
@@ -241,3 +311,4 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
 
     return ALIGN(pte->paddr);
 }
+
