@@ -149,22 +149,24 @@ static paddr_t page_replace(struct pagetable *pt) {
 
     struct pt_entry *pte = pt_get_fifo_victim(pt);
 
-    if (IS_DIRTY(pte->paddr)) {
+    swapout(pte);
+    /*if (IS_DIRTY(pte->paddr)) {
         kprintf("swapout(pte)\n");
         swapout(pte);
     }
     else {
         kprintf("pte->paddr = SET_INVALID(pte->paddr)\n");
         pte->paddr = SET_INVALID(pte->paddr);
-    }
+    }*/
 
     
-    kprintf("vaddr: %d\npaddr: %d\n", pte->vaddr, pte->paddr);
+    //kprintf("vaddr: %d\npaddr: %d\n", pte->vaddr, pte->paddr);
     // invalidate tlb entry
     i = TLB_Probe(pte->vaddr, pte->paddr);
-    kprintf("%d\n", i);
-    assert(i >= 0);
-    TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
+    //kprintf("%d\n", i);
+    //assert(i >= 0);
+    if (i >= 0)
+        TLB_Write(TLBHI_INVALID(i), TLBLO_INVALID(), i);
 
     return ALIGN(pte->paddr);
 }

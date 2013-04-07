@@ -32,7 +32,7 @@ void swapfile_bootstrap() {
 }
 
 int swapout(struct pt_entry *pte) {
-    assert(IS_DIRTY(pte->paddr));
+    //assert(IS_DIRTY(pte->paddr));
 
     u_int32_t i, spl, offset, err = 0, found = 0;
 	spl = splhigh();
