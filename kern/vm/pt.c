@@ -89,8 +89,7 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
     if (result) {
         return result;
     }
-
-	vmstats_inc(VMSTAT_ELF_FILE_READ);
+	
     if (ku.uio_resid != 0) {
 		// short read; problem with executable?
 		kprintf("ELF: short read on segment - file truncated?\n");
@@ -99,7 +98,7 @@ static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
 
 	// Fill the rest of the memory space (if any) with zeros
 	fillamt = memsize - filesize;
-	if (fillamt > 0) {
+	if (fillamt > 0) {		
 		DEBUG(DB_EXEC, "ELF: Zero-filling %lu more bytes\n", (unsigned long) fillamt);
 		ku.uio_resid += fillamt;
 		result = uiomovezeros(fillamt, &ku);		
@@ -129,13 +128,15 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
     }
     else if (reg == SEG_STCK) {
         // ignore stack segment since it doesn't live in elf file
+		vmstats_inc(VMSTAT_PAGE_FAULT_ZERO);		
         return 0;
     }
     else {
         // we already checked for the validity of the address before calling loadpage
         assert(0);
     }
-
+	vmstats_inc(VMSTAT_ELF_FILE_READ);
+	vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
     return page_read(as->as_vnode, offset, PADDR_TO_KVADDR(paddr), PAGE_SIZE, filesz);
 }
 
@@ -173,6 +174,7 @@ paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
         // load from elf
         kprintf("load from elf\n");
         *err = loadpage(curthread->t_vmspace, vaddr, paddr);
+		//vmstats_inc(VMSTAT_ELF_FILE_READ);
     }
 
     if (*err)
@@ -206,27 +208,29 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
     }
 
 	/* ---- VM STATS incrementing ------------- */
-	// if found but invalid
+	/* if found but invalid
 	if(found && !IS_VALID(pte->paddr)){
 		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
-	}
+	}*/
 
 	// TLB miss for a page in memory
 	if(found && IS_VALID(pte->paddr)) {
 		vmstats_inc(VMSTAT_TLB_RELOAD);
+		//vmstats_inc(VMSTAT_TLB_FAULT);
 	}
 
-	// page not in page table
+	/* page not in page table
 	if(!found){
 		vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
 	}
-
+	*/
 	/* ---------------------------------------- */
 
     if (found) {
         if (!IS_VALID(pte->paddr)) {
             assert(IS_SWAPPED(pte->paddr));
-            swapin(pte);
+            swapin(pte);	
+			vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
         }
     } else {
         pte = kmalloc(sizeof(struct pt_entry));
@@ -249,6 +253,8 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
             kfree(pte);
             return 0;
         }
+
+		
     }
 
     return ALIGN(pte->paddr);

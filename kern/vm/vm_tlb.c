@@ -50,22 +50,21 @@ tlb_replace(struct addrspace *as, vaddr_t faultaddress, paddr_t paddr) {
 
     DEBUG(DB_VM, "vm_tlb: 0x%x -> 0x%x\n", faultaddress, paddr);
 
-	// evict the victim
-    _vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
+	// evict the victim   
 	TLB_Write(ehi, elo, victim);
 }
 
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
-    vmstats_inc(VMSTAT_TLB_FAULT);
+   // vmstats_inc(VMSTAT_TLB_FAULT);
 	struct addrspace *as;
 	paddr_t paddr;
 	u_int32_t ehi, elo;
 	int i, spl, err = 0;
 
 	spl = splhigh();
-
+	
 	faultaddress &= PAGE_FRAME;
 
 	DEBUG(DB_VM, "dumbvm: fault: 0x%x\n", faultaddress);
@@ -111,6 +110,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 	// make sure it's page-aligned 
 	assert((paddr & PAGE_FRAME)==paddr);
 
+
 	for (i=0; i<NUM_TLB; i++) {
 		TLB_Read(&ehi, &elo, i);
 
@@ -128,14 +128,18 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 		DEBUG(DB_VM, "dumbvm: 0x%x -> 0x%x\n", faultaddress, paddr);
 
 		vmstats_inc(VMSTAT_TLB_FAULT_FREE);
-		TLB_Write(ehi, elo, i);		
+		vmstats_inc(VMSTAT_TLB_FAULT);
+		TLB_Write(ehi, elo, i);			
 		splx(spl);
 		return 0;
 	}
 
+	
     // TLB full
+	vmstats_inc(VMSTAT_TLB_FAULT_REPLACE);
+	vmstats_inc(VMSTAT_TLB_FAULT);
     tlb_replace(as, faultaddress, paddr);
-
+	
     splx(spl);
     return 0;
 }

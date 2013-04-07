@@ -49,7 +49,7 @@ int swapout(struct pt_entry *pte) {
 	
 	/* check if we are trying to swap to a full swapfile */
 	if (count == MAX_SWAPPED_PAGES && !found) {
-		panic("swapout: out of swapfile space");
+		panic("Out of swap space");
 	}
 	
     if (found) {
