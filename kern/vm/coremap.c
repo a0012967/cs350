@@ -6,6 +6,7 @@
 #include <coremap.h>
 #include <vm.h>
 #include <addrspace.h>
+#include <uio.h>
 #include <machine/spl.h>
 #include <machine/tlb.h>
 
@@ -111,11 +112,18 @@ paddr_t getppages(unsigned long npages) {
     cm[cont_block_index]->use = 1;
     cm[cont_block_index]->size = npages;
 
+	struct uio ku;
+	mk_kuio(&ku, PADDR_TO_KVADDR(addr), PAGE_SIZE*npages, 0, UIO_READ);
+	ku.uio_resid = PAGE_SIZE*npages;
+	uiomovezeros(PAGE_SIZE*npages,&ku);
+
 	// set the "tail" of the block of pages to be in use
 	for (i = cont_block_index+1; i < cont_block_index + npages; i++) {
 	    cm[i]->use = 1;
 	    cm[i]->size = -1;
 	}
+	
+
 	
 	splx(spl);
 	return addr;
@@ -126,7 +134,7 @@ void ungetppages(paddr_t paddr) {
     int spl;
     u_int32_t i = 0;
 
-    spl = splhigh();
+    spl = splhigh();  
 
     // calculate index of the addr
     u_int32_t index = (paddr - firstaddr) / PAGE_SIZE;
