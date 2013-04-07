@@ -70,22 +70,22 @@ void pt_destroy(struct pagetable *pt) {
             for (j=0; j<N_IN; j++) {
                 pte = (struct pt_entry*)array_getguy(in_arr, i);
                 if (pte != NULL) {
-                    if (!SET_SWAPPED(pte->paddr)) {
+                    if (!IS_SWAPPED(pte->paddr))
                         ungetppages(ALIGN(pte->paddr));
-                        kfree(pte);
-                    }
+                    kfree(pte);
                 }
             }
             array_destroy(in_arr);
         }
     }
 
+    // empty queue
     while (!ll_empty(pt->fifo)) {
         ll_pop_front(pt->fifo);
     }
 
     array_destroy(pt->pt_out);
-    ll_destroy(pt->fifo);
+    q_destroy(pt->fifo);
     kfree(pt);
 }
 
@@ -169,7 +169,7 @@ static int loadpage(struct addrspace *as, vaddr_t vaddr, paddr_t paddr) {
 }
 
 static struct pt_entry* pt_get_fifo_victim(struct pagetable *pt) {
-    return (struct pt_entry*)ll_pop_front(pt->fifo);
+    return (struct pt_entry*)q_remhead(pt->fifo);
 }
 
 static paddr_t page_replace(struct pagetable *pt) {
@@ -275,7 +275,7 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
             swapin(pte);
 
             assert(ALIGN(pte->paddr) > 0);
-            while (ll_push_back(pt->fifo, pte)) {
+            while (q_addtail(pt->fifo, pte)) {
                 kprintf("279\n");
                 paddr_t p = page_replace(pt);
                 kprintf("p is: %u\n", p);
@@ -310,10 +310,11 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
         array_setguy(in_arr, in_i, pte);
 
         assert(ALIGN(pte->paddr) > 0);
-        while(ll_push_back(pt->fifo, pte)) {
-            paddr_t p = page_replace(pt);
-            ungetppages(ALIGN(p));
-            kprintf("316\n");
+        *err = q_addtail(pt->fifo, pte);
+        if (*err) {
+            assert(0);
+            kfree(pte);
+            return 0;
         }
     }
 

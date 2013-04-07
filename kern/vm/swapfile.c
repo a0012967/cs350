@@ -40,7 +40,7 @@ int swapout(struct pt_entry *pte) {
 	
     paddr_t pfn = ALIGN(pte->paddr);
 
-	/* get offset of the page in the swapfile (if its been swapped before) */
+	// get offset of the page in the swapfile (if its been swapped before)
 	for (i=0; i<count; i++) {
 		if (pfn == swappedpages_map[i]) {
 			found = 1;
@@ -48,7 +48,7 @@ int swapout(struct pt_entry *pte) {
 		}
 	}	
 	
-	/* check if we are trying to swap to a full swapfile */
+	// check if we are trying to swap to a full swapfile
 	if (count == MAX_SWAPPED_PAGES && !found) {
 		panic("swapout: out of swapfile space");
 	}
@@ -57,7 +57,7 @@ int swapout(struct pt_entry *pte) {
         offset = i * PAGE_SIZE;
     }
     else {
-        swappedpages_map[count] = pfn;
+        swappedpages_map[count] = ALIGN(pfn);
         offset = count * PAGE_SIZE;
         count++;
     }
@@ -67,7 +67,8 @@ int swapout(struct pt_entry *pte) {
 
 	// update page table entry
     // turn off all other bits and set it as swapped
-    pte->paddr = SET_SWAPPED(ALIGN(pte->paddr));
+    pte->paddr = ALIGN(pte->paddr);
+    pte->paddr = SET_SWAPPED(pte->paddr);
 	
 	//TODO: increment swapped out stats count
 	
@@ -101,7 +102,8 @@ int swapin(struct pt_entry *pte) {
 
 	// update page table entry
     // turn off all other bits and set it as valid
-    pte->paddr = SET_VALID(ALIGN(pte->paddr));
+    pte->paddr = ALIGN(pte->paddr);
+    pte->paddr = SET_VALID(pte->paddr);
 
     splx(spl);
     return err;
@@ -116,7 +118,9 @@ int read_from_swapfile(vaddr_t vaddr, u_int32_t offset) {
     u.uio_segflg = UIO_SYSSPACE;
     u.uio_rw = UIO_READ;
     u.uio_space = NULL;
-    return VOP_READ(swapfile, &u);
+    int err = VOP_READ(swapfile, &u);
+    assert(!err);
+    return err;
 }
 
 int write_to_swapfile(vaddr_t vaddr, u_int32_t offset) {
@@ -128,7 +132,9 @@ int write_to_swapfile(vaddr_t vaddr, u_int32_t offset) {
     u.uio_segflg = UIO_SYSSPACE;
     u.uio_rw = UIO_WRITE;
     u.uio_space = NULL;
-    return VOP_WRITE(swapfile, &u);
+    int err = VOP_WRITE(swapfile, &u);
+    assert(!err);
+    return err;
 }
 
 int evict() {

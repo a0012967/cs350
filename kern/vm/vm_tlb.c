@@ -24,7 +24,7 @@ void vm_bootstrap(void) {
 }
 
 void vm_shutdown(void) {
-    _vmstats_print();
+    // _vmstats_print();
 }
 
 static int tlb_get_rr_victim() {

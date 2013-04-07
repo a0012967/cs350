@@ -389,6 +389,7 @@ INCLUDES	compile/ASST2/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I.
 INCLUDES	compile/ASST3/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INUSE_WORDS	lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
 INVALID_OFFSET	lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
+IN_MASK	include/pt.h	/^#define IN_MASK /;"	d
 ISDIR	dev/lamebus/emu.c	/^#define ISDIR /;"	d	file:
 ISDIR	fs/sfs/sfs_vnode.c	/^#define ISDIR /;"	d	file:
 IS_DIRTY	include/pt.h	/^#define IS_DIRTY(/;"	d
@@ -544,6 +545,8 @@ NUM_TLB	compile/ASST1/machine/tlb.h	/^#define NUM_TLB /;"	d
 NUM_TLB	compile/ASST2/machine/tlb.h	/^#define NUM_TLB /;"	d
 NUM_TLB	compile/ASST3/machine/tlb.h	/^#define NUM_TLB /;"	d
 NWAITADDRS	test/tt3.c	/^#define NWAITADDRS /;"	d	file:
+N_IN	include/pt.h	/^#define N_IN /;"	d
+N_OUT	include/pt.h	/^#define N_OUT /;"	d
 NumBowls	asst1/catmouse.c	/^int NumBowls;  \/\/ number of food bowls$/;"	v
 NumCats	asst1/catmouse.c	/^int NumCats;   \/\/ number of cats$/;"	v
 NumLoops	asst1/catmouse.c	/^int NumLoops;  \/\/ number of times each cat and mouse should eat$/;"	v
@@ -1223,7 +1226,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 301;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 366;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1497,7 +1500,6 @@ emufs_unimp	dev/lamebus/emu.c	/^emufs_unimp(void)$/;"	f	file:
 emufs_unmount	dev/lamebus/emu.c	/^emufs_unmount(struct fs *fs)$/;"	f	file:
 emufs_vnode	include/emufs.h	/^struct emufs_vnode {$/;"	s
 emufs_write	dev/lamebus/emu.c	/^emufs_write(struct vnode *v, struct uio *uio)$/;"	f	file:
-entries	vm/pt.c	/^    struct array *entries;$/;"	m	struct:pagetable	typeref:struct:pagetable::array	file:
 ev_emu	include/emufs.h	/^	struct emu_softc *ev_emu;	\/* device *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::emu_softc
 ev_handle	include/emufs.h	/^	u_int32_t ev_handle;		\/* file handle *\/$/;"	m	struct:emufs_vnode
 ev_v	include/emufs.h	/^	struct vnode ev_v;		\/* abstract vnode structure *\/$/;"	m	struct:emufs_vnode	typeref:struct:emufs_vnode::vnode
@@ -1580,6 +1582,7 @@ head	filedes/systemfiletable.c	/^    struct file *head;$/;"	m	struct:systemfilet
 head	lib/linkedlist.c	/^    struct node *head;$/;"	m	struct:linkedlist	typeref:struct:linkedlist::node	file:
 held	include/synch.h	/^        struct thread *held;$/;"	m	struct:lock	typeref:struct:lock::thread
 hello	main/hello.c	/^void hello() {$/;"	f
+in_index	vm/pt.c	/^static u_int32_t in_index(vaddr_t vaddr) {$/;"	f	file:
 in_interrupt	arch/mips/mips/interrupt.c	/^int in_interrupt;$/;"	v
 init_sem	test/threadtest.c	/^init_sem(void)$/;"	f	file:
 init_threadsem	test/fstest.c	/^init_threadsem(void)$/;"	f	file:
@@ -1880,6 +1883,7 @@ off_t	include/kern/types.h	/^typedef int32_t off_t;   \/* Offset within file *\/
 offset	include/file.h	/^    int offset;$/;"	m	struct:file
 one_thread_only	thread/thread.c	/^one_thread_only() {$/;"	f
 opsmenu	main/menu.c	/^static const char *opsmenu[] = {$/;"	v	file:
+out_index	vm/pt.c	/^static u_int32_t out_index(vaddr_t vaddr) {$/;"	f	file:
 p_align	include/elf.h	/^	u_int32_t	p_align;     \/* Required alignment - can ignore *\/$/;"	m	struct:__anon2
 p_assign_thread	process/process.c	/^void p_assign_thread(struct process *p, struct thread *t) {$/;"	f
 p_childrenpids	include/process.h	/^    struct array * p_childrenpids; \/\/ a list of all of this process’s children$/;"	m	struct:process	typeref:struct:process::array
@@ -1984,6 +1988,7 @@ pt_entry	include/pt.h	/^struct pt_entry {$/;"	s
 pt_get_fifo_victim	vm/pt.c	/^static struct pt_entry* pt_get_fifo_victim(struct pagetable *pt) {$/;"	f	file:
 pt_lock	process/processtable.c	/^static struct lock *pt_lock;$/;"	v	typeref:struct:lock	file:
 pt_lookup	vm/pt.c	/^paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
+pt_out	vm/pt.c	/^    struct array *pt_out;$/;"	m	struct:pagetable	typeref:struct:pagetable::array	file:
 pt_pagefault_handler	vm/pt.c	/^paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {$/;"	f
 putch	dev/generic/console.c	/^putch(int ch)$/;"	f
 putch_delayed	dev/generic/console.c	/^putch_delayed(int ch)$/;"	f	file:
@@ -2276,8 +2281,8 @@ sv_dirty	include/sfs.h	/^	int sv_dirty;                   \/* true if sv_i modif
 sv_i	include/sfs.h	/^	struct sfs_inode sv_i;		\/* on-disk inode *\/$/;"	m	struct:sfs_vnode	typeref:struct:sfs_vnode::sfs_inode
 sv_ino	include/sfs.h	/^	u_int32_t sv_ino;               \/* inode number *\/$/;"	m	struct:sfs_vnode
 sv_v	include/sfs.h	/^	struct vnode sv_v;              \/* abstract vnode structure *\/$/;"	m	struct:sfs_vnode	typeref:struct:sfs_vnode::vnode
-swap_bootstrap	vm/swapfile.c	/^void swap_bootstrap() {$/;"	f
-swapfile	include/swapfile.h	/^struct vnode *swapfile;$/;"	v	typeref:struct:vnode
+swapfile	vm/swapfile.c	/^static struct vnode *swapfile;$/;"	v	typeref:struct:vnode	file:
+swapfile_bootstrap	vm/swapfile.c	/^void swapfile_bootstrap() {$/;"	f
 swapin	vm/swapfile.c	/^int swapin(struct pt_entry *pte) {$/;"	f
 swapout	vm/swapfile.c	/^int swapout(struct pt_entry *pte) {$/;"	f
 swappedpages_map	vm/swapfile.c	/^static paddr_t *swappedpages_map;$/;"	v	file:
