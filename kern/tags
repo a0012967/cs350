@@ -389,6 +389,7 @@ INCLUDES	compile/ASST2/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I.
 INCLUDES	compile/ASST3/Makefile	/^INCLUDES=-nostdinc -I$S\/include -I$S\/dev -I. $/;"	m
 INUSE_WORDS	lib/kheap.c	/^#define INUSE_WORDS /;"	d	file:
 INVALID_OFFSET	lib/kheap.c	/^#define INVALID_OFFSET /;"	d	file:
+IN_MASK	include/pt.h	/^#define IN_MASK /;"	d
 ISDIR	dev/lamebus/emu.c	/^#define ISDIR /;"	d	file:
 ISDIR	fs/sfs/sfs_vnode.c	/^#define ISDIR /;"	d	file:
 IS_DIRTY	include/pt.h	/^#define IS_DIRTY(/;"	d
@@ -544,6 +545,8 @@ NUM_TLB	compile/ASST1/machine/tlb.h	/^#define NUM_TLB /;"	d
 NUM_TLB	compile/ASST2/machine/tlb.h	/^#define NUM_TLB /;"	d
 NUM_TLB	compile/ASST3/machine/tlb.h	/^#define NUM_TLB /;"	d
 NWAITADDRS	test/tt3.c	/^#define NWAITADDRS /;"	d	file:
+N_IN	include/pt.h	/^#define N_IN /;"	d
+N_OUT	include/pt.h	/^#define N_OUT /;"	d
 NumBowls	asst1/catmouse.c	/^int NumBowls;  \/\/ number of food bowls$/;"	v
 NumCats	asst1/catmouse.c	/^int NumCats;   \/\/ number of cats$/;"	v
 NumLoops	asst1/catmouse.c	/^int NumLoops;  \/\/ number of times each cat and mouse should eat$/;"	v
@@ -1223,7 +1226,7 @@ buildconfig	compile/ASST3/vers.c	/^const char buildconfig[] = "ASST3";$/;"	v
 buildversion	compile/ASST0/vers.c	/^const int buildversion = 8;$/;"	v
 buildversion	compile/ASST1/vers.c	/^const int buildversion = 56;$/;"	v
 buildversion	compile/ASST2/vers.c	/^const int buildversion = 442;$/;"	v
-buildversion	compile/ASST3/vers.c	/^const int buildversion = 428;$/;"	v
+buildversion	compile/ASST3/vers.c	/^const int buildversion = 447;$/;"	v
 bus_map_area	arch/mips/include/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST0/machine/bus.h	/^#define bus_map_area(/;"	d
 bus_map_area	compile/ASST1/machine/bus.h	/^#define bus_map_area(/;"	d
@@ -1524,6 +1527,7 @@ firstaddr	vm/coremap.c	/^static paddr_t firstaddr;$/;"	v	file:
 firstfree	arch/mips/mips/ram.c	/^u_int32_t firstfree;   \/* first free virtual address; set by start.S *\/$/;"	v
 firstpaddr	arch/mips/mips/ram.c	/^static u_int32_t firstpaddr;  \/* address of first free physical page *\/$/;"	v	file:
 flush_delay_buf	dev/generic/console.c	/^flush_delay_buf(void)$/;"	f	file:
+force_free_page	vm/pt.c	/^static void force_free_page(struct pagetable *pt) {$/;"	f	file:
 free_kpages	arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/;"	f
 free_kpages	vm/vm_tlb.c	/^free_kpages(vaddr_t addr)$/;"	f
 freeaddr	vm/coremap.c	/^static paddr_t freeaddr; $/;"	v	file:
@@ -2809,4 +2813,5 @@ z0	compile/ASST0/machine/asmdefs.h	/^#define z0 /;"	d
 z0	compile/ASST1/machine/asmdefs.h	/^#define z0 /;"	d
 z0	compile/ASST2/machine/asmdefs.h	/^#define z0 /;"	d
 z0	compile/ASST3/machine/asmdefs.h	/^#define z0 /;"	d
+zero_out_page	vm/pt.c	/^static void zero_out_page(paddr_t paddr) {$/;"	f	file:
 zombies	thread/thread.c	/^static struct array *zombies;$/;"	v	typeref:struct:array	file:

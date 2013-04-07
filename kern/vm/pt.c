@@ -68,7 +68,6 @@ void pt_destroy(struct pagetable *pt) {
     kfree(pt);
 }
 
-
 static int page_read(struct vnode *v, u_int32_t offset, vaddr_t vaddr,
         size_t memsize, size_t filesize) 
 {
@@ -145,6 +144,9 @@ static paddr_t page_replace(struct pagetable *pt) {
 
     struct pt_entry *pte = pt_get_fifo_victim(pt);
     swapout(pte);
+    assert(ALIGN(pte->paddr) > 0);
+    assert(IS_SWAPPED(pte->paddr));
+
     /*if (IS_DIRTY(pte->paddr)) {
         kprintf("swapout(pte)\n");
         swapout(pte);
@@ -162,14 +164,33 @@ static paddr_t page_replace(struct pagetable *pt) {
     return ALIGN(pte->paddr);
 }
 
+static void zero_out_page(paddr_t paddr) {
+    struct uio ku;
+    paddr = ALIGN(paddr); assert(paddr > 0);
+    mk_kuio(&ku, (void*)PADDR_TO_KVADDR(paddr), PAGE_SIZE, 0, UIO_READ);
+    ku.uio_resid = PAGE_SIZE;
+    int result = uiomovezeros(PAGE_SIZE, &ku);
+    assert(!result);
+}
+
+// forces to get a free page. puts replace page into swapfile
+static void force_free_page(struct pagetable *pt) {
+    paddr_t p = page_replace(pt);
+    assert(ALIGN(p) > 0);
+    zero_out_page(p);
+    ungetppages(p);
+}
+
 // copies vpn from elf to memory
 paddr_t pt_pagefault_handler(struct pagetable *pt, vaddr_t vaddr, int *err) {
     assert(*err == 0);
 
     paddr_t paddr = ALIGN(getppages(1));
+
     // no memory
     if (paddr == 0) {
         paddr = page_replace(pt);
+        zero_out_page(paddr);
     }
     else  {
         // load from elf
@@ -201,26 +222,24 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
     }
 
     if (found) {
-        if (!IS_VALID(pte->paddr)) {
+        if (IS_VALID(pte->paddr)) {
+            // TLB miss for a page in memory
+            vmstats_inc(VMSTAT_TLB_RELOAD);
+        }
+        else {
             assert(IS_SWAPPED(pte->paddr));
-            swapin(pte);	
+            *err = swapin(pte); assert(*err == 0);
 			vmstats_inc(VMSTAT_PAGE_FAULT_DISK);
 
             while (ll_push_back(pt->fifo, pte)) {
-                paddr_t p = page_replace(pt);
-                ungetppages(p);
+                force_free_page(pt);
             }
-        }
-        else {
-            // TLB miss for a page in memory
-            vmstats_inc(VMSTAT_TLB_RELOAD);
         }
 
     } else {
         pte = kmalloc(sizeof(struct pt_entry));
         while (pte == NULL) {
-            paddr_t p = page_replace(pt);
-            ungetppages(p);
+            force_free_page(pt);
             pte = kmalloc(sizeof(struct pt_entry));
         }
 
@@ -234,15 +253,15 @@ paddr_t pt_lookup(struct pagetable *pt, vaddr_t vaddr, int *err) {
         }
 
         while (array_add(pt->entries, pte)) {
-            paddr_t p = page_replace(pt);
-            ungetppages(p);
+            force_free_page(pt);
         }
 
         while (ll_push_back(pt->fifo, pte)) {
-            paddr_t p = page_replace(pt);
-            ungetppages(p);
+            force_free_page(pt);
         }
     }
 
+    pte->paddr = ALIGN(pte->paddr);
+    pte->paddr = SET_VALID(pte->paddr);
     return ALIGN(pte->paddr);
 }

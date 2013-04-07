@@ -98,9 +98,11 @@ int swapin(struct pt_entry *pte) {
     err = read_from_swapfile(PADDR_TO_KVADDR(pfn), offset);
     assert(!err);
 	vmstats_inc(VMSTAT_SWAP_FILE_READ);
+
 	// update page table entry
     // turn off all other bits and set it as valid
-    pte->paddr = SET_VALID(ALIGN(pte->paddr));
+    pte->paddr = ALIGN(pte->paddr);
+    pte->paddr = SET_VALID(pte->paddr);
 
     splx(spl);
     return err;

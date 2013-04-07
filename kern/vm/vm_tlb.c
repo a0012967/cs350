@@ -108,7 +108,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
     // address exception. kill process
     int seg = as_contains(curthread->t_vmspace, faultaddress);
     if (!seg) {
-        kprintf("address exception. killing process");
+        kprintf("address exception. killing process\n");
         kill_process(-1);
     }
 
@@ -125,6 +125,8 @@ vm_fault(int faulttype, vaddr_t faultaddress)
             return err;
         }
     }
+
+    assert((paddr & PAGE_FRAME) > 0);
 
 	// make sure it's page-aligned 
 	assert((paddr & PAGE_FRAME)==paddr);

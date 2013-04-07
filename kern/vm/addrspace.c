@@ -137,6 +137,7 @@ int as_define_region(struct addrspace *as,
 
     // increment references to file
     VOP_INCREF(v);
+    VOP_INCREF(v);
 
 	if (as->as_vbase1 == 0) {
         as->as_vnode = v;
@@ -220,6 +221,10 @@ int as_contains(struct addrspace *as, vaddr_t vaddr) {
 	vtop2 = vbase2 + as->as_npages2 * PAGE_SIZE;
     stackbase = USERSTACK - VM_STACKPAGES * PAGE_SIZE;
     stacktop = USERSTACK;
+
+    assert(vbase1 != 0);
+    assert(vbase2 != 0);
+    assert(as->as_stackpbase != 0);
 
     if (vaddr >= vbase1 && vaddr < vtop1)
         return SEG_TEXT;

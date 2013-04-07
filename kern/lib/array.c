@@ -47,9 +47,9 @@ array_preallocate(struct array *a, int nguys)
 	int newmax = a->max;
 
 	assert(a->num >=0 && a->num <= a->max);
-		
+    newmax = (newmax == 0) ? 1 : newmax;
 	while (nguys > newmax) {
-		newmax = (newmax+1)*2;
+		newmax = newmax*2;
 	}
 	newv = kmalloc(newmax * sizeof(void *));
 	if (newv==NULL) {
